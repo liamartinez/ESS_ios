@@ -1,7 +1,4 @@
-//
-//  swBaseScene.h
-//  SingWhale01
-//
+
 //  Created by Lia Martinez on 2/26/12.
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
 //
@@ -30,10 +27,15 @@ public:
     swSceneManager* swSM;
     swAssetManager* swAssets;
     
+    //xml
+    ofxXmlSettings XML;    
+    string xmlStructure;
+    string message;
     
     ofxSceneManager2 mgr;
 protected:
     void drawGrid();
+    
 };
 
 #endif

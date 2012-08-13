@@ -39,10 +39,16 @@ void map1Scene::update() {
 void map1Scene::activate() {
     mgr.setCurScene(MAP1_SCENE_FIRST);
     
-    
+    //load the XMLs
+    if( XML.loadFile(ofxiPhoneGetDocumentsDirectory() + "oh.xml") ){
+		message = "mySettings.xml loaded from documents folder!";
+	}else if( XML.loadFile("mySettings.xml") ){
+		message = "mySettings.xml loaded from data folder!";
+	}else{
+		message = "unable to load mySettings.xml check data/ folder";
+	}
     
     map1Scene.loadImage("flattenFiles/Map1.jpg");
-//    button.setImage(&map1Scene,&map1Scene);
     button.setLabel("next",&swAssets->whitneySemiBold22);
     button.setPos(200,200);
     play.setLabel("play",&swAssets->whitneySemiBold22);

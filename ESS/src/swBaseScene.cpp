@@ -1,7 +1,4 @@
-//
-//  swBaseScene.cpp
-//  SingWhale01
-//
+
 //  Created by Stephen Varga on 6/8/11.
 //  modified by Lia Martinez on 2/26/12.
 //

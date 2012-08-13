@@ -22,9 +22,7 @@
 }  
 
 -(void)p:(UIPinchGestureRecognizer *) pr{  
-
     NSLog(@"Pinch scale: %f", pinchGestureRecognizer.scale);
-    
 }  
 
 -(void)dealloc{  

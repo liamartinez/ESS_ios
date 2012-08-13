@@ -1,7 +1,4 @@
-//
-//  swSceneManager.h
-//  Thesis01interface
-//
+
 //  Created by Stephen Varga on 6/15/11.
 //  Modified by Lia Martinez on 2/25/12.
 //
