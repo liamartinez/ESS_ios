@@ -1,6 +1,6 @@
 dependencies: \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_App/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.cpp \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_App/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.cpp \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glu/include_ios/glu.h \

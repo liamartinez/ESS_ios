@@ -1,6 +1,6 @@
 dependencies: \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.cpp \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.cpp \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glu/include_ios/glu.h \
@@ -108,7 +108,7 @@ dependencies: \
   ../../../libs/openFrameworks/video/ofiPhoneVideoPlayer.h \
   ../../../libs/openFrameworks/3d/ofCamera.h \
   ../../../libs/openFrameworks/3d/ofEasyCam.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
   ../../../libs/freetype/include/ft2build.h \
   ../../../libs/freetype/include/freetype2/freetype/config/ftheader.h \
   ../../../libs/freetype/include/freetype2/freetype/freetype.h \

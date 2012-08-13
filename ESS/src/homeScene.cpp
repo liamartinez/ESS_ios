@@ -31,6 +31,15 @@ void homeScene::activate() {
     mgr.setCurScene(HOME_SCENE_FIRST);
 
     homeScreen.loadImage("flattenFiles/Home.jpg");
+    
+    //load the XMLs
+    if( XML.loadFile(ofxiPhoneGetDocumentsDirectory() + "mySettings.xml") ){
+		message = "mySettings.xml loaded from documents folder!";
+	}else if( XML.loadFile("mySettings.xml") ){
+		message = "mySettings.xml loaded from data folder!";
+	}else{
+		message = "unable to load mySettings.xml check data/ folder";
+	}
 
     rectAbout.set(10, 10, 70, 70);
     buttAbout.setRect(rectAbout);

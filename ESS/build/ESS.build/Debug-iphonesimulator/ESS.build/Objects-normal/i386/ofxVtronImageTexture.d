@@ -1,6 +1,6 @@
 dependencies: \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxVtronImageTexture/src/ofxVtronImageTexture.cpp \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxVtronImageTexture/src/ofxVtronImageTexture.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxVtronImageTexture/src/ofxVtronImageTexture.cpp \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxVtronImageTexture/src/ofxVtronImageTexture.h \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glu/include_ios/glu.h \

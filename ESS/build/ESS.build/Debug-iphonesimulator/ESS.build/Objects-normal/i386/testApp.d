@@ -1,5 +1,5 @@
 dependencies: \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/src/testApp.mm \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/src/testApp.mm \
   src/testApp.h ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glu/include_ios/glu.h \
@@ -127,10 +127,10 @@ dependencies: \
   ../../../addons/ofxiPhone/src/ofxiPhoneMapKit.h \
   ../../../addons/ofxiPhone/src/ofxiPhoneMapKitListener.h \
   src/swSceneManager.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManager2.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManagerScene.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManager2.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManagerScene.h \
   src/homeScene.h src/swBaseScene.h src/swAssetManager.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
   ../../../libs/freetype/include/ft2build.h \
   ../../../libs/freetype/include/freetype2/freetype/config/ftheader.h \
   ../../../libs/freetype/include/freetype2/freetype/freetype.h \
@@ -144,6 +144,6 @@ dependencies: \
   ../../../libs/freetype/include/freetype2/freetype/ftsystem.h \
   ../../../libs/freetype/include/freetype2/freetype/ftimage.h \
   ../../../libs/freetype/include/freetype2/freetype/ftglyph.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h \
   src/map1Scene.h src/map2Scene.h src/map3Scene.h src/map4Scene.h \
   src/aboutScene.h src/swMenu.h

@@ -1,7 +1,7 @@
 dependencies: \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/src/swSceneManager.cpp \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/src/swSceneManager.cpp \
   src/swSceneManager.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManager2.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManager2.h \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glu/include_ios/glu.h \
@@ -109,4 +109,4 @@ dependencies: \
   ../../../libs/openFrameworks/video/ofiPhoneVideoPlayer.h \
   ../../../libs/openFrameworks/3d/ofCamera.h \
   ../../../libs/openFrameworks/3d/ofEasyCam.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/Storywalks/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManagerScene.h
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManagerScene.h

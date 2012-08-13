@@ -14,6 +14,8 @@
 #include "swAssetManager.h"
 #include "ofxSceneManagerScene.h"
 
+#include "ofxXmlSettings.h"
+
 class swSceneManager; //why is there a class declared here? 
 
 class swBaseScene : public ofxSceneManagerScene {
