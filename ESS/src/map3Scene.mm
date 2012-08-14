@@ -1,13 +1,14 @@
 
-//  Created by Lia Martinez on 2/27/12.
+//  Created by Lia Martinez on 2/26/12.
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
 //
 
 #include <iostream>
-#include "aboutScene.h"
+
+#include "map3Scene.h"
 
 //------------------------------------------------------------------
-void aboutScene::setup() {
+void map3Scene::setup() {
     
     
 }
@@ -15,57 +16,56 @@ void aboutScene::setup() {
 
 
 //------------------------------------------------------------------
-void aboutScene::update() {
+void map3Scene::update() {
     switch(mgr.getCurScene()) {
-        case ABOUT_SCENE_FIRST:
+        case MAP3_SCENE_FIRST:
             //Do stuff
             break;            
     }
 }
 
 //------------------------------------------------------------------
-void aboutScene::activate() {
-    mgr.setCurScene(ABOUT_SCENE_FIRST);
+void map3Scene::activate() {
+    mgr.setCurScene(MAP3_SCENE_FIRST);
     
-    aboutScreen.loadImage("flattenFiles/About.jpg");
-    button.setImage(&aboutScreen,&aboutScreen);
+    
+    
+    map3Scene.loadImage("flattenFiles/Map3.jpg");
+    button.setImage(&map3Scene,&map3Scene);
     
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
-    
-    cout << "Activate about" << endl;
+
     
     
 }
 
 //------------------------------------------------------------------
-void aboutScene::deactivate() {
-    cout << "Deactivate about" << endl;
+void map3Scene::deactivate() {
     
-    aboutScreen.clear();
+    map3Scene.clear();
     
 }
 
 
 //------------------------------------------------------------------
-void aboutScene::draw() {
-    
+void map3Scene::draw() {
+
     drawGrid();
     
     
     string sceneName = "";
     switch(mgr.getCurScene()) {
-        case ABOUT_SCENE_FIRST:
+        case MAP3_SCENE_FIRST:
             
             ofEnableAlphaBlending();
-            
-            sceneName = "First Sub Scene!";
-            
+                        
             ofSetColor(255, 255, 255); 
-            aboutScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
+            map3Scene.draw(0,0, ofGetWidth(), ofGetHeight());
             
             buttHome.draw(); 
+            
             ofDisableAlphaBlending();
             
             break;
@@ -84,25 +84,25 @@ void aboutScene::draw() {
 //Event Listeners
 
 //--------------------------------------------------------------
-void aboutScene::touchDown(ofTouchEventArgs &touch){
+void map3Scene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
     buttHome.touchDown(touch);
 }
 
 
 //--------------------------------------------------------------
-void aboutScene::touchMoved(ofTouchEventArgs &touch){
+void map3Scene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
 }
 
 
 //--------------------------------------------------------------
-void aboutScene::touchUp(ofTouchEventArgs &touch){
+void map3Scene::touchUp(ofTouchEventArgs &touch){
     //Switch Scenes
     /*
     if(button.isPressed()) {
-        if(mgr.getCurScene() == ABOUT_SCENE_TOTAL-1) {
-            swSM->setCurScene(SCENE_HOME);
+        if(mgr.getCurScene() == MAP3_SCENE_TOTAL-1) {
+            swSM->setCurScene(SCENE_ABOUT);
         } else  {
             mgr.setCurScene(mgr.getCurScene() + 1);      
         }

@@ -66,8 +66,7 @@ void homeScene::draw() {
     
     
     drawGrid();
-    
-    
+
     string sceneName = "";
     switch(mgr.getCurScene()) {
         case HOME_SCENE_FIRST:
@@ -107,8 +106,6 @@ void homeScene::touchDown(ofTouchEventArgs &touch){
     buttMap2.touchDown(touch);
     buttMap3.touchDown(touch);
     buttMap4.touchDown(touch);
-    
-    cout << "X:" << touch.x << " Y:" << touch.y << endl; 
 }
 
 

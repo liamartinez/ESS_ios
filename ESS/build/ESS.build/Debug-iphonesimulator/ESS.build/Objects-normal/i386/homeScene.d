@@ -1,5 +1,5 @@
 dependencies: \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/src/../src/homeScene.cpp \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/src/../src/homeScene.mm \
   src/homeScene.h src/swBaseScene.h src/swSceneManager.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManager2.h \
   ../../../libs/openFrameworks/ofMain.h \
@@ -110,7 +110,25 @@ dependencies: \
   ../../../libs/openFrameworks/3d/ofCamera.h \
   ../../../libs/openFrameworks/3d/ofEasyCam.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManagerScene.h \
-  src/swAssetManager.h \
+  src/swAssetManager.h ../../../addons/ofxiPhone/ofxiPhoneExtras.h \
+  ../../../addons/ofxiPhone/ofxiPhone.h \
+  ../../../addons/ofxAccelerometer/src/ofxAccelerometer.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneAlerts.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneAlertsListener.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneApp.h \
+  ../../../addons/ofxMultiTouch/src/ofxMultiTouch.h \
+  ../../../addons/ofxMultiTouch/src/ofxMultiTouchListener.h \
+  ../../../addons/ofxiPhone/src/ofAppiPhoneWindow.h \
+  ../../../libs/openFrameworks/app/ofAppBaseWindow.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneAppDelegate.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneViewController.h \
+  ../../../addons/ofxiPhone/src/EAGLView.h \
+  ../../../addons/ofxiPhone/src/ESRenderer.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneKeyboard.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneCoreLocation.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneImagePicker.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneMapKit.h \
+  ../../../addons/ofxiPhone/src/ofxiPhoneMapKitListener.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
   ../../../libs/freetype/include/ft2build.h \
   ../../../libs/freetype/include/freetype2/freetype/config/ftheader.h \
@@ -125,4 +143,6 @@ dependencies: \
   ../../../libs/freetype/include/freetype2/freetype/ftsystem.h \
   ../../../libs/freetype/include/freetype2/freetype/ftimage.h \
   ../../../libs/freetype/include/freetype2/freetype/ftglyph.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/src/ofxXmlSettings.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/libs/tinyxml.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h

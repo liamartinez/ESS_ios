@@ -1,72 +1,82 @@
 
+//
 //  Created by Lia Martinez on 2/26/12.
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
 //
 
 #include <iostream>
 
-#include "map4Scene.h"
+#include "map1Scene.h"
 
 //------------------------------------------------------------------
-void map4Scene::setup() {
-    
+void map1Scene::setup() {
+    soundTrack.loadSound("sounds/Mason.caf");
+    soundTrack.setVolume(0.75f);
+    soundTrack.setMultiPlay(false);
+    x = 100;
+    y = 100;
+    w = 100;
+    h = 100;
+    color = 255;
     
 }
 
 
 
 //------------------------------------------------------------------
-void map4Scene::update() {
+void map1Scene::update() {
     switch(mgr.getCurScene()) {
-        case MAP4_SCENE_FIRST:
+        case MAP1_SCENE_FIRST:
             //Do stuff
             break;            
     }
+     ofSoundUpdate();
 }
 
 //------------------------------------------------------------------
-void map4Scene::activate() {
-    mgr.setCurScene(MAP4_SCENE_FIRST);
+void map1Scene::activate() {
+    mgr.setCurScene(MAP1_SCENE_FIRST);
     
-    
-    
-    map4Scene.loadImage("flattenFiles/Map4.jpg");
-    button.setImage(&map4Scene,&map4Scene);
-    cout << "Activate Call" << endl;
+    map1Scene.loadImage("flattenFiles/Map1.jpg");
+    button.setLabel("next",&swAssets->whitneySemiBold22);
+    button.setPos(200,200);
+    play.setLabel("play",&swAssets->whitneySemiBold22);
+    play.setPos(100, 100);
     
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
     
-
+    swAssets->loadXML ("1"); //load first floor
     
     
 }
 
 //------------------------------------------------------------------
-void map4Scene::deactivate() {
-    cout << "Deactivate Call" << endl;
+void map1Scene::deactivate() {
     
-    map4Scene.clear();
+    map1Scene.clear();
     
 }
 
 
 //------------------------------------------------------------------
-void map4Scene::draw() {
-    
+void map1Scene::draw() {
+
     drawGrid();
     
     
     string sceneName = "";
     switch(mgr.getCurScene()) {
-        case MAP4_SCENE_FIRST:
+        case MAP1_SCENE_FIRST:
             
             ofEnableAlphaBlending();
                         
             ofSetColor(255, 255, 255); 
-            map4Scene.draw(0,0, ofGetWidth(), ofGetHeight());
-
+            map1Scene.draw(0,0, ofGetWidth(), ofGetHeight());
+            
+            //button.draw();
+            play.draw();
             buttHome.draw(); 
             
             ofDisableAlphaBlending();
@@ -87,33 +97,45 @@ void map4Scene::draw() {
 //Event Listeners
 
 //--------------------------------------------------------------
-void map4Scene::touchDown(ofTouchEventArgs &touch){
+void map1Scene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
+    play.touchDown(touch);
     buttHome.touchDown(touch);
 }
 
 
 //--------------------------------------------------------------
-void map4Scene::touchMoved(ofTouchEventArgs &touch){
+void map1Scene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
+    play.touchMoved(touch);
+
 }
 
 
 //--------------------------------------------------------------
-void map4Scene::touchUp(ofTouchEventArgs &touch){
+void map1Scene::touchUp(ofTouchEventArgs &touch){
     //Switch Scenes
     /*
     if(button.isPressed()) {
-        if(mgr.getCurScene() == MAP4_SCENE_TOTAL-1) {
+        if(mgr.getCurScene() == MAP1_SCENE_TOTAL-1) {
             swSM->setCurScene(SCENE_ABOUT);
         } else  {
             mgr.setCurScene(mgr.getCurScene() + 1);      
         }
     }
-     */
+    */
     
-    if (buttHome.isPressed()) swSM->setCurScene(SCENE_HOME);
+    if(play.isPressed()){
+        printf("yes\n");
+        soundTrack.play();
+    }
     
-    buttHome.touchUp(touch);
+    if (buttHome.isPressed()) {
+        soundTrack.stop();
+        swSM->setCurScene(SCENE_HOME);
+    }
+    
     button.touchUp(touch);
+    play.touchUp(touch);
+    buttHome.touchUp(touch);
 }

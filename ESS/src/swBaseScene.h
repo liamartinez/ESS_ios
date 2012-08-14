@@ -11,7 +11,11 @@
 #include "swAssetManager.h"
 #include "ofxSceneManagerScene.h"
 
+
+
+
 #include "ofxXmlSettings.h"
+
 
 class swSceneManager; //why is there a class declared here? 
 
@@ -26,11 +30,6 @@ public:
     
     swSceneManager* swSM;
     swAssetManager* swAssets;
-    
-    //xml
-    ofxXmlSettings XML;    
-    string xmlStructure;
-    string message;
     
     ofxSceneManager2 mgr;
 protected:

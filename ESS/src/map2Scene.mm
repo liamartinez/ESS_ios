@@ -5,10 +5,10 @@
 
 #include <iostream>
 
-#include "map3Scene.h"
+#include "map2Scene.h"
 
 //------------------------------------------------------------------
-void map3Scene::setup() {
+void map2Scene::setup() {
     
     
 }
@@ -16,56 +16,53 @@ void map3Scene::setup() {
 
 
 //------------------------------------------------------------------
-void map3Scene::update() {
+void map2Scene::update() {
     switch(mgr.getCurScene()) {
-        case MAP3_SCENE_FIRST:
+        case MAP2_SCENE_FIRST:
             //Do stuff
             break;            
     }
 }
 
 //------------------------------------------------------------------
-void map3Scene::activate() {
-    mgr.setCurScene(MAP3_SCENE_FIRST);
+void map2Scene::activate() {
+    mgr.setCurScene(MAP2_SCENE_FIRST);
     
     
     
-    map3Scene.loadImage("flattenFiles/Map3.jpg");
-    button.setImage(&map3Scene,&map3Scene);
-    cout << "Activate Call" << endl;
+    map2Scene.loadImage("flattenFiles/Map2.jpg");
+    //button.setImage(&map2Screen,&map2Screen);
     
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
-
     
     
 }
 
 //------------------------------------------------------------------
-void map3Scene::deactivate() {
-    cout << "Deactivate Call" << endl;
+void map2Scene::deactivate() {
     
-    map3Scene.clear();
+    map2Scene.clear();
     
 }
 
 
 //------------------------------------------------------------------
-void map3Scene::draw() {
+void map2Scene::draw() {
 
     drawGrid();
     
     
     string sceneName = "";
     switch(mgr.getCurScene()) {
-        case MAP3_SCENE_FIRST:
+        case MAP2_SCENE_FIRST:
             
             ofEnableAlphaBlending();
                         
             ofSetColor(255, 255, 255); 
-            map3Scene.draw(0,0, ofGetWidth(), ofGetHeight());
-            
+            map2Scene.draw(0,0, ofGetWidth(), ofGetHeight()); 
+                        
             buttHome.draw(); 
             
             ofDisableAlphaBlending();
@@ -86,24 +83,24 @@ void map3Scene::draw() {
 //Event Listeners
 
 //--------------------------------------------------------------
-void map3Scene::touchDown(ofTouchEventArgs &touch){
+void map2Scene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
     buttHome.touchDown(touch);
 }
 
 
 //--------------------------------------------------------------
-void map3Scene::touchMoved(ofTouchEventArgs &touch){
+void map2Scene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
 }
 
 
 //--------------------------------------------------------------
-void map3Scene::touchUp(ofTouchEventArgs &touch){
+void map2Scene::touchUp(ofTouchEventArgs &touch){
     //Switch Scenes
     /*
     if(button.isPressed()) {
-        if(mgr.getCurScene() == MAP3_SCENE_TOTAL-1) {
+        if(mgr.getCurScene() == MAP2_SCENE_TOTAL-1) {
             swSM->setCurScene(SCENE_ABOUT);
         } else  {
             mgr.setCurScene(mgr.getCurScene() + 1);      
@@ -111,7 +108,7 @@ void map3Scene::touchUp(ofTouchEventArgs &touch){
     }
      */
     
-    if (buttHome.isPressed()) swSM->setCurScene(SCENE_HOME);
+     if (buttHome.isPressed()) swSM->setCurScene(SCENE_HOME);
     
     buttHome.touchUp(touch);
     button.touchUp(touch);

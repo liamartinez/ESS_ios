@@ -144,6 +144,8 @@ dependencies: \
   ../../../libs/freetype/include/freetype2/freetype/ftsystem.h \
   ../../../libs/freetype/include/freetype2/freetype/ftimage.h \
   ../../../libs/freetype/include/freetype2/freetype/ftglyph.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/src/ofxXmlSettings.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/libs/tinyxml.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h \
   src/map1Scene.h src/map2Scene.h src/map3Scene.h src/map4Scene.h \
   src/aboutScene.h src/swMenu.h
