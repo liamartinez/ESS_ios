@@ -31,6 +31,7 @@ public:
     ofxXmlSettings XML;    
     string xmlStructure;
     string message;
+    void loadOHaudio();
     
     string sceneName;
     

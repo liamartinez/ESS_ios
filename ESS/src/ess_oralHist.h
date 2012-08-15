@@ -19,17 +19,18 @@ public:
     
     essAssetManager* essAssets;
     oralHist(); 
+    ~oralHist(); 
+    
+    void setup(); 
     
     void play(); 
-    void stop();
     void pause(); 
     
     void drawDot();
     void drawInfo(); 
     void dontDraw(); 
     
-    
-    ofSoundPlayer story; 
+    ofSoundPlayer audio; 
     string name; 
     string keyword; 
     string path; 
@@ -38,7 +39,14 @@ public:
     ofVec2f locInfo; 
     bool isPlaying; 
     ofVec2f offset; 
+    bool isDrawn; 
     
+    baseButton playButn;
+    baseButton spotButn; 
+    
+    int textWidth, textHeight; 
+    void roundedRect(float x, float y, float w, float h, float r); 
+    void quadraticBezierVertex(float cpx, float cpy, float x, float y, float prevX, float prevY);
 };
 
 

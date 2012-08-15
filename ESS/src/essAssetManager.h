@@ -30,6 +30,7 @@ public:
     
     //Colors
     ofColor ess_yellow; 
+    ofColor ess_grey;
 
     
     

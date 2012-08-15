@@ -62,9 +62,7 @@ void homeScene::deactivate() {
 
 //------------------------------------------------------------------
 void homeScene::draw() {
-    //cout << "Drawing home screen" << endl;
-    
-    
+
     drawGrid();
 
     string sceneName = "";

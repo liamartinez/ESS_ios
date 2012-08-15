@@ -33,20 +33,16 @@ public:
     vector <oralHist> OHmap1; 
     
     baseButton button;
-    baseButton play;
+    
     
     baseButton buttHome; 
     ofRectangle rectHome; 
     
+    ofSoundPlayer audio;
+    
 private:
     
-    ofImage map1Scene; //lia - replace pictures here. 
-    /*
-     ofImage homeScreen;
-     ofImage postit; 
-     */
-    
-    ofSoundPlayer soundTrack;//Chien
+    ofImage map1Scene; //lia - replace pictures here
     int x,y,w,h;
     int color;
     

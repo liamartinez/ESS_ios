@@ -52,9 +52,7 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
     
     XML.pushTag("ESS");
 	int numOH = XML.getNumTags("OH");
-    
-    cout << "number of OHs" + numOH << endl; 
-    
+
 	if(numOH > 0){
         for(int i = 0; i < numOH; i++){
             tempOH.name = XML.getValue("OH:NAME", "name",i);

@@ -28,6 +28,10 @@ essAssetManager::essAssetManager() {
     ess_yellow.r = 254;
     ess_yellow.g = 251;
     ess_yellow.b = 223;
+    
+    ess_grey.r = 137; 
+    ess_grey.g = 137; 
+    ess_grey.b = 137; 
 }
 
 

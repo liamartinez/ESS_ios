@@ -10,9 +10,7 @@
 
 //------------------------------------------------------------------
 void map1Scene::setup() {
-    soundTrack.loadSound("sounds/Mason.caf");
-    soundTrack.setVolume(0.75f);
-    soundTrack.setMultiPlay(false);
+
     x = 100;
     y = 100;
     w = 100;
@@ -40,16 +38,22 @@ void map1Scene::activate() {
     map1Scene.loadImage("flattenFiles/Map1.jpg");
     button.setLabel("next",&essAssets->whitneySemiBold22);
     button.setPos(200,200);
-    play.setLabel("play",&essAssets->whitneySemiBold22);
-    play.setPos(100, 100);
-    
+
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
     
     OHmap1 = loadXML ("1"); //load first floor map
+
+    for (int i = 0; i < OHmap1.size(); i++) {  
+        OHmap1[i].setup(); 
+        cout << "setting up " + OHmap1[i].name << endl;
+
+//        OHmap1[i].audio.loadSound(OHmap1[i].path);  
+//        cout << "loaded from " + OHmap1[i].path << endl; 
+
+    }
     
-    cout << OHmap1.size() << endl; 
 
 }
 
@@ -57,17 +61,13 @@ void map1Scene::activate() {
 void map1Scene::deactivate() {
     
     map1Scene.clear();
-    
+
 }
 
 
 //------------------------------------------------------------------
 void map1Scene::draw() {
 
-    drawGrid();
-    
-    
-    
     string sceneName = "";
     switch(mgr.getCurScene()) {
         case MAP1_SCENE_FIRST:
@@ -78,12 +78,12 @@ void map1Scene::draw() {
             map1Scene.draw(0,0, ofGetWidth(), ofGetHeight());
             
             //button.draw();
-            play.draw();
+
             buttHome.draw(); 
             
             for (int i = 0; i < OHmap1.size(); i++) {            
                 OHmap1[i].drawDot(); 
-                OHmap1[i].drawInfo();
+                if (OHmap1[i].isDrawn) OHmap1[i].drawInfo();
             }
 
             ofDisableAlphaBlending();
@@ -103,7 +103,12 @@ void map1Scene::draw() {
 //--------------------------------------------------------------
 void map1Scene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
-    play.touchDown(touch);
+    
+    for (int i = 0; i < OHmap1.size(); i++) {
+        OHmap1[i].playButn.touchDown(touch);
+        OHmap1[i].spotButn.touchDown(touch);
+    }
+
     buttHome.touchDown(touch);
 }
 
@@ -111,35 +116,47 @@ void map1Scene::touchDown(ofTouchEventArgs &touch){
 //--------------------------------------------------------------
 void map1Scene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
-    play.touchMoved(touch);
+    for (int i = 0; i < OHmap1.size(); i++) {
+        OHmap1[i].playButn.touchMoved(touch);
+        OHmap1[i].spotButn.touchMoved(touch);
+    }
 
 }
 
 
 //--------------------------------------------------------------
 void map1Scene::touchUp(ofTouchEventArgs &touch){
-    //Switch Scenes
-    /*
-    if(button.isPressed()) {
-        if(mgr.getCurScene() == MAP1_SCENE_TOTAL-1) {
-            essSM->setCurScene(SCENE_ABOUT);
-        } else  {
-            mgr.setCurScene(mgr.getCurScene() + 1);      
+
+    for (int i = 0; i < OHmap1.size(); i++) { 
+        
+        if (OHmap1[i].spotButn.isPressed()) {
+            for (int j = 0; j < OHmap1.size(); j++) {
+                OHmap1[j].isDrawn = false; 
+            }
+            OHmap1[i].isDrawn = true; 
         }
+        
+
+        if (OHmap1[i].playButn.isPressed()) {
+            if (!OHmap1[i].audio.getIsPlaying()){
+                OHmap1[i].play(); 
+                cout << OHmap1[i].name + "is playing" << endl; 
+            } else {
+                OHmap1[i].pause();
+                cout << OHmap1[i].name + "is paused" << endl; 
+            }
+        } 
+       
     }
-    */
-    
-    if(play.isPressed()){
-        printf("yes\n");
-        soundTrack.play();
-    }
-    
+
     if (buttHome.isPressed()) {
-        soundTrack.stop();
         essSM->setCurScene(SCENE_HOME);
     }
     
     button.touchUp(touch);
-    play.touchUp(touch);
+    for (int i = 0; i < OHmap1.size(); i++) {
+        OHmap1[i].playButn.touchUp(touch);
+        OHmap1[i].spotButn.touchUp(touch);
+    }
     buttHome.touchUp(touch);
 }
