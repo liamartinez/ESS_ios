@@ -5,21 +5,20 @@
 
 #include <iostream>
 
-#include "swSceneManager.h"
+#include "essSceneManager.h"
 
 
 //------------------------------------------------------------------
 //Singleton Instance/Get Instance
-swSceneManager* swSceneManager::pswSceneManager=NULL;
+essSceneManager* essSceneManager::pEssSceneManager=NULL;
 
 //------------------------------------------------------------------
-swSceneManager* swSceneManager::getInstance() {
-	if(pswSceneManager==NULL) {
-		pswSceneManager=new swSceneManager();
+essSceneManager* essSceneManager::getInstance() {
+	if(pEssSceneManager==NULL) {
+		pEssSceneManager=new essSceneManager();
 	}
-	
-	return pswSceneManager;
+	return pEssSceneManager;
 }
 
-swSceneManager::swSceneManager() {
+essSceneManager::essSceneManager() {
 }

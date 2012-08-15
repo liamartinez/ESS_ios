@@ -38,18 +38,19 @@ void map1Scene::activate() {
     mgr.setCurScene(MAP1_SCENE_FIRST);
     
     map1Scene.loadImage("flattenFiles/Map1.jpg");
-    button.setLabel("next",&swAssets->whitneySemiBold22);
+    button.setLabel("next",&essAssets->whitneySemiBold22);
     button.setPos(200,200);
-    play.setLabel("play",&swAssets->whitneySemiBold22);
+    play.setLabel("play",&essAssets->whitneySemiBold22);
     play.setPos(100, 100);
     
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
     
-    swAssets->loadXML ("1"); //load first floor
+    OHmap1 = loadXML ("1"); //load first floor map
     
-    
+    cout << OHmap1.size() << endl; 
+
 }
 
 //------------------------------------------------------------------
@@ -66,6 +67,7 @@ void map1Scene::draw() {
     drawGrid();
     
     
+    
     string sceneName = "";
     switch(mgr.getCurScene()) {
         case MAP1_SCENE_FIRST:
@@ -79,14 +81,16 @@ void map1Scene::draw() {
             play.draw();
             buttHome.draw(); 
             
+            for (int i = 0; i < OHmap1.size(); i++) {            
+                OHmap1[i].drawDot(); 
+                OHmap1[i].drawInfo();
+            }
+
             ofDisableAlphaBlending();
             
             break;
-            
     }
-    
-    
-    
+
 }
 
 
@@ -118,7 +122,7 @@ void map1Scene::touchUp(ofTouchEventArgs &touch){
     /*
     if(button.isPressed()) {
         if(mgr.getCurScene() == MAP1_SCENE_TOTAL-1) {
-            swSM->setCurScene(SCENE_ABOUT);
+            essSM->setCurScene(SCENE_ABOUT);
         } else  {
             mgr.setCurScene(mgr.getCurScene() + 1);      
         }
@@ -132,7 +136,7 @@ void map1Scene::touchUp(ofTouchEventArgs &touch){
     
     if (buttHome.isPressed()) {
         soundTrack.stop();
-        swSM->setCurScene(SCENE_HOME);
+        essSM->setCurScene(SCENE_HOME);
     }
     
     button.touchUp(touch);

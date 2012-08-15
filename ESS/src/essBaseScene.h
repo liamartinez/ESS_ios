@@ -7,29 +7,35 @@
 #define SingWhale01_swBaseScene_h
 
 #pragma once
-#include "swSceneManager.h"
-#include "swAssetManager.h"
+#include "essSceneManager.h"
+#include "essAssetManager.h"
 #include "ofxSceneManagerScene.h"
-
-
-
-
+#include "ofxiPhoneExtras.h"
 #include "ofxXmlSettings.h"
 
+#include "ess_oralHist.h"
 
-class swSceneManager; //why is there a class declared here? 
 
-class swBaseScene : public ofxSceneManagerScene {
+class essSceneManager; //why is there a class declared here? 
+
+class essBaseScene : public ofxSceneManagerScene {
 public:
-    swBaseScene();
+    essBaseScene();
     virtual void setup();
     virtual void update();
     virtual void draw();
     
+    vector<oralHist> loadXML (string floor_);
+    
+    //xml
+    ofxXmlSettings XML;    
+    string xmlStructure;
+    string message;
+    
     string sceneName;
     
-    swSceneManager* swSM;
-    swAssetManager* swAssets;
+    essSceneManager* essSM;
+    essAssetManager* essAssets;
     
     ofxSceneManager2 mgr;
 protected:

@@ -17,12 +17,12 @@ void testApp::setup(){
 	ofBackground(127,127,127);
     
     //Load Assets
-    swAssets = swAssetManager::getInstance();
-    if(swAssets->loadData()) {
-        swAssets->loadFonts();
+    essAssets = essAssetManager::getInstance();
+    if(essAssets->loadData()) {
+        essAssets->loadFonts();
         
         //setup scene manager/Scenes
-        swSM = swSceneManager::getInstance();
+        essSM = essSceneManager::getInstance();
         
         scenes[SCENE_HOME]      = new homeScene();
         scenes[SCENE_MAP1]      = new map1Scene();
@@ -54,15 +54,15 @@ void testApp::setup(){
 void testApp::update(){
     
    // Tweenzor::update();
-    if(swSM->getCurSceneChanged()) {
+    if(essSM->getCurSceneChanged()) {
         for(int i=0; i<SW_TOTAL_SCENES; i++) {
             scenes[i]->deactivate();
         }
         
-        scenes[swSM->getCurScene()]->activate();
+        scenes[essSM->getCurScene()]->activate();
     }
     
-    scenes[swSM->getCurScene()]->update();
+    scenes[essSM->getCurScene()]->update();
     
     menu.update();
      
@@ -72,8 +72,8 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
     
-    if(!swSM->getCurSceneChanged(false)) {
-        scenes[swSM->getCurScene()]->draw();
+    if(!essSM->getCurSceneChanged(false)) {
+        scenes[essSM->getCurScene()]->draw();
     }
     
     //menu.draw();
@@ -88,7 +88,7 @@ void testApp::exit(){
 //--------------------------------------------------------------
 void testApp::touchDown(ofTouchEventArgs &touch){
     
-    scenes[swSM->getCurScene()]->touchDown(touch);
+    scenes[essSM->getCurScene()]->touchDown(touch);
     
     menu.touchDown(touch);
      
@@ -97,7 +97,7 @@ void testApp::touchDown(ofTouchEventArgs &touch){
 //--------------------------------------------------------------
 void testApp::touchMoved(ofTouchEventArgs &touch){
     
-    scenes[swSM->getCurScene()]->touchMoved(touch);
+    scenes[essSM->getCurScene()]->touchMoved(touch);
     
     menu.touchMoved(touch);
      
@@ -106,13 +106,13 @@ void testApp::touchMoved(ofTouchEventArgs &touch){
 //--------------------------------------------------------------
 void testApp::touchUp(ofTouchEventArgs &touch){
     
-    scenes[swSM->getCurScene()]->touchUp(touch);
+    scenes[essSM->getCurScene()]->touchUp(touch);
     menu.touchUp(touch);
     
     if(menu.touchMenuRes){
         
         cout<<"touch menu res true"<<endl;
-        scenes[swSM->getCurScene()]->activate();
+        scenes[essSM->getCurScene()]->activate();
         
     }
     menu.touchMenuRes = false;
@@ -121,7 +121,7 @@ void testApp::touchUp(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 void testApp::touchDoubleTap(ofTouchEventArgs &touch){
-    scenes[swSM->getCurScene()]->touchDoubleTap(touch);
+    scenes[essSM->getCurScene()]->touchDoubleTap(touch);
 }
 
 //--------------------------------------------------------------

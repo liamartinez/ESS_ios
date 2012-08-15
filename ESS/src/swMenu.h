@@ -9,8 +9,8 @@
 #pragma once
 #include "ofMain.h"
 #include "baseButton.h"
-#include "swAssetManager.h"
-#include "swSceneManager.h"
+#include "essAssetManager.h"
+#include "essSceneManager.h"
 //#include "Tweenzor.h"
 
 enum buttonTypes { //fill this with the different words he can say. 
@@ -42,8 +42,8 @@ public:
     string labels[MENU_TOTAL];
     baseButton buttons[MENU_TOTAL];
     
-    swAssetManager* swAssets;
-    swSceneManager* swSM;
+    essAssetManager* essAssets;
+    essSceneManager* essSM;
     
     bool touchMenuRes; 
     

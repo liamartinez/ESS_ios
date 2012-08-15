@@ -3,9 +3,9 @@
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/map1Scene.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/homeScene.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/aboutScene.o
-/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/swAssetManager.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/essAssetManager.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/swMenu.o
-/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/swSceneManager.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/essSceneManager.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/baseButton.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/ofxFreeType2.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/ofxSceneManager.o
@@ -19,4 +19,5 @@
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/tinyxmlerror.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/tinyxmlparser.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/ofxXmlSettings.o
-/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/swBaseScene.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/ess_oralHist.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphonesimulator/ESS.build/Objects-normal/i386/essBaseScene.o

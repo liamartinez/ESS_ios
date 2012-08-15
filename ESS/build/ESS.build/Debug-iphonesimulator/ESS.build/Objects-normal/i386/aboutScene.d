@@ -1,6 +1,6 @@
 dependencies: \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/src/../src/aboutScene.mm \
-  src/aboutScene.h src/swBaseScene.h src/swSceneManager.h \
+  src/aboutScene.h src/essBaseScene.h src/essSceneManager.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManager2.h \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
@@ -110,7 +110,22 @@ dependencies: \
   ../../../libs/openFrameworks/3d/ofCamera.h \
   ../../../libs/openFrameworks/3d/ofEasyCam.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManagerScene.h \
-  src/swAssetManager.h ../../../addons/ofxiPhone/ofxiPhoneExtras.h \
+  src/essAssetManager.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
+  ../../../libs/freetype/include/ft2build.h \
+  ../../../libs/freetype/include/freetype2/freetype/config/ftheader.h \
+  ../../../libs/freetype/include/freetype2/freetype/freetype.h \
+  ../../../libs/freetype/include/freetype2/freetype/config/ftconfig.h \
+  ../../../libs/freetype/include/freetype2/freetype/config/ftoption.h \
+  ../../../libs/freetype/include/freetype2/freetype/config/ftstdlib.h \
+  ../../../libs/freetype/include/freetype2/freetype/fterrors.h \
+  ../../../libs/freetype/include/freetype2/freetype/ftmoderr.h \
+  ../../../libs/freetype/include/freetype2/freetype/fterrdef.h \
+  ../../../libs/freetype/include/freetype2/freetype/fttypes.h \
+  ../../../libs/freetype/include/freetype2/freetype/ftsystem.h \
+  ../../../libs/freetype/include/freetype2/freetype/ftimage.h \
+  ../../../libs/freetype/include/freetype2/freetype/ftglyph.h \
+  ../../../addons/ofxiPhone/ofxiPhoneExtras.h \
   ../../../addons/ofxiPhone/ofxiPhone.h \
   ../../../addons/ofxAccelerometer/src/ofxAccelerometer.h \
   ../../../addons/ofxiPhone/src/ofxiPhoneAlerts.h \
@@ -129,20 +144,7 @@ dependencies: \
   ../../../addons/ofxiPhone/src/ofxiPhoneImagePicker.h \
   ../../../addons/ofxiPhone/src/ofxiPhoneMapKit.h \
   ../../../addons/ofxiPhone/src/ofxiPhoneMapKitListener.h \
-  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
-  ../../../libs/freetype/include/ft2build.h \
-  ../../../libs/freetype/include/freetype2/freetype/config/ftheader.h \
-  ../../../libs/freetype/include/freetype2/freetype/freetype.h \
-  ../../../libs/freetype/include/freetype2/freetype/config/ftconfig.h \
-  ../../../libs/freetype/include/freetype2/freetype/config/ftoption.h \
-  ../../../libs/freetype/include/freetype2/freetype/config/ftstdlib.h \
-  ../../../libs/freetype/include/freetype2/freetype/fterrors.h \
-  ../../../libs/freetype/include/freetype2/freetype/ftmoderr.h \
-  ../../../libs/freetype/include/freetype2/freetype/fterrdef.h \
-  ../../../libs/freetype/include/freetype2/freetype/fttypes.h \
-  ../../../libs/freetype/include/freetype2/freetype/ftsystem.h \
-  ../../../libs/freetype/include/freetype2/freetype/ftimage.h \
-  ../../../libs/freetype/include/freetype2/freetype/ftglyph.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/src/ofxXmlSettings.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/libs/tinyxml.h \
+  src/ess_oralHist.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h

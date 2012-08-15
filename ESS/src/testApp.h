@@ -6,7 +6,7 @@
 
 //#include "ofxTweenzor.h"
 
-#include "swSceneManager.h"
+#include "essSceneManager.h"
 
 //create the main scenes
 #include "homeScene.h"
@@ -41,11 +41,11 @@ public:
 	void gotMemoryWarning();
 	void deviceOrientationChanged(int newOrientation);
     
-    swBaseScene* scenes[SW_TOTAL_SCENES];
+    essBaseScene* scenes[SW_TOTAL_SCENES];
     
     //Managers
-    swSceneManager* swSM;
-    swAssetManager* swAssets;
+    essSceneManager* essSM;
+    essAssetManager* essAssets;
     
     //Menu
     swMenu menu;

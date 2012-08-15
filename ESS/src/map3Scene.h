@@ -7,7 +7,7 @@
 #define ESS_map3Scene_h
 
 #pragma once
-#include "swBaseScene.h"
+#include "essBaseScene.h"
 #include "baseButton.h"
 
 enum {
@@ -15,7 +15,7 @@ enum {
     MAP3_SCENE_TOTAL
 };
 
-class map3Scene : public swBaseScene {
+class map3Scene : public essBaseScene {
 public:
     void setup();
     void update();

@@ -122,7 +122,7 @@ void homeScene::touchUp(ofTouchEventArgs &touch){
     /*
     if(button.isPressed()) {
         if(mgr.getCurScene() == HOME_SCENE_TOTAL-1) {
-            swSM->setCurScene(SCENE_MAP1);
+            essSM->setCurScene(SCENE_MAP1);
         } else  {
             mgr.setCurScene(mgr.getCurScene() + 1);      
         }
@@ -130,15 +130,15 @@ void homeScene::touchUp(ofTouchEventArgs &touch){
     */
     
     
-    if (buttAbout.isPressed()) swSM->setCurScene(SCENE_ABOUT);
+    if (buttAbout.isPressed()) essSM->setCurScene(SCENE_ABOUT);
     
-    if (buttMap1.isPressed()) swSM->setCurScene(SCENE_MAP1);
+    if (buttMap1.isPressed()) essSM->setCurScene(SCENE_MAP1);
     
-    if (buttMap2.isPressed()) swSM->setCurScene(SCENE_MAP2);
+    if (buttMap2.isPressed()) essSM->setCurScene(SCENE_MAP2);
     
-    if (buttMap3.isPressed()) swSM->setCurScene(SCENE_MAP3);
+    if (buttMap3.isPressed()) essSM->setCurScene(SCENE_MAP3);
        
-    if (buttMap4.isPressed()) swSM->setCurScene(SCENE_MAP4);
+    if (buttMap4.isPressed()) essSM->setCurScene(SCENE_MAP4);
     
     
     buttAbout.touchUp(touch);

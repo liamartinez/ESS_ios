@@ -126,10 +126,10 @@ dependencies: \
   ../../../addons/ofxiPhone/src/ofxiPhoneImagePicker.h \
   ../../../addons/ofxiPhone/src/ofxiPhoneMapKit.h \
   ../../../addons/ofxiPhone/src/ofxiPhoneMapKitListener.h \
-  src/swSceneManager.h \
+  src/essSceneManager.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManager2.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxSceneManager/src/ofxSceneManagerScene.h \
-  src/homeScene.h src/swBaseScene.h src/swAssetManager.h \
+  src/homeScene.h src/essBaseScene.h src/essAssetManager.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxFreeType2/src/ofxFreeType2.h \
   ../../../libs/freetype/include/ft2build.h \
   ../../../libs/freetype/include/freetype2/freetype/config/ftheader.h \
@@ -146,6 +146,7 @@ dependencies: \
   ../../../libs/freetype/include/freetype2/freetype/ftglyph.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/src/ofxXmlSettings.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/libs/tinyxml.h \
+  src/ess_oralHist.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h \
   src/map1Scene.h src/map2Scene.h src/map3Scene.h src/map4Scene.h \
   src/aboutScene.h src/swMenu.h

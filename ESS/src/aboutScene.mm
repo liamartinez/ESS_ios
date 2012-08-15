@@ -99,14 +99,14 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
     /*
     if(button.isPressed()) {
         if(mgr.getCurScene() == ABOUT_SCENE_TOTAL-1) {
-            swSM->setCurScene(SCENE_HOME);
+            essSM->setCurScene(SCENE_HOME);
         } else  {
             mgr.setCurScene(mgr.getCurScene() + 1);      
         }
     }
      */
     
-    if (buttHome.isPressed()) swSM->setCurScene(SCENE_HOME);
+    if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
     
     buttHome.touchUp(touch);
     button.touchUp(touch);

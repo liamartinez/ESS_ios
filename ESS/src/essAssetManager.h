@@ -9,39 +9,35 @@
 
 #pragma once
 #include "ofMain.h"
-#include "ofxiPhoneExtras.h"
+
 #include "ofxFreeType2.h"
 
-#include "ofxXmlSettings.h"
 
 #define MNH_GRID_CELL_SIZE 128 //lia - do we need this? 
 
 
-class swAssetManager {
+class essAssetManager {
 public:
-    static swAssetManager* getInstance();
+    static essAssetManager* getInstance();
     
     bool loadData();
     void loadFonts();
-    void loadXML(string floor_); 
     void loadImages();
         
     //Fonts
     ofxFreeType2 whitneySemiBold22;
+    ofxFreeType2 ostrich22; 
     
-    //xml
-    ofxXmlSettings XML;    
-    string xmlStructure;
-    string message;
-    
-    
+    //Colors
+    ofColor ess_yellow; 
+
     
     
 private:
-    swAssetManager();
-    ~swAssetManager();
+    essAssetManager();
+    ~essAssetManager();
     
-    static swAssetManager* pswAssetManager;
+    static essAssetManager* pswAssetManager;
 };
 
 

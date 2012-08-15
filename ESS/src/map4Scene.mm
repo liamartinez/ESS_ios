@@ -103,14 +103,14 @@ void map4Scene::touchUp(ofTouchEventArgs &touch){
     /*
     if(button.isPressed()) {
         if(mgr.getCurScene() == MAP4_SCENE_TOTAL-1) {
-            swSM->setCurScene(SCENE_ABOUT);
+            essSM->setCurScene(SCENE_ABOUT);
         } else  {
             mgr.setCurScene(mgr.getCurScene() + 1);      
         }
     }
      */
     
-    if (buttHome.isPressed()) swSM->setCurScene(SCENE_HOME);
+    if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
     
     buttHome.touchUp(touch);
     button.touchUp(touch);

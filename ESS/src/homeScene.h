@@ -7,7 +7,7 @@
 #define SingWhale01_homeScene_h
 
 #pragma once
-#include "swBaseScene.h"
+#include "essBaseScene.h"
 #include "baseButton.h"
 
 enum {
@@ -15,7 +15,7 @@ enum {
     HOME_SCENE_TOTAL
 };
 
-class homeScene : public swBaseScene {
+class homeScene : public essBaseScene {
 public:
     void setup();
     void update();

@@ -8,7 +8,7 @@
 #define ESS_map2Scene_h
 
 #pragma once
-#include "swBaseScene.h"
+#include "essBaseScene.h"
 #include "baseButton.h"
 
 enum {
@@ -16,7 +16,7 @@ enum {
     MAP2_SCENE_TOTAL
 };
 
-class map2Scene : public swBaseScene {
+class map2Scene : public essBaseScene {
 public:
     void setup();
     void update();

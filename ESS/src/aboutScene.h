@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "swBaseScene.h"
+#include "essBaseScene.h"
 #include "baseButton.h"
 
 enum {
@@ -16,7 +16,7 @@ enum {
     ABOUT_SCENE_TOTAL
 };
 
-class aboutScene : public swBaseScene {
+class aboutScene : public essBaseScene {
 public:
     void setup();
     void update();

@@ -10,9 +10,9 @@
 		0A5F5F6E15C6E98F00A37130 /* map1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6015C6E98E00A37130 /* map1Scene.mm */; };
 		0A5F5F6F15C6E98F00A37130 /* homeScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6215C6E98E00A37130 /* homeScene.mm */; };
 		0A5F5F7015C6E98F00A37130 /* aboutScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6415C6E98E00A37130 /* aboutScene.mm */; };
-		0A5F5F7115C6E98F00A37130 /* swAssetManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6615C6E98E00A37130 /* swAssetManager.mm */; };
+		0A5F5F7115C6E98F00A37130 /* essAssetManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6615C6E98E00A37130 /* essAssetManager.mm */; };
 		0A5F5F7315C6E98F00A37130 /* swMenu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6A15C6E98E00A37130 /* swMenu.mm */; };
-		0A5F5F7415C6E98F00A37130 /* swSceneManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6C15C6E98E00A37130 /* swSceneManager.mm */; };
+		0A5F5F7415C6E98F00A37130 /* essSceneManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6C15C6E98E00A37130 /* essSceneManager.mm */; };
 		0A5F5F9115C6E9C400A37130 /* baseButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F7B15C6E9C400A37130 /* baseButton.cpp */; };
 		0A5F5F9215C6E9C400A37130 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0A5F5F7E15C6E9C400A37130 /* README */; };
 		0A5F5F9315C6E9C400A37130 /* ofxFreeType2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F8015C6E9C400A37130 /* ofxFreeType2.cpp */; };
@@ -27,7 +27,8 @@
 		0A7346F915D98CC1002B643F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7346F315D98CC1002B643F /* tinyxmlerror.cpp */; };
 		0A7346FA15D98CC1002B643F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7346F415D98CC1002B643F /* tinyxmlparser.cpp */; };
 		0A7346FB15D98CC1002B643F /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7346F615D98CC1002B643F /* ofxXmlSettings.cpp */; };
-		0A73471015D9C331002B643F /* swBaseScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A73470F15D9C331002B643F /* swBaseScene.mm */; };
+		0AB27C5615DBE5E500C3D016 /* ess_oralHist.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0AB27C5515DBE5E500C3D016 /* ess_oralHist.mm */; };
+		0AB27C5915DBF5A400C3D016 /* essBaseScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0AB27C5815DBF5A400C3D016 /* essBaseScene.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -69,19 +70,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A5F5F6015C6E98E00A37130 /* map1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = map1Scene.mm; path = src/map1Scene.mm; sourceTree = "<group>"; };
-		0A5F5F6115C6E98E00A37130 /* map1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = map1Scene.h; path = src/map1Scene.h; sourceTree = "<group>"; };
-		0A5F5F6215C6E98E00A37130 /* homeScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = homeScene.mm; path = src/homeScene.mm; sourceTree = "<group>"; };
-		0A5F5F6315C6E98E00A37130 /* homeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = homeScene.h; path = src/homeScene.h; sourceTree = "<group>"; };
-		0A5F5F6415C6E98E00A37130 /* aboutScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = aboutScene.mm; path = src/aboutScene.mm; sourceTree = "<group>"; };
-		0A5F5F6515C6E98E00A37130 /* aboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aboutScene.h; path = src/aboutScene.h; sourceTree = "<group>"; };
-		0A5F5F6615C6E98E00A37130 /* swAssetManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = swAssetManager.mm; sourceTree = "<group>"; };
-		0A5F5F6715C6E98E00A37130 /* swAssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swAssetManager.h; sourceTree = "<group>"; };
-		0A5F5F6915C6E98E00A37130 /* swBaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swBaseScene.h; sourceTree = "<group>"; };
-		0A5F5F6A15C6E98E00A37130 /* swMenu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = swMenu.mm; sourceTree = "<group>"; };
-		0A5F5F6B15C6E98E00A37130 /* swMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swMenu.h; sourceTree = "<group>"; };
-		0A5F5F6C15C6E98E00A37130 /* swSceneManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = swSceneManager.mm; sourceTree = "<group>"; };
-		0A5F5F6D15C6E98E00A37130 /* swSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swSceneManager.h; sourceTree = "<group>"; };
+		0A5F5F6015C6E98E00A37130 /* map1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = map1Scene.mm; path = src/map1Scene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6115C6E98E00A37130 /* map1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = map1Scene.h; path = src/map1Scene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6215C6E98E00A37130 /* homeScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = homeScene.mm; path = src/homeScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6315C6E98E00A37130 /* homeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = homeScene.h; path = src/homeScene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6415C6E98E00A37130 /* aboutScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = aboutScene.mm; path = src/aboutScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6515C6E98E00A37130 /* aboutScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = aboutScene.h; path = src/aboutScene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6615C6E98E00A37130 /* essAssetManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = essAssetManager.mm; sourceTree = "<group>"; };
+		0A5F5F6715C6E98E00A37130 /* essAssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = essAssetManager.h; sourceTree = "<group>"; };
+		0A5F5F6A15C6E98E00A37130 /* swMenu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = swMenu.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6B15C6E98E00A37130 /* swMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = swMenu.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6C15C6E98E00A37130 /* essSceneManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = essSceneManager.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5F6D15C6E98E00A37130 /* essSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = essSceneManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A5F5F7B15C6E9C400A37130 /* baseButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = baseButton.cpp; sourceTree = "<group>"; };
 		0A5F5F7C15C6E9C400A37130 /* baseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseButton.h; sourceTree = "<group>"; };
 		0A5F5F7E15C6E9C400A37130 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -96,20 +96,22 @@
 		0A5F5F8C15C6E9C400A37130 /* ofxVtronImageTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVtronImageTexture.cpp; sourceTree = "<group>"; };
 		0A5F5F8D15C6E9C400A37130 /* ofxVtronImageTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVtronImageTexture.h; sourceTree = "<group>"; };
 		0A5F5F9015C6E9C400A37130 /* ofxVtronUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVtronUtils.h; sourceTree = "<group>"; };
-		0A5F5FE615C7106300A37130 /* map2Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = map2Scene.mm; path = src/map2Scene.mm; sourceTree = "<group>"; };
-		0A5F5FE715C7106300A37130 /* map2Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = map2Scene.h; path = src/map2Scene.h; sourceTree = "<group>"; };
-		0A5F5FE915C7109500A37130 /* map3Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = map3Scene.mm; path = src/map3Scene.mm; sourceTree = "<group>"; };
-		0A5F5FEA15C7109500A37130 /* map3Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = map3Scene.h; path = src/map3Scene.h; sourceTree = "<group>"; };
-		0A5F5FF415C7422500A37130 /* map4Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = map4Scene.mm; path = src/map4Scene.mm; sourceTree = "<group>"; };
-		0A5F5FF515C7422500A37130 /* map4Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = map4Scene.h; path = src/map4Scene.h; sourceTree = "<group>"; };
-		0A7346E815D97C4C002B643F /* ess_oralHist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ess_oralHist.h; sourceTree = "<group>"; };
+		0A5F5FE615C7106300A37130 /* map2Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = map2Scene.mm; path = src/map2Scene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5FE715C7106300A37130 /* map2Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = map2Scene.h; path = src/map2Scene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5FE915C7109500A37130 /* map3Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = map3Scene.mm; path = src/map3Scene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5FEA15C7109500A37130 /* map3Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = map3Scene.h; path = src/map3Scene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5FF415C7422500A37130 /* map4Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = map4Scene.mm; path = src/map4Scene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A5F5FF515C7422500A37130 /* map4Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = map4Scene.h; path = src/map4Scene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0A7346E815D97C4C002B643F /* ess_oralHist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ess_oralHist.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A7346F115D98CC1002B643F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		0A7346F215D98CC1002B643F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
 		0A7346F315D98CC1002B643F /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
 		0A7346F415D98CC1002B643F /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		0A7346F615D98CC1002B643F /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		0A7346F715D98CC1002B643F /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
-		0A73470F15D9C331002B643F /* swBaseScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = swBaseScene.mm; sourceTree = "<group>"; };
+		0AB27C5515DBE5E500C3D016 /* ess_oralHist.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = ess_oralHist.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		0AB27C5715DBF58C00C3D016 /* essBaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = essBaseScene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0AB27C5815DBF5A400C3D016 /* essBaseScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = essBaseScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* ESS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -132,8 +134,8 @@
 		E41D40FD13B3A0D800A75A5D /* iOS+OFLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "iOS+OFLib.xcodeproj"; path = "../../../libs/openFrameworksCompiled/project/ios/iOS+OFLib.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		E4A823A312561BE3002F86A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E4D8936B11527B74007E1F53 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = src/main.mm; sourceTree = SOURCE_ROOT; };
-		E4D8936C11527B74007E1F53 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = src/testApp.h; sourceTree = SOURCE_ROOT; };
-		E4D8936D11527B74007E1F53 /* testApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = testApp.mm; path = src/testApp.mm; sourceTree = SOURCE_ROOT; };
+		E4D8936C11527B74007E1F53 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = testApp.h; path = src/testApp.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		E4D8936D11527B74007E1F53 /* testApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = testApp.mm; path = src/testApp.mm; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,15 +279,16 @@
 		0A5F5FF315C738D900A37130 /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				0A5F5F6615C6E98E00A37130 /* swAssetManager.mm */,
-				0A5F5F6715C6E98E00A37130 /* swAssetManager.h */,
-				0A5F5F6915C6E98E00A37130 /* swBaseScene.h */,
-				0A73470F15D9C331002B643F /* swBaseScene.mm */,
+				0A5F5F6615C6E98E00A37130 /* essAssetManager.mm */,
+				0A5F5F6715C6E98E00A37130 /* essAssetManager.h */,
+				0AB27C5815DBF5A400C3D016 /* essBaseScene.mm */,
+				0AB27C5715DBF58C00C3D016 /* essBaseScene.h */,
 				0A5F5F6A15C6E98E00A37130 /* swMenu.mm */,
 				0A5F5F6B15C6E98E00A37130 /* swMenu.h */,
-				0A5F5F6C15C6E98E00A37130 /* swSceneManager.mm */,
-				0A5F5F6D15C6E98E00A37130 /* swSceneManager.h */,
+				0A5F5F6C15C6E98E00A37130 /* essSceneManager.mm */,
+				0A5F5F6D15C6E98E00A37130 /* essSceneManager.h */,
 				0A7346E815D97C4C002B643F /* ess_oralHist.h */,
+				0AB27C5515DBE5E500C3D016 /* ess_oralHist.mm */,
 			);
 			name = shared;
 			sourceTree = "<group>";
@@ -532,9 +535,9 @@
 				0A5F5F6E15C6E98F00A37130 /* map1Scene.mm in Sources */,
 				0A5F5F6F15C6E98F00A37130 /* homeScene.mm in Sources */,
 				0A5F5F7015C6E98F00A37130 /* aboutScene.mm in Sources */,
-				0A5F5F7115C6E98F00A37130 /* swAssetManager.mm in Sources */,
+				0A5F5F7115C6E98F00A37130 /* essAssetManager.mm in Sources */,
 				0A5F5F7315C6E98F00A37130 /* swMenu.mm in Sources */,
-				0A5F5F7415C6E98F00A37130 /* swSceneManager.mm in Sources */,
+				0A5F5F7415C6E98F00A37130 /* essSceneManager.mm in Sources */,
 				0A5F5F9115C6E9C400A37130 /* baseButton.cpp in Sources */,
 				0A5F5F9315C6E9C400A37130 /* ofxFreeType2.cpp in Sources */,
 				0A5F5F9415C6E9C400A37130 /* ofxSceneManager.cpp in Sources */,
@@ -548,7 +551,8 @@
 				0A7346F915D98CC1002B643F /* tinyxmlerror.cpp in Sources */,
 				0A7346FA15D98CC1002B643F /* tinyxmlparser.cpp in Sources */,
 				0A7346FB15D98CC1002B643F /* ofxXmlSettings.cpp in Sources */,
-				0A73471015D9C331002B643F /* swBaseScene.mm in Sources */,
+				0AB27C5615DBE5E500C3D016 /* ess_oralHist.mm in Sources */,
+				0AB27C5915DBF5A400C3D016 /* essBaseScene.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

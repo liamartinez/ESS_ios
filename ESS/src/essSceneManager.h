@@ -19,14 +19,14 @@ enum scene {
     SW_TOTAL_SCENES //Always keep this one in here and keep it last!
 };
 
-class swSceneManager : public ofxSceneManager2 {
+class essSceneManager : public ofxSceneManager2 {
 public:
-    static swSceneManager* getInstance();
+    static essSceneManager* getInstance();
 private:
-    swSceneManager();
-    ~swSceneManager();
+    essSceneManager();
+    ~essSceneManager();
     
-    static swSceneManager* pswSceneManager;
+    static essSceneManager* pEssSceneManager;
 };
 
 #endif

@@ -10,8 +10,8 @@
 //------------------------------------------------------------------
 void swMenu::setup() {
     //Get Managers
-    swAssets   = swAssetManager::getInstance();
-    swSM       = swSceneManager::getInstance();
+    essAssets   = essAssetManager::getInstance();
+    essSM       = essSceneManager::getInstance();
     
     touchMenuRes = false; 
     
@@ -44,7 +44,7 @@ void swMenu::setup() {
     bgOnColor.a = 50;                                   //draw 50% of black when touching
     
     for(int i=0; i<MENU_TOTAL; i++) {                               //
-        buttons[i].setLabel(labels[i], &swAssets->whitneySemiBold22);
+        buttons[i].setLabel(labels[i], &essAssets->whitneySemiBold22);
         buttons[i].setSize(MENU_BTN_W, rect.height);
         buttons[i].setColor(bgOffColor, bgOnColor);
         disableBG();
