@@ -27,6 +27,8 @@
 		0A7346F915D98CC1002B643F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7346F315D98CC1002B643F /* tinyxmlerror.cpp */; };
 		0A7346FA15D98CC1002B643F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7346F415D98CC1002B643F /* tinyxmlparser.cpp */; };
 		0A7346FB15D98CC1002B643F /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7346F615D98CC1002B643F /* ofxXmlSettings.cpp */; };
+		0A93FFC015F6CC39000F6817 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A93FFBF15F6CC39000F6817 /* Default.png */; };
+		0A93FFC215F6CC3E000F6817 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A93FFC115F6CC3E000F6817 /* Default@2x.png */; };
 		0AB27C5615DBE5E500C3D016 /* ess_oralHist.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0AB27C5515DBE5E500C3D016 /* ess_oralHist.mm */; };
 		0AB27C5915DBF5A400C3D016 /* essBaseScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0AB27C5815DBF5A400C3D016 /* essBaseScene.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -109,6 +111,8 @@
 		0A7346F415D98CC1002B643F /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		0A7346F615D98CC1002B643F /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		0A7346F715D98CC1002B643F /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
+		0A93FFBF15F6CC39000F6817 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0A93FFC115F6CC3E000F6817 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0AB27C5515DBE5E500C3D016 /* ess_oralHist.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = ess_oralHist.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		0AB27C5715DBF58C00C3D016 /* essBaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = essBaseScene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0AB27C5815DBF5A400C3D016 /* essBaseScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = essBaseScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -334,6 +338,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0A93FFC115F6CC3E000F6817 /* Default@2x.png */,
+				0A93FFBF15F6CC39000F6817 /* Default.png */,
 				E4D8936A11527B74007E1F53 /* src */,
 				BB24DD8B10DA77E000E9C588 /* data */,
 				BB24E1F710DAA51900E9C588 /* openFrameworks */,
@@ -504,6 +510,8 @@
 				E41D3ED713B38FB500A75A5D /* Project.xcconfig in Resources */,
 				E41D3EE613B3906D00A75A5D /* CoreOF.xcconfig in Resources */,
 				0A5F5F9215C6E9C400A37130 /* README in Resources */,
+				0A93FFC015F6CC39000F6817 /* Default.png in Resources */,
+				0A93FFC215F6CC3E000F6817 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

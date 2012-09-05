@@ -30,7 +30,13 @@ class baseButton {
         //lia
         void enableBG();
         void disableBG();
-    
+        void setGLPos(int x, int y);
+        void setGLRect(ofRectangle rect);
+        ofRectangle GLrect; 
+        void GLtouchDown(ofTouchEventArgs &touch);
+        void GLtouchMoved(ofTouchEventArgs &touch);
+        void GLtouchUp(ofTouchEventArgs &touch);
+
         void setLabel(string label,ofxFreeType2* font, int margin = 10);
         string getLabel();
     //edit by chien

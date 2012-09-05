@@ -13,11 +13,14 @@ essBaseScene::essBaseScene() {
     this->essAssets = essAssetManager::getInstance();
     
     sceneName = "Scene Name not Set!";
+    
+    
 }
 
 
 //------------------------------------------------------------------
 void essBaseScene::setup() {
+    
 }
 
 
@@ -60,6 +63,14 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
             tempOH.keyword = XML.getValue("OH:KEYWORD", "default",i);  
             tempOH.loc.x = XML.getValue("OH:XPOS", 10,i);   
             tempOH.loc.y = XML.getValue("OH:YPOS", 10,i);   
+            tempOH.isPlayedString = XML.getValue("OH:ISPLAYED", "FALSE" ,i);   
+        
+            if (tempOH.isPlayedString == "FALSE") {
+                tempOH.isPlayed = false; 
+            } else {
+                tempOH.isPlayed = true; 
+            }
+            
             tempList.push_back(tempOH);
         }
     }
@@ -67,6 +78,87 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
     return tempList;
 }
 
+
+//------------------------------------------------------------------
+void essBaseScene::setXMLtoPlayed(string floor_, int trackNum) {
+    
+    string floor = floor_; 
+    
+    XML.pushTag("ESS");
+    XML.pushTag("OH", trackNum);
+    XML.setValue("ISPLAYED", "TRUE");
+    XML.popTag();
+    XML.popTag();
+    
+    XML.saveFile( ofxiPhoneGetDocumentsDirectory() + "xml/" + floor + ".xml" );
+	message = floor + "mySettings.xml saved to app documents folder";
+}
+
+//------------------------------------------------------------------
+void essBaseScene::resetPlayed() {
+    
+    cout << "called reset" << endl; 
+    
+    ofxXmlSettings XMLTemp; 
+    
+    for (int floorNum = 1; floorNum <=4; floorNum++) {
+        
+        cout << "im in the loop" << floorNum << endl; 
+        
+        //load the XMLs
+        if( XMLTemp.loadFile(ofxiPhoneGetDocumentsDirectory() + "xml/" + ofToString(floorNum) + ".xml") ){
+            message = ofToString(floorNum) + ".xml loaded from documents folder!";
+        }else if( XMLTemp.loadFile("xml/" + ofToString(floorNum) + ".xml") ){
+            message = ofToString(floorNum) + ".xml loaded from data folder!";
+        }else{
+            message = "unable to load" + ofToString(floorNum) + ".xml check data/ folder";
+        }
+        
+        cout << message << endl; 
+        
+        XMLTemp.pushTag("ESS");
+        int tempNumOH = XMLTemp.getNumTags("OH");
+        
+        for(int i = 0; i < tempNumOH; i++){
+            cout << "im in a tag " << i << endl; 
+            XMLTemp.pushTag("OH", i);
+            XMLTemp.setValue("ISPLAYED", "FALSE");
+            XMLTemp.popTag();
+        }
+        
+        XML.popTag();
+        
+        XMLTemp.saveFile( ofxiPhoneGetDocumentsDirectory() + "xml/" + ofToString(floorNum) + ".xml" );
+        message = floorNum + ".xml saved to app documents folder";
+         cout << message << endl;     
+        }
+    
+   
+}
+
+
+//------------------------------------------------------------------
+
+int essBaseScene::shiftRotate() {
+    float angle = 180 - RAD_TO_DEG * atan2( ofxAccelerometer.getForce().y, ofxAccelerometer.getForce().x );
+    
+    float returnAngle; 
+    
+    if (angle > 230 && angle < 330) {
+        returnAngle = 90; 
+    } else if (angle > 330 && angle < 360) {
+        returnAngle = 180; 
+    } else if (angle > 0 && angle < 30) {
+        returnAngle = 180; 
+    } else if (angle > 30 && angle < 130) {
+        returnAngle = 270; 
+    } else {
+        returnAngle = 0; 
+    }
+    
+    
+    return returnAngle;
+}
 
 //------------------------------------------------------------------
 void essBaseScene::drawGrid() {  //dont need this, but keep for now just in case. 

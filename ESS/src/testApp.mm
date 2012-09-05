@@ -7,7 +7,7 @@ void testApp::setup(){
 	
 	// initialize the accelerometer
 	ofxAccelerometer.setup();
-	
+    
 	//iPhoneAlerts will be sent to this.
 	ofxiPhoneAlerts.addListener(this);
 	
@@ -43,8 +43,6 @@ void testApp::setup(){
         cout << "Could not load the data!" << endl;
     }
     
-    
-    
     //Setup Menu
     //menu.setup();
     //menu.show();
@@ -77,6 +75,8 @@ void testApp::draw(){
     }
     
     //menu.draw();
+    
+
      
 }
 
@@ -110,8 +110,7 @@ void testApp::touchUp(ofTouchEventArgs &touch){
     menu.touchUp(touch);
     
     if(menu.touchMenuRes){
-        
-        cout<<"touch menu res true"<<endl;
+
         scenes[essSM->getCurScene()]->activate();
         
     }

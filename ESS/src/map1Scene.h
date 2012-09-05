@@ -33,12 +33,15 @@ public:
     vector <oralHist> OHmap1; 
     
     baseButton button;
-    
+    int buttonState; 
+    int currentButton, lastButton; 
     
     baseButton buttHome; 
     ofRectangle rectHome; 
     
     ofSoundPlayer audio;
+    
+    bool somethingActive; 
     
 private:
     

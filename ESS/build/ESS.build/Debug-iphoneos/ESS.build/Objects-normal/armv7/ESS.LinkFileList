@@ -3,10 +3,9 @@
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/map1Scene.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/homeScene.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/aboutScene.o
-/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/swAssetManager.o
-/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/swBaseScene.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/essAssetManager.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/swMenu.o
-/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/swSceneManager.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/essSceneManager.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/baseButton.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/ofxFreeType2.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/ofxSceneManager.o
@@ -16,3 +15,9 @@
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/map2Scene.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/map3Scene.o
 /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/map4Scene.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/tinyxml.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/tinyxmlerror.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/tinyxmlparser.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/ofxXmlSettings.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/ess_oralHist.o
+/Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/build/ESS.build/Debug-iphoneos/ESS.build/Objects-normal/armv7/essBaseScene.o

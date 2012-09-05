@@ -26,14 +26,18 @@ public:
     virtual void draw();
     
     vector<oralHist> loadXML (string floor_);
+    void setXMLtoPlayed(string floor_, int trackNum); 
+    void resetPlayed(); 
     
     //xml
     ofxXmlSettings XML;    
     string xmlStructure;
     string message;
     void loadOHaudio();
-    
+
     string sceneName;
+    
+    int shiftRotate(); 
     
     essSceneManager* essSM;
     essAssetManager* essAssets;

@@ -4,6 +4,10 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>.DS_Store</key>
+		<data>
+		3y++sUAKzaCQmjLBz2v0kvESHgc=
+		</data>
 		<key>.gitkeep</key>
 		<data>
 		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
@@ -60,6 +64,14 @@
 		<data>
 		lBm5gVBQzLOhIr/oDKcSvImmVfU=
 		</data>
+		<key>fonts/KozGoPro-Light.otf</key>
+		<data>
+		OZsW0odPgReyAtbcnswgFf12cuQ=
+		</data>
+		<key>fonts/LetterGothicStd.otf</key>
+		<data>
+		QXzPcLF0zY2rpwdi87oNdy4trSo=
+		</data>
 		<key>fonts/Whitney-Semibold.otf</key>
 		<data>
 		5jbIKnCeuHeYmqlFsc9NaE3VC8g=
@@ -67,6 +79,14 @@
 		<key>fonts/nevis.ttf</key>
 		<data>
 		JIvuxIRdCjFhHWGiWkqJKhOJJdk=
+		</data>
+		<key>fonts/ostrich-black.ttf</key>
+		<data>
+		mzLaiNVfwwJwMhSgR0FMN3dssew=
+		</data>
+		<key>fonts/ostrich-regular.ttf</key>
+		<data>
+		7+JW/dY8RIZVdonB2658QHsxmn4=
 		</data>
 		<key>images/wireframes-01.png</key>
 		<data>
@@ -118,11 +138,11 @@
 		</data>
 		<key>ofxVtron/ofxBaseButton/baseButton.cpp</key>
 		<data>
-		e7662FqDX+OnFuclz1WeYfqPFF4=
+		jQ/fCZLoeBxG6nB7KAp5oa3u1nc=
 		</data>
 		<key>ofxVtron/ofxBaseButton/baseButton.h</key>
 		<data>
-		RaNvU0sTsqBrN6Vddt8HfrgvRlU=
+		Ecn7DJfLRAgBRe1pdm42JsE9qls=
 		</data>
 		<key>ofxVtron/ofxFreeType2/.DS_Store</key>
 		<data>
@@ -204,9 +224,25 @@
 		<data>
 		1ukPt0c0o2Txxv5GWd8A4C1JkeI=
 		</data>
+		<key>sounds/bubbles.caf</key>
+		<data>
+		zHo6Dw8dlhuEhrdc3ZM0YGNC4wY=
+		</data>
 		<key>sounds/synth.caf</key>
 		<data>
 		6j5EMPIRk/Qi24torgOp0XxeVrY=
+		</data>
+		<key>sounds/tone.caf</key>
+		<data>
+		2ed4F1OZUzz1P56YKgIPqZcQvRE=
+		</data>
+		<key>xml/.DS_Store</key>
+		<data>
+		3y++sUAKzaCQmjLBz2v0kvESHgc=
+		</data>
+		<key>xml/1.xml</key>
+		<data>
+		0YdGstADLLGWhspa1zM8uTaFrEY=
 		</data>
 	</dict>
 	<key>rules</key>

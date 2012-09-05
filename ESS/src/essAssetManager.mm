@@ -32,18 +32,30 @@ essAssetManager::essAssetManager() {
     ess_grey.r = 137; 
     ess_grey.g = 137; 
     ess_grey.b = 137; 
+    
+    ess_white.r = 255;
+    ess_white.g = 255;
+    ess_white.b = 255;
+    
+    ess_blue.r = 164; 
+    ess_blue.g = 190; 
+    ess_blue.b = 206; 
 }
 
 
 //------------------------------------------------------------------
 void essAssetManager::loadFonts() {
 	whitneySemiBold22.loadFont("fonts/Whitney-Semibold.otf",22);
-    ostrich22.loadFont("fonts/ostrich-black.ttf", 25);
+    ostrich24.loadFont("fonts/ostrich-black.ttf", 24);
+    ostrich23.loadFont("fonts/ostrich-black.ttf", 23);
+    ostrich30.loadFont("fonts/ostrich-black.ttf", 30);
 }
 
 
 //------------------------------------------------------------------
 bool essAssetManager::loadData() {
+    playButton.loadImage("flattenFiles/button_play.png");
+    pauseButton.loadImage("flattenFiles/button_pause.png");
     return true;
 }
 

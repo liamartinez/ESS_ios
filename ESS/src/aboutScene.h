@@ -30,6 +30,7 @@ public:
     void touchUp(ofTouchEventArgs &touch);
     
     baseButton button;
+    baseButton buttResetXML;
     
     baseButton buttHome; 
     ofRectangle rectHome; 

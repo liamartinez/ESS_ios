@@ -28,11 +28,18 @@ void aboutScene::activate() {
     mgr.setCurScene(ABOUT_SCENE_FIRST);
     
     aboutScreen.loadImage("flattenFiles/About.jpg");
-    button.setImage(&aboutScreen,&aboutScreen);
+    //button.setImage(&aboutScreen,&aboutScreen);
     
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
+    
+    buttResetXML.setLabel("RESET", &essAssets->ostrich30);
+    buttResetXML.setColor(essAssets->ess_white, essAssets->ess_grey);
+    buttResetXML.disableBG();
+    buttResetXML.setPos (ofGetWidth()/2 - (essAssets->ostrich30.getStringWidth("RESET")/2), ofGetHeight()-60);
+    
+   
 
     
 }
@@ -48,21 +55,18 @@ void aboutScene::deactivate() {
 //------------------------------------------------------------------
 void aboutScene::draw() {
     
-    drawGrid();
-    
-    
-    string sceneName = "";
+
     switch(mgr.getCurScene()) {
         case ABOUT_SCENE_FIRST:
             
             ofEnableAlphaBlending();
-            
-            sceneName = "First Sub Scene!";
+
             
             ofSetColor(255, 255, 255); 
             aboutScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
             
             buttHome.draw(); 
+            buttResetXML.draw();
             ofDisableAlphaBlending();
             
             break;
@@ -84,12 +88,14 @@ void aboutScene::draw() {
 void aboutScene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
     buttHome.touchDown(touch);
+    buttResetXML.touchDown(touch);
 }
 
 
 //--------------------------------------------------------------
 void aboutScene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
+    buttResetXML.touchMoved(touch);
 }
 
 
@@ -107,7 +113,9 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
      */
     
     if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
+    if (buttResetXML.isPressed()) resetPlayed();
     
+    buttResetXML.touchUp(touch);
     buttHome.touchUp(touch);
     button.touchUp(touch);
 }

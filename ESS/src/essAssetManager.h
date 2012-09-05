@@ -26,13 +26,17 @@ public:
         
     //Fonts
     ofxFreeType2 whitneySemiBold22;
-    ofxFreeType2 ostrich22; 
+    ofxFreeType2 ostrich23, ostrich24; 
+    ofxFreeType2 ostrich30; 
     
     //Colors
     ofColor ess_yellow; 
     ofColor ess_grey;
+    ofColor ess_white; 
+    ofColor ess_blue; 
 
-    
+    //buttons
+    ofImage playButton, pauseButton; 
     
 private:
     essAssetManager();

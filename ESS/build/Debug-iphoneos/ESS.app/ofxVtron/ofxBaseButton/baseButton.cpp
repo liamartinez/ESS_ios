@@ -167,6 +167,10 @@ void baseButton::setPos(int x, int y) {
     rect.set(x,y, rect.width, rect.height);
 }
 
+//------------------------------------------------------------------
+void baseButton::setGLPos(int x, int y) {
+    GLrect.set(x,y, rect.width, rect.height);
+}
 
 
 //------------------------------------------------------------------
@@ -181,7 +185,10 @@ void baseButton::setRect(ofRectangle rect) {
     cout << this->rect.x << endl;
 }
 
-
+//------------------------------------------------------------------
+void baseButton::setGLRect(ofRectangle GLrect) {
+    this->GLrect = GLrect;
+}
 
 //------------------------------------------------------------------
 bool baseButton::isPressed(bool bToggle) {
@@ -200,6 +207,11 @@ void baseButton::touchDown(ofTouchEventArgs &touch){
     bTouchStartedInside = bPressed;
 }
 
+//--------------------------------------------------------------
+void baseButton::GLtouchDown(ofTouchEventArgs &touch){
+    bPressed = GLrect.inside(touch.x, touch.y);
+    bTouchStartedInside = bPressed;
+}
 
 //--------------------------------------------------------------
 void baseButton::touchMoved(ofTouchEventArgs &touch){
@@ -208,13 +220,26 @@ void baseButton::touchMoved(ofTouchEventArgs &touch){
         bPressed = rect.inside(touch.x, touch.y);
     }
 }
-
+//--------------------------------------------------------------
+void baseButton::GLtouchMoved(ofTouchEventArgs &touch){
+    //Only check if the user started within
+    if(bTouchStartedInside || bAllowTouchFromOutside) {
+        bPressed = GLrect.inside(touch.x, touch.y);
+    }
+}
 
 //--------------------------------------------------------------
 void baseButton::touchUp(ofTouchEventArgs &touch){
     bPressed = false;
     bTouchStartedInside = false;
 }
+
+//--------------------------------------------------------------
+void baseButton::GLtouchUp(ofTouchEventArgs &touch){
+    bPressed = false;
+    bTouchStartedInside = false;
+}
+
 //----------------------------------------------------
 void baseButton::touchReset(){
     bPressed = false;

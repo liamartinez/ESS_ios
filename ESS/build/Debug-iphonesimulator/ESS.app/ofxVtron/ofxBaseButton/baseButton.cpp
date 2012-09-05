@@ -81,12 +81,18 @@ void baseButton::draw() {
                 ofRect(0, 0, rect.width, rect.height);
             }
         }
+         
         ofDisableAlphaBlending();
     }
     
     //Draw Label if Necessary
     if(bLabelSet) {
-        ofSetColor(0,0,0);
+        if(bPressed) {
+            ofSetColor(onColor.r, onColor.g, onColor.b, onColor.a);
+        } else {
+            ofSetColor(offColor.r, offColor.g, offColor.b, offColor.a);
+        }
+
         int labelX = rect.width/2 - labelFont->getStringWidth(label)/2;
         int labelY = rect.height/2 - labelFont->getStringHeight(label)/2;
         labelFont->drawString(label, labelX, labelY);
@@ -167,6 +173,10 @@ void baseButton::setPos(int x, int y) {
     rect.set(x,y, rect.width, rect.height);
 }
 
+//------------------------------------------------------------------
+void baseButton::setGLPos(int x, int y) {
+    GLrect.set(x,y, rect.width, rect.height);
+}
 
 
 //------------------------------------------------------------------
@@ -181,7 +191,10 @@ void baseButton::setRect(ofRectangle rect) {
     cout << this->rect.x << endl;
 }
 
-
+//------------------------------------------------------------------
+void baseButton::setGLRect(ofRectangle GLrect) {
+    this->GLrect = GLrect;
+}
 
 //------------------------------------------------------------------
 bool baseButton::isPressed(bool bToggle) {
@@ -200,6 +213,11 @@ void baseButton::touchDown(ofTouchEventArgs &touch){
     bTouchStartedInside = bPressed;
 }
 
+//--------------------------------------------------------------
+void baseButton::GLtouchDown(ofTouchEventArgs &touch){
+    bPressed = GLrect.inside(touch.x, touch.y);
+    bTouchStartedInside = bPressed;
+}
 
 //--------------------------------------------------------------
 void baseButton::touchMoved(ofTouchEventArgs &touch){
@@ -208,13 +226,26 @@ void baseButton::touchMoved(ofTouchEventArgs &touch){
         bPressed = rect.inside(touch.x, touch.y);
     }
 }
-
+//--------------------------------------------------------------
+void baseButton::GLtouchMoved(ofTouchEventArgs &touch){
+    //Only check if the user started within
+    if(bTouchStartedInside || bAllowTouchFromOutside) {
+        bPressed = GLrect.inside(touch.x, touch.y);
+    }
+}
 
 //--------------------------------------------------------------
 void baseButton::touchUp(ofTouchEventArgs &touch){
     bPressed = false;
     bTouchStartedInside = false;
 }
+
+//--------------------------------------------------------------
+void baseButton::GLtouchUp(ofTouchEventArgs &touch){
+    bPressed = false;
+    bTouchStartedInside = false;
+}
+
 //----------------------------------------------------
 void baseButton::touchReset(){
     bPressed = false;

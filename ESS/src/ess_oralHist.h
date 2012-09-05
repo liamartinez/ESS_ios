@@ -34,17 +34,23 @@ public:
     string name; 
     string keyword; 
     string path; 
+    bool isDrawn; 
     
+    bool isPlayed; 
+    string isPlayedString;
+    
+    ofPoint origin; 
+    int dotRadius; 
     ofVec2f loc; 
     ofVec2f locInfo; 
     bool isPlaying; 
     ofVec2f offset; 
-    bool isDrawn; 
     
     baseButton playButn;
     baseButton spotButn; 
     
     int textWidth, textHeight; 
+    int boxWidth, boxHeight; 
     void roundedRect(float x, float y, float w, float h, float r); 
     void quadraticBezierVertex(float cpx, float cpy, float x, float y, float prevX, float prevY);
 };
