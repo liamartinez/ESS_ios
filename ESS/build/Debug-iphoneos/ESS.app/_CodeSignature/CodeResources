@@ -18,7 +18,11 @@
 		</data>
 		<key>Default.png</key>
 		<data>
-		E9xL1R7e/TDp7bTXNpOBmqHSgSM=
+		D/gewqDHAIs+4OuEWhKOhRsObtw=
+		</data>
+		<key>Default@2x.png</key>
+		<data>
+		d2BP9gKAgdLHYhoki3jFqN6BH+8=
 		</data>
 		<key>Icon.png</key>
 		<data>
@@ -38,7 +42,7 @@
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		je1zV7FspvwKRyt3hNAoXCvyRbQ=
+		9dgutDDaqDO8+BG6PsxdDNmVYVk=
 		</data>
 		<key>flattenFiles/About.jpg</key>
 		<data>
@@ -52,9 +56,17 @@
 		<data>
 		zuu9d7lUGcdNQ4GgiN9sY1FkS+E=
 		</data>
+		<key>flattenFiles/Map2-guide.png</key>
+		<data>
+		wvdgPfMtgwF1fbPFEG/6uhjq+Ec=
+		</data>
 		<key>flattenFiles/Map2.jpg</key>
 		<data>
 		XQM59iEsqrsiF/qvir1WF59chlA=
+		</data>
+		<key>flattenFiles/Map2.png</key>
+		<data>
+		bnKjEco4cV7MTCdKuWUFEACvSgc=
 		</data>
 		<key>flattenFiles/Map3.jpg</key>
 		<data>
@@ -63,6 +75,18 @@
 		<key>flattenFiles/Map4.jpg</key>
 		<data>
 		lBm5gVBQzLOhIr/oDKcSvImmVfU=
+		</data>
+		<key>flattenFiles/button_pause.png</key>
+		<data>
+		U7qVuELe5uCxDnWsAsPgrt7No0s=
+		</data>
+		<key>flattenFiles/button_play.png</key>
+		<data>
+		lU/eMxBzDnVpDcdUwPN1q0QJHRg=
+		</data>
+		<key>flattenFiles/title.png</key>
+		<data>
+		d2BP9gKAgdLHYhoki3jFqN6BH+8=
 		</data>
 		<key>fonts/KozGoPro-Light.otf</key>
 		<data>
@@ -88,57 +112,13 @@
 		<data>
 		7+JW/dY8RIZVdonB2658QHsxmn4=
 		</data>
-		<key>images/wireframes-01.png</key>
-		<data>
-		WWO32LGAFTZgNHLE+1hYoLLwK5M=
-		</data>
-		<key>images/wireframes-02.png</key>
-		<data>
-		UReRlSCwJUPKRHIlPWD4znkp4yo=
-		</data>
-		<key>images/wireframes-03.png</key>
-		<data>
-		2IJBte3h3whjuAiI88xA16PWYRs=
-		</data>
-		<key>images/wireframes-04.png</key>
-		<data>
-		1laXDin00Ya62Ezf7RgKtf5K5QU=
-		</data>
-		<key>images/wireframes-05.png</key>
-		<data>
-		qrOe+7/bw6lQxkZRlqL+N3yRMmM=
-		</data>
-		<key>images/wireframes-06.png</key>
-		<data>
-		a6F+zOT/eIsKokn8sUa3Ik5UDfI=
-		</data>
-		<key>images/wireframes-07.png</key>
-		<data>
-		6e4AZriiPeJPQpXzYQAzN/dIneg=
-		</data>
-		<key>images/wireframes-08.png</key>
-		<data>
-		AN1fgPSwDG2F3cR5gW4jNc6HxgU=
-		</data>
-		<key>images/wireframes-09.png</key>
-		<data>
-		RoGOz06nrVFPN+EeiznPWrh9ZU8=
-		</data>
-		<key>images/wireframes-10.png</key>
-		<data>
-		SSvuL5hMxkXIg3M1u/myEQNMwWs=
-		</data>
-		<key>images/wireframes-11.png</key>
-		<data>
-		SpuPLuDxRmtKgJ02VWYCwYoV0bw=
-		</data>
 		<key>ofxVtron/.DS_Store</key>
 		<data>
 		LgIhmaL2rmsMHFCVyhqs0+wct5k=
 		</data>
 		<key>ofxVtron/ofxBaseButton/baseButton.cpp</key>
 		<data>
-		jQ/fCZLoeBxG6nB7KAp5oa3u1nc=
+		5qFCguDpZ47Mmb7AEqQVm5EUrmE=
 		</data>
 		<key>ofxVtron/ofxBaseButton/baseButton.h</key>
 		<data>
@@ -212,10 +192,6 @@
 		<data>
 		3y++sUAKzaCQmjLBz2v0kvESHgc=
 		</data>
-		<key>sounds/Mason.aiff</key>
-		<data>
-		+fqMA2Hs5+eShHyHaJuHI0uoItM=
-		</data>
 		<key>sounds/Mason.caf</key>
 		<data>
 		6okrncODlS3YMH4EtSKCFHV/xWE=
@@ -228,10 +204,6 @@
 		<data>
 		zHo6Dw8dlhuEhrdc3ZM0YGNC4wY=
 		</data>
-		<key>sounds/synth.caf</key>
-		<data>
-		6j5EMPIRk/Qi24torgOp0XxeVrY=
-		</data>
 		<key>sounds/tone.caf</key>
 		<data>
 		2ed4F1OZUzz1P56YKgIPqZcQvRE=
@@ -242,7 +214,11 @@
 		</data>
 		<key>xml/1.xml</key>
 		<data>
-		0YdGstADLLGWhspa1zM8uTaFrEY=
+		sWK/Kl3wgS99DSpZVqfB+fuF4iM=
+		</data>
+		<key>xml/2.xml</key>
+		<data>
+		wTI7lGwvPoCzimMquztFJmpHM4k=
 		</data>
 	</dict>
 	<key>rules</key>

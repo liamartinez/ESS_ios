@@ -34,13 +34,10 @@ void oralHist::setup() {
 
     audio.setVolume(0.75f);
     audio.setMultiPlay(true);
-    
-    //playButn.setLabel("pl",&essAssets->ostrich23);
+
     playButn.setGLPos(loc.x, loc.y);
-    //playButn.setImage(&essAssets->playButton, &essAssets->playButton);
-    //spotButn.setLabel("x",&essAssets->ostrich23);
      
-    spotButn.setSize(dotRadius*2, dotRadius*2);
+    spotButn.setSize(dotRadius*4, dotRadius*4); //the size of the button is bigger than the circle drawn, to make it easier to press. 
     spotButn.disableBG(); 
     
     isDrawn = false; 
@@ -54,8 +51,11 @@ void oralHist::drawDot() {
     } else {
         ofSetColor(essAssets->ess_grey);
     }
-    spotButn.draw(loc.x - (dotRadius), loc.y - (dotRadius));  
+
     ofCircle(loc.x, loc.y, dotRadius);
+    
+    ofSetColor(200, 100, 100);
+    spotButn.draw(loc.x - (dotRadius*2), loc.y - (dotRadius*2));  
 
 }
 
@@ -86,6 +86,62 @@ void oralHist::drawInfo() {
     essAssets->ostrich23.drawString(name, origin.x + 40, origin.y + boxHeight/4);
     ofDisableAlphaBlending();
     
+}
+
+ofRectangle oralHist::getBoxSize() {
+    ofRectangle tempBox; 
+    tempBox.set(loc.x +origin.x,loc.y + origin.y, boxWidth, boxHeight);
+    return tempBox; 
+}
+
+ofRectangle oralHist::getTouchBox(int shiftRotate_) {
+    
+    // a bigger box so its easier to press a small button
+    
+    int rotateVal = shiftRotate_;
+    int widthAdd = 30; 
+    int heightAdd = 30; 
+    cout << rotateVal << endl; 
+    
+    ofRectangle tempBox; 
+
+    switch (rotateVal) {
+
+    case 90: //portrait
+        tempBox.set(getBoxSize().x  - heightAdd/2, getBoxSize().y - widthAdd/2, getBoxSize().height + heightAdd, getBoxSize().width + widthAdd);
+        break; 
+
+    case 270: //portrait upside down
+        tempBox.set(getBoxSize().x - heightAdd/2, getBoxSize().y  - getBoxSize().width + widthAdd/2, getBoxSize().height + heightAdd, getBoxSize().width + widthAdd);
+        break; 
+            
+    case 180: // landscape left
+        tempBox.set(getBoxSize().x - getBoxSize().width + widthAdd/2, getBoxSize().y - heightAdd/2, getBoxSize().width + widthAdd, getBoxSize().height + heightAdd);
+        break; 
+
+    default: //landscape right 
+        tempBox.set(getBoxSize().x - widthAdd/2, getBoxSize().y - heightAdd/2, getBoxSize().width + widthAdd, getBoxSize().height + heightAdd);
+        break;     
+            
+    }
+        
+    return tempBox; 
+}
+
+void oralHist::drawTouchBoxSize(int shiftRotate_) {
+    
+    int rotateVal = shiftRotate_;
+    
+    ofRectangle tempBox;
+    tempBox = getTouchBox(rotateVal);
+    
+    ofSetColor(100, 100);
+    ofEnableAlphaBlending();
+    
+    ofRect(tempBox);
+    
+    ofDisableAlphaBlending();
+
 }
 
 void oralHist::play() {  

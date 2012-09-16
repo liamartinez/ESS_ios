@@ -81,12 +81,18 @@ void baseButton::draw() {
                 ofRect(0, 0, rect.width, rect.height);
             }
         }
+         
         ofDisableAlphaBlending();
     }
     
     //Draw Label if Necessary
     if(bLabelSet) {
-        ofSetColor(0,0,0);
+        if(bPressed) {
+            ofSetColor(onColor.r, onColor.g, onColor.b, onColor.a);
+        } else {
+            ofSetColor(offColor.r, offColor.g, offColor.b, offColor.a);
+        }
+
         int labelX = rect.width/2 - labelFont->getStringWidth(label)/2;
         int labelY = rect.height/2 - labelFont->getStringHeight(label)/2;
         labelFont->drawString(label, labelX, labelY);

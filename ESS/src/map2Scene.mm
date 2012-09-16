@@ -58,8 +58,7 @@ void map2Scene::activate() {
     
     rectLoc.set(11, 13, essAssets->ostrich24.getStringWidth("MAIN SANCTUARY") + 10, essAssets->ostrich24.getStringHeight("MAIN SANCTUARY") + 10);
     
-    drawGuide = false; 
-    
+    drawGuide = false;     
 }
 
 //------------------------------------------------------------------
@@ -74,6 +73,7 @@ void map2Scene::deactivate() {
 void map2Scene::draw() {
 
     button.draw();
+  
     
     string sceneName = "";
     switch(mgr.getCurScene()) {
@@ -103,25 +103,26 @@ void map2Scene::draw() {
             
             
             //draw the points (OH)
-            for (int i = 0; i < OHmap2.size(); i++) {            
-                                
+            for (int i = 0; i < OHmap2.size(); i++) { 
+                
+                bool drawTempBox; 
+                
                 glPushMatrix();
                 
-                if (shiftRotate() == 90) {
-                    glTranslatef(OHmap2[i].loc.x+OHmap2[i].playButn.rect.height, OHmap2[i].loc.y, 0);    
-                } else if (shiftRotate() == 270) {
-                    glTranslatef(OHmap2[i].loc.x, OHmap2[i].loc.y+OHmap2[i].playButn.rect.width, 0);
-                } else if (shiftRotate() == 180) {
-                    glTranslatef(OHmap2[i].loc.x+OHmap2[i].playButn.rect.height, OHmap2[i].loc.y+OHmap2[i].playButn.rect.width, 0);
-                } else {
-                    glTranslatef(OHmap2[i].loc.x, OHmap2[i].loc.y, 0);                            
-                }
-                
+                glTranslatef(OHmap2[i].loc.x, OHmap2[i].loc.y, 0); 
+                 
                 ofRotateZ(shiftRotate());
                 
-                if (OHmap2[i].isDrawn) OHmap2[i].drawInfo();
+                if (OHmap2[i].isDrawn) {
+                    OHmap2[i].drawInfo();
+                    drawTempBox = false; // enable if you want to see the bounds of the button
+                }
                 
                 glPopMatrix();
+                
+                if (OHmap2[i].isDrawn) {
+                    if (drawTempBox) OHmap2[i].drawTouchBoxSize(shiftRotate());
+                }
             }
             
             
@@ -130,6 +131,7 @@ void map2Scene::draw() {
             //style guide when left side is touched
             ofSetColor(255, 255, 255);
             if (drawGuide) guide2.draw(0, 0, ofGetWidth(), ofGetHeight());
+
             
             break;
             
@@ -170,19 +172,15 @@ void map2Scene::touchMoved(ofTouchEventArgs &touch){
 //--------------------------------------------------------------
 void map2Scene::touchUp(ofTouchEventArgs &touch){
 
-    //when you press outside the spots, draw nothing
-    for (int i = 0; i < OHmap2.size(); i++) { 
-        if (button.isPressed() && !OHmap2[i].spotButn.isPressed()) {
-            OHmap2[i].isDrawn = false; 
-        }
-    }
-    
+     
+
     
     for (int i = 0; i < OHmap2.size(); i++) { 
         
         if (OHmap2[i].spotButn.isPressed()) {
-            cout << ofToString(buttonState) + "isButtonState" << endl; 
-            cout << "current button: " + ofToString(currentButton) << endl;             currentButton = i; 
+            cout << ofToString(buttonState) + " isButtonState" << endl; 
+            cout << "current button: " + ofToString(currentButton) << endl;             
+            currentButton = i; 
             if (currentButton != lastButton) {
                 buttonState = 0; 
                 
@@ -196,6 +194,8 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
                         OHmap2[j].isDrawn = false; 
                     }
                     OHmap2[i].isDrawn = true; 
+                    tempRect = OHmap2[i].getTouchBox(shiftRotate()); 
+                    cout << "temprect declared "  << endl; 
                     break;
                     
                 case 1:
@@ -203,7 +203,7 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
                     if (!OHmap2[i].audio.getIsPlaying()){
                         OHmap2[i].play(); 
                         setXMLtoPlayed("2",i); 
-                        cout << OHmap2[i].name + "is playing" << endl; 
+                        cout << OHmap2[i].name + "is playing -- SAVED" << endl; 
                     } else {
                         OHmap2[i].pause();
                         cout << OHmap2[i].name + "is paused" << endl; 
@@ -216,6 +216,20 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
         
         lastButton = currentButton;         
     }
+    
+    //when you press outside the spots, draw nothing
+    if (button.isPressed()) {
+    cout << "temprect x is: " + ofToString(tempRect.x) << "temprect end is: " << ofToString(tempRect.x + tempRect.width) << endl; 
+    for (int j = 0; j < OHmap2.size(); j++) {
+        if (tempRect.inside(touch.x, touch.y)) {
+            cout << "inside the box!" + ofToString(touch.x) << endl; 
+        } else {
+            OHmap2[j].isDrawn = false; 
+            cout << "outside the box! " + ofToString(touch.x) << endl; 
+        }    
+
+    }
+     }
     
     
     for (int i = 0; i < OHmap2.size(); i++) {

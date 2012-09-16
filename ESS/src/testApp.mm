@@ -46,6 +46,8 @@ void testApp::setup(){
     //Setup Menu
     //menu.setup();
     //menu.show();
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 }
 
 //--------------------------------------------------------------
@@ -82,6 +84,8 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::exit(){
+    
+     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 
 }
 

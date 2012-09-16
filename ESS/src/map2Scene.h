@@ -38,11 +38,13 @@ public:
     baseButton buttHome; 
     ofRectangle rectHome; 
     ofRectangle rectLoc; 
+    ofRectangle tempRect; 
     
     int buttonState; 
     int currentButton, lastButton; 
     
     ofSoundPlayer audio;
+
     
 private:
     

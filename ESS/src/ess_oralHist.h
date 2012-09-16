@@ -46,6 +46,10 @@ public:
     bool isPlaying; 
     ofVec2f offset; 
     
+    ofRectangle getBoxSize(); 
+    ofRectangle getTouchBox(int shiftRotate_); 
+    void drawTouchBoxSize(int shiftRotate_); 
+    
     baseButton playButn;
     baseButton spotButn; 
     

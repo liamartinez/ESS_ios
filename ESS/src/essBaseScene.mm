@@ -42,6 +42,9 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
     oralHist tempOH; 
     vector<oralHist> tempList; 
     
+    printf("ofxiPhoneGetDocumentsDirectory is %s\n",  
+           ofxiPhoneGetDocumentsDirectory().c_str());
+    
     //load the XMLs
     if( XML.loadFile(ofxiPhoneGetDocumentsDirectory() + "xml/" + floor + ".xml") ){
         message = floor + ".xml loaded from documents folder!";
@@ -50,7 +53,7 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
     }else{
         message = "unable to load" + floor + ".xml check data/ folder";
     }
-    
+
     cout << message << endl; 
     
     XML.pushTag("ESS");
@@ -90,6 +93,7 @@ void essBaseScene::setXMLtoPlayed(string floor_, int trackNum) {
     XML.popTag();
     XML.popTag();
     
+    
     XML.saveFile( ofxiPhoneGetDocumentsDirectory() + "xml/" + floor + ".xml" );
 	message = floor + "mySettings.xml saved to app documents folder";
 }
@@ -106,10 +110,10 @@ void essBaseScene::resetPlayed() {
         cout << "im in the loop" << floorNum << endl; 
         
         //load the XMLs
-        if( XMLTemp.loadFile(ofxiPhoneGetDocumentsDirectory() + "xml/" + ofToString(floorNum) + ".xml") ){
+        if( XMLTemp.loadFile(ofxiPhoneGetDocumentsDirectory() + "xml/"  + ofToString(floorNum) + ".xml") ){
             message = ofToString(floorNum) + ".xml loaded from documents folder!";
-        }else if( XMLTemp.loadFile("xml/" + ofToString(floorNum) + ".xml") ){
-            message = ofToString(floorNum) + ".xml loaded from data folder!";
+        //}else if( XMLTemp.loadFile("xml/" + ofToString(floorNum) + ".xml") ){
+        //    message = ofToString(floorNum) + ".xml loaded from data folder!";
         }else{
             message = "unable to load" + ofToString(floorNum) + ".xml check data/ folder";
         }
@@ -128,7 +132,7 @@ void essBaseScene::resetPlayed() {
         
         XML.popTag();
         
-        XMLTemp.saveFile( ofxiPhoneGetDocumentsDirectory() + "xml/" + ofToString(floorNum) + ".xml" );
+        XMLTemp.saveFile( ofxiPhoneGetDocumentsDirectory()+ "xml/"  + ofToString(floorNum) + ".xml" );
         message = floorNum + ".xml saved to app documents folder";
          cout << message << endl;     
         }
