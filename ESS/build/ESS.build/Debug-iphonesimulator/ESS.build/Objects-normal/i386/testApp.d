@@ -148,5 +148,6 @@ dependencies: \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/../../../addons/ofxXmlSettings/libs/tinyxml.h \
   src/ess_oralHist.h \
   /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/bin/data/ofxVtron/ofxBaseButton/baseButton.h \
-  src/map1Scene.h src/map2Scene.h src/map3Scene.h src/map4Scene.h \
-  src/aboutScene.h src/swMenu.h
+  src/map1Scene.h src/map2Scene.h \
+  /Code/oF/OpenFrameworks/of_0071_iOS_release/apps/ESS_ios/ESS/ofxPanZoom/src/ofxPanZoom.h \
+  src/map3Scene.h src/map4Scene.h src/aboutScene.h src/swMenu.h

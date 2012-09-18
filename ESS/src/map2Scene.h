@@ -10,6 +10,7 @@
 #pragma once
 #include "essBaseScene.h"
 #include "baseButton.h"
+#include "ofxPanZoom.h"
 
 enum {
     MAP2_SCENE_FIRST,
@@ -28,10 +29,14 @@ public:
     void touchDown(ofTouchEventArgs &touch);
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
+    void touchDoubleTap(ofTouchEventArgs &touch);
 
     vector <oralHist> OHmap2; 
     
     bool drawGuide; 
+    
+    ofxPanZoom	cam;
+    int canvasW, canvasH; 
     
     baseButton button;
     
@@ -42,6 +47,8 @@ public:
     
     int buttonState; 
     int currentButton, lastButton; 
+    bool touched; 
+    bool dragged; 
     
     ofSoundPlayer audio;
 

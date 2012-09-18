@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A255C5F1607CC7E00817BA4 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A255C5B1607CC7E00817BA4 /* ReadMe.md */; };
+		0A255C601607CC7E00817BA4 /* ofxPanZoom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A255C5E1607CC7E00817BA4 /* ofxPanZoom.mm */; };
 		0A5F5F6E15C6E98F00A37130 /* map1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6015C6E98E00A37130 /* map1Scene.mm */; };
 		0A5F5F6F15C6E98F00A37130 /* homeScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6215C6E98E00A37130 /* homeScene.mm */; };
 		0A5F5F7015C6E98F00A37130 /* aboutScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6415C6E98E00A37130 /* aboutScene.mm */; };
@@ -72,6 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A255C5B1607CC7E00817BA4 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.md; sourceTree = "<group>"; };
+		0A255C5D1607CC7E00817BA4 /* ofxPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPanZoom.h; sourceTree = "<group>"; };
+		0A255C5E1607CC7E00817BA4 /* ofxPanZoom.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxPanZoom.mm; sourceTree = "<group>"; };
 		0A5F5F6015C6E98E00A37130 /* map1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = map1Scene.mm; path = src/map1Scene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A5F5F6115C6E98E00A37130 /* map1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = map1Scene.h; path = src/map1Scene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A5F5F6215C6E98E00A37130 /* homeScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = homeScene.mm; path = src/homeScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -167,6 +172,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A255C5A1607CC7E00817BA4 /* ofxPanZoom */ = {
+			isa = PBXGroup;
+			children = (
+				0A255C5B1607CC7E00817BA4 /* ReadMe.md */,
+				0A255C5C1607CC7E00817BA4 /* src */,
+			);
+			path = ofxPanZoom;
+			sourceTree = "<group>";
+		};
+		0A255C5C1607CC7E00817BA4 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0A255C5D1607CC7E00817BA4 /* ofxPanZoom.h */,
+				0A255C5E1607CC7E00817BA4 /* ofxPanZoom.mm */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		0A5F5F7915C6E9C400A37130 /* ofxVtron */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +404,7 @@
 		BB16F26B0F2B646B00518274 /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				0A255C5A1607CC7E00817BA4 /* ofxPanZoom */,
 				0A7346EF15D98CC1002B643F /* ofxXmlSettings */,
 			);
 			name = addons;
@@ -512,6 +536,7 @@
 				0A5F5F9215C6E9C400A37130 /* README in Resources */,
 				0A93FFC015F6CC39000F6817 /* Default.png in Resources */,
 				0A93FFC215F6CC3E000F6817 /* Default@2x.png in Resources */,
+				0A255C5F1607CC7E00817BA4 /* ReadMe.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +586,7 @@
 				0A7346FB15D98CC1002B643F /* ofxXmlSettings.cpp in Sources */,
 				0AB27C5615DBE5E500C3D016 /* ess_oralHist.mm in Sources */,
 				0AB27C5915DBF5A400C3D016 /* essBaseScene.mm in Sources */,
+				0A255C601607CC7E00817BA4 /* ofxPanZoom.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

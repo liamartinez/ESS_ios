@@ -187,8 +187,7 @@ void map1Scene::touchUp(ofTouchEventArgs &touch){
 
         
         if (OHmap1[i].spotButn.isPressed()) {
-            cout << ofToString(buttonState) + "isButtonState" << endl; 
-            cout << "current button: " + ofToString(currentButton) << endl;             currentButton = i; 
+          currentButton = i; 
             if (currentButton != lastButton) {
                 buttonState = 0; 
                 

@@ -27,7 +27,7 @@ void aboutScene::update() {
 void aboutScene::activate() {
     mgr.setCurScene(ABOUT_SCENE_FIRST);
     
-    aboutScreen.loadImage("flattenFiles/About.jpg");
+    aboutScreen.loadImage("flattenFiles/ESS-iPhone-About.png");
     //button.setImage(&aboutScreen,&aboutScreen);
     
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
@@ -39,22 +39,37 @@ void aboutScene::activate() {
     buttResetXML.disableBG();
     buttResetXML.setPos (ofGetWidth()/2 - (essAssets->ostrich30.getStringWidth("RESET")/2), ofGetHeight()-60);
     
-   
+    ofBackground(essAssets->ess_blue);
+    
+    canvasW = 480;	//these define where the camera can pan to
+    canvasH = 600;
+    
+    cam.setZoom(1.0f);
+	cam.setMinZoom(1.0f);
+	cam.setMaxZoom(2.0f);
+	cam.setScreenSize( ofGetWidth(), ofGetHeight() ); //tell the system how large is out screen
+	float gap = 10;
+
+	cam.lookAt( ofVec2f(canvasW/2, 160) );
+    cam.setViewportConstrain( ofVec3f(0,0), ofVec3f(canvasW, canvasH)); //limit browseable area, in world units
+
+     cout << "width is " << ofGetWidth() << endl; 
 
     
 }
 
 //------------------------------------------------------------------
 void aboutScene::deactivate() {
-    
     aboutScreen.clear();
-    
 }
 
 
 //------------------------------------------------------------------
 void aboutScene::draw() {
     
+    
+    cam.apply(); //put all our drawing under the ofxPanZoom effect
+
 
     switch(mgr.getCurScene()) {
         case ABOUT_SCENE_FIRST:
@@ -63,7 +78,7 @@ void aboutScene::draw() {
 
             
             ofSetColor(255, 255, 255); 
-            aboutScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
+            aboutScreen.draw (0,0, 480, 523); 
             
             buttHome.draw(); 
             buttResetXML.draw();
@@ -73,7 +88,8 @@ void aboutScene::draw() {
             
     }
     
-    
+    cam.reset();	//back to normal ofSetupScreen() projection
+
     
 }
 
@@ -89,6 +105,8 @@ void aboutScene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
     buttHome.touchDown(touch);
     buttResetXML.touchDown(touch);
+    
+    cam.touchDown(touch); //fw event to cam
 }
 
 
@@ -96,6 +114,8 @@ void aboutScene::touchDown(ofTouchEventArgs &touch){
 void aboutScene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
     buttResetXML.touchMoved(touch);
+    
+    cam.touchMoved(touch); //fw event to cam
 }
 
 
@@ -118,4 +138,14 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
     buttResetXML.touchUp(touch);
     buttHome.touchUp(touch);
     button.touchUp(touch);
+    
+    cam.touchUp(touch); //fw event to cam
+}
+
+//--------------------------------------------------------------
+
+void aboutScene::touchDoubleTap(ofTouchEventArgs &touch){
+	cam.touchDoubleTap(touch); //fw event to cam
+	cam.setZoom(1.0f);	//reset zoom
+	cam.lookAt( ofVec2f(canvasW/2, canvasH/2) ); //reset position
 }

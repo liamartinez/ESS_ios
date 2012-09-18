@@ -19,8 +19,8 @@ oralHist::~oralHist() {
 
 void oralHist::setup() {
     
-    dotRadius = 10;
-    origin.set(-dotRadius- (dotRadius/2), -dotRadius - (dotRadius/2));
+    dotRadius = 10; // radius of the dot to be drawn
+    origin.set(-dotRadius- (dotRadius/2), -dotRadius - (dotRadius/2)); //where to draw info, where the location is relative to 0 
     
     textWidth = essAssets->ostrich23.getStringWidth(name);
     textHeight = essAssets->ostrich23.getStringHeight(name);
@@ -101,7 +101,6 @@ ofRectangle oralHist::getTouchBox(int shiftRotate_) {
     int rotateVal = shiftRotate_;
     int widthAdd = 30; 
     int heightAdd = 30; 
-    cout << rotateVal << endl; 
     
     ofRectangle tempBox; 
 

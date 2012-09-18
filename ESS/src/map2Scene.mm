@@ -59,6 +59,23 @@ void map2Scene::activate() {
     rectLoc.set(11, 13, essAssets->ostrich24.getStringWidth("MAIN SANCTUARY") + 10, essAssets->ostrich24.getStringHeight("MAIN SANCTUARY") + 10);
     
     drawGuide = false;     
+    
+    // for zooming
+    
+    ofBackground(essAssets->ess_blue);
+    
+    canvasW = ofGetWidth();	//these define where the camera can pan to
+    canvasH = ofGetHeight();
+    
+    cam.setZoom(1.0f);
+	cam.setMinZoom(1.0f);
+	cam.setMaxZoom(3.0f);
+	cam.setScreenSize( ofGetWidth(), ofGetHeight() ); //tell the system how large is out screen
+	float gap = 20;
+	cam.setViewportConstrain( ofVec3f(-gap, -gap), ofVec3f(canvasW + gap, canvasH + gap)); //limit browseable area, in world units
+	cam.lookAt( ofVec2f(canvasW/2, canvasH/2) );
+    
+   
 }
 
 //------------------------------------------------------------------
@@ -72,6 +89,9 @@ void map2Scene::deactivate() {
 //------------------------------------------------------------------
 void map2Scene::draw() {
 
+    cam.apply(); //put all our drawing under the ofxPanZoom effect
+
+    
     button.draw();
   
     
@@ -132,10 +152,13 @@ void map2Scene::draw() {
             ofSetColor(255, 255, 255);
             if (drawGuide) guide2.draw(0, 0, ofGetWidth(), ofGetHeight());
 
-            
             break;
             
     }
+    
+    cam.reset();	//back to normal ofSetupScreen() projection
+	
+	//cam.drawDebug(); //see info on ofxPanZoom status
     
     
     
@@ -150,36 +173,60 @@ void map2Scene::draw() {
 
 //--------------------------------------------------------------
 void map2Scene::touchDown(ofTouchEventArgs &touch){
-    button.touchDown(touch);
-    buttHome.touchDown(touch);
+    
+    ofVec3f panTouch =  cam.screenToWorld( ofVec3f( touch.x, touch.y) );	//convert touch (in screen units) to world units
+    
+    ofTouchEventArgs touchTemp;
+    touchTemp.x = panTouch.x;
+    touchTemp.y = panTouch.y; 
+    
+    button.touchDown(touchTemp);
+    buttHome.touchDown(touchTemp);
     
     for (int i = 0; i < OHmap2.size(); i++) {
-        OHmap2[i].spotButn.touchDown(touch);
+        OHmap2[i].spotButn.touchDown(touchTemp);
     }
+    
+    cam.touchDown(touch); //fw event to cam
+    
+    touched = true; 
 }
 
 
 //--------------------------------------------------------------
 void map2Scene::touchMoved(ofTouchEventArgs &touch){
-    button.touchMoved(touch);
+    
+    ofVec3f panTouch =  cam.screenToWorld( ofVec3f( touch.x, touch.y) );	//convert touch (in screen units) to world units
+    
+    ofTouchEventArgs touchTemp;
+    touchTemp.x = panTouch.x;
+    touchTemp.y = panTouch.y; 
+    
+    button.touchMoved(touchTemp);
     
     for (int i = 0; i < OHmap2.size(); i++) {
-        OHmap2[i].spotButn.touchMoved(touch);
+        OHmap2[i].spotButn.touchMoved(touchTemp);
     }
+    cam.touchMoved(touch); //fw event to cam
+    
+    if (touched) dragged = true;  
 }
 
 
 //--------------------------------------------------------------
 void map2Scene::touchUp(ofTouchEventArgs &touch){
+    
+    ofVec3f panTouch =  cam.screenToWorld( ofVec3f( touch.x, touch.y) );	//convert touch (in screen units) to world units
 
-     
-
+    ofTouchEventArgs touchTemp;
+    touchTemp.x = panTouch.x;
+    touchTemp.y = panTouch.y; 
+    
     
     for (int i = 0; i < OHmap2.size(); i++) { 
         
         if (OHmap2[i].spotButn.isPressed()) {
-            cout << ofToString(buttonState) + " isButtonState" << endl; 
-            cout << "current button: " + ofToString(currentButton) << endl;             
+           
             currentButton = i; 
             if (currentButton != lastButton) {
                 buttonState = 0; 
@@ -210,22 +257,20 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
                     }
                     break;
             }   
-            
-            
         }
         
         lastButton = currentButton;         
     }
     
     //when you press outside the spots, draw nothing
-    if (button.isPressed()) {
-    cout << "temprect x is: " + ofToString(tempRect.x) << "temprect end is: " << ofToString(tempRect.x + tempRect.width) << endl; 
+
+    if (button.isPressed() && !dragged) {
     for (int j = 0; j < OHmap2.size(); j++) {
-        if (tempRect.inside(touch.x, touch.y)) {
-            cout << "inside the box!" + ofToString(touch.x) << endl; 
+        if (tempRect.inside(panTouch.x, panTouch.y)) {
+
         } else {
             OHmap2[j].isDrawn = false; 
-            cout << "outside the box! " + ofToString(touch.x) << endl; 
+
         }    
 
     }
@@ -233,7 +278,7 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
     
     
     for (int i = 0; i < OHmap2.size(); i++) {
-        OHmap2[i].spotButn.touchUp(touch);
+        OHmap2[i].spotButn.touchUp(touchTemp);
     }
     
      if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
@@ -244,9 +289,26 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
          drawGuide = false; 
     }
     
-    buttHome.touchUp(touch);
-    button.touchUp(touch);
+    buttHome.touchUp(touchTemp);
+    button.touchUp(touchTemp);
+    
+    cam.touchUp(touch);	//fw event to cam
+    
+    touched = false; 
+    dragged = false; 
 
 }
 
+
+void map2Scene::touchDoubleTap(ofTouchEventArgs &touch){
+    ofVec3f panTouch =  cam.screenToWorld( ofVec3f( touch.x, touch.y) );	//convert touch (in screen units) to world units
+    
+    ofTouchEventArgs touchTemp;
+    touchTemp.x = panTouch.x;
+    touchTemp.y = panTouch.y; 
+    
+	cam.touchDoubleTap(touch); //fw event to cam
+	cam.setZoom(1.0f);	//reset zoom
+	cam.lookAt( ofVec2f(canvasW/2, canvasH/2) ); //reset position
+}
 

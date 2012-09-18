@@ -10,6 +10,7 @@
 
 #include "essBaseScene.h"
 #include "baseButton.h"
+#include "ofxPanZoom.h"
 
 enum {
     ABOUT_SCENE_FIRST,
@@ -28,12 +29,17 @@ public:
     void touchDown(ofTouchEventArgs &touch);
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
+    void touchDoubleTap(ofTouchEventArgs &touch);
     
     baseButton button;
     baseButton buttResetXML;
     
     baseButton buttHome; 
     ofRectangle rectHome; 
+    
+    ofxPanZoom	cam;
+    int canvasW;
+    int canvasH;
     
 private:
     
