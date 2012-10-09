@@ -52,6 +52,7 @@ void oralHist::drawDot() {
         ofSetColor(essAssets->ess_grey);
     }
 
+    
     ofCircle(loc.x, loc.y, dotRadius);
     
     ofSetColor(200, 100, 100);

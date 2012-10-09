@@ -30,18 +30,24 @@ void map2Scene::update() {
 void map2Scene::activate() {
     mgr.setCurScene(MAP2_SCENE_FIRST);
     
-    OHmap2 = loadXML ("2"); //load first floor map
+    //OHmap2 = loadXML ("2"); //load first floor map
     
+    populateMap("2"); //enter the map number
+    
+    /* for populateMap
     for (int i = 0; i < OHmap2.size(); i++) {  
         OHmap2[i].setup(); 
         //OHmap2[i].audio.loadSound(OHmap2[i].path);
         cout << "setting up " + OHmap2[i].name << endl;
     }    
     
-    buttonState = 0; 
-    lastButton = -1;
-    currentButton = 0; 
+     buttonState = 0; 
+     lastButton = -1;
+     currentButton = 0; 
+     
+    */
     
+
     
     map2Scene.loadImage("flattenFiles/Map2.png");
     guide2.loadImage("flattenFiles/Map2-guide.png");
@@ -50,11 +56,16 @@ void map2Scene::activate() {
     button.setPos(0, 0);
     button.disableBG();
     
+    
+    setupHomeButton();
+    //disabled temporarily for test
+    /*
     rectHome.set(427, 290, 45, 20);
     buttHome.enableBG();
     buttHome.setLabel("HOME", &essAssets->ostrich24);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
+     */
     
     rectLoc.set(11, 13, essAssets->ostrich24.getStringWidth("MAIN SANCTUARY") + 10, essAssets->ostrich24.getStringHeight("MAIN SANCTUARY") + 10);
     
@@ -71,11 +82,13 @@ void map2Scene::activate() {
 	cam.setMinZoom(1.0f);
 	cam.setMaxZoom(3.0f);
 	cam.setScreenSize( ofGetWidth(), ofGetHeight() ); //tell the system how large is out screen
-	float gap = 20;
+	float gap = 0;
 	cam.setViewportConstrain( ofVec3f(-gap, -gap), ofVec3f(canvasW + gap, canvasH + gap)); //limit browseable area, in world units
 	cam.lookAt( ofVec2f(canvasW/2, canvasH/2) );
     
    
+
+    
 }
 
 //------------------------------------------------------------------
@@ -91,10 +104,6 @@ void map2Scene::draw() {
 
     cam.apply(); //put all our drawing under the ofxPanZoom effect
 
-    
-    button.draw();
-  
-    
     string sceneName = "";
     switch(mgr.getCurScene()) {
         case MAP2_SCENE_FIRST:
@@ -105,11 +114,14 @@ void map2Scene::draw() {
             ofSetColor(255, 255, 255); 
             map2Scene.draw(0,0, ofGetWidth(), ofGetHeight()); 
             
+            drawHomeButton();
+            /*
             //home button
             ofSetColor(essAssets->ess_blue); 
             ofRect(rectHome.x - 8, rectHome.y - 4, rectHome.width, rectHome.height);
             buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
             buttHome.draw(); 
+             */
             
             //title
             ofSetColor(essAssets->ess_blue);
@@ -117,6 +129,10 @@ void map2Scene::draw() {
             ofSetColor(essAssets->ess_grey);
             essAssets->ostrich24.drawString("MAIN SANCTUARY", rectLoc.x, rectLoc.y);
             
+            
+            drawMap(); 
+            
+            /*
             for (int i = 0; i < OHmap2.size(); i++) {            
                 OHmap2[i].drawDot(); 
             }
@@ -145,7 +161,7 @@ void map2Scene::draw() {
                 }
             }
             
-            
+            */
             ofDisableAlphaBlending();
             
             //style guide when left side is touched
@@ -181,12 +197,14 @@ void map2Scene::touchDown(ofTouchEventArgs &touch){
     touchTemp.y = panTouch.y; 
     
     button.touchDown(touchTemp);
-    buttHome.touchDown(touchTemp);
+    //buttHome.touchDown(touchTemp);
+    baseTouchDown(touchTemp);
     
+    /*
     for (int i = 0; i < OHmap2.size(); i++) {
         OHmap2[i].spotButn.touchDown(touchTemp);
     }
-    
+    */
     cam.touchDown(touch); //fw event to cam
     
     touched = true; 
@@ -204,9 +222,11 @@ void map2Scene::touchMoved(ofTouchEventArgs &touch){
     
     button.touchMoved(touchTemp);
     
+    /*
     for (int i = 0; i < OHmap2.size(); i++) {
         OHmap2[i].spotButn.touchMoved(touchTemp);
     }
+     */
     cam.touchMoved(touch); //fw event to cam
     
     if (touched) dragged = true;  
@@ -222,7 +242,7 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
     touchTemp.x = panTouch.x;
     touchTemp.y = panTouch.y; 
     
-    
+    /*
     for (int i = 0; i < OHmap2.size(); i++) { 
         
         if (OHmap2[i].spotButn.isPressed()) {
@@ -261,7 +281,7 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
         
         lastButton = currentButton;         
     }
-    
+    */
     //when you press outside the spots, draw nothing
 
     if (button.isPressed() && !dragged) {
@@ -276,20 +296,23 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
     }
      }
     
-    
+    /*
     for (int i = 0; i < OHmap2.size(); i++) {
         OHmap2[i].spotButn.touchUp(touchTemp);
     }
+     */
     
-     if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
+     //if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
+    baseTouchUp(touchTemp);
     
+    //for the guide
     if (touch.x > ofGetWidth() - 30) {
             drawGuide = true; 
     } else if (touch.x < 30) {
          drawGuide = false; 
     }
     
-    buttHome.touchUp(touchTemp);
+    //buttHome.touchUp(touchTemp);
     button.touchUp(touchTemp);
     
     cam.touchUp(touch);	//fw event to cam

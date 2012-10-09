@@ -36,6 +36,7 @@ public:
     
     baseButton buttHome; 
     ofRectangle rectHome; 
+    ofRectangle TrectHome; 
     
     ofxPanZoom	cam;
     int canvasW;

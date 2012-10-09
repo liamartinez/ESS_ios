@@ -45,8 +45,10 @@ public:
     ofRectangle rectLoc; 
     ofRectangle tempRect; 
     
+    /*
     int buttonState; 
     int currentButton, lastButton; 
+     */
     bool touched; 
     bool dragged; 
     

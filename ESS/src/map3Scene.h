@@ -28,14 +28,25 @@ public:
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
     
-    baseButton button;
-    
+
     baseButton buttHome; 
     ofRectangle rectHome; 
+    ofRectangle rectLoc; 
+    ofRectangle tempRect; 
+    
+    int buttonState; 
+    int currentButton, lastButton; 
+    bool touched; 
+    bool dragged; 
+    
+    bool drawGuide; 
+    
+    vector <oralHist> OHmap3; 
     
 private:
     
-    ofImage map3Scene; //lia - replace pictures here. 
+    ofImage map3Scene;    
+    ofImage map3Guide; 
     /*
      ofImage homeScreen;
      ofImage postit; 

@@ -1,26 +1,42 @@
 <ESS>
     <OH>
-        <NAME>NAME OF TRACK 1</NAME>
+        <NAME>NAME OF TRACK 4A</NAME>
         <PATH>sounds/Mason.caf</PATH>
         <KEYWORD>story</KEYWORD>
-        <XPOS>100</XPOS>
+        <XPOS>378</XPOS>
+        <YPOS>124</YPOS>
+        <ISPLAYED>FALSE</ISPLAYED>
+    </OH>
+    <OH>
+        <NAME>NAME OF TRACK 4B</NAME>
+        <PATH>sounds/bubbles.caf</PATH>
+        <KEYWORD>story2</KEYWORD>
+        <XPOS>308</XPOS>
+        <YPOS>147</YPOS>
+        <ISPLAYED>FALSE</ISPLAYED>
+    </OH>
+    <OH>
+        <NAME>NAME OF TRACK 4C</NAME>
+        <PATH>sounds/tone.caf</PATH>
+        <KEYWORD>story3</KEYWORD>
+        <XPOS>119</XPOS>
         <YPOS>100</YPOS>
         <ISPLAYED>FALSE</ISPLAYED>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 2</NAME>
-        <PATH>sounds/bubbles.caf</PATH>
-        <KEYWORD>story2</KEYWORD>
-        <XPOS>200</XPOS>
-        <YPOS>200</YPOS>
+        <NAME>NAME OF TRACK 4D</NAME>
+        <PATH>sounds/tone.caf</PATH>
+        <KEYWORD>story3</KEYWORD>
+        <XPOS>220</XPOS>
+        <YPOS>268</YPOS>
         <ISPLAYED>FALSE</ISPLAYED>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 3</NAME>
+        <NAME>NAME OF TRACK 4E</NAME>
         <PATH>sounds/tone.caf</PATH>
         <KEYWORD>story3</KEYWORD>
-        <XPOS>300</XPOS>
-        <YPOS>300</YPOS>
+        <XPOS>316</XPOS>
+        <YPOS>201</YPOS>
         <ISPLAYED>FALSE</ISPLAYED>
     </OH>
 </ESS>

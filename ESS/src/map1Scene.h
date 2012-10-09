@@ -37,15 +37,19 @@ public:
     int currentButton, lastButton; 
     
     baseButton buttHome; 
-    ofRectangle rectHome; 
+    ofRectangle rectHome;
+    ofRectangle rectLoc; 
+    ofRectangle tempRect; 
     
     ofSoundPlayer audio;
     
     bool somethingActive; 
+    bool drawGuide; 
     
 private:
     
     ofImage map1Scene; //lia - replace pictures here
+    ofImage map1Guide; 
     int x,y,w,h;
     int color;
     

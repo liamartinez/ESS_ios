@@ -27,7 +27,7 @@ void homeScene::update() {
 void homeScene::activate() {
     mgr.setCurScene(HOME_SCENE_FIRST);
 
-    homeScreen.loadImage("flattenFiles/Home.jpg");
+    homeScreen.loadImage("flattenFiles/Home.png");
     
     rectAbout.set(10, 10, 70, 70);
     buttAbout.setRect(rectAbout);

@@ -12,11 +12,12 @@
 #include "ofxSceneManagerScene.h"
 #include "ofxiPhoneExtras.h"
 #include "ofxXmlSettings.h"
+#include "baseButton.h"
 
 #include "ess_oralHist.h"
 
 
-class essSceneManager; //why is there a class declared here? 
+class essSceneManager; 
 
 class essBaseScene : public ofxSceneManagerScene {
 public:
@@ -25,9 +26,19 @@ public:
     virtual void update();
     virtual void draw();
     
+    void baseTouchDown(ofTouchEventArgs &touch);
+    void baseTouchMoved(ofTouchEventArgs &touch);
+    void baseTouchUp(ofTouchEventArgs &touch);
+    void baseTouchDoubleTap(ofTouchEventArgs &touch);
+    
+    void populateMap(string floor_); 
+    void drawMap(); 
+    
     vector<oralHist> loadXML (string floor_);
     void setXMLtoPlayed(string floor_, int trackNum); 
     void resetPlayed(); 
+    void setupHomeButton(); 
+    void drawHomeButton(); 
     
     //xml
     ofxXmlSettings XML;    
@@ -43,6 +54,16 @@ public:
     essAssetManager* essAssets;
     
     ofxSceneManager2 mgr;
+        
+    //home button
+    baseButton buttHome; 
+    ofRectangle rectHome; 
+    
+    //the map
+    vector <oralHist> floorMap; 
+    int buttonState; 
+    int currentButton, lastButton; 
+    
 protected:
     void drawGrid();
     

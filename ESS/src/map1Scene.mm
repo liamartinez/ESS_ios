@@ -34,15 +34,19 @@ void map1Scene::update() {
 void map1Scene::activate() {
     mgr.setCurScene(MAP1_SCENE_FIRST);
     
-    map1Scene.loadImage("flattenFiles/Map1.jpg");
+    map1Scene.loadImage("flattenFiles/Map1.png");
+    map1Guide.loadImage("flattenFiles/Map1-guide.png");
 
     
     button.setPos(0, 0);
     button.setSize(ofGetWidth(), ofGetHeight());
     button.disableBG();
     rectHome.set(ofGetWidth()-50, ofGetHeight()-30, 70, 30);
+    buttHome.setLabel("HOME", &essAssets->ostrich24);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
+    
+    rectLoc.set(11, 13, essAssets->ostrich24.getStringWidth("BALCONY") + 10, essAssets->ostrich24.getStringHeight("BALCONY") + 10);
     
     OHmap1 = loadXML ("1"); //load first floor map
 
@@ -73,37 +77,57 @@ void map1Scene::draw() {
         case MAP1_SCENE_FIRST:
             
             ofEnableAlphaBlending();
-                        
+            
+            //the map
             ofSetColor(255, 255, 255); 
-            map1Scene.draw(0,0, ofGetWidth(), ofGetHeight());
-            button.draw(); //this is invisible and only for releasing the highlighted dot
-
+            map1Scene.draw(0,0, ofGetWidth(), ofGetHeight()); 
+            
+            //home button
+            ofSetColor(essAssets->ess_blue); 
+            ofRect(rectHome.x - 8, rectHome.y - 4, rectHome.width, rectHome.height);
+            buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
             buttHome.draw(); 
             
-                for (int i = 0; i < OHmap1.size(); i++) {            
-                    OHmap1[i].drawDot(); 
-    
-                    glPushMatrix();
-
-                        if (shiftRotate() == 90) {
-                            glTranslatef(OHmap1[i].loc.x+OHmap1[i].playButn.rect.height, OHmap1[i].loc.y, 0);    
-                        } else if (shiftRotate() == 270) {
-                            glTranslatef(OHmap1[i].loc.x, OHmap1[i].loc.y+OHmap1[i].playButn.rect.width, 0);
-                        } else if (shiftRotate() == 180) {
-                            glTranslatef(OHmap1[i].loc.x+OHmap1[i].playButn.rect.height, OHmap1[i].loc.y+OHmap1[i].playButn.rect.width, 0);
-                        } else {
-                                glTranslatef(OHmap1[i].loc.x, OHmap1[i].loc.y, 0);                            
-                        }
-                   
-                    ofRotateZ(shiftRotate());
-                    
-                    if (OHmap1[i].isDrawn) OHmap1[i].drawInfo();
-                    
-                    glPopMatrix();
+            //title
+            ofSetColor(essAssets->ess_blue);
+            ofRect(rectLoc.x-5, rectLoc.y-4, rectLoc.width, rectLoc.height); 
+            ofSetColor(essAssets->ess_grey);
+            essAssets->ostrich24.drawString("BALCONY", rectLoc.x, rectLoc.y);
+            
+            for (int i = 0; i < OHmap1.size(); i++) {            
+                OHmap1[i].drawDot(); 
+            }
+            
+            
+            //draw the points (OH)
+            for (int i = 0; i < OHmap1.size(); i++) { 
+                
+                bool drawTempBox; 
+                
+                glPushMatrix();
+                
+                glTranslatef(OHmap1[i].loc.x, OHmap1[i].loc.y, 0); 
+                
+                ofRotateZ(shiftRotate());
+                
+                if (OHmap1[i].isDrawn) {
+                    OHmap1[i].drawInfo();
+                    drawTempBox = false; // enable if you want to see the bounds of the button
                 }
-
+                
+                glPopMatrix();
+                
+                if (OHmap1[i].isDrawn) {
+                    if (drawTempBox) OHmap1[i].drawTouchBoxSize(shiftRotate());
+                }
+            }
+            
             
             ofDisableAlphaBlending();
+            
+            //style guide when left side is touched
+            ofSetColor(255, 255, 255);
+            if (drawGuide) map1Guide.draw(0, 0, ofGetWidth(), ofGetHeight());
             
             break;
     }
@@ -230,9 +254,15 @@ void map1Scene::touchUp(ofTouchEventArgs &touch){
         }
     }
     
-
+    //for the guides    
+    if (touch.x > ofGetWidth() - 30) {
+        drawGuide = true; 
+    } else if (touch.x < 30) {
+        drawGuide = false; 
+    }
     
-
+    
+    
     buttHome.touchUp(touch);
     button.touchUp(touch);
 }

@@ -35,6 +35,55 @@ void essBaseScene::update() {
 void essBaseScene::draw() {
 }
 
+
+//------------------------------------------------------------------
+
+void essBaseScene::populateMap(string floor_){
+     string floor = floor_; 
+    
+    floorMap = loadXML(floor);
+    
+    for (int i = 0; i < floorMap.size(); i++) {  
+        floorMap[i].setup(); 
+        //OHmap2[i].audio.loadSound(OHmap2[i].path);
+        cout << "setting up " + floorMap[i].name << endl;
+    }    
+    
+    buttonState = 0; 
+    lastButton = -1;
+    currentButton = 0; 
+}
+
+void essBaseScene::drawMap() {
+    for (int i = 0; i < floorMap.size(); i++) {            
+        floorMap[i].drawDot(); 
+    }
+    
+    
+    //draw the points (OH)
+    for (int i = 0; i < floorMap.size(); i++) { 
+        
+        bool drawTempBox; 
+        
+        glPushMatrix();
+        
+        glTranslatef(floorMap[i].loc.x, floorMap[i].loc.y, 0); 
+        
+        ofRotateZ(shiftRotate());
+        
+        if (floorMap[i].isDrawn) {
+            floorMap[i].drawInfo();
+            drawTempBox = false; // enable if you want to see the bounds of the button
+        }
+        
+        glPopMatrix();
+        
+        if (floorMap[i].isDrawn) {
+            if (drawTempBox) floorMap[i].drawTouchBoxSize(shiftRotate());
+        }
+    }
+}
+
 //------------------------------------------------------------------
 vector<oralHist> essBaseScene::loadXML (string floor_) {
     
@@ -163,6 +212,94 @@ int essBaseScene::shiftRotate() {
     
     return returnAngle;
 }
+
+//------------------------------------------------------------------
+
+void essBaseScene::setupHomeButton() {
+    rectHome.set(427, 290, 45, 20);
+    buttHome.enableBG();
+    buttHome.setLabel("HOME", &essAssets->ostrich24);
+    buttHome.setRect(rectHome);
+    buttHome.disableBG();
+}
+
+void essBaseScene::drawHomeButton() {
+    ofSetColor(essAssets->ess_blue); 
+    ofRect(rectHome.x - 8, rectHome.y - 4, rectHome.width, rectHome.height);
+    buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
+    buttHome.draw(); 
+}
+
+//------------------------------------------------------------------
+
+
+void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
+    buttHome.touchDown(touch);
+    
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchDown(touch);
+    }
+}
+
+void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchMoved(touch);
+    }
+}
+
+void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
+    if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
+    buttHome.touchUp(touch);
+    
+    for (int i = 0; i < floorMap.size(); i++) { 
+        
+        if (floorMap[i].spotButn.isPressed()) {
+            
+            currentButton = i; 
+            if (currentButton != lastButton) {
+                buttonState = 0; 
+                
+            } else {
+                buttonState = 1;
+            }
+            
+            switch (buttonState) {
+                case 0:
+                    for (int j = 0; j < floorMap.size(); j++) {
+                        floorMap[j].isDrawn = false; 
+                    }
+                    floorMap[i].isDrawn = true; 
+                    tempRect = floorMap[i].getTouchBox(shiftRotate()); 
+                    cout << "temprect declared "  << endl; 
+                    break;
+                    
+                case 1:
+                    floorMap[i].isDrawn = true; 
+                    if (!floorMap[i].audio.getIsPlaying()){
+                        floorMap[i].play(); 
+                        setXMLtoPlayed("2",i); 
+                        cout << floorMap[i].name + "is playing -- SAVED" << endl; 
+                    } else {
+                        floorMap[i].pause();
+                        cout << floorMap[i].name + "is paused" << endl; 
+                    }
+                    break;
+            }   
+        }
+        
+        lastButton = currentButton;         
+    }
+    
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchUp(touch);
+    }
+}
+
+void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
+
+}
+
+
 
 //------------------------------------------------------------------
 void essBaseScene::drawGrid() {  //dont need this, but keep for now just in case. 
