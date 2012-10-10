@@ -29,7 +29,7 @@ void homeScene::activate() {
 
     homeScreen.loadImage("flattenFiles/Home.png");
     
-    rectAbout.set(10, 10, 70, 70);
+    rectAbout.set(427, 290, 45, 20);
     buttAbout.setRect(rectAbout);
     buttAbout.disableBG();
 

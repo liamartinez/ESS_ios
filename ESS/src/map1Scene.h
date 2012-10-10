@@ -2,15 +2,10 @@
 //
 //  Created by Lia Martinez on 2/26/12.
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
-//
-
-#ifndef ESS_map1Scene_h
-#define ESS_map1Scene_h
 
 #pragma once
 #include "essBaseScene.h"
-#include "baseButton.h"
-#include "ess_oralHist.h"
+#include "ofxPanZoom.h"
 
 enum {
     MAP1_SCENE_FIRST,
@@ -29,30 +24,23 @@ public:
     void touchDown(ofTouchEventArgs &touch);
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
+    void touchDoubleTap(ofTouchEventArgs &touch);
     
     vector <oralHist> OHmap1; 
     
-    baseButton button;
-    int buttonState; 
-    int currentButton, lastButton; 
+    bool drawGuide; 
     
-    baseButton buttHome; 
-    ofRectangle rectHome;
-    ofRectangle rectLoc; 
-    ofRectangle tempRect; 
+    ofxPanZoom	cam;
+    int canvasW, canvasH; 
     
     ofSoundPlayer audio;
     
-    bool somethingActive; 
-    bool drawGuide; 
     
 private:
     
-    ofImage map1Scene; //lia - replace pictures here
-    ofImage map1Guide; 
-    int x,y,w,h;
-    int color;
+    ofImage map1Scene; 
+    ofImage guide1; 
     
 };
 
-#endif
+

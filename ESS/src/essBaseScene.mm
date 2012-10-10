@@ -13,8 +13,7 @@ essBaseScene::essBaseScene() {
     this->essAssets = essAssetManager::getInstance();
     
     sceneName = "Scene Name not Set!";
-    
-    
+
 }
 
 
@@ -54,12 +53,11 @@ void essBaseScene::populateMap(string floor_){
     currentButton = 0; 
 }
 
-void essBaseScene::drawMap() {
+void essBaseScene::drawMapPoints() {
     for (int i = 0; i < floorMap.size(); i++) {            
         floorMap[i].drawDot(); 
     }
-    
-    
+        
     //draw the points (OH)
     for (int i = 0; i < floorMap.size(); i++) { 
         
@@ -217,7 +215,8 @@ int essBaseScene::shiftRotate() {
 
 void essBaseScene::setupHomeButton() {
     rectHome.set(427, 290, 45, 20);
-    buttHome.enableBG();
+    //buttHome.enableBG();
+    buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
     buttHome.setLabel("HOME", &essAssets->ostrich24);
     buttHome.setRect(rectHome);
     buttHome.disableBG();
@@ -226,31 +225,72 @@ void essBaseScene::setupHomeButton() {
 void essBaseScene::drawHomeButton() {
     ofSetColor(essAssets->ess_blue); 
     ofRect(rectHome.x - 8, rectHome.y - 4, rectHome.width, rectHome.height);
-    buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
+    
     buttHome.draw(); 
 }
 
 //------------------------------------------------------------------
 
+void essBaseScene::setupTitle(string title_){
+    title = title_;
+    rectLoc.set(11, 13, essAssets->ostrich24.getStringWidth(title) + 10, essAssets->ostrich24.getStringHeight(title) + 10);
+    
+}
+
+void essBaseScene::drawTitle(){
+    ofSetColor(essAssets->ess_blue);
+    ofRect(rectLoc.x-5, rectLoc.y-4, rectLoc.width, rectLoc.height); 
+    ofSetColor(essAssets->ess_grey);
+    essAssets->ostrich24.drawString(title, rectLoc.x, rectLoc.y);
+    
+}
+
+//------------------------------------------------------------------
+
+void essBaseScene::setupTextBoxHelper() {
+    buttScreen.setSize(ofGetWidth(), ofGetHeight());
+    buttScreen.setPos(0, 0);
+    buttScreen.disableBG();
+}
+
+
+
+//------------------------------------------------------------------
 
 void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
+    
+    //home
     buttHome.touchDown(touch);
     
+    //map
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchDown(touch);
     }
+    
+    //textBoxHelper
+    buttScreen.touchDown(touch);
+    touched = true; 
 }
 
 void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
+    
+    //map
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchMoved(touch);
     }
+    
+    //textBoxHelper
+    buttScreen.touchMoved(touch);
+    if (touched) dragged = true;  
 }
 
 void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
+    
+    //home
     if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
     buttHome.touchUp(touch);
     
+    //map
     for (int i = 0; i < floorMap.size(); i++) { 
         
         if (floorMap[i].spotButn.isPressed()) {
@@ -293,6 +333,24 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchUp(touch);
     }
+    
+    //textBoxHelper
+    if (buttScreen.isPressed() && !dragged) {
+        for (int j = 0; j < floorMap.size(); j++) {
+            if (tempRect.inside(touch.x, touch.y)) {
+                
+            } else {
+                floorMap[j].isDrawn = false; 
+                
+            }    
+        }
+    }
+    
+    buttScreen.touchUp(touch);
+    touched = false; 
+    dragged = false; 
+    
+    
 }
 
 void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
@@ -303,7 +361,7 @@ void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
 
 //------------------------------------------------------------------
 void essBaseScene::drawGrid() {  //dont need this, but keep for now just in case. 
-    int gridWidth = ofGetWidth() + MNH_GRID_CELL_SIZE; // lia - where is it getting these values?
+    int gridWidth = ofGetWidth() + MNH_GRID_CELL_SIZE; // 
     int gridHeight = ofGetHeight() + MNH_GRID_CELL_SIZE;
     
     glPushMatrix();

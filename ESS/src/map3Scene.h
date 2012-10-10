@@ -3,12 +3,9 @@
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
 //
 
-#ifndef ESS_map3Scene_h
-#define ESS_map3Scene_h
-
 #pragma once
 #include "essBaseScene.h"
-#include "baseButton.h"
+#include "ofxPanZoom.h"
 
 enum {
     MAP3_SCENE_FIRST,
@@ -27,32 +24,24 @@ public:
     void touchDown(ofTouchEventArgs &touch);
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
-    
-
-    baseButton buttHome; 
-    ofRectangle rectHome; 
-    ofRectangle rectLoc; 
-    ofRectangle tempRect; 
-    
-    int buttonState; 
-    int currentButton, lastButton; 
-    bool touched; 
-    bool dragged; 
-    
-    bool drawGuide; 
+    void touchDoubleTap(ofTouchEventArgs &touch);
     
     vector <oralHist> OHmap3; 
     
+    bool drawGuide; 
+    
+    ofxPanZoom	cam;
+    int canvasW, canvasH; 
+    
+    ofSoundPlayer audio;
+    
+    
 private:
     
-    ofImage map3Scene;    
+    ofImage map3Scene; 
     ofImage map3Guide; 
-    /*
-     ofImage homeScreen;
-     ofImage postit; 
-     */
     
     
 };
 
-#endif
+

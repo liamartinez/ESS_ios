@@ -2,13 +2,9 @@
 //  Created by Lia Martinez on 2/26/12.
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
 //
-
-#ifndef ESS_map4Scene_h
-#define ESS_map4Scene_h
-
 #pragma once
 #include "essBaseScene.h"
-#include "baseButton.h"
+#include "ofxPanZoom.h"
 
 enum {
     MAP4_SCENE_FIRST,
@@ -27,31 +23,23 @@ public:
     void touchDown(ofTouchEventArgs &touch);
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
+    void touchDoubleTap(ofTouchEventArgs &touch);
     
-    baseButton buttHome; 
-    ofRectangle rectHome; 
-    ofRectangle rectLoc; 
-    ofRectangle tempRect; 
-    
-    int buttonState; 
-    int currentButton, lastButton; 
-    bool touched; 
-    bool dragged; 
+    vector <oralHist> OHmap4; 
     
     bool drawGuide; 
     
-    vector <oralHist> OHmap4; 
-
+    ofxPanZoom	cam;
+    int canvasW, canvasH; 
+    
+    ofSoundPlayer audio;
+    
+    
 private:
     
     ofImage map4Scene; 
     ofImage map4Guide; 
-    /*
-     ofImage homeScreen;
-     ofImage postit; 
-     */
     
     
 };
 
-#endif

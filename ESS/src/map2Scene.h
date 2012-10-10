@@ -38,32 +38,13 @@ public:
     ofxPanZoom	cam;
     int canvasW, canvasH; 
     
-    baseButton button;
-    
-    baseButton buttHome; 
-    ofRectangle rectHome; 
-    ofRectangle rectLoc; 
-    ofRectangle tempRect; 
-    
-    /*
-    int buttonState; 
-    int currentButton, lastButton; 
-     */
-    bool touched; 
-    bool dragged; 
-    
     ofSoundPlayer audio;
 
     
 private:
     
-    ofImage map2Scene; //lia - replace pictures here.
+    ofImage map2Scene; 
     ofImage guide2; 
-    /*
-     ofImage homeScreen;
-     ofImage postit; 
-     */
-    
     
 };
 

@@ -32,7 +32,7 @@ public:
     void baseTouchDoubleTap(ofTouchEventArgs &touch);
     
     void populateMap(string floor_); 
-    void drawMap(); 
+    void drawMapPoints(); 
     
     vector<oralHist> loadXML (string floor_);
     void setXMLtoPlayed(string floor_, int trackNum); 
@@ -40,6 +40,13 @@ public:
     void setupHomeButton(); 
     void drawHomeButton(); 
     
+    //so that when you touch inside the text box, it doesn't disappear. 
+    void setupTextBoxHelper(); 
+    
+    void setupTitle(string title_); 
+    void drawTitle();
+    string title; 
+
     //xml
     ofxXmlSettings XML;    
     string xmlStructure;
@@ -48,6 +55,7 @@ public:
 
     string sceneName;
     
+    //gets accelererometer data to determine rotation
     int shiftRotate(); 
     
     essSceneManager* essSM;
@@ -59,10 +67,24 @@ public:
     baseButton buttHome; 
     ofRectangle rectHome; 
     
+    //screen button
+    baseButton buttScreen;
+    
+    //title
+    ofRectangle rectLoc; 
+    
+    //touch bounds for the buttons
+    ofRectangle tempRect; 
+
     //the map
     vector <oralHist> floorMap; 
     int buttonState; 
     int currentButton, lastButton; 
+    
+    //textBoxHelper
+    bool touched; 
+    bool dragged; 
+    
     
 protected:
     void drawGrid();
