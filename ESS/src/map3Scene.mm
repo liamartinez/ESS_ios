@@ -31,7 +31,7 @@ void map3Scene::activate() {
     mgr.setCurScene(MAP3_SCENE_FIRST);
     
     
-    populateMap("3"); //enter the map number
+    setupMap("3"); //enter the map number
     setupTitle("LOWER SANCTUARY");
     
     map3Scene.loadImage("flattenFiles/Map3.png");

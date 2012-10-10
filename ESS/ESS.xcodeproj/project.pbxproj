@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A255C5F1607CC7E00817BA4 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A255C5B1607CC7E00817BA4 /* ReadMe.md */; };
 		0A255C601607CC7E00817BA4 /* ofxPanZoom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A255C5E1607CC7E00817BA4 /* ofxPanZoom.mm */; };
+		0A3965541626281300A2FF6A /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A39654D1626281300A2FF6A /* Tween.cpp */; };
+		0A3965551626281300A2FF6A /* Tweenzor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A3965521626281300A2FF6A /* Tweenzor.cpp */; };
 		0A5F5F6E15C6E98F00A37130 /* map1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6015C6E98E00A37130 /* map1Scene.mm */; };
 		0A5F5F6F15C6E98F00A37130 /* homeScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6215C6E98E00A37130 /* homeScene.mm */; };
 		0A5F5F7015C6E98F00A37130 /* aboutScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6415C6E98E00A37130 /* aboutScene.mm */; };
@@ -77,6 +79,14 @@
 		0A255C5B1607CC7E00817BA4 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.md; sourceTree = "<group>"; };
 		0A255C5D1607CC7E00817BA4 /* ofxPanZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPanZoom.h; sourceTree = "<group>"; };
 		0A255C5E1607CC7E00817BA4 /* ofxPanZoom.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxPanZoom.mm; sourceTree = "<group>"; };
+		0A39654C1626281300A2FF6A /* ofxTweenzor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTweenzor.h; sourceTree = "<group>"; };
+		0A39654D1626281300A2FF6A /* Tween.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tween.cpp; sourceTree = "<group>"; };
+		0A39654E1626281300A2FF6A /* Tween.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tween.h; sourceTree = "<group>"; };
+		0A39654F1626281300A2FF6A /* TweenEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenEvent.h; sourceTree = "<group>"; };
+		0A3965501626281300A2FF6A /* TweenFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenFunctions.h; sourceTree = "<group>"; };
+		0A3965511626281300A2FF6A /* TweenSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenSelector.h; sourceTree = "<group>"; };
+		0A3965521626281300A2FF6A /* Tweenzor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tweenzor.cpp; sourceTree = "<group>"; };
+		0A3965531626281300A2FF6A /* Tweenzor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweenzor.h; sourceTree = "<group>"; };
 		0A5F5F6015C6E98E00A37130 /* map1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = map1Scene.mm; path = src/map1Scene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A5F5F6115C6E98E00A37130 /* map1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = map1Scene.h; path = src/map1Scene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A5F5F6215C6E98E00A37130 /* homeScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = homeScene.mm; path = src/homeScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -186,6 +196,29 @@
 			children = (
 				0A255C5D1607CC7E00817BA4 /* ofxPanZoom.h */,
 				0A255C5E1607CC7E00817BA4 /* ofxPanZoom.mm */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		0A39654A1626281300A2FF6A /* ofxTweenzor */ = {
+			isa = PBXGroup;
+			children = (
+				0A39654B1626281300A2FF6A /* src */,
+			);
+			path = ofxTweenzor;
+			sourceTree = "<group>";
+		};
+		0A39654B1626281300A2FF6A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0A39654C1626281300A2FF6A /* ofxTweenzor.h */,
+				0A39654D1626281300A2FF6A /* Tween.cpp */,
+				0A39654E1626281300A2FF6A /* Tween.h */,
+				0A39654F1626281300A2FF6A /* TweenEvent.h */,
+				0A3965501626281300A2FF6A /* TweenFunctions.h */,
+				0A3965511626281300A2FF6A /* TweenSelector.h */,
+				0A3965521626281300A2FF6A /* Tweenzor.cpp */,
+				0A3965531626281300A2FF6A /* Tweenzor.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -404,6 +437,7 @@
 		BB16F26B0F2B646B00518274 /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				0A39654A1626281300A2FF6A /* ofxTweenzor */,
 				0A255C5A1607CC7E00817BA4 /* ofxPanZoom */,
 				0A7346EF15D98CC1002B643F /* ofxXmlSettings */,
 			);
@@ -587,6 +621,8 @@
 				0AB27C5615DBE5E500C3D016 /* ess_oralHist.mm in Sources */,
 				0AB27C5915DBF5A400C3D016 /* essBaseScene.mm in Sources */,
 				0A255C601607CC7E00817BA4 /* ofxPanZoom.mm in Sources */,
+				0A3965541626281300A2FF6A /* Tween.cpp in Sources */,
+				0A3965551626281300A2FF6A /* Tweenzor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,8 +666,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Anna  Martinez";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Anna  Martinez";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -650,8 +686,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "CB44CC31-805F-4C6B-8F8C-83E980323B97";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB44CC31-805F-4C6B-8F8C-83E980323B97";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_LDFLAGS = "-no_arch_warnings";
@@ -664,8 +700,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Anna  Martinez";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Anna  Martinez";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = YES;
@@ -682,8 +718,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "CB44CC31-805F-4C6B-8F8C-83E980323B97";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB44CC31-805F-4C6B-8F8C-83E980323B97";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_LDFLAGS = "-no_arch_warnings";

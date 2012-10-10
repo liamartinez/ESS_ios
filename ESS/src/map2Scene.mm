@@ -31,7 +31,7 @@ void map2Scene::activate() {
     mgr.setCurScene(MAP2_SCENE_FIRST);
 
     
-    populateMap("2"); //enter the map number
+    setupMap("2"); //enter the map number
     setupTitle("MAIN SANCTUARY");
     
     map2Scene.loadImage("flattenFiles/Map2.png");

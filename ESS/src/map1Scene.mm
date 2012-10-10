@@ -32,7 +32,7 @@ void map1Scene::activate() {
     mgr.setCurScene(MAP1_SCENE_FIRST);
     
     
-    populateMap("1"); //enter the map number
+    setupMap("1"); //enter the map number
     setupTitle("BALCONY");
     
     map1Scene.loadImage("flattenFiles/Map1.png");

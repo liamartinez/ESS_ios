@@ -37,13 +37,14 @@ void essBaseScene::draw() {
 
 //------------------------------------------------------------------
 
-void essBaseScene::populateMap(string floor_){
+void essBaseScene::setupMap(string floor_){
      string floor = floor_; 
     
     floorMap = loadXML(floor);
     
     for (int i = 0; i < floorMap.size(); i++) {  
         floorMap[i].setup(); 
+        floorMap[i].setupOverlay();
         //OHmap2[i].audio.loadSound(OHmap2[i].path);
         cout << "setting up " + floorMap[i].name << endl;
     }    
@@ -51,6 +52,9 @@ void essBaseScene::populateMap(string floor_){
     buttonState = 0; 
     lastButton = -1;
     currentButton = 0; 
+    
+    setInfoShowing(FALSE); //is the info tab beside the play button showing?
+    
 }
 
 void essBaseScene::drawMapPoints() {
@@ -70,7 +74,11 @@ void essBaseScene::drawMapPoints() {
         ofRotateZ(shiftRotate());
         
         if (floorMap[i].isDrawn) {
-            floorMap[i].drawInfo();
+            if (isInfoShowing) {
+                floorMap[i].centerPlayOnDot = false;
+                floorMap[i].drawInfo();
+            }
+            floorMap[i].drawPlay(); 
             drawTempBox = false; // enable if you want to see the bounds of the button
         }
         
@@ -80,12 +88,25 @@ void essBaseScene::drawMapPoints() {
             if (drawTempBox) floorMap[i].drawTouchBoxSize(shiftRotate());
         }
     }
+    drawLowerBar();
+}
+
+void essBaseScene::drawLowerBar() {
+    for (int i = 0; i < floorMap.size(); i++) { 
+        if (floorMap[i].isDrawn) {
+            floorMap[i].drawOverlay();
+        }
+    }
+}
+
+void essBaseScene::setInfoShowing(bool infoShow_){
+    isInfoShowing = infoShow_; 
 }
 
 //------------------------------------------------------------------
 vector<oralHist> essBaseScene::loadXML (string floor_) {
     
-    string floor = floor_; 
+    floor = floor_; 
     oralHist tempOH; 
     vector<oralHist> tempList; 
     
@@ -98,7 +119,7 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
     }else if( XML.loadFile("xml/" + floor + ".xml") ){
         message = floor + ".xml loaded from data folder!";
     }else{
-        message = "unable to load" + floor + ".xml check data/ folder";
+        message = "unable to load " + floor + ".xml check data/ folder";
     }
 
     cout << message << endl; 
@@ -113,7 +134,8 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
             tempOH.keyword = XML.getValue("OH:KEYWORD", "default",i);  
             tempOH.loc.x = XML.getValue("OH:XPOS", 10,i);   
             tempOH.loc.y = XML.getValue("OH:YPOS", 10,i);   
-            tempOH.isPlayedString = XML.getValue("OH:ISPLAYED", "FALSE" ,i);   
+            tempOH.isPlayedString = XML.getValue("OH:ISPLAYED", "FALSE" ,i);  
+            tempOH.description = XML.getValue("OH:DESCRIPTION", "", i);
         
             if (tempOH.isPlayedString == "FALSE") {
                 tempOH.isPlayed = false; 
@@ -130,19 +152,21 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
 
 
 //------------------------------------------------------------------
-void essBaseScene::setXMLtoPlayed(string floor_, int trackNum) {
-    
-    string floor = floor_; 
+void essBaseScene::setXMLtoPlayed( int trackNum) {
     
     XML.pushTag("ESS");
     XML.pushTag("OH", trackNum);
     XML.setValue("ISPLAYED", "TRUE");
     XML.popTag();
     XML.popTag();
-    
-    
-    XML.saveFile( ofxiPhoneGetDocumentsDirectory() + "xml/" + floor + ".xml" );
-	message = floor + "mySettings.xml saved to app documents folder";
+        
+    if (XML.saveFile(ofxiPhoneGetDocumentsDirectory() + "xml/" + floor + ".xml" )) {
+        message = floor + ".xml saved to app documents folder";
+    } else {
+        message = "XML not saved.";
+    }
+	
+    cout << message << endl; 
 }
 
 //------------------------------------------------------------------
@@ -310,15 +334,14 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
                     }
                     floorMap[i].isDrawn = true; 
                     tempRect = floorMap[i].getTouchBox(shiftRotate()); 
-                    cout << "temprect declared "  << endl; 
                     break;
                     
                 case 1:
                     floorMap[i].isDrawn = true; 
                     if (!floorMap[i].audio.getIsPlaying()){
                         floorMap[i].play(); 
-                        setXMLtoPlayed("2",i); 
-                        cout << floorMap[i].name + "is playing -- SAVED" << endl; 
+                        setXMLtoPlayed(i); 
+                        cout << floorMap[i].name + "is playing" << endl; 
                     } else {
                         floorMap[i].pause();
                         cout << floorMap[i].name + "is paused" << endl; 
@@ -356,6 +379,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
 
 }
+
 
 
 

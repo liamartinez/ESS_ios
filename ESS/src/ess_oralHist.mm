@@ -19,7 +19,7 @@ oralHist::~oralHist() {
 
 void oralHist::setup() {
     
-    dotRadius = 10; // radius of the dot to be drawn
+    dotRadius = 8; // radius of the dot to be drawn
     origin.set(-dotRadius- (dotRadius/2), -dotRadius - (dotRadius/2)); //where to draw info, where the location is relative to 0 
     
     textWidth = essAssets->ostrich23.getStringWidth(name);
@@ -41,6 +41,7 @@ void oralHist::setup() {
     spotButn.disableBG(); 
     
     isDrawn = false; 
+    centerPlayOnDot = true; 
 }
 
 void oralHist::drawDot() {
@@ -60,6 +61,28 @@ void oralHist::drawDot() {
 
 }
 
+void oralHist::drawPlay() {
+    ofEnableAlphaBlending();
+    ofSetColor(255);
+    
+    ofVec2f buttonOrigin;
+    
+    if (!centerPlayOnDot)  {
+        buttonOrigin.x = origin.x + 5;
+        buttonOrigin.y = origin.y + 5;
+    } else {
+        buttonOrigin.x = origin.x;
+        buttonOrigin.y = origin.y; 
+    }
+    
+    if (audio.getIsPlaying()) {
+        essAssets->pauseButton.draw(buttonOrigin.x,buttonOrigin.y , textHeight + 8, textHeight + 8);
+    } else {
+        essAssets->playButton.draw(buttonOrigin.x,buttonOrigin.y, textHeight + 8, textHeight + 8);
+    }
+     ofDisableAlphaBlending();
+}
+
 void oralHist::drawInfo() {
     
     //checks to make sure the info box is within bounds. will have to look at this again when we auto-rotate
@@ -75,13 +98,6 @@ void oralHist::drawInfo() {
     roundedRect(origin.x, origin.y, boxWidth, boxHeight, 10);
     //playButn.draw(0,0);  
     ofEnableAlphaBlending();
-    
-    ofSetColor(255);
-    if (audio.getIsPlaying()) {
-        essAssets->pauseButton.draw(origin.x + 5,origin.y + 5, textHeight + 8, textHeight + 8);
-    } else {
-        essAssets->playButton.draw(origin.x + 5,origin.y + 5, textHeight + 8, textHeight + 8);
-    }
     
     ofSetColor(essAssets->ess_yellow);
     essAssets->ostrich23.drawString(name, origin.x + 40, origin.y + boxHeight/4);
@@ -179,3 +195,45 @@ void oralHist::quadraticBezierVertex(float cpx, float cpy, float x, float y, flo
     // finally call cubic Bezier curve function  
     ofBezierVertex(cp1x, cp1y, cp2x, cp2y, x, y);  
 };  
+
+//------------------------------------------------------------------
+
+void oralHist::setupOverlay() {
+    
+    marginHeight = 20; 
+    marginWidth = 20; 
+    
+    overlayWidth = ofGetWidth();
+    overlayHeight = essAssets->ostrich24.getStringHeight(name, ofGetWidth()) + marginHeight;
+    overlayX = 0;
+    overlayY = ofGetHeight() - overlayHeight;
+    
+    
+    overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
+    
+    Tweenzor::init();
+    tweenNum = ofGetHeight();
+    Tweenzor::add(&tweenNum, ofGetHeight(), overlayRect.y, 0.f, 1.f, EASE_IN_OUT_CUBIC);
+    Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+}
+
+void oralHist::drawOverlay() {
+    Tweenzor::update( ofGetElapsedTimeMillis() );
+    
+    //ofPushMatrix();
+    ofSetColor(0, 0, 0, 150);
+    ofEnableAlphaBlending();
+    ofRect(overlayX, tweenNum, overlayWidth, overlayHeight);
+    
+    ofSetColor(200);
+    essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2, tweenNum + marginHeight/2, overlayWidth, overlayHeight);
+    //ofPopMatrix();
+    
+    ofDisableAlphaBlending();
+    
+}
+
+
+
+
+

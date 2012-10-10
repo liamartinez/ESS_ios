@@ -31,27 +31,32 @@ public:
     void baseTouchUp(ofTouchEventArgs &touch);
     void baseTouchDoubleTap(ofTouchEventArgs &touch);
     
-    void populateMap(string floor_); 
+    void setupMap(string floor_); 
     void drawMapPoints(); 
+    void setInfoShowing (bool infoShow_); 
+
     
     vector<oralHist> loadXML (string floor_);
-    void setXMLtoPlayed(string floor_, int trackNum); 
+    void setXMLtoPlayed(int trackNum); 
     void resetPlayed(); 
     void setupHomeButton(); 
     void drawHomeButton(); 
-    
+        
     //so that when you touch inside the text box, it doesn't disappear. 
     void setupTextBoxHelper(); 
     
     void setupTitle(string title_); 
     void drawTitle();
     string title; 
-
+    
+    void drawLowerBar();
+    
     //xml
     ofxXmlSettings XML;    
     string xmlStructure;
     string message;
     void loadOHaudio();
+    string floor;
 
     string sceneName;
     
@@ -80,10 +85,13 @@ public:
     vector <oralHist> floorMap; 
     int buttonState; 
     int currentButton, lastButton; 
+    bool isInfoShowing; 
     
     //textBoxHelper
     bool touched; 
     bool dragged; 
+    
+
     
     
 protected:

@@ -31,7 +31,7 @@ void map4Scene::activate() {
     mgr.setCurScene(MAP4_SCENE_FIRST);
     
     
-    populateMap("4"); //enter the map number
+    setupMap("4"); //enter the map number
     setupTitle("ELDRIDGE ST.");
     
     map4Scene.loadImage("flattenFiles/Map4.png");

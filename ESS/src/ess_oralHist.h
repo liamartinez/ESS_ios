@@ -11,6 +11,7 @@
 
 #include "essAssetManager.h"
 #include "baseButton.h"
+#include "ofxTweenzor.h"
 
 class oralHist {
 
@@ -28,16 +29,22 @@ public:
     
     void drawDot();
     void drawInfo(); 
-    void dontDraw(); 
+    void drawPlay(); 
+    bool centerPlayOnDot; 
+
+    void drawOverlay(); 
+    void setupOverlay(); 
     
     ofSoundPlayer audio; 
     string name; 
     string keyword; 
     string path; 
     bool isDrawn; 
+    string description; 
     
     bool isPlayed; 
     string isPlayedString;
+    
     
     ofPoint origin; 
     int dotRadius; 
@@ -57,6 +64,13 @@ public:
     int boxWidth, boxHeight; 
     void roundedRect(float x, float y, float w, float h, float r); 
     void quadraticBezierVertex(float cpx, float cpy, float x, float y, float prevX, float prevY);
+    
+    //overLay
+    ofRectangle overlayRect; 
+    int overlayX, overlayY, overlayWidth, overlayHeight; 
+    int marginHeight, marginWidth;
+    float tweenNum; 
+    
 };
 
 
