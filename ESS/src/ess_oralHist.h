@@ -44,14 +44,15 @@ public:
     
     bool isPlayed; 
     string isPlayedString;
-    
-    
+        
     ofPoint origin; 
     int dotRadius; 
     ofVec2f loc; 
     ofVec2f locInfo; 
     bool isPlaying; 
     ofVec2f offset; 
+    bool justLoaded;
+    int alpha; 
     
     ofRectangle getBoxSize(); 
     ofRectangle getTouchBox(int shiftRotate_); 

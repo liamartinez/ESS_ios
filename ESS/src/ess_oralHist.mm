@@ -42,23 +42,34 @@ void oralHist::setup() {
     
     isDrawn = false; 
     centerPlayOnDot = true; 
+    justLoaded = true; 
+    alpha = 0;
 }
 
 void oralHist::drawDot() {
 
-    //these don't need to draw at "origin" because they don't need to be transformed/ rotated.
-    if (!isPlayed) {
-        ofSetColor(essAssets->ess_yellow);
-    } else {
-        ofSetColor(essAssets->ess_grey);
-    }
+    //the dots don't need to draw at "origin" because they don't need to be transformed/ rotated.
+    ofEnableAlphaBlending();
 
+    if (justLoaded) {
+        //dissolve in 
+        if (alpha < 255) alpha+=10; 
+        if (alpha == 255) justLoaded = false; 
+    } 
     
+    if (!isPlayed) {
+        ofSetColor(essAssets->ess_yellow, alpha);
+    } else {
+        ofSetColor(essAssets->ess_grey, alpha);
+    }
+    
+    //this draws the circle
     ofCircle(loc.x, loc.y, dotRadius);
     
-    ofSetColor(200, 100, 100);
+    ofDisableAlphaBlending();
+    
+    //this draws the button
     spotButn.draw(loc.x - (dotRadius*2), loc.y - (dotRadius*2));  
-
 }
 
 void oralHist::drawPlay() {
