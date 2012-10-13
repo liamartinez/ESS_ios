@@ -95,6 +95,13 @@ void essBaseScene::drawLowerBar() {
     for (int i = 0; i < floorMap.size(); i++) { 
         if (floorMap[i].isDrawn) {
             floorMap[i].drawOverlay();
+            currentDot = i; 
+        } 
+        
+        if (exitNow) {
+            floorMap[currentDot].exitOverlay();
+            exitNow = false; 
+            lastDot = currentDot; 
         }
     }
 }
@@ -319,6 +326,8 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         
         if (floorMap[i].spotButn.isPressed()) {
             
+            floorMap[i].resetOverlay(); 
+            
             currentButton = i; 
             if (currentButton != lastButton) {
                 buttonState = 0; 
@@ -332,12 +341,17 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
                     for (int j = 0; j < floorMap.size(); j++) {
                         floorMap[j].isDrawn = false; 
                     }
+                    
                     floorMap[i].isDrawn = true; 
                     tempRect = floorMap[i].getTouchBox(shiftRotate()); 
                     break;
                     
                 case 1:
+                    
+                    
                     floorMap[i].isDrawn = true; 
+                    
+    
                     if (!floorMap[i].audio.getIsPlaying()){
                         floorMap[i].play(); 
                         setXMLtoPlayed(i); 
@@ -360,13 +374,12 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     //textBoxHelper
     if (buttScreen.isPressed() && !dragged) {
         for (int j = 0; j < floorMap.size(); j++) {
-            if (tempRect.inside(touch.x, touch.y)) {
-                
-            } else {
+            if (!tempRect.inside(touch.x, touch.y)) {
+                floorMap[currentDot].exitOverlay(); //add: if this is finished, then draw everything false. 
                 floorMap[j].isDrawn = false; 
-                
-            }    
+            } 
         }
+        if (currentDot != lastDot) exitNow = true; 
     }
     
     buttScreen.touchUp(touch);

@@ -90,7 +90,8 @@ public:
     //textBoxHelper
     bool touched; 
     bool dragged; 
-    
+    bool exitNow; 
+    int currentDot, lastDot; 
 
     
     

@@ -34,6 +34,8 @@ public:
 
     void drawOverlay(); 
     void setupOverlay(); 
+    void exitOverlay(); 
+    void resetOverlay(); 
     
     ofSoundPlayer audio; 
     string name; 

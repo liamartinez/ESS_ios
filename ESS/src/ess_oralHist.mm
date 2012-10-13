@@ -222,10 +222,14 @@ void oralHist::setupOverlay() {
     
     overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
     
+    
     Tweenzor::init();
+    
     tweenNum = ofGetHeight();
+    
     Tweenzor::add(&tweenNum, ofGetHeight(), overlayRect.y, 0.f, 1.f, EASE_IN_OUT_CUBIC);
     Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+     
 }
 
 void oralHist::drawOverlay() {
@@ -241,9 +245,44 @@ void oralHist::drawOverlay() {
     //ofPopMatrix();
     
     ofDisableAlphaBlending();
+     cout << "tweennum: " << tweenNum << endl; 
     
 }
 
+void oralHist::resetOverlay() {
+    
+    tweenNum = ofGetHeight();
+    Tweenzor::add(&tweenNum, ofGetHeight(), overlayRect.y, 0.f, 1.f, EASE_IN_OUT_CUBIC);
+    Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+    cout << "reset overlay" << endl; 
+    
+}
+
+void oralHist::exitOverlay() {
+    cout << "exiting" << endl; 
+    Tweenzor::add(&tweenNum, overlayRect.y,ofGetHeight(),  0.f, 1.f, EASE_IN_OUT_CUBIC);
+    Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+    
+    //Tweenzor::update( ofGetElapsedTimeMillis() );
+    
+    /*
+    //ofPushMatrix();
+    ofSetColor(0, 0, 0, 150);
+    ofEnableAlphaBlending();
+    ofRect(overlayX, tweenNum, overlayWidth, overlayHeight);
+    
+    ofSetColor(200);
+    essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2, tweenNum + marginHeight/2, overlayWidth, overlayHeight);
+    //ofPopMatrix();
+    
+    ofDisableAlphaBlending();
+    
+    */
+    
+    //make this a listener 
+    if (tweenNum == overlayRect.y) tweenNum = ofGetHeight(); 
+    
+}
 
 
 
