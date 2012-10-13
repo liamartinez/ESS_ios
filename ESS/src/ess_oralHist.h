@@ -27,9 +27,12 @@ public:
     void play(); 
     void pause(); 
     
+    void setFloorToActive(bool setFloor); 
+    bool getFloorIsActive(); 
+    
     void drawDot();
     void drawInfo(); 
-    void drawPlay(); 
+    void drawPlay(int playLocX, int playLocY); 
     bool centerPlayOnDot; 
 
     void drawOverlay(); 
@@ -41,7 +44,7 @@ public:
     string name; 
     string keyword; 
     string path; 
-    bool isDrawn; 
+    bool isActive; 
     string description; 
     
     bool isPlayed; 
@@ -72,6 +75,7 @@ public:
     ofRectangle overlayRect; 
     int overlayX, overlayY, overlayWidth, overlayHeight; 
     int marginHeight, marginWidth;
+    int marginButton; 
     float tweenNum; 
     
 };

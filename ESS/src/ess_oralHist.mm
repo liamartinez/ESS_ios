@@ -34,16 +34,24 @@ void oralHist::setup() {
 
     audio.setVolume(0.75f);
     audio.setMultiPlay(true);
-
-    playButn.setGLPos(loc.x, loc.y);
      
     spotButn.setSize(dotRadius*4, dotRadius*4); //the size of the button is bigger than the circle drawn, to make it easier to press. 
     spotButn.disableBG(); 
     
-    isDrawn = false; 
+
+    
+    isActive = false; 
     centerPlayOnDot = true; 
     justLoaded = true; 
     alpha = 0;
+}
+
+void oralHist::setFloorToActive(bool setFloor) {
+    isActive = setFloor; 
+}
+
+bool oralHist::getFloorIsActive() {
+    return isActive; 
 }
 
 void oralHist::drawDot() {
@@ -72,24 +80,20 @@ void oralHist::drawDot() {
     spotButn.draw(loc.x - (dotRadius*2), loc.y - (dotRadius*2));  
 }
 
-void oralHist::drawPlay() {
+void oralHist::drawPlay(int playLocX, int playLocY) {
+    
+    playButn.setSize(dotRadius*4, dotRadius*4);
+    playButn.disableBG(); 
+    
+    playButn.draw(playLocX,playLocY);
+    
     ofEnableAlphaBlending();
     ofSetColor(255);
-    
-    ofVec2f buttonOrigin;
-    
-    if (!centerPlayOnDot)  {
-        buttonOrigin.x = origin.x + 5;
-        buttonOrigin.y = origin.y + 5;
-    } else {
-        buttonOrigin.x = origin.x;
-        buttonOrigin.y = origin.y; 
-    }
-    
+        
     if (audio.getIsPlaying()) {
-        essAssets->pauseButton.draw(buttonOrigin.x,buttonOrigin.y , textHeight + 8, textHeight + 8);
+        essAssets->pauseButton.draw(playLocX,playLocY , textHeight + 8, textHeight + 8);
     } else {
-        essAssets->playButton.draw(buttonOrigin.x,buttonOrigin.y, textHeight + 8, textHeight + 8);
+        essAssets->playButton.draw(playLocX,playLocY, textHeight + 8, textHeight + 8);
     }
      ofDisableAlphaBlending();
 }
@@ -214,6 +218,8 @@ void oralHist::setupOverlay() {
     marginHeight = 20; 
     marginWidth = 20; 
     
+    marginButton = 40; 
+    
     overlayWidth = ofGetWidth();
     overlayHeight = essAssets->ostrich24.getStringHeight(name, ofGetWidth()) + marginHeight;
     overlayX = 0;
@@ -222,7 +228,7 @@ void oralHist::setupOverlay() {
     
     overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
     
-    
+
     Tweenzor::init();
     
     tweenNum = ofGetHeight();
@@ -234,15 +240,15 @@ void oralHist::setupOverlay() {
 
 void oralHist::drawOverlay() {
     Tweenzor::update( ofGetElapsedTimeMillis() );
-    
-    //ofPushMatrix();
+
     ofSetColor(0, 0, 0, 150);
     ofEnableAlphaBlending();
     ofRect(overlayX, tweenNum, overlayWidth, overlayHeight);
+
+    drawPlay(overlayRect.x + marginWidth/2, tweenNum + marginHeight/2);
     
     ofSetColor(200);
-    essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2, tweenNum + marginHeight/2, overlayWidth, overlayHeight);
-    //ofPopMatrix();
+    essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, tweenNum + marginHeight/2, overlayWidth, overlayHeight);
     
     ofDisableAlphaBlending();
      cout << "tweennum: " << tweenNum << endl; 
@@ -257,7 +263,7 @@ void oralHist::resetOverlay() {
     cout << "reset overlay" << endl; 
     
 }
-
+/*
 void oralHist::exitOverlay() {
     cout << "exiting" << endl; 
     Tweenzor::add(&tweenNum, overlayRect.y,ofGetHeight(),  0.f, 1.f, EASE_IN_OUT_CUBIC);
@@ -265,7 +271,7 @@ void oralHist::exitOverlay() {
     
     //Tweenzor::update( ofGetElapsedTimeMillis() );
     
-    /*
+    
     //ofPushMatrix();
     ofSetColor(0, 0, 0, 150);
     ofEnableAlphaBlending();
@@ -277,13 +283,13 @@ void oralHist::exitOverlay() {
     
     ofDisableAlphaBlending();
     
-    */
+    
     
     //make this a listener 
     if (tweenNum == overlayRect.y) tweenNum = ofGetHeight(); 
     
 }
 
-
+*/
 
 

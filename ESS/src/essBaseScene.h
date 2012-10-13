@@ -86,13 +86,17 @@ public:
     int buttonState; 
     int currentButton, lastButton; 
     bool isInfoShowing; 
+    int currentFloor, lastFloor; 
     
     //textBoxHelper
     bool touched; 
     bool dragged; 
     bool exitNow; 
     int currentDot, lastDot; 
-
+    
+    //overlay
+    bool activateOverlay;
+    bool deactivateOverlay; 
     
     
 protected:

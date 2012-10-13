@@ -65,45 +65,35 @@ void essBaseScene::drawMapPoints() {
     //draw the points (OH)
     for (int i = 0; i < floorMap.size(); i++) { 
         
-        bool drawTempBox; 
+        //bool drawTempBox; 
         
         glPushMatrix();
         
         glTranslatef(floorMap[i].loc.x, floorMap[i].loc.y, 0); 
         
-        ofRotateZ(shiftRotate());
-        
-        if (floorMap[i].isDrawn) {
-            if (isInfoShowing) {
-                floorMap[i].centerPlayOnDot = false;
-                floorMap[i].drawInfo();
-            }
-            floorMap[i].drawPlay(); 
-            drawTempBox = false; // enable if you want to see the bounds of the button
-        }
-        
         glPopMatrix();
-        
-        if (floorMap[i].isDrawn) {
-            if (drawTempBox) floorMap[i].drawTouchBoxSize(shiftRotate());
-        }
     }
     drawLowerBar();
 }
 
 void essBaseScene::drawLowerBar() {
+    
+    floorMap[currentFloor].drawOverlay();
+    
+    /*
     for (int i = 0; i < floorMap.size(); i++) { 
-        if (floorMap[i].isDrawn) {
+        if (floorMap[i].getFloorIsActive()) {
             floorMap[i].drawOverlay();
             currentDot = i; 
         } 
         
         if (exitNow) {
-            floorMap[currentDot].exitOverlay();
+            //floorMap[currentDot].exitOverlay();
             exitNow = false; 
             lastDot = currentDot; 
         }
     }
+     */
 }
 
 void essBaseScene::setInfoShowing(bool infoShow_){
@@ -279,7 +269,7 @@ void essBaseScene::drawTitle(){
 //------------------------------------------------------------------
 
 void essBaseScene::setupTextBoxHelper() {
-    buttScreen.setSize(ofGetWidth(), ofGetHeight());
+    buttScreen.setSize(ofGetWidth(), ofGetHeight() - 50); //temporary number for size of overlay
     buttScreen.setPos(0, 0);
     buttScreen.disableBG();
 }
@@ -296,6 +286,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
     //map
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchDown(touch);
+        floorMap[i].playButn.touchDown(touch);
     }
     
     //textBoxHelper
@@ -308,6 +299,7 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
     //map
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchMoved(touch);
+        floorMap[i].playButn.touchMoved(touch);
     }
     
     //textBoxHelper
@@ -325,58 +317,40 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     for (int i = 0; i < floorMap.size(); i++) { 
         
         if (floorMap[i].spotButn.isPressed()) {
-            
             floorMap[i].resetOverlay(); 
+            currentFloor = i; 
             
-            currentButton = i; 
-            if (currentButton != lastButton) {
-                buttonState = 0; 
-                
-            } else {
-                buttonState = 1;
-            }
-            
-            switch (buttonState) {
-                case 0:
-                    for (int j = 0; j < floorMap.size(); j++) {
-                        floorMap[j].isDrawn = false; 
-                    }
-                    
-                    floorMap[i].isDrawn = true; 
-                    tempRect = floorMap[i].getTouchBox(shiftRotate()); 
-                    break;
-                    
-                case 1:
-                    
-                    
-                    floorMap[i].isDrawn = true; 
-                    
-    
-                    if (!floorMap[i].audio.getIsPlaying()){
-                        floorMap[i].play(); 
-                        setXMLtoPlayed(i); 
-                        cout << floorMap[i].name + "is playing" << endl; 
-                    } else {
-                        floorMap[i].pause();
-                        cout << floorMap[i].name + "is paused" << endl; 
-                    }
-                    break;
-            }   
         }
+        floorMap[i].setFloorToActive(false); 
+        floorMap[currentFloor].setFloorToActive(true); 
         
-        lastButton = currentButton;         
     }
     
+    if (floorMap[currentFloor].playButn.isPressed()) {
+        floorMap[currentFloor].setFloorToActive(true); 
+        
+        
+        if (!floorMap[currentFloor].audio.getIsPlaying()){
+            floorMap[currentFloor].play(); 
+            setXMLtoPlayed(currentFloor); 
+            cout << floorMap[currentFloor].name + "is playing" << endl; 
+        } else {
+            floorMap[currentFloor].pause();
+            cout << floorMap[currentFloor].name + "is paused" << endl; 
+        }
+    }
+
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchUp(touch);
+        floorMap[i].playButn.touchUp(touch);
     }
     
     //textBoxHelper
     if (buttScreen.isPressed() && !dragged) {
         for (int j = 0; j < floorMap.size(); j++) {
             if (!tempRect.inside(touch.x, touch.y)) {
-                floorMap[currentDot].exitOverlay(); //add: if this is finished, then draw everything false. 
-                floorMap[j].isDrawn = false; 
+                //floorMap[currentDot].exitOverlay(); //add: if this is finished, then draw everything false. 
+                floorMap[j].setFloorToActive(false); 
             } 
         }
         if (currentDot != lastDot) exitNow = true; 
