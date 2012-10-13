@@ -33,12 +33,13 @@ public:
     void drawDot();
     void drawInfo(); 
     void drawPlay(int playLocX, int playLocY); 
-    bool centerPlayOnDot; 
+    bool centerPlayOnDot;
 
-    void drawOverlay(); 
+    void drawOverlay(int tweenedLoc); 
     void setupOverlay(); 
     void exitOverlay(); 
     void resetOverlay(); 
+    void tweenUpdate(); 
     
     ofSoundPlayer audio; 
     string name; 
@@ -57,7 +58,8 @@ public:
     bool isPlaying; 
     ofVec2f offset; 
     bool justLoaded;
-    int alpha; 
+    int alpha;
+    float theta;
     
     ofRectangle getBoxSize(); 
     ofRectangle getTouchBox(int shiftRotate_); 

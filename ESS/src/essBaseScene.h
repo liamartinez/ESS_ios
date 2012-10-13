@@ -13,6 +13,7 @@
 #include "ofxiPhoneExtras.h"
 #include "ofxXmlSettings.h"
 #include "baseButton.h"
+#include "ofxTweenzor.h"
 
 #include "ess_oralHist.h"
 
@@ -51,6 +52,8 @@ public:
     
     void drawLowerBar();
     
+    void setupTweens(); 
+    
     //xml
     ofxXmlSettings XML;    
     string xmlStructure;
@@ -86,7 +89,8 @@ public:
     int buttonState; 
     int currentButton, lastButton; 
     bool isInfoShowing; 
-    int currentFloor, lastFloor; 
+    int currentOH, lastFloor; 
+    bool firstEntry; 
     
     //textBoxHelper
     bool touched; 
@@ -95,8 +99,8 @@ public:
     int currentDot, lastDot; 
     
     //overlay
-    bool activateOverlay;
-    bool deactivateOverlay; 
+    bool activateOverlay, deactivateOverlay;
+    float tweenNum; 
     
     
 protected:

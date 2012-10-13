@@ -26,6 +26,7 @@ void essBaseScene::setup() {
 
 //------------------------------------------------------------------
 void essBaseScene::update() {
+    
 }
 
 
@@ -39,6 +40,9 @@ void essBaseScene::draw() {
 
 void essBaseScene::setupMap(string floor_){
      string floor = floor_; 
+    
+    currentOH = 0; 
+    firstEntry = true; 
     
     floorMap = loadXML(floor);
     
@@ -55,6 +59,9 @@ void essBaseScene::setupMap(string floor_){
     
     setInfoShowing(FALSE); //is the info tab beside the play button showing?
     
+    activateOverlay = true; 
+    deactivateOverlay = false; 
+    setupTweens();
 }
 
 void essBaseScene::drawMapPoints() {
@@ -73,12 +80,37 @@ void essBaseScene::drawMapPoints() {
         
         glPopMatrix();
     }
-    drawLowerBar();
+    
+    //this is always being drawn
+    
+    if (!firstEntry) drawLowerBar();
+
 }
 
 void essBaseScene::drawLowerBar() {
     
-    floorMap[currentFloor].drawOverlay();
+    Tweenzor::update( ofGetElapsedTimeMillis() );
+
+    /*
+    if (activateOverlay) {
+        Tweenzor::add(&tweenNum, ofGetHeight(), floorMap[currentOH].overlayRect.y, 0.f, 1.f, EASE_IN_OUT_CUBIC);
+        Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+        activateOverlay = false; 
+    } 
+    
+    if (deactivateOverlay) {
+        Tweenzor::add(&tweenNum, floorMap[currentOH].overlayRect.y, ofGetHeight(),  0.f, 1.f, EASE_IN_OUT_CUBIC);
+        Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+        deactivateOverlay = false; 
+    }
+     */
+
+    
+    floorMap[currentOH].drawOverlay(tweenNum);
+    
+
+    
+    
     
     /*
     for (int i = 0; i < floorMap.size(); i++) { 
@@ -316,29 +348,37 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     //map
     for (int i = 0; i < floorMap.size(); i++) { 
         
+        //spot button
         if (floorMap[i].spotButn.isPressed()) {
-            floorMap[i].resetOverlay(); 
-            currentFloor = i; 
-            
+            //floorMap[i].resetOverlay(); 
+            cout << "hi!!!" <<endl;
+            activateOverlay = true; 
+            deactivateOverlay = false; 
+            firstEntry = false; 
+            currentOH = i; 
         }
+        
+        //set everything else to inactive, except the current OH
         floorMap[i].setFloorToActive(false); 
-        floorMap[currentFloor].setFloorToActive(true); 
+        floorMap[currentOH].setFloorToActive(true); 
         
-    }
-    
-    if (floorMap[currentFloor].playButn.isPressed()) {
-        floorMap[currentFloor].setFloorToActive(true); 
-        
-        
-        if (!floorMap[currentFloor].audio.getIsPlaying()){
-            floorMap[currentFloor].play(); 
-            setXMLtoPlayed(currentFloor); 
-            cout << floorMap[currentFloor].name + "is playing" << endl; 
-        } else {
-            floorMap[currentFloor].pause();
-            cout << floorMap[currentFloor].name + "is paused" << endl; 
+        //play button
+        if (floorMap[i].playButn.isPressed()) {
+            floorMap[i].setFloorToActive(true); 
+            
+            cout << "pressed play" << endl; 
+            
+            if (!floorMap[i].audio.getIsPlaying()){
+                floorMap[i].play(); 
+                setXMLtoPlayed(i); 
+                cout << floorMap[i].name + "is playing" << endl; 
+            } else {
+                floorMap[i].pause();
+                cout << floorMap[i].name + "is paused" << endl; 
+            }
         }
     }
+
 
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchUp(touch);
@@ -353,7 +393,8 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
                 floorMap[j].setFloorToActive(false); 
             } 
         }
-        if (currentDot != lastDot) exitNow = true; 
+        activateOverlay = false;
+        deactivateOverlay = true; 
     }
     
     buttScreen.touchUp(touch);
@@ -367,6 +408,16 @@ void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
 
 }
 
+void essBaseScene::setupTweens() {
+    //initialize Tweenzor
+    Tweenzor::init();
+
+    tweenNum = ofGetHeight();
+    
+    Tweenzor::add(&tweenNum, ofGetHeight(), ofGetHeight() - floorMap[currentOH].overlayRect.height, 0.f, 1.f, EASE_IN_OUT_CUBIC);
+    Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+
+}
 
 
 
