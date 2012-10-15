@@ -19,11 +19,14 @@
 // menu
 #include "swMenu.h"
 
+<<<<<<< HEAD
 //-chien
 #include "ofSwipeGestureRecognizer.h"
 
 
 
+=======
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 
 
 
@@ -54,6 +57,7 @@ public:
     
     //Menu
     swMenu menu;
+<<<<<<< HEAD
     
     //Swipe Detect
   
@@ -61,6 +65,8 @@ public:
     bool swipe;
     int direction;
 
+=======
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 
 };
 

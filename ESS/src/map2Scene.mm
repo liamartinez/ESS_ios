@@ -9,7 +9,11 @@
 
 //------------------------------------------------------------------
 void map2Scene::setup() {
+<<<<<<< HEAD
  
+=======
+    
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
     
 }
 
@@ -163,6 +167,7 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
     }
 
     cam.touchUp(touch);	//fw event to cam
+<<<<<<< HEAD
     //-Chien Detect Swipe
 
 //    if (swipeDetect->swipe) {
@@ -172,6 +177,8 @@ void map2Scene::touchUp(ofTouchEventArgs &touch){
 //            essSM->setCurScene(SCENE_MAP1);
 //        }
 //    }
+=======
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 }
 
 

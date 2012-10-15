@@ -9,8 +9,12 @@
 
 //------------------------------------------------------------------
 void map4Scene::setup() {
+<<<<<<< HEAD
     //Chien
 
+=======
+    
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
     
 }
 
@@ -164,11 +168,14 @@ void map4Scene::touchUp(ofTouchEventArgs &touch){
     }
     
     cam.touchUp(touch);	//fw event to cam
+<<<<<<< HEAD
     
 //    if (swipeDetect->swipe) {
 //        if (swipeDetect->direction == 1) {
 //            essSM->setCurScene(SCENE_MAP3);
 //        }
+=======
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 }
 
 

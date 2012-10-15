@@ -31,8 +31,12 @@ public:
     bool drawGuide; 
     
     ofxPanZoom	cam;
+<<<<<<< HEAD
     int canvasW, canvasH;
     
+=======
+    int canvasW, canvasH; 
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
     
     ofSoundPlayer audio;
     

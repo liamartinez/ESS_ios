@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 //  modified by Chien on 10/15/12.
 
+=======
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 #include "testApp.h"
 
 //--------------------------------------------------------------
@@ -50,6 +53,7 @@ void testApp::setup(){
     //menu.show();
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+<<<<<<< HEAD
     
     //Chien-Swipe Detect
     EAGLView *view = ofxiPhoneGetGLView();  
@@ -58,11 +62,14 @@ void testApp::setup(){
     
 
     
+=======
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     
+<<<<<<< HEAD
 //    cout<<"swipe value"<<swipeDetect->swipe<<endl;
     if (swipeDetect->swipe == 1) {
         cout<<"HE DID SWIPE"<<endl;
@@ -96,10 +103,13 @@ void testApp::update(){
         
         
     }
+=======
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
    // Tweenzor::update();
     if(essSM->getCurSceneChanged()) {
         for(int i=0; i<SW_TOTAL_SCENES; i++) {
             scenes[i]->deactivate();
+<<<<<<< HEAD
     
         }
 
@@ -108,6 +118,13 @@ void testApp::update(){
     
 
     
+=======
+        }
+        
+        scenes[essSM->getCurScene()]->activate();
+    }
+    
+>>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
     scenes[essSM->getCurScene()]->update();
     
     menu.update();
