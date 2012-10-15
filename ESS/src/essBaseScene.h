@@ -18,10 +18,7 @@
 #include "ess_oralHist.h"
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 class essSceneManager; 
 
 class essBaseScene : public ofxSceneManagerScene {
@@ -106,10 +103,7 @@ public:
     bool activateOverlay, deactivateOverlay;
     float tweenNum; 
     
-<<<<<<< HEAD
 
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
     
 protected:
     void drawGrid();

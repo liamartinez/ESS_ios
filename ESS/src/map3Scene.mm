@@ -9,13 +9,7 @@
 
 //------------------------------------------------------------------
 void map3Scene::setup() {
-<<<<<<< HEAD
-//    //Chien
-//    EAGLView *view = ofxiPhoneGetGLView();  
-//    swipeDetect = [[ofSwipeGestureRecognizer alloc] initWithView:view]; 
-=======
-    
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
+
     
 }
 
@@ -169,18 +163,7 @@ void map3Scene::touchUp(ofTouchEventArgs &touch){
     }
     
     cam.touchUp(touch);	//fw event to cam
-<<<<<<< HEAD
 
-    
-//    if (swipeDetect->swipe) {
-//        if (swipeDetect->direction == 1) {
-//            essSM->setCurScene(SCENE_MAP4);
-//        }else{
-//            essSM->setCurScene(SCENE_MAP2);
-//        }
-//    }
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 }
 
 

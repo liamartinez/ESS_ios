@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
 
-//
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 //  Created by Lia Martinez on 2/26/12.
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
 
@@ -37,12 +33,11 @@ public:
     int canvasW, canvasH; 
     
     ofSoundPlayer audio;
-<<<<<<< HEAD
+
 //    ofSwipeGestureRecognizer *swipeDetect;
     
     int swipeNumber;
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
+
     
     
 private:

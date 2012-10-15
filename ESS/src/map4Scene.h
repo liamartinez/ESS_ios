@@ -32,12 +32,9 @@ public:
     ofxPanZoom	cam;
     int canvasW, canvasH; 
     
-<<<<<<< HEAD
     //Chien 2012/10/14
 //    ofSwipeGestureRecognizer *swipeDetect;
     
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
     ofSoundPlayer audio;
     
     

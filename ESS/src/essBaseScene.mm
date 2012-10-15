@@ -13,22 +13,14 @@ essBaseScene::essBaseScene() {
     this->essAssets = essAssetManager::getInstance();
     
     sceneName = "Scene Name not Set!";
-<<<<<<< HEAD
-    
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
+
 
 }
 
 
 //------------------------------------------------------------------
 void essBaseScene::setup() {
-<<<<<<< HEAD
 
-
-=======
-    
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 }
 
 
@@ -453,8 +445,3 @@ void essBaseScene::drawGrid() {  //dont need this, but keep for now just in case
     glPopMatrix();
 }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f

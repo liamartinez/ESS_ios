@@ -10,11 +10,7 @@
 
 //------------------------------------------------------------------
 void map1Scene::setup() {
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
     
 }
 
@@ -29,14 +25,7 @@ void map1Scene::update() {
     }
     
     ofSoundUpdate();
-<<<<<<< HEAD
 
-//    // Detect Swipe
-//    if (swipeDetect->swipe) {
-//        if (swipeDetect->direction == 1) essSM->setCurScene(SCENE_MAP2);
-//    }
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 }
 
 //------------------------------------------------------------------
@@ -150,15 +139,7 @@ void map1Scene::touchMoved(ofTouchEventArgs &touch){
     
     ofTouchEventArgs touchTemp;
     touchTemp.x = panTouch.x;
-    touchTemp.y = panTouch.y; 
-<<<<<<< HEAD
-
-    //-Chien if you scroll to the other pages
-//    if (touchTemp.y > 700) essSM->setCurScene(SCENE_MAP3);
-//    if (touchTemp.y < 400) essSM->setCurScene(SCENE_MAP1);
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
-    
+    touchTemp.y = panTouch.y;     
     cam.touchMoved(touch); //fw event to cam
     
 }
@@ -183,12 +164,7 @@ void map1Scene::touchUp(ofTouchEventArgs &touch){
     }
     
     cam.touchUp(touch);	//fw event to cam
-<<<<<<< HEAD
-    
 
-    
-=======
->>>>>>> 7d1519fd360a8c936c4d7075fbd5fdfcafbb2a9f
 }
 
 
