@@ -54,6 +54,8 @@ public:
     void drawLowerBar();
     
     void setupTweens(); 
+    void onEnterComplete(float* arg);
+    void onExitComplete(float* arg);
     
     //xml
     ofxXmlSettings XML;    
@@ -90,7 +92,8 @@ public:
     int buttonState; 
     int currentButton, lastButton; 
     bool isInfoShowing; 
-    int currentOH, lastFloor; 
+    int currentOH,  lastOH; 
+    int textTempOH; 
     bool firstEntry; 
     
     //textBoxHelper
@@ -98,10 +101,19 @@ public:
     bool dragged; 
     bool exitNow; 
     int currentDot, lastDot; 
+    bool touchedOutside; 
     
     //overlay
-    bool activateOverlay, deactivateOverlay;
+
+    int startTween, endTween;
     float tweenNum; 
+    void activateOverlayInit(); 
+    void deactivateOverlayInit(); 
+  
+    bool tweenPaused;
+    bool stopOnExit; 
+
+    
     
 
     

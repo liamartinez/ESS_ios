@@ -58,10 +58,12 @@ void essBaseScene::setupMap(string floor_){
     lastButton = -1;
     currentButton = 0; 
     
+
+    
     setInfoShowing(FALSE); //is the info tab beside the play button showing?
     
-    activateOverlay = true; 
-    deactivateOverlay = false; 
+    //activateOverlay = true; 
+    //deactivateOverlay = false; 
     setupTweens();
 }
 
@@ -75,11 +77,7 @@ void essBaseScene::drawMapPoints() {
         
         //bool drawTempBox; 
         
-        glPushMatrix();
-        
-        glTranslatef(floorMap[i].loc.x, floorMap[i].loc.y, 0); 
-        
-        glPopMatrix();
+
     }
     
     //this is always being drawn
@@ -92,41 +90,9 @@ void essBaseScene::drawLowerBar() {
     
     Tweenzor::update( ofGetElapsedTimeMillis() );
 
-    /*
-    if (activateOverlay) {
-        Tweenzor::add(&tweenNum, ofGetHeight(), floorMap[currentOH].overlayRect.y, 0.f, 1.f, EASE_IN_OUT_CUBIC);
-        Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
-        activateOverlay = false; 
-    } 
+    //use textTempOH instead of CurrentOH so that the change only happens after the tween. (See onExitComplete
+    floorMap[textTempOH].drawOverlay(tweenNum);
     
-    if (deactivateOverlay) {
-        Tweenzor::add(&tweenNum, floorMap[currentOH].overlayRect.y, ofGetHeight(),  0.f, 1.f, EASE_IN_OUT_CUBIC);
-        Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
-        deactivateOverlay = false; 
-    }
-     */
-
-    
-    floorMap[currentOH].drawOverlay(tweenNum);
-    
-
-    
-    
-    
-    /*
-    for (int i = 0; i < floorMap.size(); i++) { 
-        if (floorMap[i].getFloorIsActive()) {
-            floorMap[i].drawOverlay();
-            currentDot = i; 
-        } 
-        
-        if (exitNow) {
-            //floorMap[currentDot].exitOverlay();
-            exitNow = false; 
-            lastDot = currentDot; 
-        }
-    }
-     */
 }
 
 void essBaseScene::setInfoShowing(bool infoShow_){
@@ -351,51 +317,76 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         
         //spot button
         if (floorMap[i].spotButn.isPressed()) {
-            //floorMap[i].resetOverlay(); 
-            cout << "hi!!!" <<endl;
-            activateOverlay = true; 
-            deactivateOverlay = false; 
-            firstEntry = false; 
+
             currentOH = i; 
+            
+            if (currentOH != lastOH && !firstEntry) {
+                
+                Tweenzor::toggleAllTweens();
+                if (stopOnExit) activateOverlayInit();
+
+                lastOH = currentOH;
+                
+            }
+            
+           firstEntry = false; 
         }
         
         //set everything else to inactive, except the current OH
         floorMap[i].setFloorToActive(false); 
         floorMap[currentOH].setFloorToActive(true); 
         
-        //play button
-        if (floorMap[i].playButn.isPressed()) {
-            floorMap[i].setFloorToActive(true); 
-            
-            cout << "pressed play" << endl; 
-            
-            if (!floorMap[i].audio.getIsPlaying()){
-                floorMap[i].play(); 
-                setXMLtoPlayed(i); 
-                cout << floorMap[i].name + "is playing" << endl; 
-            } else {
-                floorMap[i].pause();
-                cout << floorMap[i].name + "is paused" << endl; 
-            }
-        }
+        
     }
 
+    
+    if (floorMap[currentOH].playButn.isPressed()) {
+        floorMap[currentOH].setFloorToActive(true); 
+        
+        cout << "pressed play on:" << currentOH << endl; 
+        
+        if (!floorMap[currentOH].audio.getIsPlaying()){
+            floorMap[currentOH].play(); 
+            setXMLtoPlayed(currentOH); 
+            cout << floorMap[currentOH].name + "is playing" << endl; 
+        } else {
+            floorMap[currentOH].pause();
+            cout << floorMap[currentOH].name + "is paused" << endl; 
+        }
+    }
 
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchUp(touch);
         floorMap[i].playButn.touchUp(touch);
     }
+
     
-    //textBoxHelper
+    //textBoxHelper //use this for touching outside the overlay.
     if (buttScreen.isPressed() && !dragged) {
-        for (int j = 0; j < floorMap.size(); j++) {
-            if (!tempRect.inside(touch.x, touch.y)) {
-                //floorMap[currentDot].exitOverlay(); //add: if this is finished, then draw everything false. 
-                floorMap[j].setFloorToActive(false); 
-            } 
+      
+        int count = 0; 
+        for (int i = 0; i < floorMap.size(); i++) {
+
+            if (floorMap[i].touchBox.inside(touch.x, touch.y)) {
+                count ++; 
+            }
+
+            if (count > 0) {
+                touchedOutside = false;
+            } else {
+                touchedOutside = true; 
+            }
         }
-        activateOverlay = false;
-        deactivateOverlay = true; 
+        
+        
+        if (touchedOutside) {
+            Tweenzor::toggleAllTweens();
+            stopOnExit = true; 
+            for (int j = 0; j < floorMap.size(); j++) {
+                floorMap[j].setFloorToActive(false); 
+            }
+        }
+
     }
     
     buttScreen.touchUp(touch);
@@ -410,14 +401,54 @@ void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
 }
 
 void essBaseScene::setupTweens() {
-    //initialize Tweenzor
-    Tweenzor::init();
-
-    tweenNum = ofGetHeight();
     
-    Tweenzor::add(&tweenNum, ofGetHeight(), ofGetHeight() - floorMap[currentOH].overlayRect.height, 0.f, 1.f, EASE_IN_OUT_CUBIC);
+    //initialize Tweenzor the first time you use it
+    Tweenzor::init();
+    
+    //set the values for start and end
+    startTween = ofGetHeight();
+    endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
+    
+    tweenNum = startTween;
+    
+    Tweenzor::add(&tweenNum, startTween, endTween, 0.f, 1.f, EASE_IN_OUT_CUBIC);
     Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+    Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
+}
 
+void essBaseScene::onEnterComplete(float* arg) {
+
+    deactivateOverlayInit();
+    Tweenzor::toggleAllTweens(); //always stop tweening when the entry is complete
+    stopOnExit = false;
+
+    
+}
+
+void essBaseScene::onExitComplete(float* arg) {
+
+    //if stopOnExit is NOT enabled, initialize activateOverlay. If stopOnExit IS enabled, stop tweening. 
+    if (!stopOnExit) { 
+        activateOverlayInit();
+    } else {
+        Tweenzor::toggleAllTweens();
+    }
+
+    //this is where we make the overlay display the actual currentOH, only when the exit of the previous OH is finished. 
+    textTempOH = currentOH;
+}
+
+void essBaseScene::activateOverlayInit() {
+
+    Tweenzor::add(&tweenNum, startTween, endTween, 0.f, 1.f, EASE_IN_OUT_CUBIC);
+    Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
+}
+
+void essBaseScene::deactivateOverlayInit() {
+    
+    Tweenzor::add(&tweenNum, endTween, startTween, 0.f, .7f, EASE_IN_OUT_CUBIC);
+    Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onExitComplete);
+    
 }
 
 

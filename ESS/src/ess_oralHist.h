@@ -34,6 +34,8 @@ public:
     void drawInfo(); 
     void drawPlay(int playLocX, int playLocY); 
     bool centerPlayOnDot;
+    ofRectangle touchBox; 
+
 
     void drawOverlay(int tweenedLoc); 
     void setupOverlay(); 

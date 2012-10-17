@@ -87,6 +87,11 @@ void oralHist::drawDot() {
     
     //this draws the button
     spotButn.draw(loc.x - (dotRadius*2), loc.y - (dotRadius*2));  
+    
+    touchBox.set(loc.x - dotRadius*2, loc.y - dotRadius*2, dotRadius*4, dotRadius*4);
+    //lia: set spotbutn to touchbox
+    
+    
 }
 
 

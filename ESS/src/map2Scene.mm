@@ -139,6 +139,8 @@ void map2Scene::touchMoved(ofTouchEventArgs &touch){
     touchTemp.x = panTouch.x;
     touchTemp.y = panTouch.y; 
     
+    baseTouchMoved(touchTemp);
+    
     cam.touchMoved(touch); //fw event to cam
 
 }
@@ -175,7 +177,7 @@ void map2Scene::touchDoubleTap(ofTouchEventArgs &touch){
     touchTemp.x = panTouch.x;
     touchTemp.y = panTouch.y; 
     
-	cam.touchDoubleTap(touch); //fw event to cam
+	cam.touchDoubleTap(touchTemp); //fw event to cam
 	cam.setZoom(1.0f);	//reset zoom
 	cam.lookAt( ofVec2f(canvasW/2, canvasH/2) ); //reset position
 }
