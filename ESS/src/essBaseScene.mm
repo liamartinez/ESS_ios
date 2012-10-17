@@ -259,7 +259,7 @@ void essBaseScene::setupTitle(string title_){
 void essBaseScene::drawTitle(){
     ofSetColor(essAssets->ess_blue);
     ofRect(rectLoc.x-5, rectLoc.y-4, rectLoc.width, rectLoc.height); 
-    ofSetColor(essAssets->ess_grey);
+    ofSetColor(essAssets->ess_white);
     essAssets->ostrich24.drawString(title, rectLoc.x, rectLoc.y);
     
 }

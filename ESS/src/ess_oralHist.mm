@@ -244,26 +244,43 @@ void oralHist::setupOverlay() {
     overlayX = 0;
     overlayY = 0;
     
+    descriptionHeight = essAssets->ostrich24.getStringHeight(description, ofGetWidth()) + marginHeight; 
     
     overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
+    newOverlayHeight = 0; 
     
+    //enable description ON or OFF
+    descriptionOn = false; 
 
      
 }
 
 void oralHist::drawOverlay(int tweenedLoc) {
     
-    overlayRect.y = tweenedLoc;
+    if (descriptionOn) {
+        newOverlayHeight = descriptionHeight;
+    } else {
+        newOverlayHeight = 0; 
+    }
 
-    ofSetColor(0, 0, 0, 150);
+    overlayRect.y = tweenedLoc - newOverlayHeight;
+
+    
     ofEnableAlphaBlending();
+
+    ofSetColor(100, 150);
+    ofRect(overlayRect.x, overlayRect.y, overlayWidth, overlayHeight + newOverlayHeight);
     
-    ofRect(overlayRect.x, overlayRect.y, overlayWidth, overlayHeight);
-    
+    //draw pause/ play button
     drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
     
-    ofSetColor(200);
+    //draw title
+    ofSetColor(essAssets->ess_yellow);
     essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
+    
+    //draw description
+    ofSetColor(essAssets->ess_white);
+        essAssets->ostrich24.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - 200, descriptionHeight);
     
     ofDisableAlphaBlending();
      

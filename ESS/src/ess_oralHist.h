@@ -79,6 +79,10 @@ public:
     int marginButton; 
     float tweenNum; 
     
+    int descriptionHeight; 
+    bool descriptionOn; 
+    int newOverlayHeight;
+    
 };
 
 
