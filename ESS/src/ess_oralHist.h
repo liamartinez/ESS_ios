@@ -39,10 +39,7 @@ public:
 
     void drawOverlay(int tweenedLoc); 
     void setupOverlay(); 
-    void exitOverlay(); 
-    void resetOverlay(); 
-    void tweenUpdate(); 
-    
+ 
     ofSoundPlayer audio; 
     string name; 
     string keyword; 

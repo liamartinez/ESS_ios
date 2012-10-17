@@ -113,9 +113,9 @@ public:
     bool tweenPaused;
     bool stopOnExit; 
 
+    bool readyPage;
     
-    
-
+    baseButton playPauseButn; 
     
 protected:
     void drawGrid();

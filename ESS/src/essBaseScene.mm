@@ -58,6 +58,10 @@ void essBaseScene::setupMap(string floor_){
     lastButton = -1;
     currentButton = 0; 
     
+    playPauseButn.setSize(floorMap[currentOH].dotRadius*4, floorMap[currentOH].dotRadius*4);
+    playPauseButn.disableBG(); 
+    
+    playPauseButn.draw(floorMap[currentOH].overlayRect.x + floorMap[currentOH].marginWidth/2, floorMap[currentOH].overlayRect.y + floorMap[currentOH].marginHeight/2);
 
     
     setInfoShowing(FALSE); //is the info tab beside the play button showing?
@@ -65,25 +69,20 @@ void essBaseScene::setupMap(string floor_){
     //activateOverlay = true; 
     //deactivateOverlay = false; 
     setupTweens();
+    
+    touchedOutside = true; 
 }
 
 void essBaseScene::drawMapPoints() {
     for (int i = 0; i < floorMap.size(); i++) {            
         floorMap[i].drawDot(); 
     }
-        
-    //draw the points (OH)
-    for (int i = 0; i < floorMap.size(); i++) { 
-        
-        //bool drawTempBox; 
-        
-
-    }
-    
+            
     //this is always being drawn
-    
     if (!firstEntry) drawLowerBar();
 
+    cout << "currentOH" << currentOH << endl; 
+    
 }
 
 void essBaseScene::drawLowerBar() {
@@ -92,7 +91,7 @@ void essBaseScene::drawLowerBar() {
 
     //use textTempOH instead of CurrentOH so that the change only happens after the tween. (See onExitComplete
     floorMap[textTempOH].drawOverlay(tweenNum);
-    
+    playPauseButn.draw(floorMap[currentOH].overlayRect.x + floorMap[currentOH].marginWidth/2, tweenNum);
 }
 
 void essBaseScene::setInfoShowing(bool infoShow_){
@@ -290,6 +289,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
     
     //textBoxHelper
     buttScreen.touchDown(touch);
+    playPauseButn.touchDown(touch);
     touched = true; 
 }
 
@@ -303,6 +303,7 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
     
     //textBoxHelper
     buttScreen.touchMoved(touch);
+    playPauseButn.touchMoved(touch);
     if (touched) dragged = true;  
 }
 
@@ -339,11 +340,23 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         
     }
 
+    /*
+        if (floorMap[currentOH].playButn.isPressed() ) {
+            floorMap[currentOH].setFloorToActive(true); 
+            
+            if (!floorMap[currentOH].audio.getIsPlaying()){
+                floorMap[currentOH].play(); 
+                setXMLtoPlayed(currentOH); 
+                cout << floorMap[currentOH].name + "is playing" << endl; 
+            } else {
+                floorMap[currentOH].pause();
+                cout << floorMap[currentOH].name + "is paused" << endl; 
+            }
+        }
+     */
     
-    if (floorMap[currentOH].playButn.isPressed()) {
+    if (playPauseButn.isPressed()) {
         floorMap[currentOH].setFloorToActive(true); 
-        
-        cout << "pressed play on:" << currentOH << endl; 
         
         if (!floorMap[currentOH].audio.getIsPlaying()){
             floorMap[currentOH].play(); 
@@ -354,15 +367,18 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
             cout << floorMap[currentOH].name + "is paused" << endl; 
         }
     }
+    
+    
 
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchUp(touch);
         floorMap[i].playButn.touchUp(touch);
     }
-
+    
+    playPauseButn.touchUp(touch);
     
     //textBoxHelper //use this for touching outside the overlay.
-    if (buttScreen.isPressed() && !dragged) {
+    if (buttScreen.isPressed() && !dragged &&!firstEntry) {
       
         int count = 0; 
         for (int i = 0; i < floorMap.size(); i++) {
