@@ -32,6 +32,7 @@ public:
     void baseTouchMoved(ofTouchEventArgs &touch);
     void baseTouchUp(ofTouchEventArgs &touch);
     void baseTouchDoubleTap(ofTouchEventArgs &touch);
+	
     
     void setupMap(string floor_); 
     void drawMapPoints(); 
@@ -95,6 +96,7 @@ public:
     int currentOH,  lastOH; 
     int textTempOH; 
     bool firstEntry; 
+	bool newOH; 
     
     //textBoxHelper
     bool touched; 
@@ -102,6 +104,7 @@ public:
     bool exitNow; 
     int currentDot, lastDot; 
     bool touchedOutside; 
+	int tempOverlayRectHeight; 
     
     //overlay
 
@@ -109,6 +112,8 @@ public:
     float tweenNum; 
     void activateOverlayInit(); 
     void deactivateOverlayInit(); 
+    int overlayState, oldOverlayState; 
+	void tweenEntryExit(int stateNum_) ;
   
     bool tweenPaused;
     bool stopOnExit; 
@@ -116,6 +121,12 @@ public:
     bool readyPage;
     
     baseButton playPauseButn; 
+	baseButton descriptionButn; 
+	int dragNum;
+	bool descDown; 
+	bool reEnter;
+	
+	int countTemp; 
     
 protected:
     void drawGrid();

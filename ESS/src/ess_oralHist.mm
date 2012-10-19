@@ -19,7 +19,7 @@ oralHist::~oralHist() {
 
 void oralHist::setup() {
     
-    dotRadius = 8; // radius of the dot to be drawn
+    dotRadius = 10; // radius of the dot to be drawn
     origin.set(-dotRadius- (dotRadius/2), -dotRadius - (dotRadius/2)); //where to draw info, where the location is relative to 0 
     
     textWidth = essAssets->ostrich23.getStringWidth(name);
@@ -57,6 +57,7 @@ bool oralHist::getFloorIsActive() {
 void oralHist::drawDot() {
 
     //the dots don't need to draw at "origin" because they don't need to be transformed/ rotated.
+    ofEnableSmoothing();
     ofEnableAlphaBlending();
 
     //dissolve on entry
@@ -84,6 +85,7 @@ void oralHist::drawDot() {
     ofCircle(loc.x, loc.y, dotRadius);
     
     ofDisableAlphaBlending();
+    ofDisableSmoothing();
     
     //this draws the button
     spotButn.draw(loc.x - (dotRadius*2), loc.y - (dotRadius*2));  
@@ -106,14 +108,17 @@ void oralHist::drawPlay(int playLocX, int playLocY) {
      */
     
     ofEnableAlphaBlending();
+    ofEnableSmoothing();
     ofSetColor(255);
         
     if (audio.getIsPlaying()) {
-        essAssets->pauseButton.draw(playLocX,playLocY , textHeight + 8, textHeight + 8);
+        essAssets->pauseButton.draw(playLocX - 5,playLocY - 8 , textHeight + 18, textHeight + 20);
     } else {
-        essAssets->playButton.draw(playLocX,playLocY, textHeight + 8, textHeight + 8);
+        essAssets->playButton.draw(playLocX - 5,playLocY - 8, textHeight + 18, textHeight + 20);
     }
+    
      ofDisableAlphaBlending();
+    ofDisableSmoothing();
 }
 
 void oralHist::drawInfo() {
@@ -247,29 +252,21 @@ void oralHist::setupOverlay() {
     descriptionHeight = essAssets->ostrich24.getStringHeight(description, ofGetWidth()) + marginHeight; 
     
     overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
-    newOverlayHeight = 0; 
-    
-    //enable description ON or OFF
-    descriptionOn = false; 
 
      
 }
 
 void oralHist::drawOverlay(int tweenedLoc) {
     
-    if (descriptionOn) {
-        newOverlayHeight = descriptionHeight;
-    } else {
-        newOverlayHeight = 0; 
-    }
 
-    overlayRect.y = tweenedLoc - newOverlayHeight;
 
-    
+    overlayRect.y = tweenedLoc;
+
     ofEnableAlphaBlending();
 
+	//draw overlay Rectangle
     ofSetColor(100, 150);
-    ofRect(overlayRect.x, overlayRect.y, overlayWidth, overlayHeight + newOverlayHeight);
+    ofRect(overlayRect.x, overlayRect.y, overlayWidth, overlayHeight + descriptionHeight + (marginHeight*2));
     
     //draw pause/ play button
     drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
@@ -280,7 +277,7 @@ void oralHist::drawOverlay(int tweenedLoc) {
     
     //draw description
     ofSetColor(essAssets->ess_white);
-        essAssets->ostrich24.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - 200, descriptionHeight);
+        essAssets->ostrich24.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
     
     ofDisableAlphaBlending();
      

@@ -80,8 +80,7 @@ public:
     float tweenNum; 
     
     int descriptionHeight; 
-    bool descriptionOn; 
-    int newOverlayHeight;
+
     
 };
 

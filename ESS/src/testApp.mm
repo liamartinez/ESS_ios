@@ -70,26 +70,26 @@ void testApp::update(){
         cout<<"HE DID SWIPE"<<endl;
         if (essSM->getCurScene()==1) {
             cout<<"hi";
-            if (swipeDetect->direction == 1) {
+            if (swipeDetect->direction == 2) {
                 essSM->setCurScene(SCENE_MAP2); 
                 
             }
         }else if (essSM->getCurScene()==2) {
-            if (swipeDetect->direction == 1) {
+            if (swipeDetect->direction == 2) {
                 essSM->setCurScene(SCENE_MAP3);  
             }else{
                 essSM->setCurScene(SCENE_MAP1); 
             }
 
         }else if (essSM->getCurScene()==3) {
-            if (swipeDetect->direction == 1) {
+            if (swipeDetect->direction == 2) {
                 essSM->setCurScene(SCENE_MAP4);  
             }else{
                 essSM->setCurScene(SCENE_MAP2); 
             }
 
         }else if (essSM->getCurScene()==4) {
-            if (swipeDetect->direction == 2) {
+            if (swipeDetect->direction == 1) {
                 essSM->setCurScene(SCENE_MAP3);  
             }        
         }
