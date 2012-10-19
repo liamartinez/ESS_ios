@@ -37,7 +37,6 @@ void oralHist::setup() {
      
     spotButn.setSize(dotRadius*4, dotRadius*4); //the size of the button is bigger than the circle drawn, to make it easier to press. 
     spotButn.disableBG(); 
-    
 
     
     isActive = false; 
@@ -97,16 +96,8 @@ void oralHist::drawDot() {
 }
 
 
-
 void oralHist::drawPlay(int playLocX, int playLocY) {
-    
-    /*
-    playButn.setSize(dotRadius*4, dotRadius*4);
-    playButn.disableBG(); 
-    
-    playButn.draw(playLocX,playLocY);
-     */
-    
+
     ofEnableAlphaBlending();
     ofEnableSmoothing();
     ofSetColor(255);
@@ -117,86 +108,11 @@ void oralHist::drawPlay(int playLocX, int playLocY) {
         essAssets->playButton.draw(playLocX - 5,playLocY - 8, textHeight + 18, textHeight + 20);
     }
     
-     ofDisableAlphaBlending();
+	ofDisableAlphaBlending();
     ofDisableSmoothing();
 }
 
-void oralHist::drawInfo() {
-    
-    //checks to make sure the info box is within bounds. will have to look at this again when we auto-rotate
-    /*
-    if (locInfo.y > (ofGetWidth() - (textWidth + textHeight))) locInfo.y = ofGetWidth()- (textWidth + textHeight/2);
-    if (locInfo.x > (ofGetHeight() - textHeight*2)) locInfo.x = ofGetWidth() - textHeight*2;
-     */
 
-    //everything here will draw at "origin" because they will be transformed/rotated.
-
-    ofSetColor(essAssets->ess_grey);
-
-    roundedRect(origin.x, origin.y, boxWidth, boxHeight, 10);
-    //playButn.draw(0,0);  
-    ofEnableAlphaBlending();
-    
-    ofSetColor(essAssets->ess_yellow);
-    essAssets->ostrich23.drawString(name, origin.x + 40, origin.y + boxHeight/4);
-    ofDisableAlphaBlending();
-    
-}
-
-ofRectangle oralHist::getBoxSize() {
-    ofRectangle tempBox; 
-    tempBox.set(loc.x +origin.x,loc.y + origin.y, boxWidth, boxHeight);
-    return tempBox; 
-}
-
-ofRectangle oralHist::getTouchBox(int shiftRotate_) {
-    
-    // a bigger box so its easier to press a small button
-    
-    int rotateVal = shiftRotate_;
-    int widthAdd = 30; 
-    int heightAdd = 30; 
-    
-    ofRectangle tempBox; 
-
-    switch (rotateVal) {
-
-    case 90: //portrait
-        tempBox.set(getBoxSize().x  - heightAdd/2, getBoxSize().y - widthAdd/2, getBoxSize().height + heightAdd, getBoxSize().width + widthAdd);
-        break; 
-
-    case 270: //portrait upside down
-        tempBox.set(getBoxSize().x - heightAdd/2, getBoxSize().y  - getBoxSize().width + widthAdd/2, getBoxSize().height + heightAdd, getBoxSize().width + widthAdd);
-        break; 
-            
-    case 180: // landscape left
-        tempBox.set(getBoxSize().x - getBoxSize().width + widthAdd/2, getBoxSize().y - heightAdd/2, getBoxSize().width + widthAdd, getBoxSize().height + heightAdd);
-        break; 
-
-    default: //landscape right 
-        tempBox.set(getBoxSize().x - widthAdd/2, getBoxSize().y - heightAdd/2, getBoxSize().width + widthAdd, getBoxSize().height + heightAdd);
-        break;     
-            
-    }
-        
-    return tempBox; 
-}
-
-void oralHist::drawTouchBoxSize(int shiftRotate_) {
-    
-    int rotateVal = shiftRotate_;
-    
-    ofRectangle tempBox;
-    tempBox = getTouchBox(rotateVal);
-    
-    ofSetColor(100, 100);
-    ofEnableAlphaBlending();
-    
-    ofRect(tempBox);
-    
-    ofDisableAlphaBlending();
-
-}
 
 void oralHist::play() {  
 
@@ -210,6 +126,61 @@ void oralHist::pause() {
     audio.stop();
     
 }
+
+
+
+//--------------------------FOR THE OVERLAY ----------------------------------------
+
+void oralHist::setupOverlay() {
+    
+    marginHeight = 20; 
+    marginWidth = 20; 
+    
+    marginButton = 40; 
+    
+    overlayWidth = ofGetWidth();
+    overlayHeight = essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight;
+    overlayX = 0;
+    overlayY = 0;
+    
+    descriptionHeight = essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight; 
+    
+    overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
+
+     
+}
+
+void oralHist::drawOverlay(int tweenedLoc) {
+    
+    overlayRect.y = tweenedLoc;
+
+	totalHeight = overlayHeight + descriptionHeight + (marginHeight*2);
+
+    ofEnableAlphaBlending();
+
+	//draw overlay Rectangle
+    ofSetColor(100, 150);
+    ofRect(overlayRect.x, overlayRect.y, overlayWidth, totalHeight);
+    
+    //draw pause/ play button
+    drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
+    
+    //draw title
+    ofSetColor(essAssets->ess_yellow);
+    essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
+    
+    //draw description
+    ofSetColor(essAssets->ess_white);
+        essAssets->ostrich19.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
+    
+    ofDisableAlphaBlending();
+     
+    
+}
+
+
+//-----------------------FOR THE OLD INTERFACE ---------------------------------------
+
 
 void oralHist::roundedRect(float x, float y, float w, float h, float r) {  
     ofBeginShape();  
@@ -235,55 +206,70 @@ void oralHist::quadraticBezierVertex(float cpx, float cpy, float x, float y, flo
     ofBezierVertex(cp1x, cp1y, cp2x, cp2y, x, y);  
 };  
 
-//------------------------------------------------------------------
-
-void oralHist::setupOverlay() {
+void oralHist::drawTouchBoxSize(int shiftRotate_) {
     
-    marginHeight = 20; 
-    marginWidth = 20; 
+    int rotateVal = shiftRotate_;
     
-    marginButton = 40; 
+    ofRectangle tempBox;
+    tempBox = getTouchBox(rotateVal);
     
-    overlayWidth = ofGetWidth();
-    overlayHeight = essAssets->ostrich24.getStringHeight(name, ofGetWidth()) + marginHeight;
-    overlayX = 0;
-    overlayY = 0;
-    
-    descriptionHeight = essAssets->ostrich24.getStringHeight(description, ofGetWidth()) + marginHeight; 
-    
-    overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
-
-     
-}
-
-void oralHist::drawOverlay(int tweenedLoc) {
-    
-
-
-    overlayRect.y = tweenedLoc;
-
+    ofSetColor(100, 100);
     ofEnableAlphaBlending();
-
-	//draw overlay Rectangle
-    ofSetColor(100, 150);
-    ofRect(overlayRect.x, overlayRect.y, overlayWidth, overlayHeight + descriptionHeight + (marginHeight*2));
     
-    //draw pause/ play button
-    drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
-    
-    //draw title
-    ofSetColor(essAssets->ess_yellow);
-    essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
-    
-    //draw description
-    ofSetColor(essAssets->ess_white);
-        essAssets->ostrich24.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
+    ofRect(tempBox);
     
     ofDisableAlphaBlending();
-     
+	
+}
+
+void oralHist::drawInfo() {
+	
+    ofSetColor(essAssets->ess_grey);
+	
+    roundedRect(origin.x, origin.y, boxWidth, boxHeight, 10); 
+    ofEnableAlphaBlending();
+    
+    ofSetColor(essAssets->ess_yellow);
+    essAssets->ostrich23.drawString(name, origin.x + 40, origin.y + boxHeight/4);
+    ofDisableAlphaBlending();
     
 }
 
+ofRectangle oralHist::getBoxSize() {
+    ofRectangle tempBox; 
+    tempBox.set(loc.x +origin.x,loc.y + origin.y, boxWidth, boxHeight);
+    return tempBox; 
+}
 
-
-
+ofRectangle oralHist::getTouchBox(int shiftRotate_) {
+    
+    // a bigger box so its easier to press a small button
+    
+    int rotateVal = shiftRotate_;
+    int widthAdd = 30; 
+    int heightAdd = 30; 
+    
+    ofRectangle tempBox; 
+	
+    switch (rotateVal) {
+			
+		case 90: //portrait
+			tempBox.set(getBoxSize().x  - heightAdd/2, getBoxSize().y - widthAdd/2, getBoxSize().height + heightAdd, getBoxSize().width + widthAdd);
+			break; 
+			
+		case 270: //portrait upside down
+			tempBox.set(getBoxSize().x - heightAdd/2, getBoxSize().y  - getBoxSize().width + widthAdd/2, getBoxSize().height + heightAdd, getBoxSize().width + widthAdd);
+			break; 
+            
+		case 180: // landscape left
+			tempBox.set(getBoxSize().x - getBoxSize().width + widthAdd/2, getBoxSize().y - heightAdd/2, getBoxSize().width + widthAdd, getBoxSize().height + heightAdd);
+			break; 
+			
+		default: //landscape right 
+			tempBox.set(getBoxSize().x - widthAdd/2, getBoxSize().y - heightAdd/2, getBoxSize().width + widthAdd, getBoxSize().height + heightAdd);
+			break;     
+            
+    }
+	
+    return tempBox; 
+}

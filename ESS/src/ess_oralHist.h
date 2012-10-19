@@ -78,6 +78,7 @@ public:
     int marginHeight, marginWidth;
     int marginButton; 
     float tweenNum; 
+	int totalHeight; 
     
     int descriptionHeight; 
 

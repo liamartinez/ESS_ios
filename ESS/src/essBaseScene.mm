@@ -90,7 +90,7 @@ void essBaseScene::drawMapPoints() {
     //this is always being drawn
     if (!firstEntry) drawLowerBar();
 
-	cout << "reenter " << reEnter << endl;     
+	//cout << "tweenNum " << tweenNum << endl;     
 }
 
 void essBaseScene::drawLowerBar() {
@@ -400,38 +400,42 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 		
     }
     
+	cout << "touch is: " << touch.y << " tweenNum is: "<< tweenNum  << endl; 
+	
     //map
-    for (int i = 0; i < floorMap.size(); i++) { 
-        
-        //spot button
-        if (floorMap[i].spotButn.isPressed()) {
+	if (touch.y < tweenNum) {
+		for (int i = 0; i < floorMap.size(); i++) { 
 			
-			currentOH = i; 
-            tweenEntryExit(1);
-			
-            
-            
-            if (currentOH != lastOH && !firstEntry) {
- 
-				newOH = true; 
+			//spot button
+			if (floorMap[i].spotButn.isPressed()) {
+				
+				currentOH = i; 
+				tweenEntryExit(1);
 
+				
+				
+				if (currentOH != lastOH && !firstEntry) {
+	 
+					newOH = true; 
+
+						
+						//if (stopOnExit) activateOverlayInit();
+
+					lastOH = currentOH;
+					newOH = false; 
 					
-					//if (stopOnExit) activateOverlayInit();
-
-                lastOH = currentOH;
-				newOH = false; 
-                
-            }
-            
-           firstEntry = false; 
-        }
-        
-        //set everything else to inactive, except the current OH
-        floorMap[i].setFloorToActive(false); 
-        floorMap[currentOH].setFloorToActive(true); 
-        
-        
-    }
+				}
+				
+			   firstEntry = false; 
+			}
+			
+			//set everything else to inactive, except the current OH
+			floorMap[i].setFloorToActive(false); 
+			floorMap[currentOH].setFloorToActive(true); 
+			
+			
+		}
+	}
 
     
     if (playPauseButn.isPressed()) {
