@@ -93,16 +93,14 @@ public:
     int buttonState; 
     int currentButton, lastButton; 
     bool isInfoShowing; 
-    int currentOH,  lastOH; 
+    int currentOH;
     int textTempOH; 
     bool firstEntry; 
-	bool newOH; 
+
     
     //textBoxHelper
     bool touched; 
     bool dragged; 
-    bool exitNow; 
-    int currentDot, lastDot; 
     bool touchedOutside; 
 	int tempOverlayRectHeight; 
     
@@ -110,16 +108,9 @@ public:
 
     int startTween, endTween;
     float tweenNum; 
-    void activateOverlayInit(); 
-    void deactivateOverlayInit(); 
-    int overlayState, oldOverlayState; 
+    int overlayState; 
 	void tweenEntryExit(int stateNum_) ;
-  
-    bool tweenPaused;
-    bool stopOnExit; 
 
-    bool readyPage;
-    
     baseButton playPauseButn; 
 	baseButton descriptionButn; 
 	int dragNum;
