@@ -363,6 +363,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         floorMap[i].setFloorToActive(false); 
         floorMap[currentOH].setFloorToActive(true); 
         
+        //chien-add play position
         //play button
         if (floorMap[i].playButn.isPressed()) {
             floorMap[i].setFloorToActive(true); 
