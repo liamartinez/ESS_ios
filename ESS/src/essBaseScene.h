@@ -32,6 +32,7 @@ public:
     void baseTouchMoved(ofTouchEventArgs &touch);
     void baseTouchUp(ofTouchEventArgs &touch);
     void baseTouchDoubleTap(ofTouchEventArgs &touch);
+	
     
     void setupMap(string floor_); 
     void drawMapPoints(); 
@@ -54,6 +55,8 @@ public:
     void drawLowerBar();
     
     void setupTweens(); 
+    void onEnterComplete(float* arg);
+    void onExitComplete(float* arg);
     
     //xml
     ofxXmlSettings XML;    
@@ -90,20 +93,31 @@ public:
     int buttonState; 
     int currentButton, lastButton; 
     bool isInfoShowing; 
-    int currentOH, lastFloor; 
+    int currentOH;
+    int textTempOH; 
     bool firstEntry; 
+
     
     //textBoxHelper
     bool touched; 
     bool dragged; 
-    bool exitNow; 
-    int currentDot, lastDot; 
+    bool touchedOutside; 
+	int tempOverlayRectHeight; 
     
     //overlay
-    bool activateOverlay, deactivateOverlay;
-    float tweenNum; 
-    
 
+    int startTween, endTween;
+    float tweenNum; 
+    int overlayState; 
+	void tweenEntryExit(int stateNum_) ;
+
+    baseButton playPauseButn; 
+	baseButton descriptionButn; 
+	int dragNum;
+	bool descDown; 
+	bool reEnter;
+	
+	int countTemp; 
     
 protected:
     void drawGrid();

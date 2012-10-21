@@ -16,12 +16,12 @@
     if((self = [super init])){  
         swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(a:)];  
         //Set the swipe direction as RIGHT (Because we place the phone horizontally, the RIGHT is the down in our directions)
-        [swipeUp setDirection:(UISwipeGestureRecognizerDirectionRight) ];
+        [swipeUp setDirection:(UISwipeGestureRecognizerDirectionLeft) ];
         [view addGestureRecognizer:swipeUp];  
         
         swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(a:)];  
         //Set the swipe direction as LEFT (Because we place the phone horizontally, the RIGHT is the up in our directions)
-        [swipeDown setDirection:(UISwipeGestureRecognizerDirectionLeft) ];
+        [swipeDown setDirection:(UISwipeGestureRecognizerDirectionRight) ];
         [view addGestureRecognizer:swipeDown];
  
     }  

@@ -34,13 +34,12 @@ public:
     void drawInfo(); 
     void drawPlay(int playLocX, int playLocY); 
     bool centerPlayOnDot;
+    ofRectangle touchBox; 
+
 
     void drawOverlay(int tweenedLoc); 
     void setupOverlay(); 
-    void exitOverlay(); 
-    void resetOverlay(); 
-    void tweenUpdate(); 
-    
+ 
     ofSoundPlayer audio; 
     string name; 
     string keyword; 
@@ -79,6 +78,10 @@ public:
     int marginHeight, marginWidth;
     int marginButton; 
     float tweenNum; 
+	int totalHeight; 
+    
+    int descriptionHeight; 
+
     
 };
 

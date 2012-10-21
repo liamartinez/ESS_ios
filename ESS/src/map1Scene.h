@@ -24,6 +24,7 @@ public:
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
     void touchDoubleTap(ofTouchEventArgs &touch);
+	
     
     vector <oralHist> OHmap1; 
     

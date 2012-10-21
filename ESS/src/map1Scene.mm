@@ -141,6 +141,8 @@ void map1Scene::touchMoved(ofTouchEventArgs &touch){
     touchTemp.x = panTouch.x;
     touchTemp.y = panTouch.y;     
     cam.touchMoved(touch); //fw event to cam
+	
+	baseTouchMoved(touchTemp);
     
 }
 

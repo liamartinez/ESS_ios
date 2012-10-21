@@ -88,7 +88,7 @@ void aboutScene::draw() {
             aboutScreen.draw (0,0, 480, 523); 
             
             buttHome.draw(); 
-            buttResetXML.draw();
+            //buttResetXML.draw();
             ofDisableAlphaBlending();
             
             break;
