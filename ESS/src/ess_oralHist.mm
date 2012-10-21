@@ -46,6 +46,8 @@ void oralHist::setup() {
     alpha = 0;
 }
 
+
+
 void oralHist::setFloorToActive(bool setFloor) {
     isActive = setFloor; 
 }
@@ -109,6 +111,7 @@ void oralHist::drawPlay(int playLocX, int playLocY) {
      ofDisableAlphaBlending();
 }
 
+
 void oralHist::drawInfo() {
     
     //checks to make sure the info box is within bounds. will have to look at this again when we auto-rotate
@@ -124,6 +127,7 @@ void oralHist::drawInfo() {
     roundedRect(origin.x, origin.y, boxWidth, boxHeight, 10);
     //playButn.draw(0,0);  
     ofEnableAlphaBlending();
+ 
     
     ofSetColor(essAssets->ess_yellow);
     essAssets->ostrich23.drawString(name, origin.x + 40, origin.y + boxHeight/4);
@@ -248,7 +252,7 @@ void oralHist::setupOverlay() {
     //Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
      
 }
-
+//Chien- 
 void oralHist::drawOverlay(int tweenedLoc) {
     
     overlayRect.y = tweenedLoc;
@@ -265,10 +269,11 @@ void oralHist::drawOverlay(int tweenedLoc) {
      */
     
     ofRect(overlayRect.x, overlayRect.y, overlayWidth, overlayHeight);
-    
+    //PlayButton
     drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
     
     ofSetColor(200);
+
     essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
     
     ofDisableAlphaBlending();
