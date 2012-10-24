@@ -57,6 +57,7 @@ void essAssetManager::loadFonts() {
 bool essAssetManager::loadData() {
     playButton.loadImage("flattenFiles/button_play.png");
     pauseButton.loadImage("flattenFiles/button_pause.png");
+	handle.loadImage("flattenFiles/handle.png");
     return true;
 }
 

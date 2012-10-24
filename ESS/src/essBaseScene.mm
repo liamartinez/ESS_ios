@@ -61,8 +61,8 @@ void essBaseScene::setupMap(string floor_){
     playPauseButn.setSize(floorMap[currentOH].dotRadius*4, floorMap[currentOH].dotRadius*4);
     playPauseButn.disableBG(); 
 	
-	descriptionButn.setSize(40, 10);
-	descriptionButn.setColor(essAssets->ess_white);
+	descriptionButn.setSize(100, 100);
+	//descriptionButn.disableBG(); 
     
     setInfoShowing(FALSE); //is the info tab beside the play button showing?
 
@@ -151,8 +151,13 @@ void essBaseScene::drawLowerBar() {
 
     floorMap[textTempOH].drawOverlay(tweenNum);
     playPauseButn.draw(floorMap[currentOH].overlayRect.x + floorMap[currentOH].marginWidth/2, tweenNum);
-	 
-	descriptionButn.draw ((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 20, tweenNum + 5);
+	
+	descriptionButn.draw(); 
+	descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 40, tweenNum - 40); 
+	
+	ofEnableAlphaBlending();
+	essAssets->handle.draw((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 20, tweenNum);
+	ofDisableAlphaBlending();
 	
 
 }
@@ -237,7 +242,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
     
     //home
-    buttHome.touchDown(touch);
+    if (touch.y < tweenNum) {buttHome.touchDown(touch);
     
     //map
     for (int i = 0; i < floorMap.size(); i++) {
@@ -252,6 +257,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
     touched = true; 
 	
 	if (descriptionButn.isPressed()) descDown = true;
+}
 }
 
 void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
@@ -280,8 +286,10 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	descDown = false; 
     
     //home
-    if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
-    buttHome.touchUp(touch);
+	if (touch.y < tweenNum) {
+		if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
+		buttHome.touchUp(touch);
+	}
 	
 	//textBoxHelper //use this for touching outside the overlay.
     if (buttScreen.isPressed() && !dragged &&!firstEntry) {
