@@ -33,7 +33,12 @@ public:
     ofRectangle rectAbout, rectMap1, rectMap2, rectMap3, rectMap4; 
     baseButton buttMap1, buttMap2, buttMap3, buttMap4; 
     baseButton button;
+	
+	//fade-in
+	int fadeTime, startTime; 
+	int alpha, alphaInc; 
     
+	
 private:
     
     ofImage homeScreen; //lia - replace pictures here. 

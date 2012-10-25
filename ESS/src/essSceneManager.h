@@ -3,9 +3,7 @@
 //  Modified by Lia Martinez on 2/25/12.
 //
 
-#ifndef SingWhale01_swSceneManager_h
-#define SingWhale01_swSceneManager_h
-
+#pragma once
 
 #include "ofxSceneManager2.h"
 
@@ -22,6 +20,9 @@ enum scene {
 class essSceneManager : public ofxSceneManager2 {
 public:
     static essSceneManager* getInstance();
+	bool isDragging; 
+	bool getIsDragging(); 
+	void setIsDragging (bool drag_); 
 private:
     essSceneManager();
     ~essSceneManager();
@@ -29,4 +30,4 @@ private:
     static essSceneManager* pEssSceneManager;
 };
 
-#endif
+

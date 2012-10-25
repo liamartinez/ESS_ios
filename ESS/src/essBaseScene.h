@@ -3,9 +3,6 @@
 //  Copyright (c) 2012 liamartinez.com. All rights reserved.
 //
 
-#ifndef SingWhale01_swBaseScene_h
-#define SingWhale01_swBaseScene_h
-
 #pragma once
 #include "essSceneManager.h"
 #include "essAssetManager.h"
@@ -108,8 +105,13 @@ public:
 
     int startTween, endTween;
     float tweenNum; 
-    int overlayState; 
+    int overlayState, lastState; 
 	void tweenEntryExit(int stateNum_) ;
+	int heightMax;
+	
+	int timer, delay; 
+	
+	bool goingUp; 
 
     baseButton playPauseButn; 
 	baseButton descriptionButn; 
@@ -124,4 +126,4 @@ protected:
     
 };
 
-#endif
+

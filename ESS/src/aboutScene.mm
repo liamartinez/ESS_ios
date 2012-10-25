@@ -56,7 +56,7 @@ void aboutScene::activate() {
     buttResetXML.setLabel("RESET", &essAssets->ostrich30);
     buttResetXML.setColor(essAssets->ess_white, essAssets->ess_grey);
     buttResetXML.disableBG();
-    buttResetXML.setPos (ofGetWidth()/2 - (essAssets->ostrich30.getStringWidth("RESET")/2), ofGetHeight()-60);
+    buttResetXML.setPos (ofGetWidth() - (essAssets->ostrich30.getStringWidth("RESET")*2), 30);
     
     ofBackground(essAssets->ess_blue);
     
@@ -88,7 +88,7 @@ void aboutScene::draw() {
             aboutScreen.draw (0,0, 480, 523); 
             
             buttHome.draw(); 
-            //buttResetXML.draw();
+            buttResetXML.draw();
             ofDisableAlphaBlending();
             
             break;

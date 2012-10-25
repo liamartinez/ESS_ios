@@ -22,7 +22,7 @@ public:
     oralHist(); 
     ~oralHist(); 
     
-    void setup();
+    void setup(); 
     
     void play(); 
     void pause(); 
