@@ -522,6 +522,166 @@ int essBaseScene::shiftRotate() {
     return returnAngle;
 }
 
+<<<<<<< HEAD
+//------------------------------------------------------------------
+
+void essBaseScene::setupHomeButton() {
+    rectHome.set(427, 290, 45, 20);
+    //buttHome.enableBG();
+    buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
+    buttHome.setLabel("HOME", &essAssets->ostrich24);
+    buttHome.setRect(rectHome);
+    buttHome.disableBG();
+}
+
+void essBaseScene::drawHomeButton() {
+    ofSetColor(essAssets->ess_blue); 
+    ofRect(rectHome.x - 8, rectHome.y - 4, rectHome.width, rectHome.height);
+    
+    buttHome.draw(); 
+}
+
+//------------------------------------------------------------------
+
+void essBaseScene::setupTitle(string title_){
+    title = title_;
+    rectLoc.set(11, 13, essAssets->ostrich24.getStringWidth(title) + 10, essAssets->ostrich24.getStringHeight(title) + 10);
+    
+}
+
+void essBaseScene::drawTitle(){
+    ofSetColor(essAssets->ess_blue);
+    ofRect(rectLoc.x-5, rectLoc.y-4, rectLoc.width, rectLoc.height); 
+    ofSetColor(essAssets->ess_grey);
+    essAssets->ostrich24.drawString(title, rectLoc.x, rectLoc.y);
+    
+}
+
+//------------------------------------------------------------------
+
+void essBaseScene::setupTextBoxHelper() {
+    buttScreen.setSize(ofGetWidth(), ofGetHeight() - 50); //temporary number for size of overlay
+    buttScreen.setPos(0, 0);
+    buttScreen.disableBG();
+}
+
+
+
+//------------------------------------------------------------------
+
+void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
+    
+    //home
+    buttHome.touchDown(touch);
+    
+    //map
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchDown(touch);
+        floorMap[i].playButn.touchDown(touch);
+    }
+    
+    //textBoxHelper
+    buttScreen.touchDown(touch);
+    touched = true; 
+}
+
+void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
+    
+    //map
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchMoved(touch);
+        floorMap[i].playButn.touchMoved(touch);
+    }
+    
+    //textBoxHelper
+    buttScreen.touchMoved(touch);
+    if (touched) dragged = true;  
+}
+
+void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
+    
+    //home
+    if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
+    buttHome.touchUp(touch);
+    
+    //map
+    for (int i = 0; i < floorMap.size(); i++) { 
+        
+        //spot button
+        if (floorMap[i].spotButn.isPressed()) {
+            //floorMap[i].resetOverlay(); 
+            cout << "hi!!!" <<endl;
+            activateOverlay = true; 
+            deactivateOverlay = false; 
+            firstEntry = false; 
+            currentOH = i; 
+        }
+        
+        //set everything else to inactive, except the current OH
+        floorMap[i].setFloorToActive(false); 
+        floorMap[currentOH].setFloorToActive(true); 
+        
+        //chien-add play position
+        //play button
+        if (floorMap[i].playButn.isPressed()) {
+            floorMap[i].setFloorToActive(true); 
+            
+            cout << "pressed play" << endl; 
+            
+            if (!floorMap[i].audio.getIsPlaying()){
+                floorMap[i].play(); 
+                setXMLtoPlayed(i); 
+                cout << floorMap[i].name + "is playing" << endl; 
+            } else {
+                floorMap[i].pause();
+                cout << floorMap[i].name + "is paused" << endl; 
+            }
+        }
+    }
+
+
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchUp(touch);
+        floorMap[i].playButn.touchUp(touch);
+    }
+    
+    //textBoxHelper
+    if (buttScreen.isPressed() && !dragged) {
+        for (int j = 0; j < floorMap.size(); j++) {
+            if (!tempRect.inside(touch.x, touch.y)) {
+                //floorMap[currentDot].exitOverlay(); //add: if this is finished, then draw everything false. 
+                floorMap[j].setFloorToActive(false); 
+            } 
+        }
+        activateOverlay = false;
+        deactivateOverlay = true; 
+    }
+    
+    buttScreen.touchUp(touch);
+    touched = false; 
+    dragged = false; 
+    
+    
+}
+
+void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
+
+}
+
+void essBaseScene::setupTweens() {
+    //initialize Tweenzor
+    Tweenzor::init();
+
+    tweenNum = ofGetHeight();
+    
+    Tweenzor::add(&tweenNum, ofGetHeight(), ofGetHeight() - floorMap[currentOH].overlayRect.height, 0.f, 1.f, EASE_IN_OUT_CUBIC);
+    Tweenzor::getTween( &tweenNum )->setRepeat( 1, false );
+
+}
+
+
+=======
+>>>>>>> ac68478f2c9135a4892e60185f701ddcf4e8b2d2
 
 //------------------------------------------------------------------
 void essBaseScene::drawGrid() {  //dont need this, but keep for now just in case. 
