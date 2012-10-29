@@ -20,7 +20,7 @@ void map1Scene::setup() {
 void map1Scene::update() {
     switch(mgr.getCurScene()) {
         case MAP1_SCENE_FIRST:
-            //Do stuff
+            map1Scene.update();
             break;            
     }
     
@@ -41,6 +41,8 @@ void map1Scene::activate() {
     
     setupHomeButton();
     setupTextBoxHelper();
+    
+
     
     drawGuide = false;     
     
@@ -89,7 +91,11 @@ void map1Scene::draw() {
             drawHomeButton();
             drawTitle();
             
-            drawMapPoints(); 
+            drawMapPoints();
+            
+            //audio display
+           // audioSave();
+//            audioDisplay();
             
             ofDisableAlphaBlending();
             
@@ -156,7 +162,7 @@ void map1Scene::touchUp(ofTouchEventArgs &touch){
     touchTemp.x = panTouch.x;
     touchTemp.y = panTouch.y; 
     
-    baseTouchUp(touchTemp);
+    baseTouchUp(touch);
     
     //for the guide
     if (touch.x > ofGetWidth() - 30) {

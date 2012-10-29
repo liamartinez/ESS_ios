@@ -22,7 +22,7 @@ public:
     oralHist(); 
     ~oralHist(); 
     
-    void setup();
+    void setup(); 
     
     void play(); 
     void pause(); 
@@ -46,6 +46,11 @@ public:
     string path; 
     bool isActive; 
     string description; 
+    
+    //Audio parameters
+    bool playing;
+    int time;
+    unsigned int Tlength;
     
     bool isPlayed; 
     string isPlayedString;

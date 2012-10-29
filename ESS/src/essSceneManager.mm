@@ -22,3 +22,11 @@ essSceneManager* essSceneManager::getInstance() {
 
 essSceneManager::essSceneManager() {
 }
+
+bool essSceneManager::getIsDragging() {
+	return isDragging; 
+}
+
+void essSceneManager::setIsDragging(bool drag_) {
+	isDragging = drag_; 
+}

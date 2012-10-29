@@ -45,11 +45,7 @@ void testApp::setup(){
     } else {
         cout << "Could not load the data!" << endl;
     }
-    
-    //Setup Menu
-    //menu.setup();
-    //menu.show();
-    
+
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 
     
@@ -63,43 +59,47 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-    
+    ofSoundUpdate();
 
-//    cout<<"swipe value"<<swipeDetect->swipe<<endl;
-    if (swipeDetect->swipe == 1) {
-        cout<<"HE DID SWIPE"<<endl;
-        if (essSM->getCurScene()==1) {
-            cout<<"hi";
-            if (swipeDetect->direction == 2) {
-                essSM->setCurScene(SCENE_MAP2); 
-                
-            }
-        }else if (essSM->getCurScene()==2) {
-            if (swipeDetect->direction == 2) {
-                essSM->setCurScene(SCENE_MAP3);  
-            }else{
-                essSM->setCurScene(SCENE_MAP1); 
-            }
+	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
+	
+		if (swipeDetect->swipe == 1) {
+			cout<<"HE DID SWIPE"<<endl;
+			if (essSM->getCurScene()==1) {
+				cout<<"hi";
+				if (swipeDetect->direction == 2) {
+					essSM->setCurScene(SCENE_MAP2); 
+					
+				}
+			}else if (essSM->getCurScene()==2) {
+				if (swipeDetect->direction == 2) {
+					essSM->setCurScene(SCENE_MAP3);  
+				}else{
+					essSM->setCurScene(SCENE_MAP1); 
+				}
 
-        }else if (essSM->getCurScene()==3) {
-            if (swipeDetect->direction == 2) {
-                essSM->setCurScene(SCENE_MAP4);  
-            }else{
-                essSM->setCurScene(SCENE_MAP2); 
-            }
+			}else if (essSM->getCurScene()==3) {
+				if (swipeDetect->direction == 2) {
+					essSM->setCurScene(SCENE_MAP4);  
+				}else{
+					essSM->setCurScene(SCENE_MAP2); 
+				}
 
-        }else if (essSM->getCurScene()==4) {
-            if (swipeDetect->direction == 1) {
-                essSM->setCurScene(SCENE_MAP3);  
-            }        
-        }
-        swipeDetect->swipe = 0;
-
+			}else if (essSM->getCurScene()==4) {
+				if (swipeDetect->direction == 1) {
+					essSM->setCurScene(SCENE_MAP3);  
+				}        
+			}
+			swipeDetect->swipe = 0;
+		}
         
         
-    }
+    } else {
+		swipeDetect->swipe = 0; 
+	}
+	
 
-   // Tweenzor::update();
+
     if(essSM->getCurSceneChanged()) {
         for(int i=0; i<SW_TOTAL_SCENES; i++) {
             scenes[i]->deactivate();
@@ -108,7 +108,7 @@ void testApp::update(){
         scenes[essSM->getCurScene()]->activate();
     }
     scenes[essSM->getCurScene()]->update();
-    menu.update();
+
      
 
 }
@@ -119,9 +119,6 @@ void testApp::draw(){
     if(!essSM->getCurSceneChanged(false)) {
         scenes[essSM->getCurScene()]->draw();
     }
-    
-    //menu.draw();
-    
 
      
 }
@@ -138,7 +135,7 @@ void testApp::touchDown(ofTouchEventArgs &touch){
     
     scenes[essSM->getCurScene()]->touchDown(touch);
     
-    menu.touchDown(touch);
+
      
 }
 
@@ -146,8 +143,7 @@ void testApp::touchDown(ofTouchEventArgs &touch){
 void testApp::touchMoved(ofTouchEventArgs &touch){
     
     scenes[essSM->getCurScene()]->touchMoved(touch);
-    
-    menu.touchMoved(touch);
+
      
 }
 
@@ -155,20 +151,12 @@ void testApp::touchMoved(ofTouchEventArgs &touch){
 void testApp::touchUp(ofTouchEventArgs &touch){
     
     scenes[essSM->getCurScene()]->touchUp(touch);
-    menu.touchUp(touch);
-    
-    if(menu.touchMenuRes){
 
-        scenes[essSM->getCurScene()]->activate();
-        
-    }
-    menu.touchMenuRes = false;
-     
 }
 
 //--------------------------------------------------------------
 void testApp::touchDoubleTap(ofTouchEventArgs &touch){
-    scenes[essSM->getCurScene()]->touchDoubleTap(touch);
+
 }
 
 //--------------------------------------------------------------

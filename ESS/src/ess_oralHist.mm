@@ -18,6 +18,9 @@ oralHist::~oralHist() {
 }
 
 void oralHist::setup() {
+    playing = false;
+    Tlength = 0;
+    
     
     dotRadius = 10; // radius of the dot to be drawn
     origin.set(-dotRadius- (dotRadius/2), -dotRadius - (dotRadius/2)); //where to draw info, where the location is relative to 0 
@@ -33,7 +36,9 @@ void oralHist::setup() {
     locInfo.set(offset + loc);
 
     audio.setVolume(0.75f);
-    audio.setMultiPlay(true);
+    audio.setMultiPlay(false);
+//    cout<<"in side of OH"<<path<<endl;
+//    audio.loadSound(path);
      
     spotButn.setSize(dotRadius*4, dotRadius*4); //the size of the button is bigger than the circle drawn, to make it easier to press. 
     spotButn.disableBG(); 
@@ -44,8 +49,6 @@ void oralHist::setup() {
     justLoaded = true; 
     alpha = 0;
 }
-
-
 
 void oralHist::setFloorToActive(bool setFloor) {
     isActive = setFloor; 
@@ -71,7 +74,7 @@ void oralHist::drawDot() {
     //pulse when active
     if (isActive) {
         alpha = 160 + sin(theta) * 100;
-        theta += 0.06;
+        theta += 0.1;
     } else {
         if (alpha < 255) alpha+=10; 
     }
@@ -104,27 +107,21 @@ void oralHist::drawPlay(int playLocX, int playLocY) {
     ofEnableSmoothing();
     ofSetColor(255);
         
-    if (audio.getIsPlaying()) {
+    if (playing) {
         essAssets->pauseButton.draw(playLocX - 5,playLocY - 8 , textHeight + 18, textHeight + 20);
     } else {
         essAssets->playButton.draw(playLocX - 5,playLocY - 8, textHeight + 18, textHeight + 20);
     }
+    //    if (audio.getIsPlaying()) {
+    //        essAssets->pauseButton.draw(playLocX - 5,playLocY - 8 , textHeight + 18, textHeight + 20);
+    //    } else {
+    //        essAssets->playButton.draw(playLocX - 5,playLocY - 8, textHeight + 18, textHeight + 20);
+    //    }
     
 	ofDisableAlphaBlending();
     ofDisableSmoothing();
 }
 
-<<<<<<< HEAD
-
-void oralHist::drawInfo() {
-    
-    //checks to make sure the info box is within bounds. will have to look at this again when we auto-rotate
-    /*
-    if (locInfo.y > (ofGetWidth() - (textWidth + textHeight))) locInfo.y = ofGetWidth()- (textWidth + textHeight/2);
-    if (locInfo.x > (ofGetHeight() - textHeight*2)) locInfo.x = ofGetWidth() - textHeight*2;
-     */
-=======
->>>>>>> ac68478f2c9135a4892e60185f701ddcf4e8b2d2
 
 
 void oralHist::play() {  
@@ -132,19 +129,11 @@ void oralHist::play() {
     audio.loadSound(path);
     audio.play();
     isPlayed = true; 
+//    if (audio.getIsPlaying()) {
+//        cout<<"PLAY Progress"<<audio.getPositionMS();
+//    }
+    
 
-<<<<<<< HEAD
-    roundedRect(origin.x, origin.y, boxWidth, boxHeight, 10);
-    //playButn.draw(0,0);  
-    ofEnableAlphaBlending();
- 
-    
-    ofSetColor(essAssets->ess_yellow);
-    essAssets->ostrich23.drawString(name, origin.x + 40, origin.y + boxHeight/4);
-    ofDisableAlphaBlending();
-    
-=======
->>>>>>> ac68478f2c9135a4892e60185f701ddcf4e8b2d2
 }
 
 void oralHist::pause() {
@@ -198,7 +187,12 @@ void oralHist::drawOverlay(int tweenedLoc) {
     ofSetColor(essAssets->ess_white);
         essAssets->ostrich19.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
     
+    //draw display time
+    ofSetColor(essAssets->ess_yellow);
+//    ofLine(308, overlayRect.y+ marginHeight/2 , 408, overlayRect.y+ marginHeight/2 ); 
+//     essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
     ofDisableAlphaBlending();
+    
      
     
 }
@@ -246,31 +240,6 @@ void oralHist::drawTouchBoxSize(int shiftRotate_) {
     ofDisableAlphaBlending();
 	
 }
-<<<<<<< HEAD
-//Chien- 
-void oralHist::drawOverlay(int tweenedLoc) {
-    
-    overlayRect.y = tweenedLoc;
-
-    ofSetColor(0, 0, 0, 150);
-    ofEnableAlphaBlending();
-    /*
-    ofRect(overlayX, tweenNum, overlayWidth, overlayHeight);
-
-    drawPlay(overlayRect.x + marginWidth/2, tweenNum + marginHeight/2);
-    
-    ofSetColor(200);
-    essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, tweenNum + marginHeight/2, overlayWidth, overlayHeight);
-     */
-    
-    ofRect(overlayRect.x, overlayRect.y, overlayWidth, overlayHeight);
-    //PlayButton
-    drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
-    
-    ofSetColor(200);
-
-    essAssets->ostrich24.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
-=======
 
 void oralHist::drawInfo() {
 	
@@ -278,7 +247,6 @@ void oralHist::drawInfo() {
 	
     roundedRect(origin.x, origin.y, boxWidth, boxHeight, 10); 
     ofEnableAlphaBlending();
->>>>>>> ac68478f2c9135a4892e60185f701ddcf4e8b2d2
     
     ofSetColor(essAssets->ess_yellow);
     essAssets->ostrich23.drawString(name, origin.x + 40, origin.y + boxHeight/4);

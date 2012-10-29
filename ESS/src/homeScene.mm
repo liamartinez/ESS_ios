@@ -48,6 +48,9 @@ void homeScene::activate() {
     rectMap4.set(35, 266, 100, 40);
     buttMap4.setRect(rectMap4);
     buttMap4.disableBG(); 
+	
+	fadeTime = 2000; 
+	startTime = ofGetElapsedTimeMillis(); 
     
     
 }
@@ -63,15 +66,23 @@ void homeScene::deactivate() {
 //------------------------------------------------------------------
 void homeScene::draw() {
 
-    drawGrid();
+	ofSetColor(0);
+    ofRect(0, 0, 0, ofGetWidth(), ofGetHeight());
 
     string sceneName = "";
     switch(mgr.getCurScene()) {
         case HOME_SCENE_FIRST:
             
             ofEnableAlphaBlending();
+			
+			
+			alphaInc = (fadeTime - startTime)/ 255;
+			
+			if (ofGetElapsedTimeMillis() < fadeTime) {
+				alpha += alphaInc; 
+			}
                         
-            ofSetColor(255, 255, 255); 
+            ofSetColor(255, 255, 255, alpha); 
             homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
             buttAbout.draw(); 
             buttMap1.draw();
