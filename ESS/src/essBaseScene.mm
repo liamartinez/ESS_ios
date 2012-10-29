@@ -43,9 +43,13 @@ void essBaseScene::draw() {
 //------------------------------------------------------------------
 
 void essBaseScene::setupMap(string floor_){
+<<<<<<< HEAD
 
     
     string floor = floor_; 
+=======
+     string floor = floor_; 
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 	
 	essSM-> setIsDragging(false);
     
@@ -85,6 +89,7 @@ void essBaseScene::setupMap(string floor_){
 	delay = 500; 
 	
 	lastState = -1; 
+<<<<<<< HEAD
     
     //for audio display
     audioTest.setMultiPlay(true); 
@@ -97,6 +102,8 @@ void essBaseScene::setupMap(string floor_){
     
     
     
+=======
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 }
 
 //------------------------------------------------------------------
@@ -186,6 +193,7 @@ void essBaseScene::drawLowerBar() {
 		buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
 		
 		essSM->setIsDragging(true); 
+<<<<<<< HEAD
 	}
 	
 	if (overlayState == 0) {
@@ -197,6 +205,19 @@ void essBaseScene::drawLowerBar() {
 		}
 	}
 	
+=======
+	}
+	
+	if (overlayState == 0) {
+		//timer, in case someone's finger slips
+		if ((ofGetElapsedTimeMillis() - timer) > delay) { 
+			essSM->setIsDragging(false);
+		} else {
+			essSM->setIsDragging(true);
+		}
+	}
+	
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 
 	//draw the overlay
     floorMap[textTempOH].drawOverlay(tweenNum);
@@ -249,12 +270,20 @@ void essBaseScene::onExitComplete(float* arg) {
 
 void essBaseScene::tweenEntryExit(int stateNum_) {
 	
+<<<<<<< HEAD
 //	cout << "last state: " << lastState << endl; 
+=======
+	cout << "last state: " << lastState << endl; 
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 	overlayState = stateNum_; 
 	
 	switch (overlayState) {
         case 0:
+<<<<<<< HEAD
 //			cout << "CASE 0: SHOW NOTHING" << endl; 
+=======
+			cout << "CASE 0: SHOW NOTHING" << endl; 
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 			
 			timer = ofGetElapsedTimeMillis();
 			
@@ -272,7 +301,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             break;
 			
         case 1:
+<<<<<<< HEAD
 //			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
+=======
+			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 			
 			essSM->setIsDragging(true);
 
@@ -312,7 +345,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             
         case 2:
 			//description showing has to be in a draw loop. see "drawLowerBar()"
+<<<<<<< HEAD
 //			cout << "CASE 2: DESCRIPTION" << endl; 
+=======
+			cout << "CASE 2: DESCRIPTION" << endl; 
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 			
 			if (!descDown) {
 			heightMax = ofGetHeight() - (floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight));
@@ -325,7 +362,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			}
 			
 			goingUp = !goingUp; 
+<<<<<<< HEAD
 //				cout << "going up is now " << goingUp; 
+=======
+				cout << "going up is now " << goingUp; 
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 			}
 			
 			lastState = 2; 
@@ -333,7 +374,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
 			
 		case 3:
+<<<<<<< HEAD
 //			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
+=======
+			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 			//description showing has to be in a draw loop. see "drawLowerBar()"
 			
 			lastState = 3; 
@@ -438,9 +483,17 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 }
 
 void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
+<<<<<<< HEAD
 	if (descDown) {
 		overlayState = 3; 
 		dragNum = touch.y; 		
+=======
+
+	if (descDown) {
+		overlayState = 3; 
+		dragNum = touch.y; 
+		
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 	}
     //map
     for (int i = 0; i < floorMap.size(); i++) {
@@ -458,6 +511,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
 	descDown = false; 
 	
+<<<<<<< HEAD
 
     //Home Button
 	if (touch.y < tweenNum) {
@@ -482,6 +536,16 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
 	//textBoxHelper //use this for touching outside the overlay.
     if (buttScreen.isPressed() &&!firstEntry) {
+=======
+    //home
+	if (touch.y < tweenNum) {
+		if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
+		buttHome.touchUp(touch);
+	}
+	
+	//textBoxHelper //use this for touching outside the overlay.
+    if (buttScreen.isPressed()  &&!firstEntry) {
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 		
         int count = 0; 
         for (int i = 0; i < floorMap.size(); i++) {
@@ -501,6 +565,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     }
     buttScreen.touchUp(touch);
     
+<<<<<<< HEAD
     //Play and Pause Button
     if (playPauseButn.isPressed()) {
         if(floorMap[currentOH].playing){
@@ -525,6 +590,46 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     }
 	descriptionButn.touchUp(touch);
 
+=======
+	
+    //map
+	//if (touch.y < tweenNum) {
+		for (int i = 0; i < floorMap.size(); i++) { 
+			
+			//spot button
+			if (floorMap[i].spotButn.isPressed() && touch.y < tweenNum) {
+				
+				currentOH = i; 
+				tweenEntryExit(1);
+				
+			   firstEntry = false; 
+			}
+		}
+
+    if (playPauseButn.isPressed()) {
+        
+        if (!floorMap[currentOH].audio.getIsPlaying()){
+            floorMap[currentOH].play(); 
+            setXMLtoPlayed(currentOH); 
+            cout << floorMap[currentOH].name + "is playing" << endl; 
+        } else {
+            floorMap[currentOH].pause();
+            cout << floorMap[currentOH].name + "is paused" << endl; 
+        }
+    }
+
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchUp(touch);
+        floorMap[i].playButn.touchUp(touch);
+    }
+
+		if (descriptionButn.isPressed()) {
+			tweenEntryExit(2);
+		}
+
+	
+	
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
     
 	
     touched = false; 
