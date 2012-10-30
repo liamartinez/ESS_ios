@@ -127,7 +127,7 @@ public:
     void audioPlay(int currentTrack);
     ofSoundPlayer audioTest;
     void audioDisplay();
-    void audioSave();
+    void checkAudioStatus();
     int microSec;
     int second;
     int minute;
