@@ -175,6 +175,12 @@ void essBaseScene::drawLowerBar() {
 	switch (overlayState) {
 			
 		case 0:
+			
+			if (shiftRotate() != oldRot) {
+				tweenNum = startTween; 
+				oldRot = shiftRotate(); 
+			}
+			
 			//timer, in case someone's finger slips
 			if ((ofGetElapsedTimeMillis() - timer) > delay) { 
 				essSM->setIsDragging(false);
@@ -205,17 +211,17 @@ void essBaseScene::drawLowerBar() {
 		
 			if (shiftRotate() != oldRot) {
 				
-				if (shiftRotate() !=90) {
-					heightMax = ofGetHeight() - (floorMap[currentOH].descriptionHeight);
-				} else {
-					heightMax = floorMap[currentOH].totalHeight + (floorMap[currentOH].marginHeight*2);
+				if (shiftRotate() == 0) {
+					heightMax = ofGetHeight() - (floorMap[currentOH].descriptionHeight + floorMap[currentOH].overlayHeight + (floorMap[currentOH].marginHeight));
+				} else if (shiftRotate() == 90) {
+					heightMax = floorMap[currentOH].descriptionHeight + floorMap[currentOH].overlayHeight + (floorMap[currentOH].marginHeight);
 				}
 				
 				tweenNum = heightMax;
 				oldRot = shiftRotate(); 
-			}	else {
-				tempOverlayRectHeight = tweenNum;
-			}
+			}	
+				
+			tempOverlayRectHeight = tweenNum;
 			
 			//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
 			
@@ -540,7 +546,12 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
 	if (descDown) {
 		overlayState = 3; 
-		dragNum = touch.y; 		
+		if (shiftRotate() != 90) {
+			dragNum = touch.y; 	
+		} else {
+			dragNum = touch.x; 
+		}
+			
 
 	}
     //map

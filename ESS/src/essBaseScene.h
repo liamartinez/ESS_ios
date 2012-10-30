@@ -137,7 +137,7 @@ public:
     int minute;
     int tempT;
     
-    
+	    
     
 protected:
     void drawGrid();
