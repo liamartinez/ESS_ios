@@ -87,7 +87,10 @@ void map3Scene::draw() {
             drawHomeButton();
             drawTitle();
             
-            drawMapPoints(); 
+            drawMapPoints();
+            
+            //audio display
+            checkAudioStatus();
             
             ofDisableAlphaBlending();
             

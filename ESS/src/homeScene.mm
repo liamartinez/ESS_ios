@@ -48,8 +48,9 @@ void homeScene::activate() {
     rectMap4.set(35, 266, 100, 40);
     buttMap4.setRect(rectMap4);
     buttMap4.disableBG(); 
-
-	alphaInc = 10;
+	
+	fadeTime = 2000; 
+	startTime = ofGetElapsedTimeMillis(); 
     
     
 }
@@ -73,8 +74,11 @@ void homeScene::draw() {
         case HOME_SCENE_FIRST:
             
             ofEnableAlphaBlending();
-
-			if (alpha < 255) {
+			
+			
+			alphaInc = (fadeTime - startTime)/ 255;
+			
+			if (ofGetElapsedTimeMillis() < fadeTime) {
 				alpha += alphaInc; 
 			}
                         

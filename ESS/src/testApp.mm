@@ -54,13 +54,19 @@ void testApp::setup(){
     swipeDetect = [[ofSwipeGestureRecognizer alloc] initWithView:view];
     swipe = 0;
     
+    //Reset
+    for(int i=0; i<SW_TOTAL_SCENES; i++) {
+        scenes[i]->resetPlayed();
+        
+    }
+
+    
 
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-//    ofSoundUpdate();
-
+    ofSoundUpdate();
 
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
 	

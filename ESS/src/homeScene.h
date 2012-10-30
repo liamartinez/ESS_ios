@@ -35,6 +35,7 @@ public:
     baseButton button;
 	
 	//fade-in
+	int fadeTime, startTime; 
 	int alpha, alphaInc; 
     
 	

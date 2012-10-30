@@ -19,8 +19,6 @@ oralHist::~oralHist() {
 
 void oralHist::setup() {
     playing = false;
-    Tlength = 0;
-    time = 0;
     
     
     dotRadius = 10; // radius of the dot to be drawn
@@ -49,8 +47,6 @@ void oralHist::setup() {
     centerPlayOnDot = true; 
     justLoaded = true; 
     alpha = 0;
-	
-	drawRot = false; 
 }
 
 void oralHist::setFloorToActive(bool setFloor) {
@@ -59,14 +55,6 @@ void oralHist::setFloorToActive(bool setFloor) {
 
 bool oralHist::getFloorIsActive() {
     return isActive; 
-}
-
-void oralHist::setDrawRotated(bool drawRot_) {
-    drawRot = drawRot_; 
-}
-
-bool oralHist::getDrawRotated() {
-	return drawRot; 
 }
 
 void oralHist::drawDot() {
@@ -135,19 +123,7 @@ void oralHist::drawPlay(int playLocX, int playLocY) {
 
 
 
-void oralHist::play() {  
 
-    audio.loadSound(path);
-    audio.play();
-    isPlayed = true; 
-
-
-}
-
-void oralHist::pause() {
-    audio.stop();
-    
-}
 
 
 
@@ -168,69 +144,13 @@ void oralHist::setupOverlay() {
     descriptionHeight = essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight; 
     
     overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
-	
-	//rotated values (can't translate otherwise we will lose the button functionality).
-	
-	overlayWidthRot = ofGetHeight(); //reversed width for height
-    overlayHeightRot = essAssets->ostrich19.getStringHeight(name, overlayWidthRot) + marginWidth;
-    overlayXRot = 0; //doesn't matter, will be tweened loc
-    overlayYRot = 0;
-    
-    descriptionHeightRot = essAssets->ostrich19.getStringHeight(description, overlayWidthRot) + marginHeight; 
-    
-    overlayRectRot.set(overlayXRot, overlayYRot , overlayWidthRot, overlayHeightRot);
 
      
 }
 
 void oralHist::drawOverlay(int tweenedLoc) {
     
-	/* //working copy
-	 if (!drawRot) {
-	 overlayRect.y = tweenedLoc;
-	 
-	 totalHeight = overlayHeight + descriptionHeight + (marginHeight*2);
-	 
-	 ofEnableAlphaBlending();
-	 
-	 //draw overlay Rectangle
-	 ofSetColor(100, 150);
-	 ofRect(overlayRect.x, overlayRect.y, overlayWidth, totalHeight);
-	 
-	 //draw pause/ play button
-	 drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
-	 
-	 //draw title
-	 ofSetColor(essAssets->ess_yellow);
-	 essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
-	 
-	 //draw description
-	 ofSetColor(essAssets->ess_white);
-	 essAssets->ostrich19.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
-	 
-	 ofDisableAlphaBlending();
-	*/
-	
-
-	int rotVal; 
-	
-	if (!drawRot) {
-		//overlayRect.y = tweenedLoc;
-		overlayWidth = ofGetWidth();
-		overlayHeight = essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight;
-		descriptionHeight = essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight; 		
-		overlayRect.set(overlayX, tweenedLoc , overlayWidth, overlayHeight); //assign tweenedLoc to Y value
-		rotVal = 0; 		
-	} else {
-		//overlayRect.x = tweenedLoc;
-		overlayWidth = ofGetHeight(); //reversed width for height
-		overlayHeight = essAssets->ostrich19.getStringHeight(name, overlayWidth) + marginWidth;		
-		descriptionHeight = essAssets->ostrich19.getStringHeight(description, overlayWidth) + marginHeight; 
-		overlayRect.set(tweenedLoc, overlayY, overlayWidth, overlayHeight); //assign tweenedLoc to X value
-		rotVal = 90; 
-	}
-
-    //overlayRect.y = tweenedLoc;
+    overlayRect.y = tweenedLoc;
 
 	totalHeight = overlayHeight + descriptionHeight + (marginHeight*2);
 
@@ -238,73 +158,6 @@ void oralHist::drawOverlay(int tweenedLoc) {
 
 	//draw overlay Rectangle
     ofSetColor(100, 150);
-    if (!drawRot) {
-		ofRect(overlayRect.x, overlayRect.y, overlayWidth, totalHeight);
-	} else {
-		ofRect(overlayRect.x, overlayRect.y, -totalHeight, overlayWidth);
-	}
-    
-	ofPushMatrix();
-		if (!drawRot) {
-			ofTranslate(0, overlayRect.y);
-		} else {
-			ofTranslate(overlayRect.x, 0);
-		}
-		ofRotateZ(rotVal);
-		//draw pause/ play button
-		drawPlay(0 + marginWidth/2, 0 + marginHeight/2);
-		
-		//draw title
-		ofSetColor(essAssets->ess_yellow);
-		essAssets->ostrich19.drawTextArea(name, 0 + marginWidth/2 + marginButton, 0 + marginHeight/2, overlayWidth, overlayHeight);
-		
-		//draw description
-		ofSetColor(essAssets->ess_white);
-		essAssets->ostrich19.drawTextArea(description, 0 + marginWidth/2 + marginButton, 0 + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
-		
-	ofPopMatrix();	
-	ofDisableAlphaBlending();
-
-	
-	////////////////////////////////////////////overlayRot
-	
-	/*
-	overlayRectRot.x = tweenedLoc; //change tweened loc to x and make it negative
-									//reverse everything x and y!
-	
-	totalHeightRot = overlayHeightRot + descriptionHeightRot + (marginHeight*2);
-	
-    ofEnableAlphaBlending();
-	
-	//draw overlay Rectangle
-    ofSetColor(100, 150);
-	ofRect(overlayRectRot.x, overlayRectRot.y, -totalHeightRot, overlayWidthRot); //reversed
-	 //debug:
-		ofSetColor(255, 0, 0);
-		ofCircle(overlayRectRot.x , overlayRectRot.y,  30);
-		
-		ofSetColor(0, 255, 0);
-		ofCircle(overlayRectRot.x + totalHeightRot, overlayWidthRot + overlayRectRot.y,  10);
-		
-	ofPushMatrix();
-		ofTranslate(overlayRectRot.x, 0);
-		ofRotateZ(90);
-		//draw pause/ play button
-		drawPlay(0 + marginWidth/2, 0 + marginHeight/2);
-		
-		//draw title
-		ofSetColor(essAssets->ess_yellow);
-		essAssets->ostrich19.drawTextArea(name, 0 + marginWidth/2 + marginButton, 0 + marginHeight/2, overlayWidthRot, overlayHeightRot);
-		
-		//draw description
-		ofSetColor(essAssets->ess_white);
-		essAssets->ostrich19.drawTextArea(description, 0 + marginWidth/2 + marginButton, 0 + marginHeight/2 + overlayRectRot.height, overlayWidthRot - marginWidth - marginButton, descriptionHeight);
-		
-		ofDisableAlphaBlending();
-	ofPopMatrix();	
-		
-	*/	
-	/*
     ofRect(overlayRect.x, overlayRect.y, overlayWidth, totalHeight);
     
     //draw pause/ play button
@@ -323,7 +176,7 @@ void oralHist::drawOverlay(int tweenedLoc) {
 //    ofLine(308, overlayRect.y+ marginHeight/2 , 408, overlayRect.y+ marginHeight/2 ); 
 //     essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
     ofDisableAlphaBlending();
-    */
+    
      
     
 }
