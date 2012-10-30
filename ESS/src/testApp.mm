@@ -60,6 +60,7 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
     ofSoundUpdate();
+
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
 	
 		if (swipeDetect->swipe == 1) {

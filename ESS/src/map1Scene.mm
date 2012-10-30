@@ -95,7 +95,8 @@ void map1Scene::draw() {
             
             //audio display
            // audioSave();
-//            audioDisplay();
+            checkAudioStatus();
+            //audioDisplay();
             
             ofDisableAlphaBlending();
             

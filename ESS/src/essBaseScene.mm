@@ -44,6 +44,7 @@ void essBaseScene::draw() {
 
 void essBaseScene::setupMap(string floor_){
 
+
     
     string floor = floor_; 
 
@@ -97,7 +98,7 @@ void essBaseScene::setupMap(string floor_){
 
     
     
-    
+
 }
 
 //------------------------------------------------------------------
@@ -204,6 +205,7 @@ void essBaseScene::drawLowerBar() {
 		buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
 		
 		essSM->setIsDragging(true); 
+
 	}
 	
 	if (overlayState == 0) {
@@ -302,12 +304,20 @@ void essBaseScene::onExitComplete(float* arg) {
 
 void essBaseScene::tweenEntryExit(int stateNum_) {
 	
-	cout << "last state: " << lastState << endl; 
+
+
+//	cout << "last state: " << lastState << endl; 
+
+
 	overlayState = stateNum_; 
 	
 	switch (overlayState) {
         case 0:
-			cout << "CASE 0: SHOW NOTHING" << endl; 
+
+
+//			cout << "CASE 0: SHOW NOTHING" << endl; 
+
+
 			
 			timer = ofGetElapsedTimeMillis();
 			
@@ -325,7 +335,10 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             break;
 			
         case 1:
-			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
+
+//			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
+
+
 			
 			essSM->setIsDragging(true);
 
@@ -359,7 +372,10 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             
         case 2:
 			//description showing has to be in a draw loop. see "drawLowerBar()"
+
 //			cout << "CASE 2: DESCRIPTION" << endl; 
+
+
 			
 			if (!descDown) {
 			heightMax = ofGetHeight() - (floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight));
@@ -371,7 +387,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			}
 			
 			goingUp = !goingUp; 
+
+
 //				cout << "going up is now " << goingUp; 
+
+
 			}
 			
 			lastState = 2; 
@@ -379,8 +399,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
 			
 		case 3:
+
 //			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
-			//description showing has to be in a draw loop because it involves dragging which needs to be looping. see "drawLowerBar()"
+
+			//description showing has to be in a draw loop. see "drawLowerBar()"
+
 			
 			lastState = 3; 
         default:
@@ -398,12 +421,12 @@ void essBaseScene::audioPlay(int currentTrack){
         if (floorMap[i].playing) {
             //Save the time
             floorMap[i].time = audioTest.getPositionMS();
-            //cout<<"Position grab is "<<audioTest.getPositionMS()<<endl;
+            cout<<"Position grab is "<<audioTest.getPositionMS()<<endl;
             //cout<<"Was playing "<<i<<endl;
         }
         floorMap[i].playing = false;
         updateXML(i);
-        //cout<<"Current Time of"<<i<<" is "<<floorMap[i].time<<endl;
+        cout<<"Current Time of"<<i<<" is "<<floorMap[i].time<<endl;
     }
    
     for (int i = 0; i < floorMap.size(); i++) {
@@ -414,7 +437,7 @@ void essBaseScene::audioPlay(int currentTrack){
             updateXML(i);
             audioTest.loadSound(floorMap[i].path);          
             tempTime = loadXMLTime(i);
-            //cout<<"time of player is "<<tempTime<<endl;         
+            cout<<"time of player is "<<tempTime<<endl;         
         }else{
             floorMap[i].playing = false;
             //cout<<i<< "Spot Button didn't be pressed"<<endl;
@@ -422,7 +445,7 @@ void essBaseScene::audioPlay(int currentTrack){
     }
     audioTest.play();
     audioTest.setPositionMS(tempTime);
-    //cout<<"---------------------------"<<endl;
+    cout<<"---------------------------"<<endl;
     
 }
 void essBaseScene::audioDisplay(){
@@ -449,12 +472,26 @@ void essBaseScene::audioDisplay(){
 
 }
 //
-//void essBaseScene::audioSave(){
-//    for (int i = 0; i< floorMap.size(); i++) {
-//        setXMLtoPlayed(i);
-//    }
-//}
-//
+void essBaseScene::checkAudioStatus(){
+    
+
+    //Check who is playing first. Save the time
+    for (int i = 0; i< floorMap.size(); i++) {
+        if (floorMap[i].playing) {
+            if (audioTest.getPosition()==1.0){
+             floorMap[i].playing = false;
+             floorMap[i].time = 0;
+             updateXML(i);
+            cout<<"It is done"<<endl;
+            }
+        }
+                //cout<<"Current Time of"<<i<<" is "<<floorMap[i].time<<endl;
+    }
+
+    
+ 
+}
+
 
 //------------------------------------------------------------------
 //------------------------  EVENTS     -----------------------------
@@ -487,6 +524,7 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
 	if (descDown) {
 		overlayState = 3; 
 		dragNum = touch.y; 		
+
 	}
     //map
     for (int i = 0; i < floorMap.size(); i++) {
@@ -528,6 +566,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
 	//textBoxHelper //use this for touching outside the overlay.
     if (buttScreen.isPressed() &&!firstEntry) {
+
 		
         int count = 0; 
         for (int i = 0; i < floorMap.size(); i++) {
@@ -570,13 +609,13 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 
 
 
+
 	if (overlayState != 3) {
 		if (descriptionButn.isPressed()) {
 			tweenEntryExit(2);
 		}
 	}
 		 
-	playPauseButn.touchUp(touch);
 	descriptionButn.touchUp(touch);
     buttScreen.touchUp(touch);
 

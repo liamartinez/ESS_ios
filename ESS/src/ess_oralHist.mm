@@ -20,6 +20,7 @@ oralHist::~oralHist() {
 void oralHist::setup() {
     playing = false;
     Tlength = 0;
+    time = 0;
     
     
     dotRadius = 10; // radius of the dot to be drawn
@@ -139,6 +140,7 @@ void oralHist::play() {
     audio.loadSound(path);
     audio.play();
     isPlayed = true; 
+
 
 }
 
