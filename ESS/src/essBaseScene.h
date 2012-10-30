@@ -144,9 +144,7 @@ public:
     int min2;
     int tempT;
     int posY;
-    
-    int heightTest;
-    
+
 protected:
     void drawGrid();
     

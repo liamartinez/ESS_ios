@@ -70,10 +70,7 @@ void essBaseScene::setupMap(string floor_){
     
     playPauseButn.setSize(floorMap[currentOH].dotRadius*4, floorMap[currentOH].dotRadius*4);
     playPauseButn.disableBG(); 
-	
-	
-	descriptionButn.disableBG(); 
-    
+
     setInfoShowing(FALSE); //is the info tab beside the play button showing?
 
     setupTweens();
@@ -142,7 +139,7 @@ void essBaseScene::drawTitle(){
 
 void essBaseScene::setupTextBoxHelper() { //this whole function might be unecessary now
 	tempOverlayRectHeight = 50; 
-    buttScreen.setSize(ofGetWidth(), ofGetHeight() - tempOverlayRectHeight); //temporary number for size of overlay
+    //buttScreen.setSize(ofGetWidth(), ofGetHeight() - tempOverlayRectHeight); //temporary number for size of overlay
 }
 
 void essBaseScene::drawMapPoints() {
@@ -208,31 +205,14 @@ void essBaseScene::drawLowerBar() {
 			break;
 	
 		case 2:
-			/*
-			if (shiftRotate()==0) {
-				heightMax = ofGetHeight() - (floorMap[currentOH].descriptionHeight + floorMap[currentOH].overlayHeight + (floorMap[currentOH].marginHeight));
-				cout << "heightMax 0: " << heightMax << endl; 
-			} else if (shiftRotate() == 90){
-				heightMax = floorMap[currentOH].descriptionHeight + floorMap[currentOH].overlayHeight + (floorMap[currentOH].marginHeight);
-				cout << "heightMax 90: " << heightMax << endl; 
-			}
-			 */
 
 			if (shiftRotate() != oldRot) {
 				if (shiftRotate()==0) {
 					heightMax = heightMax0;
-					cout << "heightMax 0: " << heightMax0 << endl; 
 				} else if (shiftRotate() == 90){
 					heightMax = heightMax90;
-					cout << "heightMax 90: " << heightMax90 << endl; 
 				}
-				
 				tweenNum = heightMax;
-				cout << "shift! " << "heightMax is: " << heightMax << " tweenNum is: " << tweenNum << endl; 
-
-				
-				cout << "tweenNum is now: " << tweenNum << endl; 
-
 				oldRot = shiftRotate(); 
 			}	
 				
@@ -302,8 +282,8 @@ void essBaseScene::drawLowerBar() {
 		descriptionButn.setSize(300, 100);
 		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 40); 
 	} else {
-		descriptionButn.setSize(100, 300);
-		descriptionButn.setPos( tweenNum - 40,(floorMap[currentOH].overlayRect.y + floorMap[currentOH].overlayRect.width)/2 - 150); 
+		descriptionButn.setSize(70, 100);
+		descriptionButn.setPos( tweenNum - 40,(floorMap[currentOH].overlayRect.y + floorMap[currentOH].overlayRect.width)/2 - 50); 
 	}
 		
 	//draw the handle graphic 
@@ -396,17 +376,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			essSM->setIsDragging(true);
 
 			Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
-			
-			/*
-			//if the overlay is already up && the description is up
-			if (tweenNum < ofGetHeight() -5) { 
-				reEnter = true; 
-				tweenEntryExit(0); //send the tween to exit and then come back here
-			} else {
-				textTempOH = currentOH; //if not just go up
-			}
-			 */
-			
+
 			if (lastState == 1) {
 				reEnter = true; 
 				tweenEntryExit(0); //send the tween to exit and then come back here
@@ -429,37 +399,19 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             break; 
             
         case 2:
-			//description showing has to be in a draw loop. see "drawLowerBar()"
-
 
 			cout << "CASE 2: DESCRIPTION" << endl; 
-			
-			
-			//get the heightMaxes without using them
-			/*
-			heightMax0 = ofGetHeight() - (floorMap[currentOH].descriptionHeight + floorMap[currentOH].overlayHeight + (floorMap[currentOH].marginHeight));
-
-			heightMax90 = floorMap[currentOH].descriptionHeight + floorMap[currentOH].overlayHeight + (floorMap[currentOH].marginHeight);
-			 */
-			
+		
+			//get the heightMaxes
 			heightMax0 = floorMap[textTempOH].maxHeight0;
 			heightMax90 = floorMap[textTempOH].maxHeight90;
 
-			cout << "real height90: " << heightMax90 << endl; 
-			cout << "real height0: " << heightMax0 << endl; 
-			
-			heightTest = ofGetHeight() - (floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight));
-
-			cout << "heigtTest " << heightTest << endl; 
-			
 			if (!descDown) {
 				if (shiftRotate()==0) {
 					heightMax = heightMax0;
 				} else if (shiftRotate() == 90){
 					heightMax = heightMax90;
 				}
-				
-				cout << "real heightMax: " << heightMax << endl; 
 			
 			if (goingUp) {
 				Tweenzor::add(&tweenNum, tweenNum, heightMax, 0.f, 1.f, EASE_IN_OUT_SINE);
@@ -550,17 +502,36 @@ void essBaseScene::checkAudioStatus(){
         }
     }
     
-    ofEnableAlphaBlending();
-    ofSetColor(essAssets->ess_yellow);
+	ofEnableAlphaBlending();
+	ofSetColor(essAssets->ess_yellow);
+	
+	//if we are in horizontal position
+	if (shiftRotate() == 0) {
     //the bar is 120 pixel long, marginHeight = 20, the tweenNum is the overlay height
-    ofLine(308, tweenNum+ 10 , 428, tweenNum+ 10 ); 
+		ofLine(308, tweenNum+ 10 , 428, tweenNum+ 10 ); 
+		
+		ofRect(308+posY, tweenNum+5, 2, 10);
+		char tempString[255];
+		sprintf(tempString,"%d%d:%d%d",min1,min2,sec1,sec2);
+		essAssets->ostrich19.drawTextArea(tempString, 438, tweenNum+5,100, 100);
     
-    ofRect(308+posY, tweenNum+5, 2, 10);
-    char tempString[255];
-    sprintf(tempString,"%d%d:%d%d",min1,min2,sec1,sec2);
-    essAssets->ostrich19.drawTextArea(tempString, 438, tweenNum+5,100, 100);
+	} else if (shiftRotate() == 90) {
+
+		ofPushMatrix(); 
+			ofTranslate(tweenNum - 8, floorMap[currentOH].overlayRect.width - 140);
+			ofRotateZ(90);
+
+			int newLine = 90; 
+			int newPosY = ofMap(posY, 0, 120, 0, newLine);
+			ofLine(0, 10 , newLine, 10 ); 
+			ofRect(newPosY, 5, 2, 10);
+		
+			char tempString[255];
+			sprintf(tempString,"%d%d:%d%d",min1,min2,sec1,sec2);
+			essAssets->ostrich19.drawTextArea(tempString, 100, 5,100, 100);
+		ofPopMatrix();
+	}
     ofDisableAlphaBlending();
-    
 }
 //
 
@@ -571,7 +542,7 @@ void essBaseScene::checkAudioStatus(){
 void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 //    cout<< "touch press"<<endl;
     //home
-	 if (touch.y < tweenNum) {
+	 if((shiftRotate() != 90 && touch.y < tweenNum) || (shiftRotate() == 90 && touch.x > tweenNum)){
 		buttHome.touchDown(touch);
     
 	}
@@ -620,7 +591,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
 
     //Home Button
-	if (touch.y < tweenNum) {
+	 if((shiftRotate() != 90 && touch.y < tweenNum) || (shiftRotate() == 90 && touch.x > tweenNum)){
 		if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
         buttHome.touchUp(touch);
 	}

@@ -40,6 +40,10 @@ essAssetManager::essAssetManager() {
     ess_blue.r = 164; 
     ess_blue.g = 190; 
     ess_blue.b = 206; 
+	
+	ess_brown.r = 115; 
+	ess_brown.g = 100; 
+	ess_brown.b = 88; 
 }
 
 
