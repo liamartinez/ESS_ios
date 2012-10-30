@@ -229,7 +229,8 @@ void essBaseScene::drawLowerBar() {
 	if (!floorMap[currentOH].getDrawRotated()) {
 		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 40); 
 	} else {
-		descriptionButn.setPos( tweenNum - 40,(floorMap[currentOH].overlayRect.y + floorMap[currentOH].overlayRect.width)/2 - 150); 
+		descriptionButn.setPos( tweenNum - 40,(floorMap[currentOH].overlayRect.y + floorMap[currentOH].overlayRect.width)/2); 
+		//descriptionButn.setSize(<#int w#>, <#int h#>)
 	}
 		
 	//draw the handle graphic 
