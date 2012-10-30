@@ -110,6 +110,7 @@ public:
     int overlayState, lastState; 
 	void tweenEntryExit(int stateNum_) ;
 	int heightMax;
+	int heightMax90, heightMax0; 
 	
 	int timer, delay; 
 	
@@ -129,15 +130,22 @@ public:
     
     //audio
     void audioPlay(int currentTrack);
-    ofSoundPlayer audioTest;
-    void audioDisplay();
     void checkAudioStatus();
+    ofSoundPlayer audioTest;
+//    ofxOpenALSoundPlayer audioTest;
+    void audioDisplay();
+    void audioSave();
     int microSec;
     int second;
+    int sec1;
+    int sec2;
     int minute;
+    int min1;
+    int min2;
     int tempT;
+    int posY;
     
-	    
+    int heightTest;
     
 protected:
     void drawGrid();

@@ -88,6 +88,8 @@ void map2Scene::draw() {
             drawTitle();
    
             drawMapPoints(); 
+            //audio display
+            checkAudioStatus();
 
             ofDisableAlphaBlending();
             
