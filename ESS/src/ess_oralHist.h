@@ -86,8 +86,19 @@ public:
 	int totalHeight; 
     
     int descriptionHeight; 
-
+	
+	//overLayRot
+	ofRectangle overlayRectRot; 
+    int overlayXRot, overlayYRot, overlayWidthRot, overlayHeightRot; 
+    int marginHeightRot, marginWidthRot;
+    int marginButtonRot; 
+	int totalHeightRot; 
     
+    int descriptionHeightRot; 
+
+    void setDrawRotated(bool drawRot_);
+	bool getDrawRotated();
+	bool drawRot; 
 };
 
 
