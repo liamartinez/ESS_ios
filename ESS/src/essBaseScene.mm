@@ -159,14 +159,7 @@ void essBaseScene::drawMapPoints() {
 }
 
 void essBaseScene::drawLowerBar() {
-<<<<<<< HEAD
-    
 
-	if (overlayState == 2) {
-		//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
-		tempOverlayRectHeight = tweenNum;
-		buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
-=======
 
 	//set the start/ end tweens and heightMax of rotated and not rotated version
 	if (shiftRotate() == 90) {
@@ -210,7 +203,7 @@ void essBaseScene::drawLowerBar() {
 	
 		case 2:
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
+
 		
 			if (shiftRotate() != oldRot) {
 				
@@ -256,19 +249,10 @@ void essBaseScene::drawLowerBar() {
 		//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
 		tempOverlayRectHeight = tweenNum;
 		
-<<<<<<< HEAD
-		essSM->setIsDragging(true); 
-	}
-	
-	if (overlayState == 0) {
-		//timer, in case someone's finger slips
-		if ((ofGetElapsedTimeMillis() - timer) > delay) { 
-			essSM->setIsDragging(false);
-=======
+
 		if (!floorMap[currentOH].getDrawRotated()) { 
 			buttScreen.setPos(0, 0);
 			buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 		} else {
 			buttScreen.setPos(tweenNum, 0);
 			buttScreen.setSize(ofGetWidth(), ofGetHeight());
@@ -285,19 +269,7 @@ void essBaseScene::drawLowerBar() {
     floorMap[textTempOH].drawOverlay(tweenNum);
 	
 	//draw the play button
-<<<<<<< HEAD
-    playPauseButn.draw(floorMap[currentOH].overlayRect.x + floorMap[currentOH].marginWidth/2, tweenNum);
-	
-	//draw the button to drag out the description
-	descriptionButn.draw(); 
-	descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 40); 
-	
-	//draw the handle graphic 
-	ofEnableAlphaBlending();
-	essAssets->handle.draw((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 20, tweenNum);
-	ofDisableAlphaBlending();
-	
-=======
+
 	if (!floorMap[currentOH].getDrawRotated()) {
 		playPauseButn.draw(floorMap[currentOH].overlayRect.x + floorMap[currentOH].marginWidth/2, tweenNum);
 	} else {
@@ -330,7 +302,7 @@ void essBaseScene::drawLowerBar() {
 	}
 	ofDisableAlphaBlending();
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
+
 	
 }
 
@@ -341,12 +313,7 @@ void essBaseScene::setupTweens() {
     
     //initialize Tweenzor the first time you use it
     Tweenzor::init();
-<<<<<<< HEAD
-    
-    //set the values for start and end
-    startTween = ofGetHeight();
-    endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
-=======
+
 	
 	if (shiftRotate() == 90) {
 		//floorMap[currentOH].setDrawRotated(true); 
@@ -357,7 +324,6 @@ void essBaseScene::setupTweens() {
 		startTween = ofGetHeight();
 		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
 	}
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
     
     tweenNum = startTween;
 	goingUp = true; 
@@ -379,24 +345,15 @@ void essBaseScene::onExitComplete(float* arg) {
 
 
 void essBaseScene::tweenEntryExit(int stateNum_) {
-<<<<<<< HEAD
-	
-//	cout << "last state: " << lastState << endl; 
-=======
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 	overlayState = stateNum_; 
 	
 	switch (overlayState) {
         case 0:
-<<<<<<< HEAD
-//			cout << "CASE 0: SHOW NOTHING" << endl; 
-			
-=======
+
 
 			cout << "CASE 0: SHOW NOTHING" << endl; 
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 			timer = ofGetElapsedTimeMillis();
 			
 			if (!firstEntry) {
@@ -413,14 +370,10 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             break;
 			
         case 1:
-<<<<<<< HEAD
-//			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
-			
-=======
+
 
 			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 			essSM->setIsDragging(true);
 
 			Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
@@ -457,14 +410,10 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             
         case 2:
 			//description showing has to be in a draw loop. see "drawLowerBar()"
-<<<<<<< HEAD
-//			cout << "CASE 2: DESCRIPTION" << endl; 
-			
-=======
+
 
 			cout << "CASE 2: DESCRIPTION" << endl; 
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 			if (!descDown) {
 				if (shiftRotate() !=90) {
 					heightMax = ofGetHeight() - (floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight));
@@ -480,11 +429,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			}
 			
 			goingUp = !goingUp; 
-<<<<<<< HEAD
-//				cout << "going up is now " << goingUp; 
-=======
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 			}
 			
 			lastState = 2; 
@@ -492,17 +437,12 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
 			
 		case 3:
-<<<<<<< HEAD
-//			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
-			//description showing has to be in a draw loop. see "drawLowerBar()"
-			
-=======
+
 
 			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
 
 			//description showing has to be in a draw loop. see "drawLowerBar()"
 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 			lastState = 3; 
             break;
     }
@@ -556,7 +496,7 @@ void essBaseScene::checkAudioStatus(){
             second = tempT%60;
             sec1 = second/10;
             sec2 = second%10;
-//            cout<<"Time is "<<tempT<<"minute:"<<min1<<min2<<":"<<second<<endl;
+           cout<<"Time is "<<tempT<<"minute:"<<min1<<min2<<":"<<second<<endl;
             
             posY = audioTest.getPosition()*120;
             if(audioTest.getPosition()==1.0){
@@ -694,19 +634,13 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     }
     playPauseButn.touchUp(touch);
     
-<<<<<<< HEAD
-    //Description    
-    if (descriptionButn.isPressed()) {
-        tweenEntryExit(2);
-    }
-=======
+
 	if (overlayState != 3) {
 		if (descriptionButn.isPressed()) {
 			tweenEntryExit(2);
 		}
 	}
 		 
->>>>>>> 0dd5778d0a3e20a1c09b59ac162b13f5b22f36e3
 	descriptionButn.touchUp(touch);
 
     
