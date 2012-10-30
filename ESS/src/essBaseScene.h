@@ -122,6 +122,9 @@ public:
 	bool reEnter;
 	
 	int countTemp; 
+	
+	//rotation
+	int oldRot; 
     
     
     //audio

@@ -159,9 +159,8 @@ void essBaseScene::drawMapPoints() {
 }
 
 void essBaseScene::drawLowerBar() {
-	
 
-	//set the start and end tweens of rotated and not rotated version
+	//set the start/ end tweens and heightMax of rotated and not rotated version
 	if (shiftRotate() == 90) {
 		floorMap[currentOH].setDrawRotated(true); 
 		startTween = 0;
@@ -171,9 +170,8 @@ void essBaseScene::drawLowerBar() {
 		floorMap[currentOH].setDrawRotated(false); 
 		startTween = ofGetHeight();
 		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
-
 	}
-	
+
 	switch (overlayState) {
 			
 		case 0:
@@ -186,31 +184,52 @@ void essBaseScene::drawLowerBar() {
 			break;
 			
 		case 1:
-		if (!floorMap[currentOH].getDrawRotated()) { 
-			buttScreen.setPos(0, 0);
-			buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
-		} else {
-			buttScreen.setPos(tweenNum, 0);
-			buttScreen.setSize(ofGetWidth(), ofGetHeight());
-		}
+			//when a rotation happens, dont tween just go to the end position
+			if (shiftRotate() != oldRot) {
+				tweenNum = endTween; 
+				oldRot = shiftRotate(); 
+			}
+			
+			if (!floorMap[currentOH].getDrawRotated()) { 
+				buttScreen.setPos(0, 0);
+				buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
+			} else {
+				buttScreen.setPos(tweenNum, 0);
+				buttScreen.setSize(ofGetWidth(), ofGetHeight());
+			}
+			
 			break;
 	
 		case 2:
-		//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
-		tempOverlayRectHeight = tweenNum;
+
 		
-		if (!floorMap[currentOH].getDrawRotated()) { 
-			buttScreen.setPos(0, 0);
-			buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
-		} else {
-			buttScreen.setPos(tweenNum, 0);
-			buttScreen.setSize(ofGetWidth(),ofGetHeight());
-		}
-		
-		essSM->setIsDragging(true); 
+			if (shiftRotate() != oldRot) {
+				
+				if (shiftRotate() !=90) {
+					heightMax = ofGetHeight() - (floorMap[currentOH].descriptionHeight);
+				} else {
+					heightMax = floorMap[currentOH].totalHeight + (floorMap[currentOH].marginHeight*2);
+				}
+				
+				tweenNum = heightMax;
+				oldRot = shiftRotate(); 
+			}	else {
+				tempOverlayRectHeight = tweenNum;
+			}
+			
+			//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
+			
+			if (!floorMap[currentOH].getDrawRotated()) { 
+				buttScreen.setPos(0, 0);
+				buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
+			} else {
+				buttScreen.setPos(tweenNum, 0);
+				buttScreen.setSize(ofGetWidth(),ofGetHeight());
+			}
+			
+			essSM->setIsDragging(true); 
 			break;
 	
-    //use textTempOH instead of CurrentOH so that the change only happens after the tween. See onExitComplete
 		case 3:
 
 		//enable dragging
@@ -253,7 +272,7 @@ void essBaseScene::drawLowerBar() {
 
 	//draw the button to drag out the description
 	//descriptionButn.enableBG(); //enabling this will draw the button box area 
-	descriptionButn.draw(); 
+	//descriptionButn.draw(); 
 	if (!floorMap[currentOH].getDrawRotated()) {
 		descriptionButn.setSize(300, 100);
 		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 40); 
@@ -268,12 +287,13 @@ void essBaseScene::drawLowerBar() {
 		essAssets->handle.draw((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 20, tweenNum);
 	} else {
 		ofPushMatrix(); 
-		ofTranslate(tweenNum, (floorMap[currentOH].overlayRect.y + floorMap[currentOH].overlayRect.width)/2 - 20); 
+		ofTranslate(tweenNum, 140); 
 		ofRotateZ(90);
 		essAssets->handle.draw(0,0);
 		ofPopMatrix(); 
-	}
+		
 
+	}
 	ofDisableAlphaBlending();
 
 	
@@ -286,12 +306,6 @@ void essBaseScene::setupTweens() {
     
     //initialize Tweenzor the first time you use it
     Tweenzor::init();
-    
-    //set the values for start and end
-	/*
-    startTween = ofGetHeight();
-    endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
-	 */
 	
 	if (shiftRotate() == 90) {
 		//floorMap[currentOH].setDrawRotated(true); 
@@ -323,11 +337,6 @@ void essBaseScene::onExitComplete(float* arg) {
 
 
 void essBaseScene::tweenEntryExit(int stateNum_) {
-	
-
-
-//	cout << "last state: " << lastState << endl; 
-
 
 	overlayState = stateNum_; 
 	
