@@ -184,33 +184,7 @@ void oralHist::setupOverlay() {
 }
 
 void oralHist::drawOverlay(int tweenedLoc) {
-    
-	/* //working copy
-	 if (!drawRot) {
-	 overlayRect.y = tweenedLoc;
-	 
-	 totalHeight = overlayHeight + descriptionHeight + (marginHeight*2);
-	 
-	 ofEnableAlphaBlending();
-	 
-	 //draw overlay Rectangle
-	 ofSetColor(100, 150);
-	 ofRect(overlayRect.x, overlayRect.y, overlayWidth, totalHeight);
-	 
-	 //draw pause/ play button
-	 drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
-	 
-	 //draw title
-	 ofSetColor(essAssets->ess_yellow);
-	 essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
-	 
-	 //draw description
-	 ofSetColor(essAssets->ess_white);
-	 essAssets->ostrich19.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
-	 
-	 ofDisableAlphaBlending();
-	*/
-	
+
 
 	int rotVal; 
 	
@@ -265,66 +239,6 @@ void oralHist::drawOverlay(int tweenedLoc) {
 	ofPopMatrix();	
 	ofDisableAlphaBlending();
 
-	
-	////////////////////////////////////////////overlayRot
-	
-	/*
-	overlayRectRot.x = tweenedLoc; //change tweened loc to x and make it negative
-									//reverse everything x and y!
-	
-	totalHeightRot = overlayHeightRot + descriptionHeightRot + (marginHeight*2);
-	
-    ofEnableAlphaBlending();
-	
-	//draw overlay Rectangle
-    ofSetColor(100, 150);
-	ofRect(overlayRectRot.x, overlayRectRot.y, -totalHeightRot, overlayWidthRot); //reversed
-	 //debug:
-		ofSetColor(255, 0, 0);
-		ofCircle(overlayRectRot.x , overlayRectRot.y,  30);
-		
-		ofSetColor(0, 255, 0);
-		ofCircle(overlayRectRot.x + totalHeightRot, overlayWidthRot + overlayRectRot.y,  10);
-		
-	ofPushMatrix();
-		ofTranslate(overlayRectRot.x, 0);
-		ofRotateZ(90);
-		//draw pause/ play button
-		drawPlay(0 + marginWidth/2, 0 + marginHeight/2);
-		
-		//draw title
-		ofSetColor(essAssets->ess_yellow);
-		essAssets->ostrich19.drawTextArea(name, 0 + marginWidth/2 + marginButton, 0 + marginHeight/2, overlayWidthRot, overlayHeightRot);
-		
-		//draw description
-		ofSetColor(essAssets->ess_white);
-		essAssets->ostrich19.drawTextArea(description, 0 + marginWidth/2 + marginButton, 0 + marginHeight/2 + overlayRectRot.height, overlayWidthRot - marginWidth - marginButton, descriptionHeight);
-		
-		ofDisableAlphaBlending();
-	ofPopMatrix();	
-		
-	*/	
-	/*
-    ofRect(overlayRect.x, overlayRect.y, overlayWidth, totalHeight);
-    
-    //draw pause/ play button
-    drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
-    
-    //draw title
-    ofSetColor(essAssets->ess_yellow);
-    essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
-    
-    //draw description
-    ofSetColor(essAssets->ess_white);
-        essAssets->ostrich19.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
-    
-    //draw display time
-    ofSetColor(essAssets->ess_yellow);
-//    ofLine(308, overlayRect.y+ marginHeight/2 , 408, overlayRect.y+ marginHeight/2 ); 
-//     essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
-    ofDisableAlphaBlending();
-    */
-     
     
 }
 

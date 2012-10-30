@@ -94,6 +94,7 @@ public:
     int currentOH;
     int textTempOH; 
     bool firstEntry; 
+	int touchTemp; 
 
     
     //textBoxHelper
