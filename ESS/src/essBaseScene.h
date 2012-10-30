@@ -94,6 +94,7 @@ public:
     int currentOH;
     int textTempOH; 
     bool firstEntry; 
+	int touchTemp; 
 
     
     //textBoxHelper
@@ -121,6 +122,9 @@ public:
 	bool reEnter;
 	
 	int countTemp; 
+	
+	//rotation
+	int oldRot; 
     
     
     //audio
