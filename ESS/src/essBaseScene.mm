@@ -388,7 +388,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			cout << "CASE 2: DESCRIPTION" << endl; 
 
 			if (!descDown) {
-				heightMax = ofGetHeight() - (floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight));
+				if (shiftRotate() !=90) {
+					heightMax = ofGetHeight() - (floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight));
+				} else {
+					heightMax = floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight);
+				}
 			
 			if (goingUp) {
 				Tweenzor::add(&tweenNum, tweenNum, heightMax, 0.f, 1.f, EASE_IN_OUT_SINE);
