@@ -101,7 +101,7 @@ void map1Scene::draw() {
             
             //style guide when left side is touched
             ofSetColor(255, 255, 255);
-            if (drawGuide) guide1.draw(0, 0, ofGetWidth(), ofGetHeight());
+            //if (drawGuide) guide1.draw(0, 0, ofGetWidth(), ofGetHeight());
             
             break;
             
