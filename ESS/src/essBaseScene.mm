@@ -133,11 +133,30 @@ void essBaseScene::drawMapPoints() {
 	
     //this is always being drawn
     if (!firstEntry) drawLowerBar();
+	
+	
+	
 }
 
 void essBaseScene::drawLowerBar() {
-    
+	
+	if (shiftRotate() == 90) {
+		floorMap[currentOH].setDrawRotated(true); 
+		startTween = 0;
+		endTween =  floorMap[currentOH].overlayRect.height;
 
+		ofSetColor(0, 0, 255);
+		ofCircle(tweenNum, 10, 10);
+		
+	} else {
+		floorMap[currentOH].setDrawRotated(false); 
+		startTween = ofGetHeight();
+		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
+		
+		ofSetColor(0, 0, 255);
+		ofCircle(10, tweenNum, 10);
+	}
+	
 	if (overlayState == 2) {
 		//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
 		tempOverlayRectHeight = tweenNum;
@@ -149,7 +168,6 @@ void essBaseScene::drawLowerBar() {
     //use textTempOH instead of CurrentOH so that the change only happens after the tween. See onExitComplete
 	if (overlayState == 3) {
 
-		
 		//enable dragging
 		tweenNum = dragNum;
 		
@@ -159,8 +177,7 @@ void essBaseScene::drawLowerBar() {
 		} else {
 			tweenNum = dragNum;
 		}
-		 
-		
+		 		
 		//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
 		tempOverlayRectHeight = tweenNum;
 		buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
@@ -182,16 +199,38 @@ void essBaseScene::drawLowerBar() {
     floorMap[textTempOH].drawOverlay(tweenNum);
 	
 	//draw the play button
+	playPauseButn.enableBG();
     playPauseButn.draw(floorMap[currentOH].overlayRect.x + floorMap[currentOH].marginWidth/2, tweenNum);
 	
 	//draw the button to drag out the description
+	descriptionButn.enableBG(); 
 	descriptionButn.draw(); 
-	descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 40); 
-	
+	if (!floorMap[currentOH].getDrawRotated()) {
+		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 40); 
+	} else {
+		descriptionButn.setPos( tweenNum - 40,(floorMap[currentOH].overlayRect.y + floorMap[currentOH].overlayRect.width)/2 - 150); 
+	}
+		
 	//draw the handle graphic 
 	ofEnableAlphaBlending();
-	essAssets->handle.draw((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 20, tweenNum);
+	if (!floorMap[currentOH].getDrawRotated()) {
+		essAssets->handle.draw((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 20, tweenNum);
+	} else {
+		ofPushMatrix(); 
+		ofTranslate(tweenNum, (floorMap[currentOH].overlayRect.y + floorMap[currentOH].overlayRect.width)/2 - 20); 
+		ofRotateZ(90);
+		essAssets->handle.draw(0,0);
+		ofPopMatrix(); 
+	}
+
 	ofDisableAlphaBlending();
+	
+	/*
+	 
+	 variables that will be affected by rotate:
+	 overlayRect
+	 
+	 */
 	
 	
 }
@@ -205,8 +244,20 @@ void essBaseScene::setupTweens() {
     Tweenzor::init();
     
     //set the values for start and end
+	/*
     startTween = ofGetHeight();
     endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
+	 */
+	
+	if (shiftRotate() == 90) {
+		//floorMap[currentOH].setDrawRotated(true); 
+		startTween = 0;
+		endTween =  floorMap[currentOH].overlayRect.height;
+	} else {
+		floorMap[currentOH].setDrawRotated(false); 
+		startTween = ofGetHeight();
+		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
+	}
     
     tweenNum = startTween;
 	goingUp = true; 
@@ -257,22 +308,16 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			essSM->setIsDragging(true);
 
 			Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
+
 			
-			/*
-			//if the overlay is already up && the description is up
-			if (tweenNum < ofGetHeight() -5) { 
+			if (lastState == 1) {
 				reEnter = true; 
 				tweenEntryExit(0); //send the tween to exit and then come back here
-			} else {
-				textTempOH = currentOH; //if not just go up
-			}
-			 */
+			} 
 			
-			if (lastState == 1 || lastState == 2) {
+			else if (lastState ==2 && (textTempOH != currentOH)) {
 				reEnter = true; 
 				tweenEntryExit(0); //send the tween to exit and then come back here
-			} else if (lastState == 2) {
-				textTempOH = currentOH;
 			}
 			
 			else  {
@@ -291,7 +336,6 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             break; 
             
         case 2:
-			//description showing has to be in a draw loop. see "drawLowerBar()"
 			cout << "CASE 2: DESCRIPTION" << endl; 
 			
 			if (!descDown) {
@@ -300,12 +344,11 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			if (goingUp) {
 				Tweenzor::add(&tweenNum, tweenNum, heightMax, 0.f, 1.f, EASE_IN_OUT_SINE);
 			} else {
-				//Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
 				tweenEntryExit(1);
 			}
 			
 			goingUp = !goingUp; 
-				cout << "going up is now " << goingUp; 
+				cout << "going up is now " << goingUp << endl; 
 			}
 			
 			lastState = 2; 
@@ -314,7 +357,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
 		case 3:
 			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
-			//description showing has to be in a draw loop. see "drawLowerBar()"
+			//description showing has to be in a draw loop because it involves dragging which needs to be looping. see "drawLowerBar()"
 			
 			lastState = 3; 
         default:
@@ -438,13 +481,12 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         floorMap[i].playButn.touchUp(touch);
     }
 
+	if (overlayState != 3) {
 		if (descriptionButn.isPressed()) {
 			tweenEntryExit(2);
 		}
-
-	
-	
-    
+	}
+		 
 	playPauseButn.touchUp(touch);
 	descriptionButn.touchUp(touch);
     buttScreen.touchUp(touch);
