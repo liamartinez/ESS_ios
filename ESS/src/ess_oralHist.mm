@@ -18,6 +18,9 @@ oralHist::~oralHist() {
 }
 
 void oralHist::setup() {
+    playing = false;
+    Tlength = 0;
+    
     
     dotRadius = 10; // radius of the dot to be drawn
     origin.set(-dotRadius- (dotRadius/2), -dotRadius - (dotRadius/2)); //where to draw info, where the location is relative to 0 
@@ -33,7 +36,9 @@ void oralHist::setup() {
     locInfo.set(offset + loc);
 
     audio.setVolume(0.75f);
-    audio.setMultiPlay(true);
+    audio.setMultiPlay(false);
+//    cout<<"in side of OH"<<path<<endl;
+//    audio.loadSound(path);
      
     spotButn.setSize(dotRadius*4, dotRadius*4); //the size of the button is bigger than the circle drawn, to make it easier to press. 
     spotButn.disableBG(); 
@@ -112,11 +117,16 @@ void oralHist::drawPlay(int playLocX, int playLocY) {
     ofEnableSmoothing();
     ofSetColor(255);
         
-    if (audio.getIsPlaying()) {
+    if (playing) {
         essAssets->pauseButton.draw(playLocX - 5,playLocY - 8 , textHeight + 18, textHeight + 20);
     } else {
         essAssets->playButton.draw(playLocX - 5,playLocY - 8, textHeight + 18, textHeight + 20);
     }
+    //    if (audio.getIsPlaying()) {
+    //        essAssets->pauseButton.draw(playLocX - 5,playLocY - 8 , textHeight + 18, textHeight + 20);
+    //    } else {
+    //        essAssets->playButton.draw(playLocX - 5,playLocY - 8, textHeight + 18, textHeight + 20);
+    //    }
     
 	ofDisableAlphaBlending();
     ofDisableSmoothing();
@@ -292,7 +302,27 @@ void oralHist::drawOverlay(int tweenedLoc) {
 	ofPopMatrix();	
 		
 	*/	
-	
+	/*
+    ofRect(overlayRect.x, overlayRect.y, overlayWidth, totalHeight);
+    
+    //draw pause/ play button
+    drawPlay(overlayRect.x + marginWidth/2, overlayRect.y + marginHeight/2);
+    
+    //draw title
+    ofSetColor(essAssets->ess_yellow);
+    essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
+    
+    //draw description
+    ofSetColor(essAssets->ess_white);
+        essAssets->ostrich19.drawTextArea(description, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2 + overlayRect.height, overlayWidth - marginWidth - marginButton, descriptionHeight);
+    
+    //draw display time
+    ofSetColor(essAssets->ess_yellow);
+//    ofLine(308, overlayRect.y+ marginHeight/2 , 408, overlayRect.y+ marginHeight/2 ); 
+//     essAssets->ostrich19.drawTextArea(name, overlayRect.x + marginWidth/2 + marginButton, overlayRect.y + marginHeight/2, overlayWidth, overlayHeight);
+    ofDisableAlphaBlending();
+    */
+     
     
 }
 

@@ -59,6 +59,10 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
+<<<<<<< HEAD
+    ofSoundUpdate();
+=======
+>>>>>>> 2dd2531232545ec5c72b07a9a8ca77966188acb5
 
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
 	

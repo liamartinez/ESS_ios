@@ -47,6 +47,11 @@ public:
     bool isActive; 
     string description; 
     
+    //Audio parameters
+    bool playing;
+    int time;
+    unsigned int Tlength;
+    
     bool isPlayed; 
     string isPlayedString;
         

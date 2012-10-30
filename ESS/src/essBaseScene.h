@@ -36,8 +36,7 @@ public:
     void setInfoShowing (bool infoShow_); 
 
     
-    vector<oralHist> loadXML (string floor_);
-    void setXMLtoPlayed(int trackNum); 
+
     void resetPlayed(); 
     void setupHomeButton(); 
     void drawHomeButton(); 
@@ -56,13 +55,15 @@ public:
     void onExitComplete(float* arg);
     
     //xml
+    vector<oralHist> loadXML (string floor_);
+    void updateXML(int trackNum); 
     ofxXmlSettings XML;    
     string xmlStructure;
     string message;
     void loadOHaudio();
     string floor;
-
     string sceneName;
+    int loadXMLTime(int trackNum);
     
     //gets accelererometer data to determine rotation
     int shiftRotate(); 
@@ -120,6 +121,19 @@ public:
 	bool reEnter;
 	
 	int countTemp; 
+    
+    
+    //audio
+    void audioPlay(int currentTrack);
+    ofSoundPlayer audioTest;
+    void audioDisplay();
+    void audioSave();
+    int microSec;
+    int second;
+    int minute;
+    int tempT;
+    
+    
     
 protected:
     void drawGrid();

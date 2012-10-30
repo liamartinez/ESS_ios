@@ -27,6 +27,8 @@ void essBaseScene::setup() {
 
 //------------------------------------------------------------------
 void essBaseScene::update() {
+
+
     
 }
 
@@ -34,13 +36,17 @@ void essBaseScene::update() {
 
 //------------------------------------------------------------------
 void essBaseScene::draw() {
+    
 }
 
 
 //------------------------------------------------------------------
 
 void essBaseScene::setupMap(string floor_){
-     string floor = floor_; 
+
+    
+    string floor = floor_; 
+
 	
 	essSM-> setIsDragging(false);
     
@@ -53,7 +59,10 @@ void essBaseScene::setupMap(string floor_){
         floorMap[i].setup(); 
         floorMap[i].setupOverlay();
         //OHmap2[i].audio.loadSound(OHmap2[i].path);
-        cout << "setting up " + floorMap[i].name << endl;
+//        floorMap[i].audio.loadSound(floorMap[i].path);
+//        cout<<"load Sound"<<i<<floorMap[i].path <<":"<<floorMap[i].audio.getPositionMS()<<endl;
+//        cout << "setting up " + floorMap[i].name << endl;
+        
     }    
     
     buttonState = 0; 
@@ -77,6 +86,18 @@ void essBaseScene::setupMap(string floor_){
 	delay = 500; 
 	
 	lastState = -1; 
+    
+    //for audio display
+    audioTest.setMultiPlay(true); 
+    audioTest.setSpeed(1.0f);
+    microSec= 0;
+    second = 0;
+    minute = 0;
+    tempT = 0;
+
+    
+    
+    
 }
 
 //------------------------------------------------------------------
@@ -336,7 +357,8 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             break; 
             
         case 2:
-			cout << "CASE 2: DESCRIPTION" << endl; 
+			//description showing has to be in a draw loop. see "drawLowerBar()"
+//			cout << "CASE 2: DESCRIPTION" << endl; 
 			
 			if (!descDown) {
 			heightMax = ofGetHeight() - (floorMap[textTempOH].descriptionHeight + floorMap[textTempOH].overlayHeight + (floorMap[textTempOH].marginHeight));
@@ -348,7 +370,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			}
 			
 			goingUp = !goingUp; 
-				cout << "going up is now " << goingUp << endl; 
+//				cout << "going up is now " << goingUp; 
 			}
 			
 			lastState = 2; 
@@ -356,7 +378,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
 			
 		case 3:
-			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
+//			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
 			//description showing has to be in a draw loop because it involves dragging which needs to be looping. see "drawLowerBar()"
 			
 			lastState = 3; 
@@ -365,15 +387,80 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
     }
 	
 }
+//-------------------------AUDIO & ITS DISPLAY---------------------------------------------------//
+void essBaseScene::audioPlay(int currentTrack){
+    int tempTime = 0;
+    //Stop all the audios
+    audioTest.stop();
+    //Check who is playing first. Save the time
+    for (int i = 0; i< floorMap.size(); i++) {
+        if (floorMap[i].playing) {
+            //Save the time
+            floorMap[i].time = audioTest.getPositionMS();
+            //cout<<"Position grab is "<<audioTest.getPositionMS()<<endl;
+            //cout<<"Was playing "<<i<<endl;
+        }
+        floorMap[i].playing = false;
+        updateXML(i);
+        //cout<<"Current Time of"<<i<<" is "<<floorMap[i].time<<endl;
+    }
+   
+    for (int i = 0; i < floorMap.size(); i++) {
+        if(i == currentTrack){
+            cout<<" "<<i<< "  Spot Button be pressed"<<endl;//":"<<floorMap[i].path<<"tempTime"<<tempTime<<endl;
+            floorMap[i].playing = true;
+            floorMap[i].isPlayed = true;
+            updateXML(i);
+            audioTest.loadSound(floorMap[i].path);          
+            tempTime = loadXMLTime(i);
+            //cout<<"time of player is "<<tempTime<<endl;         
+        }else{
+            floorMap[i].playing = false;
+            //cout<<i<< "Spot Button didn't be pressed"<<endl;
+        }
+    }
+    audioTest.play();
+    audioTest.setPositionMS(tempTime);
+    //cout<<"---------------------------"<<endl;
+    
+}
+void essBaseScene::audioDisplay(){
 
+   
+    if (audioTest.getIsPlaying()){
+//        tempT = audioTest.Tlength;
+        
+    }
+            
+//            cout<< tempT;
+    
+            ofEnableAlphaBlending();
+            ofSetColor(essAssets->ess_yellow);
+            //the bar is 100 pixel long, marginHeight = 20, the tweenNum is the overlay height
+            ofLine(308, tweenNum+ 10 , 408, tweenNum+ 10 ); 
+            char tempString[255];
+            sprintf(tempString,"%d",tempT);
+            essAssets->ostrich19.drawTextArea(tempString, 308, tweenNum+ 10,100, 100);
+            ofDisableAlphaBlending();
 
+    
+    //draw display time
+
+}
+//
+//void essBaseScene::audioSave(){
+//    for (int i = 0; i< floorMap.size(); i++) {
+//        setXMLtoPlayed(i);
+//    }
+//}
+//
 
 //------------------------------------------------------------------
 //------------------------  EVENTS     -----------------------------
 //------------------------------------------------------------------
 
 void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
-    
+//    cout<< "touch press"<<endl;
     //home
 	 if (touch.y < tweenNum) {
 		buttHome.touchDown(touch);
@@ -396,20 +483,15 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 }
 
 void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
-
 	if (descDown) {
 		overlayState = 3; 
-		dragNum = touch.y; 
-		
+		dragNum = touch.y; 		
 	}
-	
-	
     //map
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchMoved(touch);
         floorMap[i].playButn.touchMoved(touch);
     }
-    
     //textBoxHelper
     buttScreen.touchMoved(touch);
     playPauseButn.touchMoved(touch);
@@ -421,22 +503,36 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
 	descDown = false; 
 	
-    //home
+
+    //Home Button
 	if (touch.y < tweenNum) {
 		if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
-		buttHome.touchUp(touch);
+        buttHome.touchUp(touch);
 	}
+    
+    //Audio Spot Buttons
+    for (int i = 0; i < floorMap.size(); i++) {
+        if(floorMap[i].spotButn.isPressed()&& touch.y < tweenNum){
+             currentOH = i;
+             //Stop the origin audio. Play the new one
+             audioPlay(i);
+             tweenEntryExit(1);
+             firstEntry = false;            
+        }        
+    }
+    for (int i = 0; i < floorMap.size(); i++) {
+        floorMap[i].spotButn.touchUp(touch);
+
+    }
 	
 	//textBoxHelper //use this for touching outside the overlay.
-    if (buttScreen.isPressed()  &&!firstEntry) {
+    if (buttScreen.isPressed() &&!firstEntry) {
 		
         int count = 0; 
         for (int i = 0; i < floorMap.size(); i++) {
-			
             if (floorMap[i].touchBox.inside(touch.x, touch.y)) {
                 count ++; 
             }
-			
             if (count > 0) {
                 touchedOutside = false;
             } else {
@@ -448,38 +544,30 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 			tweenEntryExit(0); 
         }		
     }
+    buttScreen.touchUp(touch);
     
-	
-    //map
-	//if (touch.y < tweenNum) {
-		for (int i = 0; i < floorMap.size(); i++) { 
-			
-			//spot button
-			if (floorMap[i].spotButn.isPressed() && touch.y < tweenNum) {
-				
-				currentOH = i; 
-				tweenEntryExit(1);
-				
-			   firstEntry = false; 
-			}
-		}
-
+    //Play and Pause Button
     if (playPauseButn.isPressed()) {
-        
-        if (!floorMap[currentOH].audio.getIsPlaying()){
-            floorMap[currentOH].play(); 
-            setXMLtoPlayed(currentOH); 
-            cout << floorMap[currentOH].name + "is playing" << endl; 
-        } else {
-            floorMap[currentOH].pause();
-            cout << floorMap[currentOH].name + "is paused" << endl; 
+        if(floorMap[currentOH].playing){
+            audioTest.stop();
+            floorMap[currentOH].playing= 0;
+            floorMap[currentOH].time = audioTest.getPositionMS();
+            updateXML(currentOH);
+        }else{
+            audioTest.loadSound(floorMap[currentOH].path);
+            audioTest.play();
+            audioTest.setPositionMS(loadXMLTime(currentOH));
+            floorMap[currentOH].playing= 1;
+            updateXML(currentOH);
         }
+    
     }
+    playPauseButn.touchUp(touch);
+    
 
-    for (int i = 0; i < floorMap.size(); i++) {
-        floorMap[i].spotButn.touchUp(touch);
-        floorMap[i].playButn.touchUp(touch);
-    }
+
+
+
 
 	if (overlayState != 3) {
 		if (descriptionButn.isPressed()) {
@@ -490,6 +578,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	playPauseButn.touchUp(touch);
 	descriptionButn.touchUp(touch);
     buttScreen.touchUp(touch);
+
     touched = false; 
     
 
@@ -533,7 +622,10 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
             tempOH.keyword = XML.getValue("OH:KEYWORD", "default",i);  
             tempOH.loc.x = XML.getValue("OH:XPOS", 10,i);   
             tempOH.loc.y = XML.getValue("OH:YPOS", 10,i);   
-            tempOH.isPlayedString = XML.getValue("OH:ISPLAYED", "FALSE" ,i);  
+            tempOH.isPlayedString = XML.getValue("OH:ISPLAYED", "FALSE" ,i);
+            tempOH.playing = XML.getValue("OH:PLAYING", 0 ,i);
+            tempOH.time = XML.getValue("OH:TIME",1000000000,i);
+//            tempOH.Tlength= XML.getValue("OH:LENGTH",100,i);
             tempOH.description = XML.getValue("OH:DESCRIPTION", "", i);
 			
             if (tempOH.isPlayedString == "FALSE") {
@@ -548,14 +640,43 @@ vector<oralHist> essBaseScene::loadXML (string floor_) {
     XML.popTag();
     return tempList;
 }
-
-
 //------------------------------------------------------------------
-void essBaseScene::setXMLtoPlayed( int trackNum) {
+int essBaseScene::loadXMLTime( int trackNum) {
+    int tempTime = 0;
     
     XML.pushTag("ESS");
     XML.pushTag("OH", trackNum);
-    XML.setValue("ISPLAYED", "TRUE");
+    //get time
+    tempTime = XML.getValue("TIME",0);
+//    cout<<"Load the time from XML file"<<tempTime<<endl;
+    
+    XML.popTag();
+    XML.popTag();
+    return tempTime;
+	
+
+}
+
+
+
+//------------------------------------------------------------------
+void essBaseScene::updateXML( int trackNum) {
+    
+    XML.pushTag("ESS");
+    XML.pushTag("OH", trackNum);
+    //Save Isplayed, playing, time
+    XML.setValue("ISPLAYED", floorMap[trackNum].isPlayed);
+    
+    XML.setValue("PLAYING", floorMap[trackNum].playing);
+    
+    if (floorMap[trackNum].time < 0) {
+        XML.setValue("TIME",0);
+    }else{
+        XML.setValue("TIME",floorMap[trackNum].time);
+    }
+    
+//    XML.setValue("LENGTH",int(floorMap[trackNum].Tlength));
+    
     XML.popTag();
     XML.popTag();
 	
@@ -565,7 +686,7 @@ void essBaseScene::setXMLtoPlayed( int trackNum) {
         message = "XML not saved.";
     }
 	
-    cout << message << endl; 
+//    cout << message << endl; 
 }
 
 //------------------------------------------------------------------
@@ -597,6 +718,8 @@ void essBaseScene::resetPlayed() {
             cout << "im in a tag " << i << endl; 
             XMLTemp.pushTag("OH", i);
             XMLTemp.setValue("ISPLAYED", "FALSE");
+            XMLTemp.setValue("PLAYING", 0);
+            XMLTemp.setValue("TIME",0);
             XMLTemp.popTag();
         }
         
