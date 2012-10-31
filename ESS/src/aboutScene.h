@@ -44,8 +44,12 @@ public:
     
 private:
     
-    ofImage aboutScreen;  
-	ofImage aboutScreenV;
+    ofImage aboutScreen; //lia - replace pictures here. 
+    /*
+     ofImage homeScreen;
+     ofImage postit; 
+     */
+    
     
 };
 

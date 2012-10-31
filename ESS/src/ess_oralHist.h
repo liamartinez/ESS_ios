@@ -49,7 +49,7 @@ public:
     
     //Audio parameters
     bool playing;
-    int time;
+    double time;
     unsigned int Tlength;
     
     bool isPlayed; 
@@ -99,7 +99,6 @@ public:
 	bool getDrawRotated();
 	bool drawRot; 
 
-	int maxHeight0, maxHeight90; 
     
 };
 
