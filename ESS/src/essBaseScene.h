@@ -67,6 +67,7 @@ public:
     
     //gets accelererometer data to determine rotation
     int shiftRotate(); 
+	int oldAngle, curAngle; 
     
     essSceneManager* essSM;
     essAssetManager* essAssets;
@@ -126,7 +127,8 @@ public:
 	
 	//rotation
 	int oldRot; 
-    
+	bool doneTweening; 
+    void setRotation(); 
     
     //audio
     void audioPlay(int currentTrack);

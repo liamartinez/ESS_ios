@@ -9,7 +9,7 @@
 
 //------------------------------------------------------------------
 essBaseScene::essBaseScene() {
-    this->essSM = essSceneManager::getInstance(); //lia - find out what this means
+    this->essSM = essSceneManager::getInstance(); 
     this->essAssets = essAssetManager::getInstance();
     
     sceneName = "Scene Name not Set!";
@@ -68,7 +68,7 @@ void essBaseScene::setupMap(string floor_){
     lastButton = -1;
     currentButton = 0; 
     
-    playPauseButn.setSize(floorMap[currentOH].dotRadius*4, floorMap[currentOH].dotRadius*4);
+    playPauseButn.setSize(floorMap[currentOH].dotRadius*6, floorMap[currentOH].dotRadius*4);
     playPauseButn.disableBG(); 
 
     setInfoShowing(FALSE); //is the info tab beside the play button showing?
@@ -78,10 +78,13 @@ void essBaseScene::setupMap(string floor_){
     touchedOutside = true; 
 
 	tweenEntryExit(0);
+	doneTweening = true; 
 	
 	delay = 500; 
 	
 	lastState = -1; 
+	setRotation();
+	tweenNum = startTween; 
     
     //for audio display
     audioTest.setMultiPlay(true); 
@@ -96,9 +99,6 @@ void essBaseScene::setupMap(string floor_){
     tempT = 0;
     posY = 0;
 
-    
-    
-    
 }
 
 //------------------------------------------------------------------
@@ -151,13 +151,15 @@ void essBaseScene::drawMapPoints() {
 	//this is required by Tweenzor
 	Tweenzor::update( ofGetElapsedTimeMillis() );
 	
+	setRotation(); 
+	
     //this is always being drawn
     if (!firstEntry) drawLowerBar();
+	
+
 }
 
-void essBaseScene::drawLowerBar() {
-
-
+void essBaseScene::setRotation() {
 	//set the start/ end tweens and heightMax of rotated and not rotated version
 	if (shiftRotate() == 90) {
 		floorMap[currentOH].setDrawRotated(true); 
@@ -169,7 +171,12 @@ void essBaseScene::drawLowerBar() {
 		startTween = ofGetHeight();
 		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
 	}
+	
 
+}
+
+void essBaseScene::drawLowerBar() {
+	
 	switch (overlayState) {
 			
 		case 0:
@@ -233,18 +240,24 @@ void essBaseScene::drawLowerBar() {
 	
 		case 3:
 
-		
-		//enable dragging
-		tweenNum = dragNum;
-		
-		//limit the amount of drag to the maximum height of the overlay, based on length of text
-		if (dragNum < heightMax) {
-			tweenNum = heightMax;
-		} else {
-			tweenNum = dragNum;
-		}
-		 
-		
+			//get the heightMaxes
+			heightMax0 = floorMap[currentOH].maxHeight0;
+			heightMax90 = floorMap[currentOH].maxHeight90;
+			
+			if (!floorMap[currentOH].getDrawRotated() && dragNum < heightMax0) {
+				//heightMax = heightMax0;
+				cout << "dragNum: " << dragNum << " " << heightMax0 << endl; 
+				tweenNum = heightMax0;
+				
+			} else if (floorMap[currentOH].getDrawRotated() && dragNum > heightMax90){
+				cout << "dragNum: " << dragNum << " " << heightMax90 << endl; 
+				//heightMax = heightMax90;
+				tweenNum = heightMax90; 
+			} else {
+				tweenNum = dragNum;
+			}
+
+			
 		//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
 		tempOverlayRectHeight = tweenNum;
 		
@@ -270,9 +283,9 @@ void essBaseScene::drawLowerBar() {
 	//draw the play button
 
 	if (!floorMap[currentOH].getDrawRotated()) {
-		playPauseButn.draw(floorMap[currentOH].overlayRect.x + floorMap[currentOH].marginWidth/2, tweenNum);
+		playPauseButn.draw(floorMap[currentOH].overlayRect.x, tweenNum);
 	} else {
-		playPauseButn.draw(tweenNum - 40, floorMap[currentOH].overlayRect.y + floorMap[currentOH].marginWidth/2);
+		playPauseButn.draw(tweenNum - 40, floorMap[currentOH].overlayRect.y);
 	}
 
 	//draw the button to drag out the description
@@ -315,7 +328,7 @@ void essBaseScene::setupTweens() {
 
 	
 	if (shiftRotate() == 90) {
-		//floorMap[currentOH].setDrawRotated(true); 
+		floorMap[currentOH].setDrawRotated(true); 
 		startTween = 0;
 		endTween =  floorMap[currentOH].overlayRect.height;
 	} else {
@@ -332,13 +345,21 @@ void essBaseScene::setupTweens() {
 
 void essBaseScene::onExitComplete(float* arg) {
 	
+
+	if (reEnter) {
 	textTempOH = currentOH;
 	reEnter = false; 
 	lastState = 0; 
 	tweenEntryExit(1);
 
     //this is where we make the overlay display the actual currentOH, only when the exit of the previous OH is finished. 
+	} else {
+		doneTweening = true;
+	}
+}
 
+void essBaseScene::onEnterComplete(float* arg) {
+	doneTweening = false; 
 }
 
 
@@ -356,8 +377,9 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			timer = ofGetElapsedTimeMillis();
 			
 			if (!firstEntry) {
+				//doneTweening = false; 
 				Tweenzor::add(&tweenNum, tweenNum, startTween, 0.f, 1.f, EASE_IN_OUT_SINE);
-				if (reEnter) Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onExitComplete);
+				Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onExitComplete);
 			}
 			
 			for (int i = 0; i < floorMap.size(); i++) {
@@ -375,7 +397,9 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 
 			essSM->setIsDragging(true);
 
+			doneTweening = false; 
 			Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
+			Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
 
 			if (lastState == 1) {
 				reEnter = true; 
@@ -414,9 +438,10 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 				}
 			
 			if (goingUp) {
+				doneTweening = false; 
 				Tweenzor::add(&tweenNum, tweenNum, heightMax, 0.f, 1.f, EASE_IN_OUT_SINE);
+				Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
 			} else {
-				//Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
 				tweenEntryExit(1);
 			}
 			
@@ -429,12 +454,10 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
 			
 		case 3:
-
-
 			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
-
-			//description showing has to be in a draw loop. see "drawLowerBar()"
-
+			
+			goingUp = true; 
+			
 			lastState = 3; 
             break;
     }
@@ -565,7 +588,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
 	if (descDown) {
 		overlayState = 3; 
-		if (shiftRotate() != 90) {
+		if (shiftRotate() == 0) {
 			dragNum = touch.y; 	
 		} else {
 			dragNum = touch.x; 
@@ -599,7 +622,8 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     //Audio Spot Buttons
 
     for (int i = 0; i < floorMap.size(); i++) {
-        if((shiftRotate() != 90 && floorMap[i].spotButn.isPressed() && touch.y < tweenNum) || (shiftRotate() == 90 && floorMap[i].spotButn.isPressed()&& touch.x > tweenNum)){
+        if((shiftRotate() == 0 && floorMap[i].spotButn.isPressed() && touch.y < tweenNum) || (shiftRotate() == 90 && floorMap[i].spotButn.isPressed()&& touch.x > tweenNum)){
+
              currentOH = i;
              //Stop the origin audio. Play the new one
              audioPlay(i);
@@ -655,6 +679,11 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	if (overlayState != 3) {
 		if (descriptionButn.isPressed()) {
 			tweenEntryExit(2);
+		}
+	} else {
+		if (descriptionButn.isPressed()) {
+			tweenEntryExit(2);
+			goingUp = true; 
 		}
 	}
 		 
@@ -817,36 +846,48 @@ void essBaseScene::resetPlayed() {
 	
 }
 
+//-------------------------ROTATION--------------------------------------
 
+
+int essBaseScene::shiftRotate() {
+    float angle = 180 - RAD_TO_DEG * atan2( ofxAccelerometer.getForce().y, ofxAccelerometer.getForce().x );
+    
+    int returnAngle; 
+    
+    if (angle > 230 && angle < 330) {
+        curAngle = 90; 
+    } else if (angle > 330 && angle < 360) {
+        //returnAngle = 180; 
+		curAngle = 0; 
+    } else if (angle > 0 && angle < 30) {
+        //returnAngle = 180; 
+		curAngle = 0; 
+    } else if (angle > 30 && angle < 130) {
+        //returnAngle = 270;
+		curAngle = 0; 
+    } else {
+        curAngle = 0; 
+    }
+    
+	
+	
+	//wait for a tween to finish before returning a new angle
+    if (doneTweening) {
+		returnAngle = curAngle;
+		oldAngle = returnAngle; 
+
+	} else {
+		returnAngle = oldAngle; 
+	}
+
+	return returnAngle;
+    
+}
 //-------------------------FROM OLD INTERFACE--------------------------------------
 
 //------------------------------------------------------------------
 void essBaseScene::setInfoShowing(bool infoShow_){
     isInfoShowing = infoShow_; 
-}
-
-int essBaseScene::shiftRotate() {
-    float angle = 180 - RAD_TO_DEG * atan2( ofxAccelerometer.getForce().y, ofxAccelerometer.getForce().x );
-    
-    float returnAngle; 
-    
-    if (angle > 230 && angle < 330) {
-        returnAngle = 90; 
-    } else if (angle > 330 && angle < 360) {
-        //returnAngle = 180; 
-		returnAngle = 0; 
-    } else if (angle > 0 && angle < 30) {
-        //returnAngle = 180; 
-		returnAngle = 0; 
-    } else if (angle > 30 && angle < 130) {
-        //returnAngle = 270;
-		returnAngle = 0; 
-    } else {
-        returnAngle = 0; 
-    }
-    
-    
-    return returnAngle;
 }
 
 

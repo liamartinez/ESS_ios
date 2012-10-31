@@ -41,7 +41,8 @@ void homeScene::activate() {
 	
 	fadeTime = 2000; 
 	startTime = ofGetElapsedTimeMillis(); 
-    
+
+	doneTweening = true; 	//no tweening here, just set this to true
 }
 
 //------------------------------------------------------------------
