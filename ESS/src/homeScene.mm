@@ -28,31 +28,21 @@ void homeScene::activate() {
     mgr.setCurScene(HOME_SCENE_FIRST);
 
     homeScreen.loadImage("flattenFiles/Home.png");
+	homeScreenV.loadImage("flattenFiles/HomeV-guide.png");
+	//homeScreenVguide.loadImage("flattenFiles/HomeV-guide.png");
     
-    rectAbout.set(427, 290, 45, 20);
-    buttAbout.setRect(rectAbout);
-    buttAbout.disableBG();
-
-    rectMap1.set(170, 113, 100, 40);
-    buttMap1.setRect(rectMap1);
-    buttMap1.disableBG(); 
-    
-    rectMap2.set(170, 174, 100, 40);
-    buttMap2.setRect(rectMap2);
-    buttMap2.disableBG(); 
-    
-    rectMap3.set(170, 230, 100, 40);
-    buttMap3.setRect(rectMap3);
-    buttMap3.disableBG();
-    
-    rectMap4.set(35, 266, 100, 40);
-    buttMap4.setRect(rectMap4);
-    buttMap4.disableBG(); 
+	buttAbout.disableBG(); 
+	buttMap1.disableBG();
+	buttMap2.disableBG();
+	buttMap3.disableBG();
+	buttMap4.disableBG();
+	
+	
 	
 	fadeTime = 2000; 
 	startTime = ofGetElapsedTimeMillis(); 
-    
-    
+
+	doneTweening = true; 	//no tweening here, just set this to true
 }
 
 //------------------------------------------------------------------
@@ -76,26 +66,61 @@ void homeScene::draw() {
             ofEnableAlphaBlending();
 			
 			
-			alphaInc = (fadeTime - startTime)/ 255;
+			//alphaInc = (fadeTime - startTime)/ 255;
 			
+			alphaInc = 5;
+			
+			if (alpha < 255) alpha +=alphaInc; 
+			
+			/*
 			if (ofGetElapsedTimeMillis() < fadeTime) {
 				alpha += alphaInc; 
 			}
+			 */
                         
+			
             ofSetColor(255, 255, 255, alpha); 
-            homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
-            buttAbout.draw(); 
-            buttMap1.draw();
-            buttMap2.draw();
-            buttMap3.draw();
-            buttMap4.draw();
-                        
+			
+			if (shiftRotate() == 0) {
+				
+				rectAbout.set(410, 270, 65, 40);
+				rectMap1.set(150, 113, 200, 40);
+				rectMap2.set(150, 174, 200, 40);
+				rectMap3.set(150, 230, 200, 40);
+				rectMap4.set(15, 255, 150, 40);
+				
+				homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
+				
+			} else if (shiftRotate() == 90) {
+				
+				rectMap1.set(250, 60, 40, 200);
+				rectMap2.set(200, 60, 40, 200);
+				rectMap3.set(140, 60, 40, 200);
+				rectMap4.set(95, 6, 50, 100);
+				rectAbout.set(10, 220, 40, 150);
+				
+				homeScreenV.draw(0,0, ofGetWidth(), ofGetHeight()); 
+			}
+
+			
+			buttAbout.setRect(rectAbout);
+			buttMap1.setRect(rectMap1);
+			buttMap2.setRect(rectMap2);
+			buttMap3.setRect(rectMap3);
+			buttMap4.setRect(rectMap4);
+
+			buttAbout.draw(); 
+			buttMap1.draw();
+			buttMap2.draw();
+			buttMap3.draw();
+			buttMap4.draw();
+			
             ofDisableAlphaBlending();
 
             break;
 
     }
-    
+
     
     
 }
@@ -122,6 +147,8 @@ void homeScene::touchDown(ofTouchEventArgs &touch){
 void homeScene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
     buttAbout.touchMoved(touch);
+	
+	
 }
 
 
@@ -137,7 +164,7 @@ void homeScene::touchUp(ofTouchEventArgs &touch){
         }
     }
     */
-    
+   
     
     if (buttAbout.isPressed()) essSM->setCurScene(SCENE_ABOUT);
     
@@ -156,5 +183,12 @@ void homeScene::touchUp(ofTouchEventArgs &touch){
     buttMap3.touchUp(touch);
     buttMap4.touchUp(touch);
     button.touchUp(touch);
+	
+	cout << "                TOUCHED!! " << touch.x << " " << touch.y << endl; 
     
+}
+//--------------------------------------------------------------
+
+void homeScene::touchDoubleTap(ofTouchEventArgs &touch) {
+	guideOn = !guideOn; 
 }

@@ -27,6 +27,7 @@ void aboutScene::update() {
 void aboutScene::activate() {
     mgr.setCurScene(ABOUT_SCENE_FIRST);
     
+	/*
     canvasW = 480;	//these define where the camera can pan to
     canvasH = 600;
     
@@ -40,16 +41,18 @@ void aboutScene::activate() {
     
     cout << "width is " << ofGetWidth() << endl; 
     
-    aboutScreen.loadImage("flattenFiles/ESS-iPhone-About.png");
+	 */
+    aboutScreen.loadImage("flattenFiles/AboutHorizontal.png");
+	aboutScreenV.loadImage("flattenFiles/AboutVertical.png");
     //button.setImage(&aboutScreen,&aboutScreen);
     
-    rectHome.set(canvasW-70, canvasH-30, 70, 30);
-    TrectHome.set(canvasW-70, ofGetHeight() - 30, 70, 30);
-    cout << "rectHome is " << rectHome.x << " " <<  rectHome.y << endl; 
+    //rectHome.set(canvasW-70, canvasH-30, 70, 30);
+	
+    //TrectHome.set(canvasW-70, ofGetHeight() - 30, 70, 30);
+
     
-    buttHome.setLabel("HOME", &essAssets->ostrich24);
-    buttHome.setRect(rectHome);
-    buttHome.setGLRect(TrectHome);
+   
+    //buttHome.setGLRect(TrectHome);
     buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
     buttHome.disableBG();
     
@@ -75,7 +78,7 @@ void aboutScene::deactivate() {
 void aboutScene::draw() {
     
     
-    cam.apply(); //put all our drawing under the ofxPanZoom effect
+    //cam.apply(); //put all our drawing under the ofxPanZoom effect
 
 
     switch(mgr.getCurScene()) {
@@ -85,10 +88,33 @@ void aboutScene::draw() {
 
             
             ofSetColor(255, 255, 255); 
-            aboutScreen.draw (0,0, 480, 523); 
+			if (shiftRotate() == 0) {
+				//aboutScreen.draw (0,0, 480, 523); 
+				aboutScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
+				rectHome.set(ofGetWidth()-70, ofGetHeight()-30, 70, 30);
+				 buttHome.setLabel("HOME", &essAssets->ostrich24);
+				buttHome.setRect(rectHome);
+				buttHome.draw(); 
+				
+			} else if (shiftRotate() == 90) {
+				aboutScreenV.draw (0,0, ofGetWidth(), ofGetHeight()); 
+
+				ofPushMatrix();
+					ofTranslate(30,  ofGetHeight()-40);
+					ofRotateZ(90);
+					essAssets->ostrich23.drawString("HOME", 0, 0);
+
+				ofPopMatrix();
+				
+				rectHome.set(0,ofGetHeight()-70, 60, 70);
+				buttHome.setRect(rectHome);
+				buttHome.disableBG();
+				buttHome.draw(); 
+
+			}
             
-            buttHome.draw(); 
-            buttResetXML.draw();
+
+            //buttResetXML.draw();
             ofDisableAlphaBlending();
             
             break;
@@ -110,7 +136,7 @@ void aboutScene::draw() {
 //--------------------------------------------------------------
 void aboutScene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
-    buttHome.GLtouchDown(touch);
+    buttHome.touchDown(touch);
     buttResetXML.touchDown(touch);
     
     cam.touchDown(touch); //fw event to cam
@@ -146,7 +172,7 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
     if (buttResetXML.isPressed()) resetPlayed();
     
     buttResetXML.touchUp(touch);
-    buttHome.GLtouchUp(touch);
+    buttHome.touchUp(touch);
     button.touchUp(touch);
     
     cam.touchUp(touch); //fw event to cam
