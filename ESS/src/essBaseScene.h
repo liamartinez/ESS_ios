@@ -112,11 +112,14 @@ public:
 	void tweenEntryExit(int stateNum_) ;
 	int heightMax;
 	int heightMax90, heightMax0; 
+	bool drawIt; 
 	
 	int timer, delay; 
 	
 	bool goingUp; 
-
+	bool dragging; 
+	
+	int dragOff; 
     baseButton playPauseButn; 
 	baseButton descriptionButn; 
 	int dragNum;

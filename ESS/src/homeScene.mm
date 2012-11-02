@@ -64,21 +64,11 @@ void homeScene::draw() {
         case HOME_SCENE_FIRST:
             
             ofEnableAlphaBlending();
-			
-			
-			//alphaInc = (fadeTime - startTime)/ 255;
-			
+
 			alphaInc = 5;
 			
 			if (alpha < 255) alpha +=alphaInc; 
-			
-			/*
-			if (ofGetElapsedTimeMillis() < fadeTime) {
-				alpha += alphaInc; 
-			}
-			 */
-                        
-			
+
             ofSetColor(255, 255, 255, alpha); 
 			
 			if (shiftRotate() == 0) {

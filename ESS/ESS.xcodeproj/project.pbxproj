@@ -11,6 +11,8 @@
 		0A255C601607CC7E00817BA4 /* ofxPanZoom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A255C5E1607CC7E00817BA4 /* ofxPanZoom.mm */; };
 		0A3965541626281300A2FF6A /* Tween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A39654D1626281300A2FF6A /* Tween.cpp */; };
 		0A3965551626281300A2FF6A /* Tweenzor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A3965521626281300A2FF6A /* Tweenzor.cpp */; };
+		0A530F961641CA5A00EA64C4 /* ESSicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A530F951641CA5A00EA64C4 /* ESSicon.png */; };
+		0A530F981641CAB500EA64C4 /* ESSicon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A530F971641CAB500EA64C4 /* ESSicon2.png */; };
 		0A5F5F6E15C6E98F00A37130 /* map1Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6015C6E98E00A37130 /* map1Scene.mm */; };
 		0A5F5F6F15C6E98F00A37130 /* homeScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6215C6E98E00A37130 /* homeScene.mm */; };
 		0A5F5F7015C6E98F00A37130 /* aboutScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F5F6415C6E98E00A37130 /* aboutScene.mm */; };
@@ -42,7 +44,6 @@
 		53F323EB10A20EDB00E0DAE4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F323EA10A20EDB00E0DAE4 /* OpenAL.framework */; };
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
-		BB24DD8F10DA77E000E9C588 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BB24DD8C10DA77E000E9C588 /* Default.png */; };
 		BB24DD9010DA77E000E9C588 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB24DD8D10DA77E000E9C588 /* Icon.png */; };
 		BB24DDCA10DA781C00E9C588 /* ofxiphone-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB24DDC910DA781C00E9C588 /* ofxiphone-Info.plist */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
@@ -88,6 +89,8 @@
 		0A3965511626281300A2FF6A /* TweenSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweenSelector.h; sourceTree = "<group>"; };
 		0A3965521626281300A2FF6A /* Tweenzor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tweenzor.cpp; sourceTree = "<group>"; };
 		0A3965531626281300A2FF6A /* Tweenzor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweenzor.h; sourceTree = "<group>"; };
+		0A530F951641CA5A00EA64C4 /* ESSicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ESSicon.png; sourceTree = "<group>"; };
+		0A530F971641CAB500EA64C4 /* ESSicon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ESSicon2.png; sourceTree = "<group>"; };
 		0A5F5F6015C6E98E00A37130 /* map1Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = map1Scene.mm; path = src/map1Scene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A5F5F6115C6E98E00A37130 /* map1Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = map1Scene.h; path = src/map1Scene.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0A5F5F6215C6E98E00A37130 /* homeScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; name = homeScene.mm; path = src/homeScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -397,6 +400,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0A530F971641CAB500EA64C4 /* ESSicon2.png */,
+				0A530F951641CA5A00EA64C4 /* ESSicon.png */,
 				0A93FFC115F6CC3E000F6817 /* Default@2x.png */,
 				0A93FFBF15F6CC39000F6817 /* Default.png */,
 				E4D8936A11527B74007E1F53 /* src */,
@@ -575,7 +580,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB24DD8F10DA77E000E9C588 /* Default.png in Resources */,
 				BB24DD9010DA77E000E9C588 /* Icon.png in Resources */,
 				BB24DDCA10DA781C00E9C588 /* ofxiphone-Info.plist in Resources */,
 				E41D3ED713B38FB500A75A5D /* Project.xcconfig in Resources */,
@@ -584,6 +588,8 @@
 				0A93FFC015F6CC39000F6817 /* Default.png in Resources */,
 				0A93FFC215F6CC3E000F6817 /* Default@2x.png in Resources */,
 				0A255C5F1607CC7E00817BA4 /* ReadMe.md in Resources */,
+				0A530F961641CA5A00EA64C4 /* ESSicon.png in Resources */,
+				0A530F981641CAB500EA64C4 /* ESSicon2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,22 +661,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
 				INFOPLIST_FILE = "ofxiphone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = ESS;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
 				INFOPLIST_FILE = "ofxiphone-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = ESS;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Release;
 		};

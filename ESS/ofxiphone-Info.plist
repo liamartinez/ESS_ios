@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>Storywalks</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -17,6 +17,11 @@
 				<string></string>
 				<string>Default@2x.png</string>
 				<string>Default@2x.png</string>
+				<string>Default.png</string>
+				<string>ESSicon.png</string>
+				<string>ESSicon2.png</string>
+				<string>Default.png</string>
+				<string>Default.png</string>
 				<string>Default.png</string>
 			</array>
 		</dict>
@@ -44,6 +49,9 @@
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
-	<array/>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+	</array>
 </dict>
 </plist>

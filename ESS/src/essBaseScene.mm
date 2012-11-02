@@ -153,10 +153,10 @@ void essBaseScene::drawMapPoints() {
 	
 	setRotation(); 
 	
-    //this is always being drawn
-    if (!firstEntry) drawLowerBar();
+    //this is always being drawn, but only if its not the first time
+    if (!firstEntry && drawIt) drawLowerBar();
 	
-
+	cout << "tweenNum: " << tweenNum << endl; 
 }
 
 void essBaseScene::setRotation() {
@@ -171,8 +171,6 @@ void essBaseScene::setRotation() {
 		startTween = ofGetHeight();
 		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
 	}
-	
-
 }
 
 void essBaseScene::drawLowerBar() {
@@ -181,10 +179,12 @@ void essBaseScene::drawLowerBar() {
 			
 		case 0:
 			
+			/*
 			if (shiftRotate() != oldRot) {
 				tweenNum = startTween; 
 				oldRot = shiftRotate(); 
 			}
+			 */
 			
 			//timer, in case someone's finger slips
 			if ((ofGetElapsedTimeMillis() - timer) > delay) { 
@@ -196,10 +196,13 @@ void essBaseScene::drawLowerBar() {
 			
 		case 1:
 			//when a rotation happens, dont tween just go to the end position
+			/*
 			if (shiftRotate() != oldRot) {
+				cout << "shift" << endl; 
 				tweenNum = endTween; 
 				oldRot = shiftRotate(); 
 			}
+			 */
 			
 			if (!floorMap[currentOH].getDrawRotated()) { 
 				buttScreen.setPos(0, 0);
@@ -213,6 +216,7 @@ void essBaseScene::drawLowerBar() {
 	
 		case 2:
 
+			//this is for live rotating
 			if (shiftRotate() != oldRot) {
 				if (shiftRotate()==0) {
 					heightMax = heightMax0;
@@ -222,10 +226,10 @@ void essBaseScene::drawLowerBar() {
 				tweenNum = heightMax;
 				oldRot = shiftRotate(); 
 			}	
-				
-			tempOverlayRectHeight = tweenNum;
 			
 			//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
+			
+			tempOverlayRectHeight = tweenNum;
 			
 			if (!floorMap[currentOH].getDrawRotated()) { 
 				buttScreen.setPos(0, 0);
@@ -239,25 +243,76 @@ void essBaseScene::drawLowerBar() {
 			break;
 	
 		case 3:
+			
+			essSM->setIsDragging(true); 
 
-			//get the heightMaxes
+			//get the heightMaxes depending on rotation
 			heightMax0 = floorMap[currentOH].maxHeight0;
 			heightMax90 = floorMap[currentOH].maxHeight90;
 			
-			if (!floorMap[currentOH].getDrawRotated() && dragNum < heightMax0) {
-				//heightMax = heightMax0;
-				cout << "dragNum: " << dragNum << " " << heightMax0 << endl; 
-				tweenNum = heightMax0;
-				
-			} else if (floorMap[currentOH].getDrawRotated() && dragNum > heightMax90){
-				cout << "dragNum: " << dragNum << " " << heightMax90 << endl; 
-				//heightMax = heightMax90;
-				tweenNum = heightMax90; 
-			} else {
-				tweenNum = dragNum;
+			
+			if (shiftRotate()==0) {
+				heightMax = heightMax0;
+			} else if (shiftRotate() == 90){
+				heightMax = heightMax90;
 			}
 
+
 			
+			if (!dragging) { //When dragging stops, snap to heightmax and endtween
+				if (abs(heightMax - tweenNum) <  (heightMax/2))  {
+					cout << "go up" << endl;
+
+					float easing = 0.3;
+					
+					float targetX = heightMax;
+					float dx = targetX - tweenNum;
+					if(abs(dx) > 1) {
+						tweenNum += dx * easing;
+					}
+				} 
+				if (abs(endTween - tweenNum) < (heightMax/2))  {
+					cout << "go down" << endl; 
+					
+					float easing = 0.5;
+					
+					float targetX = endTween;
+					float dx = targetX - tweenNum;
+					if(abs(dx) > 1) {
+						tweenNum += dx * easing;
+						tweenEntryExit(1);
+					}
+				} 
+				
+			} else { //While you are dragging, limit the dragging within heightMax and endtween
+				
+				cout << "dragging" << endl; 
+				if ((shiftRotate()==0 && dragNum < heightMax) || (shiftRotate()==90 && dragNum > heightMax)) {
+					float easing = 0.2;
+					
+					float targetX = heightMax;
+					float dx = targetX - tweenNum;
+					if(abs(dx) > 1) {
+						tweenNum += dx * easing;
+					}
+
+				} else if (( shiftRotate()==0 && dragNum > startTween) || ( shiftRotate()==90 && dragNum < startTween) ) {
+					
+					float easing = 0.2;
+					
+					float targetX = endTween;
+					float dx = targetX - tweenNum;
+					if(abs(dx) > 1) {
+						tweenNum += dx * easing;
+						tweenEntryExit(1);
+					}
+				} else {
+					tweenNum = dragNum + dragOff;
+				}
+				
+			}
+
+
 		//set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
 		tempOverlayRectHeight = tweenNum;
 		
@@ -270,8 +325,9 @@ void essBaseScene::drawLowerBar() {
 			buttScreen.setSize(ofGetWidth(), ofGetHeight());
 		}
 		
-		essSM->setIsDragging(true); 
+		
 
+			lastState = 3; 
 			break;
 
 			
@@ -289,8 +345,8 @@ void essBaseScene::drawLowerBar() {
 	}
 
 	//draw the button to drag out the description
-	//descriptionButn.enableBG(); //enabling this will draw the button box area 
-	//descriptionButn.draw(); 
+	descriptionButn.disableBG(); //enabling this will draw the button box area 
+	descriptionButn.draw(); 
 	if (!floorMap[currentOH].getDrawRotated()) {
 		descriptionButn.setSize(300, 100);
 		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 40); 
@@ -344,17 +400,18 @@ void essBaseScene::setupTweens() {
 
 
 void essBaseScene::onExitComplete(float* arg) {
+	drawIt = false; 
+	doneTweening = true; //when doneTweening is set to true, new rotation are generated
+	setRotation(); cout << "bzzzzt " << endl; 
+	tweenNum = startTween; 
+	cout << "tweenNum: " << tweenNum << endl; 
 	
-
 	if (reEnter) {
-	textTempOH = currentOH;
-	reEnter = false; 
-	lastState = 0; 
-	tweenEntryExit(1);
-
-    //this is where we make the overlay display the actual currentOH, only when the exit of the previous OH is finished. 
-	} else {
-		doneTweening = true;
+		cout << "exit complete: " << endl; 
+		textTempOH = currentOH;     //this is where we make the overlay display the actual currentOH, only when the exit of the previous OH is finished. 
+		reEnter = false; 
+		lastState = 0; 
+		tweenEntryExit(1);
 	}
 }
 
@@ -370,14 +427,13 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 	
 	switch (overlayState) {
         case 0:
-
-
+			
+			
 			cout << "CASE 0: SHOW NOTHING" << endl; 
 
 			timer = ofGetElapsedTimeMillis();
 			
 			if (!firstEntry) {
-				//doneTweening = false; 
 				Tweenzor::add(&tweenNum, tweenNum, startTween, 0.f, 1.f, EASE_IN_OUT_SINE);
 				Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onExitComplete);
 			}
@@ -392,19 +448,18 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
         case 1:
 
-
+			drawIt = true; 
 			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
 
 			essSM->setIsDragging(true);
 
-			doneTweening = false; 
 			Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
 			Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
 
 			if (lastState == 1) {
 				reEnter = true; 
 				tweenEntryExit(0); //send the tween to exit and then come back here
-			} 	else if (lastState ==2 && (textTempOH != currentOH)) {
+			} 	else if (lastState ==3 && (textTempOH != currentOH)) {
 				reEnter = true; 
 				tweenEntryExit(0); //send the tween to exit and then come back here
 			}
@@ -454,10 +509,9 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			
 			
 		case 3:
-			cout << "CASE 2: DESCRIPTION DRAG" << endl; 
-			
+			cout << "CASE 3: DESCRIPTION DRAG" << endl; 			
 			goingUp = true; 
-			
+			drawIt = true; 
 			lastState = 3; 
             break;
     }
@@ -581,11 +635,26 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 	descriptionButn.touchDown(touch);
     touched = true; 
 	
-	if (descriptionButn.isPressed()) descDown = true;
-	
+	if (descriptionButn.isPressed()) {
+		//if (lastState != 3) dragNum = endTween; 
+		if (shiftRotate() == 0) {
+			dragNum = touch.y; 	
+		} else {
+			dragNum = touch.x; 
+		}
+		dragOff = tweenNum - dragNum;  //offset for difference between dragnum and tweennum
+		//tweenNum = dragOff + dragNum; 
+		dragging = true; 
+		tweenEntryExit(3);
+	}
+
 }
 
 void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
+	
+	dragging = true; 
+	
+	/*
 	if (descDown) {
 		overlayState = 3; 
 		if (shiftRotate() == 0) {
@@ -593,9 +662,15 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
 		} else {
 			dragNum = touch.x; 
 		}
-			
-
-	}
+	*/		
+	
+	
+		if (shiftRotate() == 0) {
+			dragNum = touch.y; 	
+		} else {
+			dragNum = touch.x; 
+		}
+	
     //map
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchMoved(touch);
@@ -611,6 +686,8 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
 void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
 	descDown = false; 
+	dragging = false; 
+	
 	
 
     //Home Button
@@ -678,15 +755,17 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 
 	if (overlayState != 3) {
 		if (descriptionButn.isPressed()) {
-			tweenEntryExit(2);
+			//tweenEntryExit(2);
 		}
 	} else {
 		if (descriptionButn.isPressed()) {
-			tweenEntryExit(2);
+			//tweenEntryExit(2);
 			goingUp = true; 
 		}
 	}
 		 
+	if (descriptionButn.isPressed()) tweenEntryExit(3); 
+	
 	descriptionButn.touchUp(touch);
 
     
@@ -851,7 +930,7 @@ void essBaseScene::resetPlayed() {
 
 int essBaseScene::shiftRotate() {
     float angle = 180 - RAD_TO_DEG * atan2( ofxAccelerometer.getForce().y, ofxAccelerometer.getForce().x );
-    
+	
     int returnAngle; 
     
     if (angle > 230 && angle < 330) {
