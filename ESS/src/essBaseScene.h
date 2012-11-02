@@ -63,11 +63,10 @@ public:
     void loadOHaudio();
     string floor;
     string sceneName;
-    int loadXMLTime(int trackNum);
+    double loadXMLTime(int trackNum);
     
     //gets accelererometer data to determine rotation
     int shiftRotate(); 
-	int oldAngle, curAngle; 
     
     essSceneManager* essSM;
     essAssetManager* essAssets;
@@ -111,7 +110,6 @@ public:
     int overlayState, lastState; 
 	void tweenEntryExit(int stateNum_) ;
 	int heightMax;
-	int heightMax90, heightMax0; 
 	
 	int timer, delay; 
 	
@@ -127,14 +125,15 @@ public:
 	
 	//rotation
 	int oldRot; 
-	bool doneTweening; 
-    void setRotation(); 
+    
     
     //audio
     void audioPlay(int currentTrack);
     void checkAudioStatus();
     ofSoundPlayer audioTest;
-//    ofxOpenALSoundPlayer audioTest;
+    baseButton audioBar;
+    ofRectangle audioBarRect;
+    
     void audioDisplay();
     void audioSave();
     int microSec;
@@ -145,8 +144,13 @@ public:
     int min1;
     int min2;
     int tempT;
+    
     int posY;
-
+    int barY;
+    bool audioDrag;
+    
+    
+    
 protected:
     void drawGrid();
     

@@ -19,7 +19,7 @@ oralHist::~oralHist() {
 
 void oralHist::setup() {
     playing = false;
-    time = 0;
+    time = 0.0;
     
     dotRadius = 10; // radius of the dot to be drawn
     origin.set(-dotRadius- (dotRadius/2), -dotRadius - (dotRadius/2)); //where to draw info, where the location is relative to 0 
@@ -93,7 +93,6 @@ void oralHist::drawDot() {
     } else {
         ofSetColor(essAssets->ess_grey, alpha);
     }
-    
     
     //this draws the circle
     ofSetCircleResolution(1000);
@@ -178,10 +177,7 @@ void oralHist::setupOverlay() {
 void oralHist::drawOverlay(int tweenedLoc) {
     
 	int rotVal; 
-
-	maxHeight0 = ofGetHeight() - ((essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight) + (essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight) + marginHeight);
-	maxHeight90 = (essAssets->ostrich19.getStringHeight(description, ofGetHeight()) + marginHeight) + (essAssets->ostrich19.getStringHeight(name, ofGetHeight()) + marginWidth) + marginHeight;
-	
+    
 	if (!drawRot) {
 		//overlayRect.y = tweenedLoc;
 		overlayWidth = ofGetWidth();
