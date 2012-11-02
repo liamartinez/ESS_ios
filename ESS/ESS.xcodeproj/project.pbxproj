@@ -48,7 +48,6 @@
 		BB24DDCA10DA781C00E9C588 /* ofxiphone-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB24DDC910DA781C00E9C588 /* ofxiphone-Info.plist */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
 		D422D96B162CAA41006BBCBA /* ofSwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D422D96A162CAA41006BBCBA /* ofSwipeGestureRecognizer.m */; };
-		D4EE32C81642C9FB00D274DB /* ESSicon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EE32C71642C9FB00D274DB /* ESSicon.png */; };
 		E41D3ED713B38FB500A75A5D /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E41D3ED613B38FB500A75A5D /* Project.xcconfig */; };
 		E41D3EE613B3906D00A75A5D /* CoreOF.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E41D3EE513B3906D00A75A5D /* CoreOF.xcconfig */; };
 		E41D400B13B39D2100A75A5D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41D400613B39D2100A75A5D /* AVFoundation.framework */; };
@@ -151,7 +150,6 @@
 		BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D422D969162CAA41006BBCBA /* ofSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofSwipeGestureRecognizer.h; sourceTree = "<group>"; };
 		D422D96A162CAA41006BBCBA /* ofSwipeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ofSwipeGestureRecognizer.m; sourceTree = "<group>"; };
-		D4EE32C71642C9FB00D274DB /* ESSicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ESSicon.png; sourceTree = "<group>"; };
 		E41D3ED613B38FB500A75A5D /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E41D3EE513B3906D00A75A5D /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/ios/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E41D400613B39D2100A75A5D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -404,7 +402,6 @@
 			children = (
 				0A530F971641CAB500EA64C4 /* ESSicon2.png */,
 				0A530F951641CA5A00EA64C4 /* ESSicon.png */,
-
 				0A93FFC115F6CC3E000F6817 /* Default@2x.png */,
 				0A93FFBF15F6CC39000F6817 /* Default.png */,
 				E4D8936A11527B74007E1F53 /* src */,

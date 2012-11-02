@@ -38,7 +38,6 @@ void map2Scene::activate() {
     guide2.loadImage("flattenFiles/Map2-guide.png");
     
     setupHomeButton();
-    setupTextBoxHelper();
     
     drawGuide = false;     
     

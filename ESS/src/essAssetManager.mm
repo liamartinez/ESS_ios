@@ -25,25 +25,13 @@ essAssetManager* essAssetManager::getInstance() {
 //------------------------------------------------------------------
 essAssetManager::essAssetManager() {
 
-    ess_yellow.r = 254;
-    ess_yellow.g = 251;
-    ess_yellow.b = 223;
-    
-    ess_grey.r = 137; 
-    ess_grey.g = 137; 
-    ess_grey.b = 137; 
-    
-    ess_white.r = 255;
-    ess_white.g = 255;
-    ess_white.b = 255;
-    
-    ess_blue.r = 164; 
-    ess_blue.g = 190; 
-    ess_blue.b = 206; 
 	
-	ess_brown.r = 115; 
-	ess_brown.g = 100; 
-	ess_brown.b = 88; 
+	ess_yellow.set(254, 251, 223); 
+	ess_grey.set(137,137,137); 
+	ess_white.set(255, 255, 255);
+	ess_blue.set(164, 190, 206);
+	ess_brown.set(115, 100, 88);
+
 }
 
 
