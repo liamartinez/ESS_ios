@@ -94,8 +94,15 @@ void oralHist::drawDot() {
         ofSetColor(essAssets->ess_grey, alpha);
     }
     
+    
     //this draws the circle
+    ofSetCircleResolution(1000);
+    ofFill();
     ofCircle(loc.x, loc.y, dotRadius);
+    ofNoFill();
+    ofSetColor(essAssets->ess_blue);
+    ofCircle(loc.x, loc.y, dotRadius+0.1);
+    ofFill();
     
     ofDisableAlphaBlending();
     ofDisableSmoothing();
