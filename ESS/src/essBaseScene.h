@@ -159,6 +159,9 @@ public:
     int barY;
     bool audioDrag;
     
+    //
+    bool spotTouch;
+    
     
     
 protected:

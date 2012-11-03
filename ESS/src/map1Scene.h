@@ -32,6 +32,7 @@ public:
     
     ofxPanZoom	cam;
     int canvasW, canvasH; 
+    void resetZoom(float zoomNum);
     
     ofSoundPlayer audio;
 

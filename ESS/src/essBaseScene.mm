@@ -100,6 +100,9 @@ void essBaseScene::setupMap(string floor_){
     audioDrag = 0;
     audioBarLength = 0;
     barPos = 0;
+    
+    //For Pan
+    spotTouch = false;
 
 }
 
@@ -517,6 +520,8 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 }
 //-------------------------AUDIO & ITS DISPLAY---------------------------------------------------//
 void essBaseScene::audioPlay(int currentTrack){
+
+    
     double tempTime = 0;
     //Stop all the audios
     audioTest.stop();
@@ -549,6 +554,7 @@ void essBaseScene::audioPlay(int currentTrack){
     }
     audioTest.play();
     audioTest.setPosition(tempTime);
+   
 //    cout<<"---------------------------"<<endl;
 }
 
@@ -752,10 +758,13 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
             //Stop the origin audio. Play the new one
             audioPlay(i);
             tweenEntryExit(1);
+            //For Pan
+            spotTouch = true;
             
 			firstEntry = false;     //functions that rely on currentOH not being empty can work now.       
         }        
     }
+    
     for (int i = 0; i < floorMap.size(); i++) {
         floorMap[i].spotButn.touchUp(touch);
     }
