@@ -40,9 +40,7 @@ void map1Scene::activate() {
     guide1.loadImage("flattenFiles/Map1-guide.png");
     
     setupHomeButton();
-    setupTextBoxHelper();
-    
-
+ 
     
     drawGuide = false;     
     

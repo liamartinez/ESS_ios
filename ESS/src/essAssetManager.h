@@ -33,7 +33,8 @@ public:
     ofColor ess_yellow; 
     ofColor ess_grey;
     ofColor ess_white; 
-    ofColor ess_blue; 
+    ofColor ess_blue;
+    ofColor ess_brown;
 
     //buttons
     ofImage playButton, pauseButton; 

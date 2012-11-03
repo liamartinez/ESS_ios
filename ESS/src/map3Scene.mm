@@ -38,8 +38,7 @@ void map3Scene::activate() {
     map3Guide.loadImage("flattenFiles/Map3-guide.png");
     
     setupHomeButton();
-    setupTextBoxHelper();
-    
+
     drawGuide = false;     
     
     // for zooming

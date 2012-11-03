@@ -74,14 +74,12 @@ void homeScene::draw() {
         case HOME_SCENE_FIRST:
             
             ofEnableAlphaBlending();
+
+
+			alphaInc = 5;
 			
-			
-			alphaInc = (fadeTime - startTime)/ 255;
-			
-			if (ofGetElapsedTimeMillis() < fadeTime) {
-				alpha += alphaInc; 
-			}
-                        
+			if (alpha < 255) alpha +=alphaInc; 
+
             ofSetColor(255, 255, 255, alpha); 
             homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
             buttAbout.draw(); 

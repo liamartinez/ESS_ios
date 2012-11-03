@@ -38,8 +38,7 @@ void map4Scene::activate() {
     map4Guide.loadImage("flattenFiles/Map4-guide.png");
     
     setupHomeButton();
-    setupTextBoxHelper();
-    
+
     drawGuide = false;     
     
     // for zooming

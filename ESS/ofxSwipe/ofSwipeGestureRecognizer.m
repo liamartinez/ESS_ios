@@ -31,6 +31,8 @@
 -(void)a:(UISwipeGestureRecognizer *) gr{ 
     direction = gr.direction;
     swipe = 1;
+	
+	
     if ((gr.state == UIGestureRecognizerStateChanged) ||(gr.state == UIGestureRecognizerStateEnded)) {
         
         //do something
@@ -46,6 +48,7 @@
             
         }
     }
+	 
         
 }  
 

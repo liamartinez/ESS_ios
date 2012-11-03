@@ -98,6 +98,7 @@ public:
     void setDrawRotated(bool drawRot_);
 	bool getDrawRotated();
 	bool drawRot; 
+    int maxHeight0, maxHeight90;
 
     
 };

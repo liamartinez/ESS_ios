@@ -16,8 +16,9 @@ void testApp::setup(){
 	
 	//If you want a landscape oreintation 
 	iPhoneSetOrientation(OFXIPHONE_ORIENTATION_LANDSCAPE_RIGHT);
+//    iPhoneSetOrientation(OFXIPHONE_ORIENTATION_PORTRAIT);
 	
-	ofBackground(127,127,127);
+	ofBackground(0,0,0);
     
     //Load Assets
     essAssets = essAssetManager::getInstance();
@@ -46,7 +47,7 @@ void testApp::setup(){
         cout << "Could not load the data!" << endl;
     }
 
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    //[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 
     
     //Chien-Swipe Detect
@@ -67,6 +68,7 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
     ofSoundUpdate();
+	
 
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
 	
@@ -190,5 +192,15 @@ void testApp::deviceOrientationChanged(int newOrientation){
 //--------------------------------------------------------------
 void testApp::touchCancelled(ofTouchEventArgs& args){
 
+}
+
+//---------------------------------------------------------
+void testApp::keyPressed(int key){
+    
+    if (key == 'h'){
+        iPhoneSetOrientation(OFXIPHONE_ORIENTATION_LANDSCAPE_RIGHT); // do something
+    } else if (key == 'v'){
+        iPhoneSetOrientation(OFXIPHONE_ORIENTATION_PORTRAIT); // do something else
+    }
 }
 

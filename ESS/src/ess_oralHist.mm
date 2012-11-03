@@ -177,14 +177,24 @@ void oralHist::setupOverlay() {
 void oralHist::drawOverlay(int tweenedLoc) {
     
 	int rotVal; 
-    
+
+
+	
+	
+	//maximum heights
+	maxHeight0 = ofGetHeight() - ((essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight) + (essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight) + marginHeight);
+	maxHeight90 = (essAssets->ostrich19.getStringHeight(description, ofGetHeight()) + marginHeight) + (essAssets->ostrich19.getStringHeight(name, ofGetHeight()) + marginWidth) + marginHeight;
+	
+	//setup for vertical drawing
 	if (!drawRot) {
 		//overlayRect.y = tweenedLoc;
 		overlayWidth = ofGetWidth();
 		overlayHeight = essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight;
 		descriptionHeight = essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight; 		
 		overlayRect.set(overlayX, tweenedLoc , overlayWidth, overlayHeight); //assign tweenedLoc to Y value
-		rotVal = 0; 		
+		rotVal = 0; 	
+		
+	//setup for horizontal drawing	
 	} else {
 		//overlayRect.x = tweenedLoc;
 		overlayWidth = ofGetHeight(); //reversed width for height
@@ -194,8 +204,7 @@ void oralHist::drawOverlay(int tweenedLoc) {
 		rotVal = 90; 
 	}
     
-    //overlayRect.y = tweenedLoc;
-    
+
 	totalHeight = overlayHeight + descriptionHeight + (marginHeight*2);
     
     ofEnableAlphaBlending();

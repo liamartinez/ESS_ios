@@ -66,7 +66,8 @@ public:
     double loadXMLTime(int trackNum);
     
     //gets accelererometer data to determine rotation
-    int shiftRotate(); 
+    int shiftRotate();
+    int oldAngle, curAngle;
     
     essSceneManager* essSM;
     essAssetManager* essAssets;
@@ -104,38 +105,47 @@ public:
 	int tempOverlayRectHeight; 
     
     //overlay
-
+    
     int startTween, endTween;
     float tweenNum; 
     int overlayState, lastState; 
 	void tweenEntryExit(int stateNum_) ;
 	int heightMax;
-	
+	int heightMax90, heightMax0; 
+	bool drawIt; 
+    
 	int timer, delay; 
-	
+    
 	bool goingUp; 
-
+	bool dragging; 
+    
+	int dragOff; 
     baseButton playPauseButn; 
 	baseButton descriptionButn; 
 	int dragNum;
 	bool descDown; 
 	bool reEnter;
-	
+    
 	int countTemp; 
-	
+    
 	//rotation
 	int oldRot; 
+	bool doneTweening; 
+    void setRotation();
     
     
     //audio
     void audioPlay(int currentTrack);
     void checkAudioStatus();
+    string checkPlayTime(int currentTrack);
+
     ofSoundPlayer audioTest;
     baseButton audioBar;
+    baseButton audioBarY;
     ofRectangle audioBarRect;
-    
-    void audioDisplay();
-    void audioSave();
+    int audioBarLength;
+    int barPos;
+  
     int microSec;
     int second;
     int sec1;
