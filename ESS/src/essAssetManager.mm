@@ -25,6 +25,7 @@ essAssetManager* essAssetManager::getInstance() {
 //------------------------------------------------------------------
 essAssetManager::essAssetManager() {
 
+
 	
 	ess_yellow.set(254, 251, 223); 
 	ess_grey.set(137,137,137); 

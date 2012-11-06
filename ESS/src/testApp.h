@@ -62,6 +62,8 @@ public:
     ofSwipeGestureRecognizer *swipeDetect;
     bool swipe;
     int direction;
+    
+    void keyPressed(int key);
 
 
 

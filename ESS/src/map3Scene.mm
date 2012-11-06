@@ -91,11 +91,18 @@ void map3Scene::draw() {
             //audio display
             checkAudioStatus();
             
+            if (spotTouch == true) {
+                cam.setZoom(1.0f);
+                tweenEntryExit(1);
+                //                cout<<"someone touch the spot"<<endl;
+            }
+            spotTouch = false;
+            
             ofDisableAlphaBlending();
             
             //style guide when left side is touched
             ofSetColor(255, 255, 255);
-            //if (drawGuide) map3Guide.draw(0, 0, ofGetWidth(), ofGetHeight());
+            if (drawGuide) map3Guide.draw(0, 0, ofGetWidth(), ofGetHeight());
             
             break;
             

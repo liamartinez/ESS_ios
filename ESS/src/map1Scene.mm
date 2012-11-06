@@ -93,13 +93,19 @@ void map1Scene::draw() {
             
             //audio display
             checkAudioStatus();
-          
+            //For reset Pan
+            if (spotTouch == true) {
+                cam.setZoom(1.0f);
+                tweenEntryExit(1);
+//                cout<<"someone touch the spot"<<endl;
+            }
+            spotTouch = false;
             
             ofDisableAlphaBlending();
             
             //style guide when left side is touched
             ofSetColor(255, 255, 255);
-            //if (drawGuide) guide1.draw(0, 0, ofGetWidth(), ofGetHeight());
+            if (drawGuide) guide1.draw(0, 0, ofGetWidth(), ofGetHeight());
             
             break;
             
@@ -112,6 +118,18 @@ void map1Scene::draw() {
     
     
 }
+
+//the audio is too short to see the effect. Just keep it for now
+//void map1Scene::resetZoom(float _zoomNum){
+//    float tempZoom = 0;
+//    tempZoom = _zoomNum;
+//    while(tempZoom - 1.0f > 0.0000000001f) {
+//        tempZoom = tempZoom -0.1f;
+//        cam.setZoom(tempZoom);
+//    }
+//    cout<<"zoom number"<<tempZoom<<endl;
+//}
+
 
 
 

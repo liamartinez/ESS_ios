@@ -16,6 +16,7 @@ void testApp::setup(){
 	
 	//If you want a landscape oreintation 
 	iPhoneSetOrientation(OFXIPHONE_ORIENTATION_LANDSCAPE_RIGHT);
+//    iPhoneSetOrientation(OFXIPHONE_ORIENTATION_PORTRAIT);
 	
 	ofBackground(0,0,0);
     
@@ -191,5 +192,15 @@ void testApp::deviceOrientationChanged(int newOrientation){
 //--------------------------------------------------------------
 void testApp::touchCancelled(ofTouchEventArgs& args){
 
+}
+
+//---------------------------------------------------------
+void testApp::keyPressed(int key){
+    
+    if (key == 'h'){
+        iPhoneSetOrientation(OFXIPHONE_ORIENTATION_LANDSCAPE_RIGHT); // do something
+    } else if (key == 'v'){
+        iPhoneSetOrientation(OFXIPHONE_ORIENTATION_PORTRAIT); // do something else
+    }
 }
 
