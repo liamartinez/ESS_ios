@@ -137,6 +137,7 @@ public:
     //audio
     void audioPlay(int currentTrack);
     void checkAudioStatus();
+	void setupAudio(); 
     string checkPlayTime(int currentTrack);
 
     ofSoundPlayer audioTest;
@@ -158,7 +159,8 @@ public:
     int posY;
     int barY;
     bool audioDrag;
-    
+	
+	int beginLineX, endLineX, lineY, lineLen;
     //
     bool spotTouch;
     

@@ -11,7 +11,7 @@
 
 oralHist::oralHist() {
     this->essAssets = essAssetManager::getInstance();
-
+	
 }
 
 oralHist::~oralHist() {
@@ -33,22 +33,22 @@ void oralHist::setup() {
     offset.x = - (textWidth/3);  
     
     locInfo.set(offset + loc);
-
+	
     audio.setVolume(0.75f);
     audio.setMultiPlay(false);
-//    cout<<"in side of OH"<<path<<endl;
-//    audio.loadSound(path);
-     
+	//    cout<<"in side of OH"<<path<<endl;
+	//    audio.loadSound(path);
+	
     spotButn.setSize(dotRadius*4, dotRadius*4); //the size of the button is bigger than the circle drawn, to make it easier to press. 
     spotButn.disableBG(); 
-
+	
     
     isActive = false; 
     centerPlayOnDot = true; 
     justLoaded = true; 
     alpha = 0;
     drawRot = false; 
-
+	
 }
 
 void oralHist::setFloorToActive(bool setFloor) {
@@ -68,11 +68,11 @@ bool oralHist::getDrawRotated() {
 	return drawRot; 
 }
 void oralHist::drawDot() {
-
+	
     //the dots don't need to draw at "origin" because they don't need to be transformed/ rotated.
     ofEnableSmoothing();
     ofEnableAlphaBlending();
-
+	
     //dissolve on entry
     if (justLoaded) {
         //dissolve in 
@@ -117,11 +117,11 @@ void oralHist::drawDot() {
 
 
 void oralHist::drawPlay(int playLocX, int playLocY) {
-
+	
     ofEnableAlphaBlending();
     ofEnableSmoothing();
     ofSetColor(255);
-        
+	
     if (playing) {
         essAssets->pauseButton.draw(playLocX - 5,playLocY - 8 , textHeight + 18, textHeight + 20);
     } else {
@@ -151,62 +151,44 @@ void oralHist::setupOverlay() {
     marginWidth = 20; 
     
     marginButton = 40; 
+	
+	playbarHeight = 40; 
     
     overlayWidth = ofGetWidth();
-    overlayHeight = essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight;
+    overlayHeight = essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight + playbarHeight;
     overlayX = 0;
     overlayY = 0;
     
     descriptionHeight = essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight; 
-    
+
     overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
     //rotated values (can't translate otherwise we will lose the button functionality).
-    
-	overlayWidthRot = ofGetHeight(); //reversed width for height
-    overlayHeightRot = essAssets->ostrich19.getStringHeight(name, overlayWidthRot) + marginWidth;
-    overlayXRot = 0; //doesn't matter, will be tweened loc
-    overlayYRot = 0;
-    
-    descriptionHeightRot = essAssets->ostrich19.getStringHeight(description, overlayWidthRot) + marginHeight; 
-    
-    overlayRectRot.set(overlayXRot, overlayYRot , overlayWidthRot, overlayHeightRot);
-
-     
 }
 
 void oralHist::drawOverlay(int tweenedLoc) {
     
 	int rotVal; 
-
-
-	
-	
-	//maximum heights
-	maxHeight0 = ofGetHeight() - ((essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight) + (essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight) + marginHeight);
-	maxHeight90 = (essAssets->ostrich19.getStringHeight(description, ofGetHeight()) + marginHeight) + (essAssets->ostrich19.getStringHeight(name, ofGetHeight()) + marginWidth) + marginHeight;
 	
 	//setup for vertical drawing
 	if (!drawRot) {
-		//overlayRect.y = tweenedLoc;
 		overlayWidth = ofGetWidth();
-		overlayHeight = essAssets->ostrich19.getStringHeight(name, ofGetWidth()) + marginHeight;
-		descriptionHeight = essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight; 		
 		overlayRect.set(overlayX, tweenedLoc , overlayWidth, overlayHeight); //assign tweenedLoc to Y value
+		overlayHeight = essAssets->ostrich19.getStringHeight(name, overlayWidth) + marginHeight + playbarHeight;	
 		rotVal = 0; 	
 		
-	//setup for horizontal drawing	
+		//setup for horizontal drawing	
 	} else {
-		//overlayRect.x = tweenedLoc;
-		overlayWidth = ofGetHeight(); //reversed width for height
-		overlayHeight = essAssets->ostrich19.getStringHeight(name, overlayWidth) + marginWidth;		
-		descriptionHeight = essAssets->ostrich19.getStringHeight(description, overlayWidth) + marginHeight; 
-		overlayRect.set(tweenedLoc, overlayY, overlayWidth, overlayHeight); //assign tweenedLoc to X value
+		overlayWidth = ofGetHeight(); //reversed width for height	 
+		overlayRect.set(tweenedLoc, overlayY, overlayWidth, overlayHeight); //assign tweenedLoc to X value		
+		overlayHeight = essAssets->ostrich19.getStringHeight(name, overlayWidth) + marginHeight + playbarHeight;	
 		rotVal = 90; 
 	}
-    
 
+	
 	totalHeight = overlayHeight + descriptionHeight + (marginHeight*2);
-    
+	maxHeight0 = ofGetHeight() - totalHeight; 
+	maxHeight90 = totalHeight; 
+
     ofEnableAlphaBlending();
     
 	//draw overlay Rectangle

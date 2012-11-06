@@ -86,6 +86,7 @@ public:
 	int totalHeight; 
     
     int descriptionHeight; 
+	int playbarHeight; 
     //overLayRot
 	ofRectangle overlayRectRot; 
     int overlayXRot, overlayYRot, overlayWidthRot, overlayHeightRot; 

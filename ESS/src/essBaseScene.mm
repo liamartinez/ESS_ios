@@ -51,6 +51,7 @@ void essBaseScene::setupMap(string floor_){
     
     currentOH = 0; 
     firstEntry = true; 
+	tweenEntryExit(0);
     
     floorMap = loadXML(floor);
     
@@ -100,6 +101,8 @@ void essBaseScene::setupMap(string floor_){
     audioDrag = 0;
     audioBarLength = 0;
     barPos = 0;
+	
+	setupAudio(); 
     
     //For Pan
     spotTouch = false;
@@ -157,13 +160,15 @@ void essBaseScene::drawMapPoints() {
     //this is always being drawn, but only if its not the first time
     if (!firstEntry && drawIt) drawLowerBar();
 	
-	
 	ofColor c (100, 100, 100, 100); 
 	buttScreen.setColor(c);
 	ofEnableAlphaBlending(); 
 	//debug
 	//buttScreen.draw(); 
 	ofDisableAlphaBlending(); 
+	cout << "laststate " << lastState << endl; 
+	cout << "reenter " << reEnter << endl; 
+	
 }
 
 void essBaseScene::setRotation() {
@@ -190,6 +195,7 @@ void essBaseScene::setRotation() {
     
 	if (shiftRotate() != oldRot) {
 		tweenNum = startTween;
+		setupAudio();
 		oldRot = shiftRotate(); 
 	}
     
@@ -226,6 +232,7 @@ void essBaseScene::drawLowerBar() {
 		case 2:
             
 			//this is for live rotating -> not necessary anymore since we don't live rotate. 
+			/*
 			if (shiftRotate() != oldRot) {
 				if (shiftRotate()==0) {
 					heightMax = heightMax0;
@@ -249,6 +256,7 @@ void essBaseScene::drawLowerBar() {
 			}
             
 			essSM->setIsDragging(true); 
+			 */
 			break;
             
 		case 3:
@@ -269,7 +277,7 @@ void essBaseScene::drawLowerBar() {
             
 			if (!dragging) { //When dragging stops, snap to heightmax and endtween
 				if (abs(heightMax - tweenNum) <  (heightMax/2))  {
-//					cout << "go up" << endl;
+					cout << "go up" << endl;
                     
 					float easing = 0.3;
                     
@@ -280,7 +288,7 @@ void essBaseScene::drawLowerBar() {
 					}
 				} 
 				if (abs(endTween - tweenNum) < (heightMax/2))  {
-//					cout << "go down" << endl; 
+					cout << "go down" << endl; 
                     
 					float easing = 0.5;
                     
@@ -294,7 +302,7 @@ void essBaseScene::drawLowerBar() {
                 
 			} else { //While you are dragging, limit the dragging within heightMax and endtween
                 
-//				cout << "dragging" << endl; 
+				cout << "dragging" << endl; 
 				if ((shiftRotate()==0 && dragNum < heightMax) || (shiftRotate()==90 && dragNum > heightMax)) {
 					float easing = 0.2;
                     
@@ -401,6 +409,8 @@ void essBaseScene::setupTweens() {
 
 void essBaseScene::onExitComplete(float* arg) {
     
+	cout << "exit complete" << endl; 
+	
 	//this is where we make the overlay display the actual currentOH, only when the exit of the previous OH is finished.
 	textTempOH = currentOH;  		    
     
@@ -410,11 +420,7 @@ void essBaseScene::onExitComplete(float* arg) {
 	tweenNum = startTween;
 	lastState = 0; 
     
-//	cout << "exit complete: rotation is now: "  << floorMap[currentOH].getDrawRotated() << endl; 
-    
 	if (reEnter) {
-//		cout << "exit complete, reenter: " << endl; 
-        
 		reEnter = false; 
 		tweenEntryExit(1);
 	}
@@ -422,6 +428,7 @@ void essBaseScene::onExitComplete(float* arg) {
 
 void essBaseScene::onEnterComplete(float* arg) {
 	doneTweening = false; 
+
 }
 
 void essBaseScene::tweenEntryExit(int stateNum_) {
@@ -431,13 +438,13 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 	switch (overlayState) {
         case 0:
             
-//			cout << "CASE 0: SHOW NOTHING" << endl; 
+			cout << "CASE 0: SHOW NOTHING" << endl; 
 			timer = ofGetElapsedTimeMillis();
-            
+			
 			if (!firstEntry) {
 				Tweenzor::add(&tweenNum, tweenNum, startTween, 0.f, 1.f, EASE_IN_OUT_SINE);
 				Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onExitComplete);
-			}
+			} 
             
 			for (int i = 0; i < floorMap.size(); i++) {
 				floorMap[i].setFloorToActive(false);
@@ -449,24 +456,27 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             
         case 1:
             
-//			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
+			cout << "CASE 1: NAME AND PLAYBAR" << endl; 
             
 			essSM->setIsDragging(true);
 			drawIt = true; 
-            
+
 			Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
 			Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
             
 			if (lastState == 1) {
 				reEnter = true; 
+				cout << "laststate1" << endl; 
 				tweenEntryExit(0); //send the tween to exit and then come back here
 			} 	else if (lastState ==3 && (textTempOH != currentOH)) {
 				reEnter = true; 
 				tweenEntryExit(0); //send the tween to exit and then come back here
+				cout << "laststate3" << endl; 
 			}
             
 			else  {
 				textTempOH = currentOH; //if not just go up
+				cout << "just go up!!" << endl; 
 			}
             
 			for (int i = 0; i < floorMap.size(); i++) {
@@ -480,8 +490,8 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
             
         case 2:
             
-//			cout << "CASE 2: DESCRIPTION BUTTON. DISABLED." << endl; 
-            
+			cout << "CASE 2: DESCRIPTION BUTTON. DISABLED." << endl; 
+            /*
 			//get the heightMaxes
 			heightMax0 = floorMap[textTempOH].maxHeight0;
 			heightMax90 = floorMap[textTempOH].maxHeight90;
@@ -504,13 +514,15 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
                 goingUp = !goingUp; 
                 
 			}
+			
             
 			lastState = 2; 
+			 */
 			break;	
             
             
 		case 3:
-//			cout << "CASE 3: DESCRIPTION DRAG" << endl; 			
+			cout << "CASE 3: DESCRIPTION DRAG" << endl; 			
 			goingUp = true; 
 			drawIt = true; 
 			lastState = 3; 
@@ -576,18 +588,43 @@ string essBaseScene::checkPlayTime(int currentTrack){
 
 }
 
+void essBaseScene::setupAudio() {
+	
+	int playHeadLoc = (floorMap[currentButton].overlayHeight - floorMap[currentButton].marginHeight*1.5);
+	
+	 beginLineX = floorMap[currentButton].marginWidth/2 + floorMap[currentButton].marginButton; 
+	//endLineX = floorMap[currentButton].overlayWidth - floorMap[currentButton].marginWidth - (floorMap[currentButton].marginButton*3); 
+	
+	if (floorMap[currentOH].getDrawRotated()) {
+		lineY = tweenNum - playHeadLoc; 
+		 endLineX = floorMap[currentButton].overlayWidth - floorMap[currentButton].marginWidth - (floorMap[currentButton].marginButton*2); 
+	} else {
+		 lineY =  tweenNum + playHeadLoc; 
+		 endLineX = floorMap[currentButton].overlayWidth - floorMap[currentButton].marginWidth - (floorMap[currentButton].marginButton*3); 
+	}
+	
+	 lineLen = endLineX - beginLineX;
+}
+
 void essBaseScene::checkAudioStatus(){
+
+	setupAudio(); 
+	
     for (int i = 0; i< floorMap.size(); i++) {
         if (floorMap[i].playing) {
             
+			/*
             //For Bar's Position
             if(shiftRotate() == 0){
                 audioBarLength = 120;
             }else{
                 audioBarLength = 90;
             }
+			 */
+			
             //barPos: The position of the small Rec, where it is playing now
-            barPos = audioTest.getPosition()*audioBarLength;
+            //barPos = audioTest.getPosition()*audioBarLength;
+			barPos = audioTest.getPosition()*lineLen;
             
             //Check if it plays to the end and reset
             if(audioTest.getPosition()==1.0){
@@ -603,43 +640,48 @@ void essBaseScene::checkAudioStatus(){
 	ofEnableAlphaBlending();
 	ofSetColor(essAssets->ess_yellow);
 	
+
+	
 	if (drawIt) { //band-aid boolean to prevent drawings when in weird rotations
+	
+		ofSetColor(essAssets->ess_yellow);
 		//if we are in horizontal position
-		if (shiftRotate() == 0) {
-		//the bar is 120 pixel long, marginHeight = 20, the tweenNum is the overlay height
-			ofLine(308, tweenNum+ 10 , 308+audioBarLength, tweenNum+ 10 ); 
-			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH), 308+audioBarLength+10, tweenNum+10, 100, 100);
-            
-            //Dragable rect
-            if(!audioDrag){
-                ofRect(308+barPos, tweenNum+5, 2, 10);
-                audioBar.setPos(308+barPos, tweenNum+5);
+		if (!floorMap[currentOH].getDrawRotated()) {
+			ofLine (beginLineX, lineY, endLineX, lineY); 
+			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH), endLineX + 20, lineY - 10, 100, 100);
+
+			//Dragable rect
+			if(!audioDrag){
+				ofRect(beginLineX+barPos, lineY-5, 2, 10);
+				audioBar.setPos(beginLineX+barPos, lineY+5);
             }else{
-                
-                ofRect(barY, tweenNum+5, 2, 10);
-                audioBar.setPos(barY, tweenNum+5);
-                
+                ofRect(barY, lineY-5, 2, 10);
+                audioBar.setPos(barY, lineY-5);
             }
+			
             
 		} else  {
+			//audioBar.draw(); 
 			//if we are in vertical
-			ofPushMatrix(); 
-				ofTranslate(tweenNum - 8, floorMap[currentOH].overlayRect.width - 140);
-				ofRotateZ(90);
-				ofLine(0 ,10, audioBarLength,10 );
-                essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH),100, 5,100, 100);
-                ofPopMatrix();
-            //Dragable rect
-                if(!audioDrag){
-                    //Does it needs tween in Y direction?
-                    ofRect(tweenNum-22, 180+barPos, 10, 2);
-                    audioBar.setPos(tweenNum-25, 180+barPos);
-                }else{
+			setupAudio(); 
+			ofPushMatrix();
+			ofTranslate(lineY, beginLineX);
+			ofRotateZ(90);
+			ofLine(0, 0, endLineX, 0);
+			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH),endLineX + 20, -5,100, 100);
+			ofPopMatrix();
+			
+			//Dragable rect
+			if(!audioDrag){
+				//Does it needs tween in Y direction?
+				ofRect(lineY-5, beginLineX+barPos, 10, 2);
+				audioBar.setPos(lineY-25, beginLineX+barPos);
+			}else{
                 
-                    ofRect(tweenNum-22, barY, 10,2);
-                    audioBar.setPos(tweenNum-25,barY);
-                }          
-//			ofPopMatrix();
+				ofRect(lineY-5, barY, 10,2);
+				audioBar.setPos(lineY+5,barY);
+			}    
+
 		}
 	}
     ofDisableAlphaBlending();
@@ -723,10 +765,11 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
     
     //audio
     if (audioDrag ) {
-        if (shiftRotate()==0&& touch.x >308 && touch.x <428) {
+		cout << "dragging "<< endl; 
+        if (shiftRotate()==0&& touch.x >beginLineX && touch.x <endLineX) {
             barY = touch.x;
 
-        }else if(shiftRotate()==90&& touch.y >180 &&touch.y <270){
+        }else if(shiftRotate()==90&& touch.y >beginLineX &&touch.y <endLineX){
             cout<<"touchY"<<touch.y<<endl;
             barY = touch.y;
         }
@@ -748,16 +791,16 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         buttHome.touchUp(touch);
 	}
     
-//	cout << "shiftrotate when touched is: " << shiftRotate() << endl; 
     //Audio Spot Buttons
     for (int i = 0; i < floorMap.size(); i++) {
         if((shiftRotate() == 0 && floorMap[i].spotButn.isPressed() && touch.y < tweenNum) || (shiftRotate() == 90 && floorMap[i].spotButn.isPressed()&& touch.x > tweenNum)){
             
 			cout << "pressed a button" << endl; 
             currentOH = i;
+			tweenEntryExit(1);
             //Stop the origin audio. Play the new one
             audioPlay(i);
-            tweenEntryExit(1);
+
             //For Pan
             spotTouch = true;
             
@@ -831,9 +874,11 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         
         double tempPos = 0.0;
         if (shiftRotate()==0 ) {
-            tempPos = double(barY-308)/double(120);
+            //tempPos = double(barY-308)/double(120);
+			tempPos = double(barY-beginLineX)/double(lineLen);
         }else{
-            tempPos = double(barY-180)/double(90);
+            //tempPos = double(barY-180)/double(90);
+			tempPos = double(barY-beginLineX)/double(lineLen);
         }
         audioTest.setPaused(0);
         audioTest.setPosition(tempPos);
@@ -964,7 +1009,6 @@ void essBaseScene::resetPlayed() {
     
     for (int floorNum = 1; floorNum <=4; floorNum++) {
         
-        cout << "im in the loop" << floorNum << endl; 
         
         //load the XMLs
         if( XMLTemp.loadFile(ofxiPhoneGetDocumentsDirectory() + ofToString(floorNum) + ".xml") ){
