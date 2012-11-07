@@ -48,6 +48,7 @@ void oralHist::setup() {
     justLoaded = true; 
     alpha = 0;
     drawRot = false; 
+
 	
 }
 
@@ -95,12 +96,12 @@ void oralHist::drawDot() {
     }
     
     //this draws the circle
-    ofSetCircleResolution(1000);
+    ofSetCircleResolution(100);
     ofFill();
     ofCircle(loc.x, loc.y, dotRadius);
     ofNoFill();
     ofSetColor(essAssets->ess_blue);
-    ofCircle(loc.x, loc.y, dotRadius+0.1);
+    ofCircle(loc.x, loc.y, dotRadius);
     ofFill();
     
     ofDisableAlphaBlending();

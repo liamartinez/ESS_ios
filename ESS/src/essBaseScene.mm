@@ -165,10 +165,7 @@ void essBaseScene::drawMapPoints() {
 	ofEnableAlphaBlending(); 
 	//debug
 	//buttScreen.draw(); 
-	ofDisableAlphaBlending(); 
-	cout << "laststate " << lastState << endl; 
-	cout << "reenter " << reEnter << endl; 
-	
+	ofDisableAlphaBlending(); 	
 }
 
 void essBaseScene::setRotation() {
@@ -590,19 +587,18 @@ string essBaseScene::checkPlayTime(int currentTrack){
 
 void essBaseScene::setupAudio() {
 	
-	int playHeadLoc = (floorMap[currentButton].overlayHeight - floorMap[currentButton].marginHeight*1.5);
+	int playHeadLoc = (floorMap[currentOH].overlayHeight - floorMap[currentOH].marginHeight*1.5);
 	
-	 beginLineX = floorMap[currentButton].marginWidth/2 + floorMap[currentButton].marginButton; 
-	//endLineX = floorMap[currentButton].overlayWidth - floorMap[currentButton].marginWidth - (floorMap[currentButton].marginButton*3); 
+	 beginLineX = floorMap[currentOH].marginWidth/2 + floorMap[currentOH].marginButton; 
 	
 	if (floorMap[currentOH].getDrawRotated()) {
 		lineY = tweenNum - playHeadLoc; 
-		 endLineX = floorMap[currentButton].overlayWidth - floorMap[currentButton].marginWidth - (floorMap[currentButton].marginButton*2); 
+		 endLineX = floorMap[currentOH].overlayWidth - floorMap[currentOH].marginWidth - (floorMap[currentOH].marginButton*2.5); 
 	} else {
 		 lineY =  tweenNum + playHeadLoc; 
-		 endLineX = floorMap[currentButton].overlayWidth - floorMap[currentButton].marginWidth - (floorMap[currentButton].marginButton*3); 
+		 endLineX = floorMap[currentOH].overlayWidth - floorMap[currentOH].marginWidth - (floorMap[currentOH].marginButton*3); 
 	}
-	
+
 	 lineLen = endLineX - beginLineX;
 }
 
@@ -668,7 +664,7 @@ void essBaseScene::checkAudioStatus(){
 			ofTranslate(lineY, beginLineX);
 			ofRotateZ(90);
 			ofLine(0, 0, endLineX, 0);
-			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH),endLineX + 20, -5,100, 100);
+			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH),endLineX + 10, -5,100, 100);
 			ofPopMatrix();
 			
 			//Dragable rect
