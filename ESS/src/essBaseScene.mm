@@ -594,12 +594,12 @@ void essBaseScene::setupAudio() {
 	if (floorMap[currentOH].getDrawRotated()) {
 		lineY = tweenNum - playHeadLoc; 
 		 endLineX = floorMap[currentOH].overlayWidth - floorMap[currentOH].marginWidth - (floorMap[currentOH].marginButton*2.5); 
+		lineLen = endLineX;
 	} else {
 		 lineY =  tweenNum + playHeadLoc; 
 		 endLineX = floorMap[currentOH].overlayWidth - floorMap[currentOH].marginWidth - (floorMap[currentOH].marginButton*3); 
+		lineLen = endLineX - beginLineX;
 	}
-
-	 lineLen = endLineX - beginLineX;
 }
 
 void essBaseScene::checkAudioStatus(){
@@ -869,7 +869,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     if(audioDrag){
         
         double tempPos = 0.0;
-        if (shiftRotate()==0 ) {
+        if (!floorMap[currentOH].getDrawRotated() ) {
             //tempPos = double(barY-308)/double(120);
 			tempPos = double(barY-beginLineX)/double(lineLen);
         }else{

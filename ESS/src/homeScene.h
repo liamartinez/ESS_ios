@@ -27,6 +27,7 @@ public:
     void touchDown(ofTouchEventArgs &touch);
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
+	void touchDoubleTap(ofTouchEventArgs &touch);
     
     //buttons
     baseButton buttAbout; 
@@ -34,20 +35,19 @@ public:
     baseButton buttMap1, buttMap2, buttMap3, buttMap4; 
     baseButton button;
 	
+	baseButton balcony, mainSanct, LowerSanc, Eldrige; 
+	
 	//fade-in
 	int fadeTime, startTime; 
 	int alpha, alphaInc; 
-    
+    bool guideOn; 
 	
 private:
     
     ofImage homeScreen; //lia - replace pictures here. 
-    /*
-    ofImage homeScreen;
-    ofImage postit; 
-    */
-    
-    
+    ofImage homeScreenV;
+	ofImage homeScreenVguide; 
+	
 };
 
 #endif
