@@ -1084,27 +1084,26 @@ void essBaseScene::setInfoShowing(bool infoShow_){
     isInfoShowing = infoShow_; 
 }
 
-//int essBaseScene::shiftRotate() {
-//    float angle = 180 - RAD_TO_DEG * atan2( ofxAccelerometer.getForce().y, ofxAccelerometer.getForce().x );
-//
-//	
-//    int returnAngle; 
-//    
-//    if (angle > 230 && angle < 330) {
-//        returnAngle = 90; 
-//    } else if (angle > 330 && angle < 360) {
-//        returnAngle = 180; 
-//    } else if (angle > 0 && angle < 30) {
-//        returnAngle = 180; 
-//    } else if (angle > 30 && angle < 130) {
-//        returnAngle = 270; 
-//    } else {
-//        returnAngle = 0; 
-//    }
-//    
-//    
-//    return returnAngle;
-//}
+int essBaseScene::shiftRotate2() {
+    float angle = 180 - RAD_TO_DEG * atan2( ofxAccelerometer.getForce().y, ofxAccelerometer.getForce().x );
+
+	int returnAngle; 
+    
+    if (angle > 230 && angle < 330) {
+        returnAngle = 90; 
+    } else if (angle > 330 && angle < 360) {
+        returnAngle = 180; 
+    } else if (angle > 0 && angle < 30) {
+        returnAngle = 180; 
+    } else if (angle > 30 && angle < 130) {
+        returnAngle = 270; 
+    } else {
+        returnAngle = 0; 
+    }
+    
+    
+    return returnAngle;
+}
 
 
 //------------------------------------------------------------------

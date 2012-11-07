@@ -82,7 +82,7 @@ void homeScene::draw() {
 			
             ofSetColor(255, 255, 255, alpha); 
 			
-			if (shiftRotate() == 0) {
+			if (shiftRotate2() == 0) {
 				
 				rectAbout.set(410, 270, 65, 40);
 				rectMap1.set(150, 113, 200, 40);
@@ -92,7 +92,7 @@ void homeScene::draw() {
 				
 				homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
 				
-			} else if (shiftRotate() == 90) {
+			} else if (shiftRotate2() == 90) {
 				
 				rectMap1.set(250, 60, 40, 200);
 				rectMap2.set(200, 60, 40, 200);

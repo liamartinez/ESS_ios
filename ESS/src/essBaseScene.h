@@ -67,6 +67,7 @@ public:
     
     //gets accelererometer data to determine rotation
     int shiftRotate();
+	int shiftRotate2();
     int oldAngle, curAngle;
     
     essSceneManager* essSM;

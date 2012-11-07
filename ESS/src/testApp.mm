@@ -47,7 +47,7 @@ void testApp::setup(){
         cout << "Could not load the data!" << endl;
     }
 
-    //[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 
     
     //Chien-Swipe Detect
