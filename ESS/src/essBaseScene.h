@@ -124,6 +124,7 @@ public:
     baseButton playPauseButn; 
 	baseButton descriptionButn; 
 	int dragNum;
+	int lastTweenNum; 
 	bool descDown; 
 	bool reEnter;
     

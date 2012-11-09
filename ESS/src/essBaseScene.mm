@@ -265,19 +265,45 @@ void essBaseScene::drawLowerBar() {
 			//get the heightMaxes depending on rotation
 			heightMax0 = floorMap[currentOH].maxHeight0;
 			heightMax90 = floorMap[currentOH].maxHeight90;
-            
-            int factor;
+
 			if (shiftRotate()==0) {
 				heightMax = heightMax0;
-				 factor = ofGetHeight();
 			} else if (shiftRotate() == 90){
 				heightMax =  heightMax90;
-				 factor = ofGetWidth();
 			}
             
-            
 			if (!dragging) { //When dragging stops, snap to heightmax and endtween
-
+							 cout << "not dragging" << endl; 
+				cout << lastTweenNum << " " << tweenNum << endl; 
+				// going up 
+				if (lastTweenNum > tweenNum) {
+					cout << "                                     go up" << endl;
+					float easing = 0.1;
+                    
+					float targetX = heightMax;
+					float dx = targetX - tweenNum;
+					if(abs(dx) > 1) {
+						tweenNum += dx * easing;
+						
+					}
+				}
+					
+					else {
+						cout << "                                  go down" << endl; 
+						
+						float easing = 0.1;
+						
+						float targetX = endTween;
+						float dx = targetX - tweenNum;
+						if(abs(dx) > 1) {
+							tweenNum += dx * easing;
+							tweenEntryExit(1);
+						}
+						
+					} 
+					//lastTweenNum = tweenNum;
+			
+				/*
 				if (abs(heightMax - tweenNum) <   (factor - heightMax) /2)  {
 					cout << "go up" << endl;
                     
@@ -299,10 +325,12 @@ void essBaseScene::drawLowerBar() {
 						tweenNum += dx * easing;
 						tweenEntryExit(1);
 					}
-				} 
+				 */
+				
+				 
                 
 			} else { //While you are dragging, limit the dragging within heightMax and endtween
-                
+                cout << lastTweenNum << " " << tweenNum << endl; 
 				cout << "dragging" << endl;  
 				if ((shiftRotate()==0 && dragNum < heightMax) || (shiftRotate()==90 && dragNum > heightMax)) {
 					float easing = 0.2;
@@ -721,6 +749,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 		dragOff = tweenNum - dragNum;  //offset for difference between dragnum and tweennum
 		dragging = true; //this is for case 3, so that it snaps only when you're not dragging. 
 		tweenEntryExit(3);
+		
 	}
 	
 
@@ -737,7 +766,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
         }    
     }
     audioBar.touchDown(touch);
-    
+    lastTweenNum = tweenNum;
 	
 }
 
@@ -784,6 +813,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
 	descDown = false; //this is for case 2, which is not used anymore.
 	dragging = false; //this is for case 3, so that it snaps only when you're not dragging. 
+	
     
     //Home Button
     if((shiftRotate() != 90 && touch.y < tweenNum) || (shiftRotate() == 90 && touch.x > tweenNum)){

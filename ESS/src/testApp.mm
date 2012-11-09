@@ -83,7 +83,7 @@ void testApp::update(){
 		
 	}
 
-	cout << "curSwipe: " << curSwipe << " heightmax: " << heightMax << endl; 
+	//cout << "curSwipe: " << curSwipe << " heightmax: " << heightMax << endl; 
 	
 	if (curSwipe < heightMax - 20) {
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
