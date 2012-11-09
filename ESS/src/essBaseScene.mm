@@ -165,6 +165,7 @@ void essBaseScene::drawMapPoints() {
 	ofEnableAlphaBlending(); 
 	//debug
 	//buttScreen.draw(); 
+	//audioBar.draw(); 
 	ofDisableAlphaBlending(); 	
 }
 
@@ -272,11 +273,14 @@ void essBaseScene::drawLowerBar() {
 				heightMax =  heightMax90;
 			}
             
+			if (justSetAudio) tweenNum = lastTweenNum; 
+			
+			if (!audioDrag && !justSetAudio) {
 			if (!dragging) { //When dragging stops, snap to heightmax and endtween
 							 cout << "not dragging" << endl; 
 				cout << lastTweenNum << " " << tweenNum << endl; 
 				// going up 
-				if (lastTweenNum > tweenNum) {
+				if ((shiftRotate()==0 && lastTweenNum > tweenNum) || (shiftRotate()==90 && lastTweenNum < tweenNum)) {
 					cout << "                                     go up" << endl;
 					float easing = 0.1;
                     
@@ -284,13 +288,9 @@ void essBaseScene::drawLowerBar() {
 					float dx = targetX - tweenNum;
 					if(abs(dx) > 1) {
 						tweenNum += dx * easing;
-						
 					}
-				}
-					
-					else {
+				} else {
 						cout << "                                  go down" << endl; 
-						
 						float easing = 0.1;
 						
 						float targetX = endTween;
@@ -298,36 +298,9 @@ void essBaseScene::drawLowerBar() {
 						if(abs(dx) > 1) {
 							tweenNum += dx * easing;
 							tweenEntryExit(1);
-						}
-						
-					} 
-					//lastTweenNum = tweenNum;
-			
-				/*
-				if (abs(heightMax - tweenNum) <   (factor - heightMax) /2)  {
-					cout << "go up" << endl;
-                    
-					float easing = 0.3;
-                    
-					float targetX = heightMax;
-					float dx = targetX - tweenNum;
-					if(abs(dx) > 1) {
-						tweenNum += dx * easing;
-					}
-				} else {
-					cout << "go down" << endl; 
-                    
-					float easing = 0.3;
-                    
-					float targetX = endTween;
-					float dx = targetX - tweenNum;
-					if(abs(dx) > 1) {
-						tweenNum += dx * easing;
-						tweenEntryExit(1);
-					}
-				 */
-				
-				 
+						}		
+					}  
+
                 
 			} else { //While you are dragging, limit the dragging within heightMax and endtween
                 cout << lastTweenNum << " " << tweenNum << endl; 
@@ -355,6 +328,7 @@ void essBaseScene::drawLowerBar() {
 					tweenNum = dragNum + dragOff;
 				}
                 
+			}
 			}
             
             
@@ -681,10 +655,10 @@ void essBaseScene::checkAudioStatus(){
 			//Dragable rect
 			if(!audioDrag){
 				ofRect(beginLineX+barPos, lineY-5, 2, 10);
-				audioBar.setPos(beginLineX+barPos, lineY+5);
+				audioBar.setPos(beginLineX+barPos, lineY-20);
             }else{
                 ofRect(barY, lineY-5, 2, 10);
-                audioBar.setPos(barY, lineY-5);
+                audioBar.setPos(barY, lineY-20);
             }
 			
             
@@ -706,7 +680,7 @@ void essBaseScene::checkAudioStatus(){
 				audioBar.setPos(lineY-25, beginLineX+barPos);
 			}else{
                 
-				ofRect(lineY-5, barY, 10,2);
+				ofRect(lineY-25, barY, 10,2);
 				audioBar.setPos(lineY+5,barY);
 			}    
 
@@ -749,7 +723,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 		dragOff = tweenNum - dragNum;  //offset for difference between dragnum and tweennum
 		dragging = true; //this is for case 3, so that it snaps only when you're not dragging. 
 		tweenEntryExit(3);
-		
+		justSetAudio = false; 
 	}
 	
 
@@ -758,6 +732,7 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
         audioTest.setPaused(1);
         audioTest.setPosition(0.0);
         audioDrag= 1;
+		justSetAudio = true; 
         cout<<"start to drag"<<endl;
         if(shiftRotate() == 0){
             barY = touch.x;
@@ -916,7 +891,9 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         cout<<"Drag Done i"<<currentOH<<endl;
     }
     audioBar.touchUp(touch);
-    
+    if (audioBar.isPressed()) {
+		lastTweenNum = tweenNum; 
+	}
 	
     touched = false; 
     

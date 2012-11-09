@@ -161,6 +161,7 @@ public:
     int posY;
     int barY;
     bool audioDrag;
+	bool justSetAudio; 
 	
 	int beginLineX, endLineX, lineY, lineLen;
     //

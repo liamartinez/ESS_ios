@@ -26,7 +26,7 @@
         [view addGestureRecognizer:swipeDown];
  
     }  
-    return self;  
+	  return self;  
 }  
 
 -(void)a:(UISwipeGestureRecognizer *) gr{ 
@@ -34,9 +34,7 @@
     swipe = 1;
 	p = [gr locationInView: mView];
 	
-	//gr.enabled = NO;
-	
-	
+
     if ((gr.state == UIGestureRecognizerStateChanged) ||(gr.state == UIGestureRecognizerStateEnded)) {
         
         //do something

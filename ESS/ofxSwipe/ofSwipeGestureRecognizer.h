@@ -19,7 +19,7 @@
     int direction;
 	CGPoint p;
 	UIView *mView;
-    
+    bool inThresh; 
 }
 
 -(id)initWithView:(UIView*)view;  

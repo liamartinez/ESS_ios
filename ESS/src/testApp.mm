@@ -72,7 +72,7 @@ void testApp::update(){
 
 	int heightMax = essSM->getOverlayLoc();
 	int curSwipe;
-	
+	/*
 	if (essSM->getIsRot()) {
 		curSwipe = swipeDetect->p.y;
 	} else {
@@ -82,9 +82,12 @@ void testApp::update(){
 	if (essSM->getIsDragging()){
 		
 	}
+	 */
 
+	
 	//cout << "curSwipe: " << curSwipe << " heightmax: " << heightMax << endl; 
 	
+	//if (swipeDetect) {
 	if (curSwipe < heightMax - 20) {
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
 	
@@ -123,7 +126,8 @@ void testApp::update(){
     } else {
 		swipeDetect->swipe = 0; 
 	}
-	}
+		//}
+}
 
 
     if(essSM->getCurSceneChanged()) {
