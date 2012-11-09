@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+//#import <UIKit/UIKit.h>
 
 
 @interface ofSwipeGestureRecognizer : NSObject {
@@ -16,7 +17,8 @@
 @public
     bool swipe;
     int direction;
-
+	CGPoint p;
+	UIView *mView;
     
 }
 

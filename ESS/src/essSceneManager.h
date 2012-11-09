@@ -23,6 +23,12 @@ public:
 	bool isDragging; 
 	bool getIsDragging(); 
 	void setIsDragging (bool drag_); 
+	bool isRot; 
+	bool getIsRot(); 
+	void setIsRot(bool rot_, int tween_);
+	int  tweenNum; 
+	int getOverlayLoc();
+	
 private:
     essSceneManager();
     ~essSceneManager();

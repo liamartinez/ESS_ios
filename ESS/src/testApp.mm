@@ -70,9 +70,26 @@ void testApp::update(){
     ofSoundUpdate();
 	
 
+	int heightMax = essSM->getOverlayLoc();
+	int curSwipe;
+	
+	if (essSM->getIsRot()) {
+		curSwipe = swipeDetect->p.y;
+	} else {
+		curSwipe = swipeDetect->p.x;
+	}
+	
+	if (essSM->getIsDragging()){
+		
+	}
+
+	cout << "curSwipe: " << curSwipe << " heightmax: " << heightMax << endl; 
+	
+	if (curSwipe < heightMax - 20) {
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
 	
 		if (swipeDetect->swipe == 1) {
+		
 			cout<<"HE DID SWIPE"<<endl;
 			if (essSM->getCurScene()==1) {
 				cout<<"hi";
@@ -106,7 +123,7 @@ void testApp::update(){
     } else {
 		swipeDetect->swipe = 0; 
 	}
-	
+	}
 
 
     if(essSM->getCurSceneChanged()) {

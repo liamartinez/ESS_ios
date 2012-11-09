@@ -30,3 +30,17 @@ bool essSceneManager::getIsDragging() {
 void essSceneManager::setIsDragging(bool drag_) {
 	isDragging = drag_; 
 }
+
+bool essSceneManager::getIsRot() {
+	return isRot; 
+}
+
+int essSceneManager::getOverlayLoc() {
+	return tweenNum; 
+}
+
+void essSceneManager::setIsRot(bool rot_, int tween_) {
+	isRot = rot_;
+	tweenNum = tween_;
+	
+}

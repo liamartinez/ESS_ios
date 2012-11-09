@@ -176,6 +176,7 @@ void essBaseScene::setRotation() {
 		endTween =  floorMap[currentOH].overlayRect.height;
 		buttScreen.setPos(tweenNum, 0);
 		buttScreen.setSize(ofGetWidth(), ofGetHeight());
+		essSM->setIsRot(true, tweenNum);
 		//debugging: draw the tween!
 		//ofSetColor(255, 0, 0);
 		//ofLine (tweenNum, 0, tweenNum, ofGetHeight()); 
@@ -185,6 +186,7 @@ void essBaseScene::setRotation() {
 		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
 		buttScreen.setPos(0, 0);
 		buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
+		essSM->setIsRot(false, tweenNum);
 		//debugging: draw the tween!
 		//ofSetColor(255, 0, 0);
 		//ofLine (0, tweenNum, ofGetWidth(), tweenNum); 
@@ -264,16 +266,19 @@ void essBaseScene::drawLowerBar() {
 			heightMax0 = floorMap[currentOH].maxHeight0;
 			heightMax90 = floorMap[currentOH].maxHeight90;
             
-            
+            int factor;
 			if (shiftRotate()==0) {
 				heightMax = heightMax0;
+				 factor = ofGetHeight();
 			} else if (shiftRotate() == 90){
-				heightMax = heightMax90;
+				heightMax =  heightMax90;
+				 factor = ofGetWidth();
 			}
             
             
 			if (!dragging) { //When dragging stops, snap to heightmax and endtween
-				if (abs(heightMax - tweenNum) <  (heightMax/2))  {
+
+				if (abs(heightMax - tweenNum) <   (factor - heightMax) /2)  {
 					cout << "go up" << endl;
                     
 					float easing = 0.3;
@@ -283,11 +288,10 @@ void essBaseScene::drawLowerBar() {
 					if(abs(dx) > 1) {
 						tweenNum += dx * easing;
 					}
-				} 
-				if (abs(endTween - tweenNum) < (heightMax/2))  {
+				} else {
 					cout << "go down" << endl; 
                     
-					float easing = 0.5;
+					float easing = 0.3;
                     
 					float targetX = endTween;
 					float dx = targetX - tweenNum;
@@ -299,7 +303,7 @@ void essBaseScene::drawLowerBar() {
                 
 			} else { //While you are dragging, limit the dragging within heightMax and endtween
                 
-				cout << "dragging" << endl; 
+				cout << "dragging" << endl;  
 				if ((shiftRotate()==0 && dragNum < heightMax) || (shiftRotate()==90 && dragNum > heightMax)) {
 					float easing = 0.2;
                     
@@ -587,17 +591,17 @@ string essBaseScene::checkPlayTime(int currentTrack){
 
 void essBaseScene::setupAudio() {
 	
-	int playHeadLoc = (floorMap[currentOH].overlayHeight - floorMap[currentOH].marginHeight*1.5);
+	int playHeadLoc = (floorMap[textTempOH].overlayHeight - floorMap[textTempOH].marginHeight*1.5);
 	
-	 beginLineX = floorMap[currentOH].marginWidth/2 + floorMap[currentOH].marginButton; 
+	 beginLineX = floorMap[textTempOH].marginWidth/2 + floorMap[currentOH].marginButton; 
 	
-	if (floorMap[currentOH].getDrawRotated()) {
+	if (floorMap[textTempOH].getDrawRotated()) {
 		lineY = tweenNum - playHeadLoc; 
-		 endLineX = floorMap[currentOH].overlayWidth - floorMap[currentOH].marginWidth - (floorMap[currentOH].marginButton*2.5); 
+		 endLineX = floorMap[textTempOH].overlayWidth - floorMap[textTempOH].marginWidth - (floorMap[textTempOH].marginButton*2.5); 
 		lineLen = endLineX;
 	} else {
 		 lineY =  tweenNum + playHeadLoc; 
-		 endLineX = floorMap[currentOH].overlayWidth - floorMap[currentOH].marginWidth - (floorMap[currentOH].marginButton*3); 
+		 endLineX = floorMap[textTempOH].overlayWidth - floorMap[textTempOH].marginWidth - (floorMap[textTempOH].marginButton*3); 
 		lineLen = endLineX - beginLineX;
 	}
 }
@@ -795,7 +799,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
             currentOH = i;
 			tweenEntryExit(1);
             //Stop the origin audio. Play the new one
-            audioPlay(i);
+            audioPlay(i); //so that it won't play the new one until the tween is finished
 
             //For Pan
             spotTouch = true;

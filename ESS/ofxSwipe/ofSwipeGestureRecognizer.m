@@ -14,6 +14,7 @@
 -(id)initWithView:(UIView*)view{  
     swipe = 0;
     if((self = [super init])){  
+		mView = view;
         swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(a:)];  
         //Set the swipe direction as RIGHT (Because we place the phone horizontally, the RIGHT is the down in our directions)
         [swipeUp setDirection:(UISwipeGestureRecognizerDirectionLeft) ];
@@ -31,6 +32,9 @@
 -(void)a:(UISwipeGestureRecognizer *) gr{ 
     direction = gr.direction;
     swipe = 1;
+	p = [gr locationInView: mView];
+	
+	//gr.enabled = NO;
 	
 	
     if ((gr.state == UIGestureRecognizerStateChanged) ||(gr.state == UIGestureRecognizerStateEnded)) {
@@ -40,12 +44,13 @@
         if(gr. direction == UISwipeGestureRecognizerDirectionLeft){
             NSLog(@"SWIPE UP!"); 
             NSLog(@"Direction is: %i", gr.direction);
+			NSLog(@"point is: %d, %d", (int) p.x, (int) p.y);
             
             
         }else{
             NSLog(@"SWIPE DOWN!"); 
             NSLog(@"Direction is: %i", gr.direction);
-            
+            NSLog(@"point is: %d, %d", (int) p.x, (int) p.y);
         }
     }
 	 
