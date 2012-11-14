@@ -13,7 +13,11 @@
 #include "ofxPanZoom.h"
 
 enum {
-    ABOUT_SCENE_FIRST,
+    ABOUT_SCENE_APP,
+    ABOUT_SCENE_FAQ,
+    ABOUT_SCENE_ORALHISTORIES,
+    ABOUT_SCENE_CREATORS,
+    ABOUT_SCENE_THANKYOU,
     ABOUT_SCENE_TOTAL
 };
 
@@ -42,6 +46,10 @@ public:
     int canvasW;
     int canvasH;
     
+    int navY, textY; 
+    
+    baseButton nApp, nOralHistories, nCreators, nThanks, nFAQ; 
+    ofImage pApp, pOralHistories, pCreators, pThanks, pFAQ; 
 private:
     
     ofImage aboutScreen; //lia - replace pictures here. 
