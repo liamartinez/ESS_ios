@@ -26,7 +26,7 @@ public:
         
     //Fonts
     ofxFreeType2 whitneySemiBold22;
-    ofxFreeType2 ostrich19, ostrich23, ostrich24; 
+    ofxFreeType2 ostrich19, ostrich23, ostrich24, ostrich20; 
     ofxFreeType2 ostrich30; 
     
     //Colors
