@@ -145,8 +145,6 @@ public:
 
     ofSoundPlayer audioTest;
     baseButton audioBar;
-    baseButton audioBarY;
-    ofRectangle audioBarRect;
     int audioBarLength;
     int barPos;
   
@@ -171,6 +169,11 @@ public:
     
     double TempL;
     
+	
+	//IF THE OVERLAY IS DISPLAYED
+	bool overlayShow;
+	
+	
 protected:
     void drawGrid();
     

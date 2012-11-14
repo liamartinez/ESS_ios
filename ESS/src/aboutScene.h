@@ -41,6 +41,8 @@ public:
     ofxPanZoom	cam;
     int canvasW;
     int canvasH;
+	
+	baseButton nApp, nOralHist, nCreators, nThanks; 
     
 private:
     

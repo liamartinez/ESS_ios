@@ -61,6 +61,11 @@ void aboutScene::activate() {
     ofBackground(essAssets->ess_blue);
     
 
+	//navigation buttons
+	nApp.setLabel("APP", &essAssets->ostrich23);
+	nOralHist.setLabel("ORAL HISTORIES", &essAssets->ostrich23);
+	nCreators.setLabel("CREATORS", &essAssets->ostrich23);
+	nThanks.setLabel("THANK YOU", &essAssets->ostrich23);
 
     
 }
