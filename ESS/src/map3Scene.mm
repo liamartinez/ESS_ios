@@ -36,6 +36,7 @@ void map3Scene::activate() {
     
     map3Scene.loadImage("flattenFiles/Map3.png");
     map3Guide.loadImage("flattenFiles/Map3-guide.png");
+	
     
     setupHomeButton();
 
@@ -82,6 +83,7 @@ void map3Scene::draw() {
             //the map
             ofSetColor(255, 255, 255); 
             map3Scene.draw(0,0, ofGetWidth(), ofGetHeight()); 
+			essAssets->arrows.draw(0,0, ofGetWidth(), ofGetHeight());
             
             drawHomeButton();
             drawTitle();

@@ -39,6 +39,7 @@ public:
     //buttons
     ofImage playButton, pauseButton; 
 	ofImage handle; 
+	ofImage arrows, arrowup, arrowdown; 
     
 private:
     essAssetManager();

@@ -127,6 +127,7 @@ public:
 	int lastTweenNum; 
 	bool descDown; 
 	bool reEnter;
+	bool goSnap; 
     
 	int countTemp; 
     
@@ -161,13 +162,14 @@ public:
     int posY;
     int barY;
     bool audioDrag;
-	bool justSetAudio; 
+	
+	bool audioGo; 
 	
 	int beginLineX, endLineX, lineY, lineLen;
     //
     bool spotTouch;
     
-    
+    double TempL;
     
 protected:
     void drawGrid();

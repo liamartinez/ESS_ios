@@ -36,6 +36,7 @@ void map4Scene::activate() {
     
     map4Scene.loadImage("flattenFiles/Map4.png");
     map4Guide.loadImage("flattenFiles/Map4-guide.png");
+	
     
     setupHomeButton();
 
@@ -82,6 +83,7 @@ void map4Scene::draw() {
             //the map
             ofSetColor(255, 255, 255); 
             map4Scene.draw(0,0, ofGetWidth(), ofGetHeight()); 
+			essAssets->arrowup.draw(0,0, ofGetWidth(), ofGetHeight());
             
             drawHomeButton();
             drawTitle();

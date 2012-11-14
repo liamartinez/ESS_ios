@@ -51,6 +51,9 @@ bool essAssetManager::loadData() {
     playButton.loadImage("flattenFiles/button_play.png");
     pauseButton.loadImage("flattenFiles/button_pause.png");
 	handle.loadImage("flattenFiles/handle.png");
+	arrows.loadImage("flattenFiles/arrows.png");
+	arrowup.loadImage("flattenFiles/arrowup.png");
+	arrowdown.loadImage("flattenFiles/arrowdown.png");
     return true;
 }
 
