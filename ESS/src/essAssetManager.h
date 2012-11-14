@@ -40,6 +40,9 @@ public:
     ofImage playButton, pauseButton; 
 	ofImage handle; 
 	ofImage arrows, arrowup, arrowdown; 
+	
+	//music
+	ofSoundPlayer soundtrack; 
     
 private:
     essAssetManager();

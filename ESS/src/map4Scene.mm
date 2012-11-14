@@ -165,13 +165,7 @@ void map4Scene::touchUp(ofTouchEventArgs &touch){
     touchTemp.y = panTouch.y; 
     
     baseTouchUp(touchTemp);
-    
-    //for the guide
-    if (touch.x > ofGetWidth() - 30) {
-        drawGuide = true; 
-    } else if (touch.x < 30) {
-        drawGuide = false; 
-    }
+
     
     cam.touchUp(touch);	//fw event to cam
 

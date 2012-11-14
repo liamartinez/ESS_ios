@@ -19,6 +19,9 @@ void homeScene::update() {
     switch(mgr.getCurScene()) {
         case HOME_SCENE_FIRST:
             //Do stuff
+
+
+			
             break;            
     }
 }
@@ -37,7 +40,10 @@ void homeScene::activate() {
 	buttMap3.disableBG();
 	buttMap4.disableBG();
 	
-	
+	essAssets->soundtrack.setMultiPlay(true);
+	essAssets->soundtrack.setSpeed(1.0);
+	essAssets->soundtrack.play();
+
 	
 	fadeTime = 2000; 
 	startTime = ofGetElapsedTimeMillis(); 
@@ -101,6 +107,14 @@ void homeScene::draw() {
 				rectAbout.set(10, 220, 40, 150);
 				
 				homeScreenV.draw(0,0, ofGetWidth(), ofGetHeight()); 
+			} else {
+				rectAbout.set(410, 270, 65, 40);
+				rectMap1.set(150, 113, 200, 40);
+				rectMap2.set(150, 174, 200, 40);
+				rectMap3.set(150, 230, 200, 40);
+				rectMap4.set(15, 255, 150, 40);
+				
+				homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
 			}
 			
 			

@@ -24,8 +24,6 @@ essAssetManager* essAssetManager::getInstance() {
 
 //------------------------------------------------------------------
 essAssetManager::essAssetManager() {
-
-
 	
 	ess_yellow.set(254, 251, 223); 
 	ess_grey.set(137,137,137); 
@@ -54,6 +52,9 @@ bool essAssetManager::loadData() {
 	arrows.loadImage("flattenFiles/arrows.png");
 	arrowup.loadImage("flattenFiles/arrowup.png");
 	arrowdown.loadImage("flattenFiles/arrowdown.png");
+	
+	soundtrack.loadSound("audio/soundtrack.caf");
+	
     return true;
 }
 
