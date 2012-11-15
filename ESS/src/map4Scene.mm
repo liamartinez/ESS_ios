@@ -101,11 +101,7 @@ void map4Scene::draw() {
             spotTouch = false;
             
             ofDisableAlphaBlending();
-            
-            //style guide when left side is touched
-            ofSetColor(255, 255, 255);
-            if (drawGuide) map4Guide.draw(0, 0, ofGetWidth(), ofGetHeight());
-            
+                        
             break;
             
     }

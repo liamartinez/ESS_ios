@@ -103,10 +103,7 @@ void map3Scene::draw() {
             spotTouch = false;
             
             ofDisableAlphaBlending();
-            
-            //style guide when left side is touched
-            ofSetColor(255, 255, 255);
-            if (drawGuide) map3Guide.draw(0, 0, ofGetWidth(), ofGetHeight());
+
             
             break;
             

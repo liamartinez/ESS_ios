@@ -37,9 +37,12 @@ public:
 	
 	baseButton balcony, mainSanct, LowerSanc, Eldrige; 
 	
+	baseButton buttResetXML; 
+	
 	//fade-in
 	int fadeTime, startTime; 
 	int alpha, alphaInc; 
+	int revAlpha; 
     bool guideOn; 
 	
 private:
