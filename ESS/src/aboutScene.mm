@@ -127,8 +127,6 @@ void aboutScene::draw() {
             
         case ABOUT_SCENE_FAQ:
             
-
-            
             nFAQ.setColor (essAssets->ess_yellow); 
             pFAQ.draw(0,textY,ofGetWidth(), pFAQ.height/2); 
             cam.reset();	//back to normal ofSetupScreen() projection            
