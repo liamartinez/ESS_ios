@@ -156,9 +156,7 @@ void essBaseScene::drawMapPoints() {
     
 	//this is required by Tweenzor
 	Tweenzor::update( ofGetElapsedTimeMillis() );
-	
-    setRotation(); 
-	
+
     //this is always being drawn, but only if its not the first time
     if (!firstEntry && drawIt) drawLowerBar();
 	
@@ -181,8 +179,8 @@ void essBaseScene::setRotation() {
 		buttScreen.setSize(ofGetWidth(), ofGetHeight());
 		essSM->setIsRot(true, tweenNum);
 		//debugging: draw the tween!
-		//ofSetColor(255, 0, 0);
-		//ofLine (tweenNum, 0, tweenNum, ofGetHeight()); 
+		ofSetColor(255, 0, 0);
+		ofLine (tweenNum, 0, tweenNum, ofGetHeight()); 
 	} else {
 		floorMap[currentOH].setDrawRotated(false); 
 		startTween = ofGetHeight();
@@ -191,18 +189,17 @@ void essBaseScene::setRotation() {
 		buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
 		essSM->setIsRot(false, tweenNum);
 		//debugging: draw the tween!
-		//ofSetColor(255, 0, 0);
-		//ofLine (0, tweenNum, ofGetWidth(), tweenNum); 
+		ofSetColor(255, 0, 0);
+		ofLine (0, tweenNum, ofGetWidth(), tweenNum); 
 	}
     
+	cout << "shiftrotate: " << shiftRotate() << " old rot: " << oldRot << endl; 
 	if (shiftRotate() != oldRot) {
+		cout << "shift now" << endl; 
 		tweenNum = startTween;
 		setupAudio();
 		oldRot = shiftRotate(); 
 	}
-    
-    
-    
     
 }
 
@@ -221,6 +218,7 @@ void essBaseScene::drawLowerBar() {
 			overlayShow = false;
 			essSM->setIsDragging(false);
 //			cout<<"case 0"<<essSM->getIsDragging()<<endl;
+			doneTweening = true;
 			break;
             
 		case 1:
@@ -234,6 +232,7 @@ void essBaseScene::drawLowerBar() {
 				buttScreen.setSize(ofGetWidth(), ofGetHeight());
 			}
 //			cout<<"case 1"<<essSM->getIsDragging()<<endl;
+			doneTweening = false;
 
 			break;
 
@@ -357,8 +356,7 @@ void essBaseScene::drawLowerBar() {
 	}
     
 	//draw the overlay
-    floorMap[textTempOH].drawOverlay(tweenNum);
-    
+    floorMap[textTempOH].drawOverlay(tweenNum);  
 	//draw the play button
 	if (!floorMap[currentOH].getDrawRotated()) {
 		playPauseButn.draw(floorMap[currentOH].overlayRect.x, tweenNum);
@@ -428,9 +426,11 @@ void essBaseScene::onExitComplete(float* arg) {
 	textTempOH = currentOH;
 
 	drawIt = false; 
-	doneTweening = true; //when doneTweening is set to true, new rotation are generated
+	
+	//doneTweening = true; //when doneTweening is set to true, new rotation are generated
+	
 	setRotation(); 
-	tweenNum = startTween;
+	 
 	lastState = 0; 
     
 	if (reEnter) {
@@ -440,8 +440,8 @@ void essBaseScene::onExitComplete(float* arg) {
 }
 
 void essBaseScene::onEnterComplete(float* arg) {
-	doneTweening = false; 
-
+	//doneTweening = false; 
+	//setRotation(); 
 }
 
 void essBaseScene::tweenEntryExit(int stateNum_) {
@@ -463,15 +463,15 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			for (int i = 0; i < floorMap.size(); i++) {
 				floorMap[i].setFloorToActive(false);
 			}
-            
+
 			lastState = 0; 
             
             break;
             
         case 1:
 //			essSM->setIsDragging(true);
-//			cout << "T:CASE 1: NAME AND PLAYBAR"<<essSM->getIsDragging()<< endl; 
-            
+//			cout << "CASE 1: NAME AND PLAYBAR"<<essSM->getIsDragging()<< endl; 
+
 		    overlayShow = true;
 			drawIt = true; 
 			
@@ -1109,6 +1109,7 @@ int essBaseScene::shiftRotate() {
 		returnAngle = oldAngle; 
 	}
     
+	//cout << "                               return angle " << returnAngle << endl; 
 	return returnAngle;
  
     
