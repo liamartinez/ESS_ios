@@ -64,6 +64,7 @@ public:
     //Main Audio
     ofSoundPlayer mainAudio;
     float volume;
+    float volumeInc;
 
 
 
