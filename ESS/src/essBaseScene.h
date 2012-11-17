@@ -142,12 +142,11 @@ public:
     void checkAudioStatus();
 	void setupAudio(); 
     string checkPlayTime(int currentTrack);
+    void audioDisplay();
 
     ofSoundPlayer audioTest;
     baseButton audioBar;
-    baseButton audioBarY;
-    ofRectangle audioBarRect;
-    int audioBarLength;
+    int audioBarSize;
     int barPos;
   
     int microSec;
@@ -171,6 +170,11 @@ public:
     
     double TempL;
     
+	
+	//IF THE OVERLAY IS DISPLAYED
+	bool overlayShow;
+	
+	
 protected:
     void drawGrid();
     

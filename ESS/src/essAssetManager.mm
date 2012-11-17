@@ -39,6 +39,7 @@ void essAssetManager::loadFonts() {
 	whitneySemiBold22.loadFont("fonts/Whitney-Semibold.otf",22);
 	ostrich19.loadFont("fonts/ostrich-black.ttf", 19);
     ostrich20.loadFont("fonts/ostrich-black.ttf", 20);
+	ostrich21.loadFont("fonts/ostrich-black.ttf", 21);
     ostrich24.loadFont("fonts/ostrich-black.ttf", 24);
     ostrich23.loadFont("fonts/ostrich-black.ttf", 23);
     ostrich30.loadFont("fonts/ostrich-black.ttf", 30);

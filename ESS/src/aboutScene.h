@@ -41,13 +41,18 @@ public:
     baseButton buttHome; 
     ofRectangle rectHome; 
     ofRectangle TrectHome; 
+	
+	baseButton lEldridge, lAnna, lCarlin, lLia, lChien, lMerche, lRyan, lFiber; 
     
     ofxPanZoom	cam;
     int canvasW;
     int canvasH;
-    
+	    
     int navY, textY; 
+	int leftMargin, dotMargin; 
     
+	int appL, faqL, OHL, creatL;
+	
     baseButton nApp, nOralHistories, nCreators, nThanks, nFAQ; 
     ofImage pApp, pOralHistories, pCreators, pThanks, pFAQ; 
 private:

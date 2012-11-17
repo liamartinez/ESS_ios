@@ -55,13 +55,13 @@ void testApp::setup(){
     swipeDetect = [[ofSwipeGestureRecognizer alloc] initWithView:view];
     swipe = 0;
     
+	/*
     //Reset
     for(int i=0; i<SW_TOTAL_SCENES; i++) {
         scenes[i]->resetPlayed();
-        
     }
 
-    
+    */
 
 }
 
@@ -89,16 +89,14 @@ void testApp::update(){
 	
 	//if (swipeDetect) {
 	//if (curSwipe < heightMax - 20) {
+//	cout<<"Dragging"<<essSM->getIsDragging()<<endl;
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
-	
 		if (swipeDetect->swipe == 1) {
-		
 			cout<<"HE DID SWIPE"<<endl;
-			if (essSM->getCurScene()==1) {
+			if (essSM->getCurScene()==1 ) {
 				cout<<"hi";
 				if (swipeDetect->direction == 2) {
 					essSM->setCurScene(SCENE_MAP2); 
-					
 				}
 			}else if (essSM->getCurScene()==2) {
 				if (swipeDetect->direction == 2) {
@@ -123,8 +121,8 @@ void testApp::update(){
 		}
         
         
-    } else {
-		swipeDetect->swipe = 0; 
+	  } else {
+  	  swipeDetect->swipe = 0; 
 	}
 		//}
 
@@ -138,6 +136,7 @@ void testApp::update(){
         scenes[essSM->getCurScene()]->activate();
     }
     scenes[essSM->getCurScene()]->update();
+
 
      
 

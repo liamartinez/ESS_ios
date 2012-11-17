@@ -41,14 +41,14 @@
         NSLog(@"PogrState%i",gr.state); 
         if(gr. direction == UISwipeGestureRecognizerDirectionLeft){
             NSLog(@"SWIPE UP!"); 
-            NSLog(@"Direction is: %i", gr.direction);
-			NSLog(@"point is: %d, %d", (int) p.x, (int) p.y);
+//            NSLog(@"Direction is: %i", gr.direction);
+//			NSLog(@"point is: %d, %d", (int) p.x, (int) p.y);
             
             
         }else{
             NSLog(@"SWIPE DOWN!"); 
-            NSLog(@"Direction is: %i", gr.direction);
-            NSLog(@"point is: %d, %d", (int) p.x, (int) p.y);
+//            NSLog(@"Direction is: %i", gr.direction);
+//            NSLog(@"point is: %d, %d", (int) p.x, (int) p.y);
         }
     }
 	 

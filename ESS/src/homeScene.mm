@@ -40,13 +40,21 @@ void homeScene::activate() {
 	buttMap3.disableBG();
 	buttMap4.disableBG();
 	
+	//buttResetXML.setLabel("RESET", &essAssets->ostrich20);
+    //buttResetXML.setColor(essAssets->ess_white, essAssets->ess_grey);
+    buttResetXML.disableBG();
+	buttResetXML.setPos(0, 0);
+	buttResetXML.setSize(50, 20);
+	
 	essAssets->soundtrack.setMultiPlay(true);
 	essAssets->soundtrack.setSpeed(1.0);
 	essAssets->soundtrack.play();
-
 	
 	fadeTime = 2000; 
 	startTime = ofGetElapsedTimeMillis(); 
+	
+	alpha = 0; 
+	revAlpha = 255; 
     
 }
 
@@ -72,6 +80,9 @@ void homeScene::draw() {
             
             ofEnableAlphaBlending();
 			
+
+			
+			
 			
 			//alphaInc = (fadeTime - startTime)/ 255;
 			
@@ -87,6 +98,18 @@ void homeScene::draw() {
 			
 			
             ofSetColor(255, 255, 255, alpha); 
+			
+			rectAbout.set(410, 270, 65, 40);
+			rectMap1.set(150, 113, 200, 40);
+			rectMap2.set(150, 174, 200, 40);
+			rectMap3.set(150, 230, 200, 40);
+			rectMap4.set(15, 255, 150, 40);
+			
+			homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
+			
+			ofSetColor(230, 230, 230, alpha);
+			essAssets->ostrich20.drawString("RESET", 7, 10);
+			/*
 			
 			if (shiftRotate2() == 0) {
 				
@@ -117,7 +140,7 @@ void homeScene::draw() {
 				homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
 			}
 			
-			
+			*/
 			buttAbout.setRect(rectAbout);
 			buttMap1.setRect(rectMap1);
 			buttMap2.setRect(rectMap2);
@@ -129,6 +152,8 @@ void homeScene::draw() {
 			buttMap2.draw();
 			buttMap3.draw();
 			buttMap4.draw();
+			
+
 			
             ofDisableAlphaBlending();
 			
@@ -155,6 +180,8 @@ void homeScene::touchDown(ofTouchEventArgs &touch){
     buttMap2.touchDown(touch);
     buttMap3.touchDown(touch);
     buttMap4.touchDown(touch);
+	
+	buttResetXML.touchDown(touch);
 }
 
 
@@ -198,6 +225,10 @@ void homeScene::touchUp(ofTouchEventArgs &touch){
     buttMap3.touchUp(touch);
     buttMap4.touchUp(touch);
     button.touchUp(touch);
+	
+	if (buttResetXML.isPressed()) resetPlayed();
+    
+    buttResetXML.touchUp(touch);
 	
 	cout << "                TOUCHED!! " << touch.x << " " << touch.y << endl; 
     

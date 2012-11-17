@@ -94,19 +94,20 @@ void map1Scene::draw() {
             
             //audio display
             checkAudioStatus();
+			
+//			cout<<"the current overlay is"<<overlayShow<<endl;
+			
             //For reset Pan
             if (spotTouch == true) {
                 cam.setZoom(1.0f);
+				cam.lookAt( ofVec2f(canvasW/2, canvasH/2) );
                 tweenEntryExit(1);
 //                cout<<"someone touch the spot"<<endl;
             }
             spotTouch = false;
             
             ofDisableAlphaBlending();
-            
-            //style guide when left side is touched
-            ofSetColor(255, 255, 255);
-            if (drawGuide) guide1.draw(0, 0, ofGetWidth(), ofGetHeight());
+
             
             break;
             
