@@ -780,19 +780,14 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
     
     //audio
     if (audioDrag ) {
-		cout << "dragging "<<touch.y<< endl;
-        
+//		cout << "dragging "<<touch.y<< endl;
         if (shiftRotate()==0&& touch.x >beginLineX && touch.x <endLineX) {
             barY = touch.x;
-
         }else if(shiftRotate()==90&& touch.y >beginLineX &&touch.y <endLineX){
-//            cout<<"touchY"<<touch.y<<endl;
             barY = touch.y;
         }        
         floorMap[currentOH].time = double(barY-beginLineX)/double(lineLen);
-        updateXML(currentOH);  
-        
-        
+        updateXML(currentOH);    
     }
     audioBar.touchMoved(touch);
     
@@ -1094,8 +1089,8 @@ int essBaseScene::shiftRotate() {
 		returnAngle = oldAngle; 
 	}
     
-//	return returnAngle;
-    return 90;
+	return returnAngle;
+//    return 90;
     
 }
 

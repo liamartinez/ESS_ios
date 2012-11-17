@@ -24,10 +24,6 @@
 #include "ofSwipeGestureRecognizer.h"
 
 
-
-
-
-
 class testApp : public ofxiPhoneApp {
 	
 public:
@@ -64,6 +60,11 @@ public:
     int direction;
     
     void keyPressed(int key);
+    
+    //Main Audio
+    ofSoundPlayer mainAudio;
+    float volume;
+
 
 
 
