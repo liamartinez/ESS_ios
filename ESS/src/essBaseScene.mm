@@ -100,10 +100,10 @@ void essBaseScene::setupMap(string floor_){
     barY = 0;
     //For the audio bar, to see if peope scrub it
     audioDrag = 0;
-    audioBarLength = 0;
+    audioBarSize = 30;
     barPos = 0;
-//	audioBar.setSize(4, 10);
-	
+	audioBar.setSize(30, 30);
+    audioBar.setColor(255,100);
 	setupAudio(); 
     
     //For Pan
@@ -562,7 +562,6 @@ void essBaseScene::audioPlay(int currentTrack){
 			cout << "i is: " << i << endl; 
         }
         floorMap[i].playing = false;
-		
         updateXML(i);
 //        cout<<"Current Time of"<<i<<" is "<<floorMap[i].time<<endl;
     }
@@ -591,7 +590,8 @@ void essBaseScene::audioPlay(int currentTrack){
 string essBaseScene::checkPlayTime(int currentTrack){
 
     //For Time display
-    tempT = audioTest.getPosition()* floorMap[currentTrack].Tlength;
+//    tempT = audioTest.getPosition()* floorMap[currentTrack].Tlength;
+    tempT = floorMap[currentTrack].time*floorMap[currentTrack].Tlength;
     minute = tempT/60;
     min1 = minute/10;
     min2 = minute%10;
@@ -611,72 +611,64 @@ void essBaseScene::setupAudio() {
 	int playHeadLoc = (floorMap[textTempOH].overlayHeight - floorMap[textTempOH].marginHeight*1.5);
 	
 	 beginLineX = floorMap[textTempOH].marginWidth/2 + floorMap[currentOH].marginButton; 
-	
+	//Vertical
 	if (floorMap[textTempOH].getDrawRotated()) {
 		lineY = tweenNum - playHeadLoc; 
-		 endLineX = floorMap[textTempOH].overlayWidth - floorMap[textTempOH].marginWidth - (floorMap[textTempOH].marginButton*2.5); 
-		lineLen = endLineX;
-
-
+//		 endLineX = floorMap[textTempOH].overlayWidth - floorMap[textTempOH].marginWidth - (floorMap[textTempOH].marginButton*2.5); 
+        endLineX = 250;
+		lineLen = endLineX-beginLineX;
+    //Horizontal
 	} else {
 		 lineY =  tweenNum + playHeadLoc; 
 		 endLineX = floorMap[textTempOH].overlayWidth - floorMap[textTempOH].marginWidth - (floorMap[textTempOH].marginButton*2.5);
 		lineLen = endLineX - beginLineX;
 	}
-	
-
 }
 
 void essBaseScene::checkAudioStatus(){
-
-	setupAudio(); 
 	
     for (int i = 0; i< floorMap.size(); i++) {
         if (floorMap[i].playing) {
+            floorMap[i].time = audioTest.getPosition();
+            updateXML(i); 
             
-			/*
-            //For Bar's Position
-            if(shiftRotate() == 0){
-                audioBarLength = 120;
-            }else{
-                audioBarLength = 90;
-            }
-			 */
-			
             //barPos: The position of the small Rec, where it is playing now
             //barPos = audioTest.getPosition()*audioBarLength;
-			barPos = audioTest.getPosition()*lineLen;
+			barPos = floorMap[i].time*lineLen;
             
             //Check if it plays to the end and reset
             if(audioTest.getPosition()==1.0){
-                floorMap[i].playing = false;
+                floorMap[i].playing = 0;
                 floorMap[i].time = 0.0;
+                barPos = 0;
+                audioTest.setPosition(0.0);
                 updateXML(i);
+                cout<<"IT's done"<<endl;
             }
         }
-        
     }
-
-	ofEnableAlphaBlending();
+    audioDisplay();
+    
+    
+}
+void essBaseScene::audioDisplay(){
+    setupAudio();
+    ofEnableAlphaBlending();
 	ofSetColor(essAssets->ess_yellow);
 	
-
-	
 	if (drawIt) { //band-aid boolean to prevent drawings when in weird rotations
-	
-		ofSetColor(essAssets->ess_yellow);
-		//if we are in horizontal position
-		if (!floorMap[currentOH].getDrawRotated()) {
+		if (!floorMap[currentOH].getDrawRotated()) {//if we are in horizontal position
 			ofLine (beginLineX, lineY, endLineX, lineY); 
 			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH), endLineX + 20, lineY - 10, 100, 100);
-
+            
 			//Dragable rect
 			if(!audioDrag){
 				ofRect(beginLineX+barPos, lineY-5, 2, 10);
-				audioBar.setPos(beginLineX+barPos, lineY-20);
+				audioBar.setPos(beginLineX+barPos, lineY-audioBarSize/2);
+//                audioBar.draw();
             }else{
                 ofRect(barY, lineY-5, 2, 10);
-                audioBar.setPos(barY, lineY-20);
+                audioBar.setPos(barY, lineY-audioBarSize/2);
             }
 			
             
@@ -687,30 +679,24 @@ void essBaseScene::checkAudioStatus(){
 			ofPushMatrix();
 			ofTranslate(lineY, beginLineX);
 			ofRotateZ(90);
-			ofLine(0, 0, endLineX, 0);
-			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH),endLineX + 10, -5,100, 100);
+			ofLine(0, 0, lineLen, 0);
+			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH),lineLen + 10, -5,100, 100);
 			ofPopMatrix();
 			
 			//Dragable rect
 			if(!audioDrag){
-				//Does it needs tween in Y direction?
 				ofRect(lineY-5, beginLineX+barPos, 10, 2);
-				audioBar.setPos(lineY-25, beginLineX+barPos);
-				
+				audioBar.setPos(lineY-audioBarSize/2, beginLineX+barPos);
+//				audioBar.draw();
 			}else{
-                
 				ofRect(lineY-5, barY, 10,2);
-				audioBar.setPos(lineY+5,barY);
-//				ofSetColor(255,0,0);
-//				ofRect(lineY+5,barY,10,4);
-//				ofSetColor(essAssets->ess_yellow);
+				audioBar.setPos(lineY-audioBarSize/2,barY);
 			}    
-
 		}
 	}
     ofDisableAlphaBlending();
+
 }
-//
 
 //------------------------------------------------------------------
 //------------------------  EVENTS     -----------------------------
@@ -751,8 +737,12 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 
     //audio
     if (audioBar.isPressed()) {
-        audioTest.setPaused(1);
-        audioTest.setPosition(0.0);
+        audioTest.stop();
+        floorMap[currentOH].playing= 0;
+        floorMap[currentOH].time = audioTest.getPosition();
+        updateXML(currentOH);  
+        
+
         audioDrag= 1;
         cout<<"start to drag"<<endl;
         if(shiftRotate() == 0){
@@ -790,17 +780,14 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
     
     //audio
     if (audioDrag ) {
-		cout << "dragging "<<touch.x<< endl; 
-
+//		cout << "dragging "<<touch.y<< endl;
         if (shiftRotate()==0&& touch.x >beginLineX && touch.x <endLineX) {
             barY = touch.x;
-
         }else if(shiftRotate()==90&& touch.y >beginLineX &&touch.y <endLineX){
-//            cout<<"touchY"<<touch.y<<endl;
             barY = touch.y;
-
-        }
-        
+        }        
+        floorMap[currentOH].time = double(barY-beginLineX)/double(lineLen);
+        updateXML(currentOH);    
     }
     audioBar.touchMoved(touch);
     
@@ -901,18 +888,11 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     //Audio Bar
 
     if(audioDrag){
-        
-        double tempPos = 0.0;
-        if (!floorMap[currentOH].getDrawRotated() ) {
-            //tempPos = double(barY-308)/double(120);
-			tempPos = double(barY-beginLineX)/double(lineLen);
-        }else{
-            //tempPos = double(barY-180)/double(90);
-			tempPos = double(barY-beginLineX)/double(lineLen);
-        }
-		cout<<"the dragging time:"<<tempPos<<endl;
-        audioTest.setPaused(0);
-        audioTest.setPosition(tempPos);
+        audioTest.loadSound(floorMap[currentOH].path);
+        audioTest.play();
+        audioTest.setPosition(loadXMLTime(currentOH));
+        floorMap[currentOH].playing= 1;
+        updateXML(currentOH);
         audioDrag = false;
         cout<<"Drag Done i"<<currentOH<<endl;
     }
@@ -1111,7 +1091,7 @@ int essBaseScene::shiftRotate() {
     
 	//cout << "                               return angle " << returnAngle << endl; 
 	return returnAngle;
- 
+//    return 90;
     
 }
 

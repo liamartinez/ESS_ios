@@ -142,10 +142,11 @@ public:
     void checkAudioStatus();
 	void setupAudio(); 
     string checkPlayTime(int currentTrack);
+    void audioDisplay();
 
     ofSoundPlayer audioTest;
     baseButton audioBar;
-    int audioBarLength;
+    int audioBarSize;
     int barPos;
   
     int microSec;

@@ -62,6 +62,15 @@ void testApp::setup(){
     }
 
     */
+    //MainAudio Track
+    volume = 1.0f;
+    mainAudio.setMultiPlay(true); 
+    mainAudio.setVolume(volume);
+    mainAudio.loadSound("sounds/tone.caf");
+    mainAudio.setLoop(true);
+    mainAudio.play();
+
+    
 
 }
 
@@ -90,6 +99,7 @@ void testApp::update(){
 	//if (swipeDetect) {
 	//if (curSwipe < heightMax - 20) {
 //	cout<<"Dragging"<<essSM->getIsDragging()<<endl;
+    
 	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
 		if (swipeDetect->swipe == 1) {
 			cout<<"HE DID SWIPE"<<endl;
@@ -122,9 +132,11 @@ void testApp::update(){
         
         
 	  } else {
-  	  swipeDetect->swipe = 0; 
-	}
-		//}
+  	  swipeDetect->swipe = 0;
+          
+      }
+    
+    
 
 
 
@@ -134,6 +146,14 @@ void testApp::update(){
     
         }
         scenes[essSM->getCurScene()]->activate();
+        if (essSM->getCurScene()==1 || essSM->getCurScene()==2 || essSM->getCurScene()==3||essSM->getCurScene()==4 ) {
+            volume = 0.2f;
+        }else{
+            volume = 0.4f;
+        }
+        mainAudio.setVolume(volume);
+        
+        
     }
     scenes[essSM->getCurScene()]->update();
 
@@ -148,7 +168,6 @@ void testApp::draw(){
     if(!essSM->getCurSceneChanged(false)) {
         scenes[essSM->getCurScene()]->draw();
     }
-
      
 }
 
