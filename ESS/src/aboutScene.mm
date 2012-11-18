@@ -203,7 +203,7 @@ void aboutScene::draw() {
         case ABOUT_SCENE_THANKYOU:
             
             nThanks.setColor (essAssets->ess_yellow); 
-            pThanks.draw(0,textY,ofGetWidth(), pThanks.height/2); 
+            pThanks.draw(0,textY,ofGetWidth(), pThanks.height); 
 			lFiber.draw();
          
             break;
