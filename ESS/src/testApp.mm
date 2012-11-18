@@ -66,7 +66,7 @@ void testApp::setup(){
     volume = 1.0f;
     mainAudio.setMultiPlay(true); 
     mainAudio.setVolume(volume);
-    mainAudio.loadSound("sounds/tone.caf");
+    mainAudio.loadSound("sounds/Master_fCaf.caf");
     mainAudio.setLoop(true);
     mainAudio.play();
 
@@ -100,11 +100,10 @@ void testApp::update(){
 	//if (curSwipe < heightMax - 20) {
 //	cout<<"Dragging"<<essSM->getIsDragging()<<endl;
     
-	if (!essSM->getIsDragging()) { //only work when not dragging the overlay
+	if (!essSM->getIsDragging()) { //only work when overlay didn't show up
 		if (swipeDetect->swipe == 1) {
 			cout<<"HE DID SWIPE"<<endl;
 			if (essSM->getCurScene()==1 ) {
-				cout<<"hi";
 				if (swipeDetect->direction == 2) {
 					essSM->setCurScene(SCENE_MAP2); 
 				}
@@ -131,13 +130,24 @@ void testApp::update(){
 		}
         
         
-	  } else {
+	  }else {
   	  swipeDetect->swipe = 0;
           
       }
     
     
+    
+    
+    //-----Main Audio Fade In & Out----------------------------
+    volumeInc = 0.01;
+    if (essSM->getIsDragging()){//If someone start to listen to a track, the sound fade out
+        if(volume > 0.3f) volume = volume-volumeInc;
+        
+    }else{//If someone end a track, the sound fade in
 
+        if(volume < 1.0f) volume = volume+volumeInc;
+    }
+    mainAudio.setVolume(volume);
 
 
     if(essSM->getCurSceneChanged()) {
@@ -146,13 +156,6 @@ void testApp::update(){
     
         }
         scenes[essSM->getCurScene()]->activate();
-        if (essSM->getCurScene()==1 || essSM->getCurScene()==2 || essSM->getCurScene()==3||essSM->getCurScene()==4 ) {
-            volume = 0.2f;
-        }else{
-            volume = 0.4f;
-        }
-        mainAudio.setVolume(volume);
-        
         
     }
     scenes[essSM->getCurScene()]->update();

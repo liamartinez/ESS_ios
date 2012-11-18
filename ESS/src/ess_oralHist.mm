@@ -41,6 +41,12 @@ void oralHist::setup() {
 	
     spotButn.setSize(dotRadius*4, dotRadius*4); //the size of the button is bigger than the circle drawn, to make it easier to press. 
     spotButn.disableBG(); 
+    yellowDot.loadImage("flattenFiles/yellowDot.png");
+    yellowDot.setImageType(OF_IMAGE_COLOR_ALPHA);
+    greyDot.loadImage("flattenFiles/greyDot.png");
+    greyDot.setImageType(OF_IMAGE_COLOR_ALPHA);
+
+    
 	
     
     isActive = false; 
@@ -88,21 +94,21 @@ void oralHist::drawDot() {
     } else {
         if (alpha < 255) alpha+=10; 
     }
-    
+    ofSetColor(255,255,255,alpha);
     if (!isPlayed) {
-        ofSetColor(essAssets->ess_yellow, alpha);
+        yellowDot.draw(loc.x-dotRadius/2, loc.y-dotRadius/2, dotRadius*2.2,dotRadius*2.2 );//The new image files has a blue outline, so the circle are smaller than dotRadius*2
     } else {
-        ofSetColor(essAssets->ess_grey, alpha);
+        greyDot.draw(loc.x-dotRadius/2, loc.y-dotRadius/2,dotRadius*2.2,dotRadius*2.2);
     }
     
     //this draws the circle
-    ofSetCircleResolution(100);
-    ofFill();
-    ofCircle(loc.x, loc.y, dotRadius);
-    ofNoFill();
-    ofSetColor(essAssets->ess_blue);
-    ofCircle(loc.x, loc.y, dotRadius);
-    ofFill();
+//    ofSetCircleResolution(100);
+//    ofFill();
+//    ofCircle(loc.x, loc.y, dotRadius);
+//    ofNoFill();
+//    ofSetColor(essAssets->ess_blue);
+//    ofCircle(loc.x, loc.y, dotRadius);
+//    ofFill();
     
     ofDisableAlphaBlending();
     ofDisableSmoothing();
