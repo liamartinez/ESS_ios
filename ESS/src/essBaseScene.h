@@ -35,8 +35,6 @@ public:
     void drawMapPoints(); 
     void setInfoShowing (bool infoShow_); 
 
-    
-
     void resetPlayed(); 
     void setupHomeButton(); 
     void drawHomeButton(); 
@@ -53,7 +51,8 @@ public:
     void setupTweens(); 
     void onEnterComplete(float* arg);
     void onExitComplete(float* arg);
-    
+
+	
     //xml
     vector<oralHist> loadXML (string floor_);
     void updateXML(int trackNum); 

@@ -11,6 +11,7 @@
 #include "essBaseScene.h"
 #include "baseButton.h"
 #include "ofxPanZoom.h"
+#include "ofxTweenzor.h"
 
 enum {
     ABOUT_SCENE_APP,
@@ -26,6 +27,7 @@ public:
     void setup();
     void update();
     void draw();
+	void exit(); 
     
     void activate(); 
     void deactivate();
@@ -34,7 +36,7 @@ public:
     void touchMoved(ofTouchEventArgs &touch);
     void touchUp(ofTouchEventArgs &touch);
     void touchDoubleTap(ofTouchEventArgs &touch);
-    
+
     baseButton button;
     baseButton buttResetXML;
     
@@ -55,6 +57,16 @@ public:
 	
     baseButton nApp, nOralHistories, nCreators, nThanks, nFAQ; 
     ofImage pApp, pOralHistories, pCreators, pThanks, pFAQ; 
+	
+	//tweening
+	float startY, endY; 
+	float downY; 
+	float tweenie;
+	int offset; 
+	
+	int liaTween(int start, int end);
+	bool tweenGo; 
+	int maxBottom; 
 private:
     
     ofImage aboutScreen; //lia - replace pictures here. 
