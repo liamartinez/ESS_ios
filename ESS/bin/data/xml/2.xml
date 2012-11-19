@@ -1,74 +1,74 @@
 <ESS>
     <OH>
-        <NAME>NAME OF TRACK 1</NAME>
-        <PATH>sounds/Mason.caf</PATH>
+        <NAME>MY BROTHER’S BAR MITZVAH</NAME>
+        <PATH>sounds/caf/03A.caf</PATH>
         <KEYWORD>story</KEYWORD>
-        <XPOS>222</XPOS>
-        <YPOS>74</YPOS>
+        <XPOS>247</XPOS>
+        <YPOS>102</YPOS>
         <ISPLAYED>0</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
-        <LENGTH>45</LENGTH>
-        <DESCRIPTION>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</DESCRIPTION>
+        <LENGTH>103</LENGTH>
+        <DESCRIPTION>Gilbert Lazarus - Bar Mitzvah: The ceremony that initiates and recognizes a 13-year-old boy as an adult responsible for his moral and religious duties. - Edward Smith sings “Siman Tov u&apos;Mazel Tov” (“Good Signs and Good Luck”) a celebration song often performed at weddings and Bar Mitzvahs</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 2</NAME>
-        <PATH>sounds/bubbles.caf</PATH>
+        <NAME>ALIYAH</NAME>
+        <PATH>sounds/caf/03B.caf</PATH>
         <KEYWORD>story2</KEYWORD>
-        <XPOS>320</XPOS>
-        <YPOS>120</YPOS>
+        <XPOS>195</XPOS>
+        <YPOS>157</YPOS>
         <ISPLAYED>0</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
-        <LENGTH>1</LENGTH>
-        <DESCRIPTION>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</DESCRIPTION>
+        <LENGTH>73</LENGTH>
+        <DESCRIPTION>Gussie Dubrin - Aliyah: The honor of being called up to the Bimah (reading desk) in the synagogue to read from the Torah (Scroll containing the first five books of the Jewish Bible.) - Edward Smith sings an Aliyah Blessing.</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 3</NAME>
-        <PATH>sounds/tone.caf</PATH>
+        <NAME>HIGHLY-LEARNED RABBIS</NAME>
+        <PATH>sounds/caf/03C.caf</PATH>
         <KEYWORD>story3</KEYWORD>
-        <XPOS>93</XPOS>
-        <YPOS>163</YPOS>
+        <XPOS>133</XPOS>
+        <YPOS>213</YPOS>
         <ISPLAYED>0</ISPLAYED>
+        <PLAYING>0</PLAYING>
+        <TIME>0</TIME>
+        <LENGTH>171</LENGTH>
+        <DESCRIPTION>Edwin Margoius, Paul Bookson - Yom Kippur: Day of Atonement. The holiest day of the year. - Rabbi: A man educated in halakhah (Jewish law) and tradition who is responsible for instructing the community. - Edward Smith sings “Adon Olam” (&quot;Lord of the World&quot;), the final prayer of the Musaf service on Shabbat morning and festivals. It can also be found in the composition of bedtime prayers.</DESCRIPTION>
+    </OH>
+    <OH>
+        <NAME>PROMINENT CANTORS</NAME>
+        <PATH>sounds/caf/03D.caf</PATH>
+        <KEYWORD>story4</KEYWORD>
+        <XPOS>89</XPOS>
+        <YPOS>158</YPOS>
+        <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>2</LENGTH>
-        <DESCRIPTION>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</DESCRIPTION>
+        <DESCRIPTION>Paul Bookson, Max Smith, Mr. Hershkovitz - Cantor: A person who leads the congregation in prayer. The cantor be a professional or a member of the congregation. - Edward Smith sings “XXXXX”</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 4</NAME>
-        <PATH>sounds/tone.caf</PATH>
-        <KEYWORD>story3</KEYWORD>
-        <XPOS>200</XPOS>
-        <YPOS>162</YPOS>
-        <ISPLAYED>0</ISPLAYED>
+        <NAME>LAZERUS BROTHERS</NAME>
+        <PATH>sounds/caf/03E.caf</PATH>
+        <KEYWORD>story5</KEYWORD>
+        <XPOS>312</XPOS>
+        <YPOS>104</YPOS>
+        <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
-        <TIME>0</TIME>
-        <LENGTH>2</LENGTH>
-        <DESCRIPTION>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</DESCRIPTION>
+        <TIME>0.0383042</TIME>
+        <LENGTH>74</LENGTH>
+        <DESCRIPTION>Gilbert Lazerus - Balaboosta: A Yiddish term meaning the perfect housewife, homemaker, wonderful mother, cook, and gracious hostess. - Gilbert Lazerus’ grandfathers alternated as presidents of the Eldridge Street Synagogue. Their names are engraved on these marble plaques - a record of synagogue members.</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 5</NAME>
-        <PATH>sounds/tone.caf</PATH>
-        <KEYWORD>story3</KEYWORD>
-        <XPOS>375</XPOS>
-        <YPOS>163</YPOS>
-        <ISPLAYED>0</ISPLAYED>
+        <NAME>A BEAUTIFUL SANCTUARY</NAME>
+        <PATH>sounds/caf/03F.caf</PATH>
+        <KEYWORD>story6</KEYWORD>
+        <XPOS>364</XPOS>
+        <YPOS>159</YPOS>
+        <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
-        <LENGTH>2</LENGTH>
-        <DESCRIPTION>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</DESCRIPTION>
-    </OH>
-    <OH>
-        <NAME>NAME OF TRACK 6</NAME>
-        <PATH>sounds/tone.caf</PATH>
-        <KEYWORD>story3</KEYWORD>
-        <XPOS>249</XPOS>
-        <YPOS>219</YPOS>
-        <ISPLAYED>0</ISPLAYED>
-        <PLAYING>0</PLAYING>
-        <TIME>0</TIME>
-        <LENGTH>2</LENGTH>
-        <DESCRIPTION>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</DESCRIPTION>
+        <LENGTH>118</LENGTH>
+        <DESCRIPTION>Mrs. Brenner, Gilbert Lazarus, Paul Bookson, Max Smith</DESCRIPTION>
     </OH>
 </ESS>
