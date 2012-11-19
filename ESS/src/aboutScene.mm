@@ -16,6 +16,9 @@ void aboutScene::setup() {
 
 //------------------------------------------------------------------
 void aboutScene::update() {
+	
+	Tweenzor::update( ofGetElapsedTimeMillis() );
+	
     switch(mgr.getCurScene()) {
         case ABOUT_SCENE_APP:
             //Do stuff
@@ -34,18 +37,8 @@ void aboutScene::activate() {
     pCreators.loadImage ("flattenFiles/about/AboutTextCREATORS.png"); 
     pThanks.loadImage ("flattenFiles/about/AboutTextTHANKYOU.png"); 
     pFAQ.loadImage("flattenFiles/about/AboutTextFAQ.png"); 
-    
-    canvasW = pApp.width/2;	//these define where the camera can pan to
-    canvasH = pApp.height/2;
-    
-    cam.setZoom(1.0f);
-	cam.setMinZoom(1.0f);
-	cam.setMaxZoom(2.0f);
-	cam.setScreenSize( ofGetWidth(), ofGetHeight() ); //tell the system how large is out screen
-    
-	cam.lookAt( ofVec2f(canvasW/2, 160) );
-    cam.setViewportConstrain( ofVec3f(0,0), ofVec3f(canvasW, canvasH)); //limit browseable area, in world units
 
+	
     rectHome.set(ofGetWidth()-70, ofGetHeight() -30, 70, 30);
     
     buttHome.setLabel("HOME", &essAssets->ostrich24);
@@ -67,7 +60,7 @@ void aboutScene::activate() {
     nApp.setLabel("APP", &essAssets->ostrich19); 
     nApp.setPos (leftMargin, navY); 
     nApp.disableBG();
-
+	
     nFAQ.setLabel("FAQ", &essAssets->ostrich19); 
     nFAQ.setPos (appL + leftMargin + dotMargin, navY); 
     nFAQ.disableBG();
@@ -75,7 +68,7 @@ void aboutScene::activate() {
     nOralHistories.setLabel("ORAL HISTORIES", &essAssets->ostrich19); 
     nOralHistories.setPos (appL + faqL + leftMargin + dotMargin*2, navY ); 
     nOralHistories.disableBG();
-        
+	
     nCreators.setLabel("CREATORS", &essAssets->ostrich19); 
     nCreators.setPos (appL + faqL + OHL + leftMargin + dotMargin*3, navY); 
     nCreators.disableBG();
@@ -83,7 +76,7 @@ void aboutScene::activate() {
     nThanks.setLabel("THANK YOU", &essAssets->ostrich19); 
     nThanks.setPos (appL + faqL + OHL + creatL + leftMargin + dotMargin*4, navY); 
     nThanks.disableBG();
-
+	
 	string tEld = "THE MUSEUM AT ELDRIDGE STREET"; 
 	string tAnna = "WWW.ANNAPINKAS.COM";
 	string tCarlin = "WWW.CARLINWRAGG.NET";
@@ -98,7 +91,7 @@ void aboutScene::activate() {
 	lEldridge.setColor(essAssets->ess_white, essAssets->ess_grey);
 	lEldridge.setPos(57, 169);
 	lEldridge.disableBG();
-		
+	
 	//creators page
 	int linkPosX = 12;
 	int linkPosY = 115; 
@@ -132,13 +125,16 @@ void aboutScene::activate() {
 	lRyan.setColor(essAssets->ess_white, essAssets->ess_grey);
 	lRyan.setPos(linkPosX, linkPosY + linkOffY*5);
 	lRyan.disableBG();
-
+	
 	//thank you page
 	lFiber.setLabel(tFiber, &essAssets->ostrich20);
 	lFiber.setColor(essAssets->ess_white, essAssets->ess_grey);
 	lFiber.setPos(140, 1125);
 	lFiber.disableBG();
 	
+	//tweening
+	Tweenzor::init();
+	tweenie = 0; 
 }
 
 //------------------------------------------------------------------
@@ -150,14 +146,16 @@ void aboutScene::deactivate() {
 //------------------------------------------------------------------
 void aboutScene::draw() {
 
-    cam.apply(); //put all our drawing under the ofxPanZoom effect
-    //aboutScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
+	ofEnableAlphaBlending();
+	
+	ofPushMatrix();
+	ofTranslate(0, tweenie);
     nApp.draw(); 
     nFAQ.draw(); 
     nOralHistories.draw();
     nCreators.draw(); 
     nThanks.draw(); 
-
+	
     textY = navY + 50; 
 	
 	ofSetColor(essAssets->ess_grey);
@@ -170,28 +168,32 @@ void aboutScene::draw() {
     
     switch(mgr.getCurScene()) {
         case ABOUT_SCENE_APP:
-
+			
             nApp.setColor (essAssets->ess_yellow); 
             pApp.draw(0,textY,ofGetWidth(), pApp.height/2); 
+			maxBottom = pApp.height/2;
 			lEldridge.draw();          
             break;
             
         case ABOUT_SCENE_FAQ:
-
+			
             nFAQ.setColor (essAssets->ess_yellow); 
-            pFAQ.draw(0,textY,ofGetWidth(), pFAQ.height/2);         
+            pFAQ.draw(0,textY,ofGetWidth(), pFAQ.height/2);   
+			maxBottom = pFAQ.height/2;
             break;
             
         case ABOUT_SCENE_ORALHISTORIES:
             
             nOralHistories.setColor (essAssets->ess_yellow); 
-            pOralHistories.draw(0,textY,ofGetWidth(), pOralHistories.height/2);             
+            pOralHistories.draw(0,textY,ofGetWidth(), pOralHistories.height/2); 
+            maxBottom = pOralHistories.height/2;
             break;
             
         case ABOUT_SCENE_CREATORS:
             
             nCreators.setColor (essAssets->ess_yellow); 
             pCreators.draw(0,textY,ofGetWidth(), pCreators.height/2); 
+			maxBottom = pCreators.height/2;
 			lAnna.draw();
 			lCarlin.draw();
 			lChien.draw();
@@ -203,21 +205,25 @@ void aboutScene::draw() {
         case ABOUT_SCENE_THANKYOU:
             
             nThanks.setColor (essAssets->ess_yellow); 
-            pThanks.draw(0,textY,ofGetWidth(), pThanks.height); 
+            pThanks.draw(0,textY,ofGetWidth(), pThanks.height/2); 
+			maxBottom = pThanks.height/2;
 			lFiber.draw();
-         
+			
             break;
     }
-	
+
 	essAssets->ostrich24.drawString("ABOUT", 15, 15);
-	cam.reset();	//back to normal ofSetupScreen() projection   
+	ofPopMatrix();
 	
+
 
     ofPushMatrix();
     ofSetColor(essAssets->ess_blue);
 	ofRect(rectHome.x, rectHome.y,60, 27);
     buttHome.draw(); 
     ofPopMatrix();
+	
+	ofDisableAlphaBlending();
 }
 
 
@@ -230,29 +236,30 @@ void aboutScene::draw() {
 //--------------------------------------------------------------
 void aboutScene::touchDown(ofTouchEventArgs &touch){
     button.touchDown(touch);
-    //buttHome.GLtouchDown(touch);
-    
-    cam.touchDown(touch); //fw event to cam
-    ofVec3f panTouch =  cam.screenToWorld( ofVec3f( touch.x, touch.y) );	//convert touch (in screen units) to world units
-    
-    ofTouchEventArgs touchTemp;
-    touchTemp.x = panTouch.x;
-    touchTemp.y = panTouch.y;     
+
     buttHome.touchDown(touch);
-    nApp.touchDown(touchTemp); 
-    nOralHistories.touchDown(touchTemp); 
-    nCreators.touchDown(touchTemp); 
-    nThanks.touchDown(touchTemp); 
-    nFAQ.touchDown(touchTemp); 
 	
-	lEldridge.touchDown(touchTemp); 
-	lAnna.touchDown(touchTemp);
-	lCarlin.touchDown(touchTemp); 
-	lLia.touchDown(touchTemp);
-	lChien.touchDown(touchTemp); 
-	lMerche.touchDown(touchTemp); 
-	lRyan.touchDown(touchTemp); 
-	lFiber.touchDown(touchTemp); 
+	ofTouchEventArgs tweenedTouch; 
+	tweenedTouch.x = touch.x; 
+	tweenedTouch.y = touch.y - tweenie; 
+	
+    nApp.touchDown(tweenedTouch); 
+    nOralHistories.touchDown(tweenedTouch); 
+    nCreators.touchDown(tweenedTouch); 
+    nThanks.touchDown(tweenedTouch); 
+    nFAQ.touchDown(tweenedTouch); 
+	
+	lEldridge.touchDown(tweenedTouch); 
+	lAnna.touchDown(tweenedTouch);
+	lCarlin.touchDown(tweenedTouch); 
+	lLia.touchDown(tweenedTouch);
+	lChien.touchDown(tweenedTouch); 
+	lMerche.touchDown(tweenedTouch); 
+	lRyan.touchDown(tweenedTouch); 
+	lFiber.touchDown(tweenedTouch); 
+	
+	downY = touch.y; 
+	offset = downY - tweenie;
 	
 }
 
@@ -260,15 +267,21 @@ void aboutScene::touchDown(ofTouchEventArgs &touch){
 //--------------------------------------------------------------
 void aboutScene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
-    
-    cam.touchMoved(touch); //fw event to cam
+
+	tweenGo = true; 
+	tweenie = touch.y - offset;
+	
+	ofTouchEventArgs tweenedTouch; 
+	tweenedTouch.x = touch.x; 
+	tweenedTouch.y = touch.y - tweenie; 
+	ofRect(tweenedTouch.x, tweenedTouch.y, 30, 30);
 }
 
 
 //--------------------------------------------------------------
 void aboutScene::touchUp(ofTouchEventArgs &touch){
     //Switch Scenes
-
+	
     if (nApp.isPressed()) {
         canvasH = pApp.height;        
         mgr.setCurScene(ABOUT_SCENE_APP); 
@@ -285,7 +298,7 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
         canvasH = pThanks.height;
         mgr.setCurScene(ABOUT_SCENE_THANKYOU); 
     }
-
+	
 	if (nApp.isPressed() || nOralHistories.isPressed() || nCreators.isPressed() || nThanks.isPressed() || nFAQ.isPressed()) {
 		cam.lookAt( ofVec2f(canvasW/2, ofGetHeight()/2) );
 		cam.setViewportConstrain( ofVec3f(0,0), ofVec3f(canvasW, canvasH));
@@ -294,30 +307,43 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
     if (buttHome.isPressed()) {
         essSM->setCurScene(SCENE_HOME);
     }
-
+	
     buttHome.touchUp(touch);
     button.touchUp(touch);
     
-    cam.touchUp(touch); //fw event to cam
+	startY = touch.y;
+	if (tweenGo) {
+	if (startY > downY) {
+		endY = tweenie + (startY - downY)*2; 
+		if (endY > 0) endY = 0; 
+		//endY = tweenie + 40; 
+	} else if(startY < downY) {
+		endY = tweenie - (downY - startY)*2; 
+		if (endY < -maxBottom+ofGetHeight() - 100) endY = -maxBottom+ofGetHeight() - 100; 
+		//endY = tweenie - 40; 
+	}
+		Tweenzor::add(&tweenie, tweenie , endY, 0.f, 0.5f, EASE_OUT_SINE);
+	}
+	
+	
+	ofTouchEventArgs tweenedTouch; 
+	tweenedTouch.x = touch.x; 
+	tweenedTouch.y = touch.y - tweenie; 
+	
+	ofRect(tweenedTouch.x, tweenedTouch.y, 30, 30);
 
-    ofVec3f panTouch =  cam.screenToWorld( ofVec3f( touch.x, touch.y) );	//convert touch (in screen units) to world units
-    
-    ofTouchEventArgs touchTemp;
-    touchTemp.x = panTouch.x;
-    touchTemp.y = panTouch.y;     
-    
-    nApp.touchUp(touchTemp); 
-    nOralHistories.touchUp(touchTemp); 
-    nCreators.touchUp(touchTemp); 
-    nThanks.touchUp(touchTemp); 
-    nFAQ.touchUp(touchTemp);
+    nApp.touchUp(tweenedTouch); 
+    nOralHistories.touchUp(tweenedTouch); 
+    nCreators.touchUp(tweenedTouch); 
+    nThanks.touchUp(tweenedTouch); 
+    nFAQ.touchUp(tweenedTouch);
     
     nApp.setColor (essAssets->ess_white); 
     nOralHistories.setColor(essAssets->ess_white); 
     nCreators.setColor (essAssets->ess_white); 
     nThanks.setColor(essAssets->ess_white); 
     nFAQ.setColor(essAssets->ess_white); 
-
+	
 	//link URLs
 	NSURL *uEldridge = [ [ NSURL alloc ] initWithString: @"http://www.eldridgestreet.org" ];
 	NSURL *uAnna = [ [ NSURL alloc ] initWithString: @"http://www.annapinkas.com" ];
@@ -345,14 +371,14 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 		if (lFiber.isPressed()) [[UIApplication sharedApplication] openURL:uFiber];
 	}
 	
-	lEldridge.touchUp(touchTemp); 
-	lAnna.touchUp(touchTemp);
-	lCarlin.touchUp(touchTemp); 
-	lLia.touchUp(touchTemp);
-	lChien.touchUp(touchTemp); 
-	lMerche.touchUp(touchTemp); 
-	lRyan.touchUp(touchTemp); 
-	lFiber.touchUp(touchTemp); 
+	lEldridge.touchUp(tweenedTouch); 
+	lAnna.touchUp(tweenedTouch);
+	lCarlin.touchUp(tweenedTouch); 
+	lLia.touchUp(tweenedTouch);
+	lChien.touchUp(tweenedTouch); 
+	lMerche.touchUp(tweenedTouch); 
+	lRyan.touchUp(tweenedTouch); 
+	lFiber.touchUp(tweenedTouch); 
 	
 	cout << touch.x << " " << touch.y << endl; 
 	
@@ -360,11 +386,13 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 
+
 void aboutScene::touchDoubleTap(ofTouchEventArgs &touch){
-	cam.touchDoubleTap(touch); //fw event to cam
-	cam.setZoom(1.0f);	//reset zoom
-	cam.lookAt( ofVec2f(canvasW/2, canvasH/2) ); //reset position
+
     
-    
-    
+}
+
+//--------------------------------------------------------------
+void aboutScene::exit() {
+	Tweenzor::destroy();
 }
