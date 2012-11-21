@@ -64,6 +64,7 @@ void testApp::setup(){
     */
     //MainAudio Track
     volume = 1.0f;
+	
     mainAudio.setMultiPlay(true); 
     mainAudio.setVolume(volume);
     mainAudio.loadSound("sounds/Master_fCaf.caf");

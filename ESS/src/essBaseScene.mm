@@ -171,26 +171,33 @@ void essBaseScene::drawMapPoints() {
 
 void essBaseScene::setRotation() {
 	//set the start/ end tweens and heightMax of rotated and not rotated version
+	cout << "setrotation()" << endl; 
 	if (shiftRotate() == 90) {
+		for (int i = 0; i < floorMap.size(); i++) {
 		floorMap[currentOH].setDrawRotated(true); 
+			cout << "set to true" << endl; 
+		}
 		startTween = 0;
 		endTween =  floorMap[currentOH].overlayRect.height;
 		buttScreen.setPos(tweenNum, 0);
 		buttScreen.setSize(ofGetWidth(), ofGetHeight());
 		essSM->setIsRot(true, tweenNum);
 		//debugging: draw the tween!
-		ofSetColor(255, 0, 0);
-		ofLine (tweenNum, 0, tweenNum, ofGetHeight()); 
+		//ofSetColor(255, 0, 0);
+		//ofLine (tweenNum, 0, tweenNum, ofGetHeight()); 
 	} else {
+		for (int i = 0; i < floorMap.size(); i++) {
 		floorMap[currentOH].setDrawRotated(false); 
+			cout << "set to false" << endl; 
+		}
 		startTween = ofGetHeight();
 		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
 		buttScreen.setPos(0, 0);
 		buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
 		essSM->setIsRot(false, tweenNum);
 		//debugging: draw the tween!
-		ofSetColor(255, 0, 0);
-		ofLine (0, tweenNum, ofGetWidth(), tweenNum); 
+		//ofSetColor(255, 0, 0);
+		//ofLine (0, tweenNum, ofGetWidth(), tweenNum); 
 	}
     
 	cout << "shiftrotate: " << shiftRotate() << " old rot: " << oldRot << endl; 
@@ -218,7 +225,7 @@ void essBaseScene::drawLowerBar() {
 			overlayShow = false;
 			essSM->setIsDragging(false);
 //			cout<<"case 0"<<essSM->getIsDragging()<<endl;
-			doneTweening = true;
+//doneTweening = true;
 			break;
             
 		case 1:
@@ -343,7 +350,7 @@ void essBaseScene::drawLowerBar() {
             tempOverlayRectHeight = tweenNum;
             
             
-            if (!floorMap[currentOH].getDrawRotated()) { 
+            if ((shiftRotate() == 0)) { 
                 buttScreen.setPos(0, 0);
                 buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
             } else {
@@ -358,7 +365,7 @@ void essBaseScene::drawLowerBar() {
 	//draw the overlay
     floorMap[textTempOH].drawOverlay(tweenNum);  
 	//draw the play button
-	if (!floorMap[currentOH].getDrawRotated()) {
+	if ((shiftRotate() == 0)) {
 		playPauseButn.draw(floorMap[currentOH].overlayRect.x, tweenNum);
 	} else {
 		playPauseButn.draw(tweenNum - 40, floorMap[currentOH].overlayRect.y);
@@ -367,7 +374,7 @@ void essBaseScene::drawLowerBar() {
 	//draw the button to drag out the description
 	descriptionButn.enableBG(); //enabling this will draw the button box area 
 	//descriptionButn.draw(); 
-	if (!floorMap[currentOH].getDrawRotated()) {
+	if ((shiftRotate() == 0)) {
 		descriptionButn.setSize(300, 50);
 		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 30); 
 	} else {
@@ -378,8 +385,8 @@ void essBaseScene::drawLowerBar() {
     
 	//draw the handle graphic 
 	ofEnableAlphaBlending();
-	if (!floorMap[currentOH].getDrawRotated()) {
-		essAssets->handle.draw((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 20, tweenNum);
+	if (shiftRotate() == 0) {
+		essAssets->handle.draw(ofGetWidth()/2 - 20, tweenNum);
 	} else {
 		ofPushMatrix(); 
 		ofTranslate(tweenNum, 140); 
@@ -401,11 +408,15 @@ void essBaseScene::setupTweens() {
     Tweenzor::init();
     
 	if (shiftRotate() == 90) {
+		for (int i = 0; i < floorMap.size(); i++) {
 		floorMap[currentOH].setDrawRotated(true); 
+		}
 		startTween = 0;
 		endTween =  floorMap[currentOH].overlayRect.height;
 	} else {
+		for (int i = 0; i < floorMap.size(); i++) {
 		floorMap[currentOH].setDrawRotated(false); 
+		}
 		startTween = ofGetHeight();
 		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
 	}
@@ -427,7 +438,7 @@ void essBaseScene::onExitComplete(float* arg) {
 
 	drawIt = false; 
 	
-	//doneTweening = true; //when doneTweening is set to true, new rotation are generated
+	doneTweening = true; //when doneTweening is set to true, new rotation are generated
 	
 	setRotation(); 
 	 
@@ -612,7 +623,7 @@ void essBaseScene::setupAudio() {
 	
 	 beginLineX = floorMap[textTempOH].marginWidth/2 + floorMap[currentOH].marginButton; 
 	//Vertical
-	if (floorMap[textTempOH].getDrawRotated()) {
+	if (shiftRotate() == 90) {
 		lineY = tweenNum - playHeadLoc; 
 //		 endLineX = floorMap[textTempOH].overlayWidth - floorMap[textTempOH].marginWidth - (floorMap[textTempOH].marginButton*2.5); 
         endLineX = 250;
@@ -657,7 +668,7 @@ void essBaseScene::audioDisplay(){
 	ofSetColor(essAssets->ess_yellow);
 	
 	if (drawIt) { //band-aid boolean to prevent drawings when in weird rotations
-		if (!floorMap[currentOH].getDrawRotated()) {//if we are in horizontal position
+		if (shiftRotate() ==0 ) {//if we are in horizontal position
 			ofLine (beginLineX, lineY, endLineX, lineY); 
 			essAssets->ostrich19.drawTextArea(checkPlayTime(currentOH), endLineX + 20, lineY - 10, 100, 100);
             
@@ -698,9 +709,9 @@ void essBaseScene::audioDisplay(){
 
 }
 
-//------------------------------------------------------------------
-//------------------------  EVENTS     -----------------------------
-//------------------------------------------------------------------
+//------------------------------------------------------------------//
+//------------------------  EVENTS     -----------------------------//
+//------------------------------------------------------------------//
 
 void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
    

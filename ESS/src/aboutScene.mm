@@ -79,7 +79,7 @@ void aboutScene::activate() {
 	
 	string tEld = "THE MUSEUM AT ELDRIDGE STREET"; 
 	string tAnna = "WWW.ANNAPINKAS.COM";
-	string tCarlin = "WWW.CARLINWRAGG.NET";
+	string tCarlin = "WWW.CARLINMWRAGG.NET";
 	string tLia = "WWW.LIAMARTINEZ.COM";
 	string tChien = "WWW.CHIENYULIN.COM";
 	string tMerche = "HTTP://HALF-HALF.ES"; 
@@ -89,12 +89,12 @@ void aboutScene::activate() {
 	//link buttons
 	lEldridge.setLabel(tEld, &essAssets->ostrich20);
 	lEldridge.setColor(essAssets->ess_white, essAssets->ess_grey);
-	lEldridge.setPos(57, 169);
+	lEldridge.setPos(57, 154);
 	lEldridge.disableBG();
 	
 	//creators page
 	int linkPosX = 12;
-	int linkPosY = 115; 
+	int linkPosY = 100; 
 	int linkOffY = 48; 
 	lAnna.setLabel(tAnna, &essAssets->ostrich20);
 	lAnna.setColor(essAssets->ess_white, essAssets->ess_grey);
@@ -129,7 +129,7 @@ void aboutScene::activate() {
 	//thank you page
 	lFiber.setLabel(tFiber, &essAssets->ostrich20);
 	lFiber.setColor(essAssets->ess_white, essAssets->ess_grey);
-	lFiber.setPos(140, 1125);
+	lFiber.setPos(140, 1110);
 	lFiber.disableBG();
 	
 	//tweening
@@ -146,7 +146,7 @@ void aboutScene::deactivate() {
 //------------------------------------------------------------------
 void aboutScene::draw() {
 
-	ofEnableAlphaBlending();
+	//ofEnableAlphaBlending();
 	
 	ofPushMatrix();
 	ofTranslate(0, tweenie);
@@ -156,7 +156,7 @@ void aboutScene::draw() {
     nCreators.draw(); 
     nThanks.draw(); 
 	
-    textY = navY + 50; 
+    textY = navY + 35; 
 	
 	ofSetColor(essAssets->ess_grey);
 	ofCircle(leftMargin + appL + (dotMargin), navY + 18, 5);
@@ -185,8 +185,8 @@ void aboutScene::draw() {
         case ABOUT_SCENE_ORALHISTORIES:
             
             nOralHistories.setColor (essAssets->ess_yellow); 
-            pOralHistories.draw(0,textY,ofGetWidth(), pOralHistories.height/2); 
-            maxBottom = pOralHistories.height/2;
+            pOralHistories.draw(0,textY,ofGetWidth(), pOralHistories.height); 
+            maxBottom = pOralHistories.height;
             break;
             
         case ABOUT_SCENE_CREATORS:
@@ -205,8 +205,8 @@ void aboutScene::draw() {
         case ABOUT_SCENE_THANKYOU:
             
             nThanks.setColor (essAssets->ess_yellow); 
-            pThanks.draw(0,textY,ofGetWidth(), pThanks.height/2); 
-			maxBottom = pThanks.height/2;
+            pThanks.draw(0,textY,ofGetWidth(), pThanks.height); 
+			maxBottom = pThanks.height;
 			lFiber.draw();
 			
             break;
@@ -223,7 +223,7 @@ void aboutScene::draw() {
     buttHome.draw(); 
     ofPopMatrix();
 	
-	ofDisableAlphaBlending();
+	//ofDisableAlphaBlending();
 }
 
 
