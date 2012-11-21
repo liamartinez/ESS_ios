@@ -1,38 +1,50 @@
 <ESS>
     <OH>
-        <NAME>NAME OF TRACK 1A</NAME>
-        <PATH>sounds/Mason.caf</PATH>
+        <NAME>A CENTRAL UNIT</NAME>
+        <PATH>sounds/caf/01A.caf</PATH>
         <KEYWORD>story</KEYWORD>
-        <XPOS>244</XPOS>
-        <YPOS>127</YPOS>
-        <ISPLAYED>0</ISPLAYED>
+        <XPOS>156</XPOS>
+        <YPOS>78</YPOS>
+        <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
-        <TIME>0</TIME>
-        <LENGTH>45</LENGTH>
-        <DESCRIPTION>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</DESCRIPTION>
+        <TIME>0.0486132</TIME>
+        <LENGTH>137</LENGTH>
+        <DESCRIPTION>Eli Mason, Paul Bookson</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 1B</NAME>
-        <PATH>sounds/bubbles.caf</PATH>
+        <NAME>FROM THE OLD WORLD</NAME>
+        <PATH>sounds/caf/01B.caf</PATH>
         <KEYWORD>story2</KEYWORD>
-        <XPOS>199</XPOS>
-        <YPOS>236</YPOS>
-        <ISPLAYED>0</ISPLAYED>
+        <XPOS>190</XPOS>
+        <YPOS>251</YPOS>
+        <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
-        <LENGTH>1</LENGTH>
-        <DESCRIPTION>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</DESCRIPTION>
+        <LENGTH>126</LENGTH>
+        <DESCRIPTION>Gussie Dubrin, Mrs. Brenner, Paul Bookson - Pogrom: An organized massacre of a particular ethnic group. The term originally entered English to describe 19th and 20th-century attacks on Jews in the Russian Empire.</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 1C</NAME>
-        <PATH>sounds/tone.caf</PATH>
+        <NAME>TO THE LOWER EAST SIDE</NAME>
+        <PATH>sounds/caf/01C.caf</PATH>
         <KEYWORD>story3</KEYWORD>
-        <XPOS>222</XPOS>
-        <YPOS>183</YPOS>
-        <ISPLAYED>0</ISPLAYED>
+        <XPOS>243</XPOS>
+        <YPOS>109</YPOS>
+        <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
-        <TIME>0</TIME>
-        <LENGTH>2</LENGTH>
-        <DESCRIPTION>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</DESCRIPTION>
+        <TIME>0.169724</TIME>
+        <LENGTH>69</LENGTH>
+        <DESCRIPTION>Bernice Migdal, Paul Bookson</DESCRIPTION>
+    </OH>
+    <OH>
+        <NAME>ON ELDRIDGE STREET</NAME>
+        <PATH>sounds/caf/01D.caf</PATH>
+        <KEYWORD>story4</KEYWORD>
+        <XPOS>217</XPOS>
+        <YPOS>180</YPOS>
+        <ISPLAYED>1</ISPLAYED>
+        <PLAYING>0</PLAYING>
+        <TIME>0.0212293</TIME>
+        <LENGTH>129</LENGTH>
+        <DESCRIPTION>Paul Bookson, Evelyn Broome, Eli Mason, Miriam Aaron, Gilbert Lazerus - Edward Smith sings “Shema Israel” (&quot;Hear, [O] Israel&quot;), the central prayer in the Jewish prayerbook. Orthodox Jews recite the Shema at least twice a day - in the morning and the evening.</DESCRIPTION>
     </OH>
 </ESS>

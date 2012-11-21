@@ -1,62 +1,62 @@
 <ESS>
     <OH>
-        <NAME>NAME OF TRACK 4A</NAME>
-        <PATH>sounds/Mason.caf</PATH>
+        <NAME>FIRST SEAT</NAME>
+        <PATH>sounds/caf/04A.caf</PATH>
         <KEYWORD>story</KEYWORD>
-        <XPOS>378</XPOS>
-        <YPOS>124</YPOS>
-        <ISPLAYED>1</ISPLAYED>
+        <XPOS>115</XPOS>
+        <YPOS>97</YPOS>
+        <ISPLAYED>0</ISPLAYED>
         <PLAYING>0</PLAYING>
-        <TIME>1226803968</TIME>
-        <LENGTH>45</LENGTH>
-        <DESCRIPTION />
+        <TIME>0</TIME>
+        <LENGTH>97</LENGTH>
+        <DESCRIPTION>Gussie Dubrin, Mrs. Freid</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 4B</NAME>
-        <PATH>sounds/bubbles.caf</PATH>
+        <NAME>THE CHOLENT</NAME>
+        <PATH>sounds/caf/04B.caf</PATH>
         <KEYWORD>story2</KEYWORD>
-        <XPOS>308</XPOS>
-        <YPOS>147</YPOS>
+        <XPOS>185</XPOS>
+        <YPOS>232</YPOS>
         <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>1</LENGTH>
-        <DESCRIPTION>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</DESCRIPTION>
+        <DESCRIPTION>Gussie Dubrin - Cholent: A traditional Jewish stew, developed over the centuries to conform with Jewish laws that prohibit cooking on the Sabbath.</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 4C</NAME>
-        <PATH>sounds/tone.caf</PATH>
+        <NAME>A POCKETFUL OF GRAPES</NAME>
+        <PATH>sounds/caf/04C.caf</PATH>
         <KEYWORD>story3</KEYWORD>
-        <XPOS>119</XPOS>
-        <YPOS>100</YPOS>
+        <XPOS>317</XPOS>
+        <YPOS>87</YPOS>
         <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
-        <TIME>0</TIME>
-        <LENGTH>2</LENGTH>
-        <DESCRIPTION>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</DESCRIPTION>
+        <TIME>0.345601</TIME>
+        <LENGTH>55</LENGTH>
+        <DESCRIPTION>Max Smith - Yom Kippur: Day of Atonement. The holiest day of the year. Yom Kippur is traditionally observed with a 25-hour period of fasting and intensive prayer, with most of the day spent in synagogue services.</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 4D</NAME>
-        <PATH>sounds/tone.caf</PATH>
-        <KEYWORD>story3</KEYWORD>
-        <XPOS>220</XPOS>
-        <YPOS>268</YPOS>
+        <NAME>HIGH HOLIDAYS</NAME>
+        <PATH>sounds/caf/04D.caf</PATH>
+        <KEYWORD>story4</KEYWORD>
+        <XPOS>290</XPOS>
+        <YPOS>162</YPOS>
         <ISPLAYED>0</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
-        <LENGTH>2</LENGTH>
-        <DESCRIPTION>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</DESCRIPTION>
+        <LENGTH>159</LENGTH>
+        <DESCRIPTION>Miriam Aaron - Miriam Aaron reads from a letter she wrote to the Eldridge Street Project. - Edward Smith sings “Avinu Malkeinu” (“Our Father, Our King”) prayer recited during services on Rosh Hashanah (Jewish New Year) and Yom Kippur (Day of Atonement).</DESCRIPTION>
     </OH>
     <OH>
-        <NAME>NAME OF TRACK 4E</NAME>
-        <PATH>sounds/Mason.caf</PATH>
-        <KEYWORD>story3</KEYWORD>
-        <XPOS>316</XPOS>
-        <YPOS>201</YPOS>
-        <ISPLAYED>1</ISPLAYED>
+        <NAME>A FLIGHT OF STAIRS</NAME>
+        <PATH>sounds/caf/04E.caf</PATH>
+        <KEYWORD>story5</KEYWORD>
+        <XPOS>395</XPOS>
+        <YPOS>87</YPOS>
+        <ISPLAYED>0</ISPLAYED>
         <PLAYING>0</PLAYING>
-        <TIME>596467968</TIME>
-        <LENGTH>45</LENGTH>
-        <DESCRIPTION>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</DESCRIPTION>
+        <TIME>0</TIME>
+        <LENGTH>36</LENGTH>
+        <DESCRIPTION>Mrs. Freid - According to Jewish Law, men and women must be separated during prayer, usually by a wall or curtain called a mechitzah, or by placing women in a second floor balcony.</DESCRIPTION>
     </OH>
 </ESS>
