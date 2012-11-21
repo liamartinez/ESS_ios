@@ -846,6 +846,18 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         
         if (touchedOutside) {
 			tweenEntryExit(0); 
+            //if touch outside the overlay, audio stop
+            cout<<"touch ouside of the overlay"<<endl;
+            cout<<"Is the audio playing"<<audioTest.getIsPlaying()<<endl;
+            if (audioTest.getIsPlaying()) {
+                audioTest.stop();
+                floorMap[currentOH].playing= 0;
+                floorMap[currentOH].time = audioTest.getPosition();
+                updateXML(currentOH);
+                
+            }
+
+            
         }		
     }
     buttScreen.touchUp(touch);
