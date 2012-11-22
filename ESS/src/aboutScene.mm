@@ -54,7 +54,7 @@ void aboutScene::activate() {
     
 	appL = essAssets->ostrich19.getStringWidth("APP"); 
     faqL = essAssets->ostrich19.getStringWidth("FAQ"); 
-    OHL = essAssets->ostrich19.getStringWidth("ORAL HISTORIES");
+    OHL = essAssets->ostrich19.getStringWidth("CONGGREGANTS");
     creatL = essAssets->ostrich19.getStringWidth("CREATORS");
     
     nApp.setLabel("APP", &essAssets->ostrich19); 
@@ -65,7 +65,7 @@ void aboutScene::activate() {
     nFAQ.setPos (appL + leftMargin + dotMargin, navY); 
     nFAQ.disableBG();
     
-    nOralHistories.setLabel("ORAL HISTORIES", &essAssets->ostrich19); 
+    nOralHistories.setLabel("CONGGREGANTS", &essAssets->ostrich19); 
     nOralHistories.setPos (appL + faqL + leftMargin + dotMargin*2, navY ); 
     nOralHistories.disableBG();
 	
@@ -85,16 +85,18 @@ void aboutScene::activate() {
 	string tMerche = "HTTP://HALF-HALF.ES"; 
 	string tRyan = "WWW.RYANBILLIA.COM";
 	string tFiber = "FIBER INK STUDIO"; 
+	string tJoey1 = "JOEY"; 
+	string tJoey2 = "WIESENBERG"; 
     
 	//link buttons
 	lEldridge.setLabel(tEld, &essAssets->ostrich20);
 	lEldridge.setColor(essAssets->ess_white, essAssets->ess_grey);
-	lEldridge.setPos(57, 154);
+	lEldridge.setPos(57, 171);
 	lEldridge.disableBG();
 	
 	//creators page
-	int linkPosX = 12;
-	int linkPosY = 100; 
+	int linkPosX = 14;
+	int linkPosY = 98; 
 	int linkOffY = 48; 
 	lAnna.setLabel(tAnna, &essAssets->ostrich20);
 	lAnna.setColor(essAssets->ess_white, essAssets->ess_grey);
@@ -129,8 +131,18 @@ void aboutScene::activate() {
 	//thank you page
 	lFiber.setLabel(tFiber, &essAssets->ostrich20);
 	lFiber.setColor(essAssets->ess_white, essAssets->ess_grey);
-	lFiber.setPos(140, 1110);
+	lFiber.setPos(159, 147);
 	lFiber.disableBG();
+	
+	lJoey1.setLabel(tJoey1, &essAssets->ostrich20);
+	lJoey1.setColor(essAssets->ess_white, essAssets->ess_grey);
+	lJoey1.setPos(395, 99);
+	lJoey1.disableBG();
+	
+	lJoey2.setLabel(tJoey2, &essAssets->ostrich20);
+	lJoey2.setColor(essAssets->ess_white, essAssets->ess_grey);
+	lJoey2.setPos(12, 123);
+	lJoey2.disableBG();
 	
 	//tweening
 	Tweenzor::init();
@@ -170,16 +182,16 @@ void aboutScene::draw() {
         case ABOUT_SCENE_APP:
 			
             nApp.setColor (essAssets->ess_yellow); 
-            pApp.draw(0,textY,ofGetWidth(), pApp.height/2); 
-			maxBottom = pApp.height/2;
+            pApp.draw(0,textY,ofGetWidth(), pApp.height); 
+			maxBottom = pApp.height;
 			lEldridge.draw();          
             break;
             
         case ABOUT_SCENE_FAQ:
 			
             nFAQ.setColor (essAssets->ess_yellow); 
-            pFAQ.draw(0,textY,ofGetWidth(), pFAQ.height/2);   
-			maxBottom = pFAQ.height/2;
+            pFAQ.draw(0,textY,ofGetWidth(), pFAQ.height);   
+			maxBottom = pFAQ.height;
             break;
             
         case ABOUT_SCENE_ORALHISTORIES:
@@ -192,8 +204,8 @@ void aboutScene::draw() {
         case ABOUT_SCENE_CREATORS:
             
             nCreators.setColor (essAssets->ess_yellow); 
-            pCreators.draw(0,textY,ofGetWidth(), pCreators.height/2); 
-			maxBottom = pCreators.height/2;
+            pCreators.draw(0,textY,ofGetWidth(), pCreators.height); 
+			maxBottom = pCreators.height;
 			lAnna.draw();
 			lCarlin.draw();
 			lChien.draw();
@@ -208,6 +220,8 @@ void aboutScene::draw() {
             pThanks.draw(0,textY,ofGetWidth(), pThanks.height); 
 			maxBottom = pThanks.height;
 			lFiber.draw();
+			lJoey1.draw();
+			lJoey2.draw();
 			
             break;
     }
@@ -257,6 +271,8 @@ void aboutScene::touchDown(ofTouchEventArgs &touch){
 	lMerche.touchDown(tweenedTouch); 
 	lRyan.touchDown(tweenedTouch); 
 	lFiber.touchDown(tweenedTouch); 
+	lJoey1.touchDown(tweenedTouch); 
+	lJoey2.touchDown(tweenedTouch); 
 	
 	downY = touch.y; 
 	offset = downY - tweenie;
@@ -316,11 +332,9 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 	if (startY > downY) {
 		endY = tweenie + (startY - downY)*2; 
 		if (endY > 0) endY = 0; 
-		//endY = tweenie + 40; 
 	} else if(startY < downY) {
 		endY = tweenie - (downY - startY)*2; 
-		if (endY < -maxBottom+ofGetHeight() - 100) endY = -maxBottom+ofGetHeight() - 100; 
-		//endY = tweenie - 40; 
+		if (endY < -maxBottom+ofGetHeight() - 100) endY = -maxBottom+ofGetHeight() - 100;  
 	}
 		Tweenzor::add(&tweenie, tweenie , endY, 0.f, 0.5f, EASE_OUT_SINE);
 	}
@@ -352,7 +366,8 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 	NSURL *uChien = [ [ NSURL alloc ] initWithString: @"http://www.chienyulin.com" ];
 	NSURL *uMerche = [ [ NSURL alloc ] initWithString: @"http://www.half-half.es" ];
 	NSURL *uRyan = [ [ NSURL alloc ] initWithString: @"http://www.ryanbillia.com" ];
-	NSURL *uFiber = [ [ NSURL alloc ] initWithString: @"http://fiberinkstudio.com/" ];
+	NSURL *uFiber = [ [ NSURL alloc ] initWithString: @"http://fiberinkstudio.com" ];
+	NSURL *uJoey = [ [ NSURL alloc ] initWithString: @"http://joeyweisenberg.com" ];
 	
 	if (mgr.getCurScene() == ABOUT_SCENE_APP) {
 		if (lEldridge.isPressed())[[UIApplication sharedApplication] openURL:uEldridge];
@@ -369,6 +384,7 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 	
 	if (mgr.getCurScene() == ABOUT_SCENE_THANKYOU) {
 		if (lFiber.isPressed()) [[UIApplication sharedApplication] openURL:uFiber];
+		if (lJoey1.isPressed() || lJoey2.isPressed()) [[UIApplication sharedApplication] openURL:uJoey];
 	}
 	
 	lEldridge.touchUp(tweenedTouch); 
@@ -379,6 +395,8 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 	lMerche.touchUp(tweenedTouch); 
 	lRyan.touchUp(tweenedTouch); 
 	lFiber.touchUp(tweenedTouch); 
+	lJoey1.touchUp(tweenedTouch); 
+	lJoey2.touchUp(tweenedTouch); 
 	
 	cout << touch.x << " " << touch.y << endl; 
 	

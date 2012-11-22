@@ -78,29 +78,8 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
     ofSoundUpdate();
-	
 
-	int heightMax = essSM->getOverlayLoc();
-	int curSwipe;
-	/*
-	if (essSM->getIsRot()) {
-		curSwipe = swipeDetect->p.y;
-	} else {
-		curSwipe = swipeDetect->p.x;
-	}
-	
-	if (essSM->getIsDragging()){
-		
-	}
-	 */
 
-	
-	//cout << "curSwipe: " << curSwipe << " heightmax: " << heightMax << endl; 
-	
-	//if (swipeDetect) {
-	//if (curSwipe < heightMax - 20) {
-//	cout<<"Dragging"<<essSM->getIsDragging()<<endl;
-    
 	if (!essSM->getIsDragging()) { //only work when overlay didn't show up
 		if (swipeDetect->swipe == 1) {
 			cout<<"HE DID SWIPE"<<endl;
@@ -179,7 +158,8 @@ void testApp::draw(){
 void testApp::exit(){
     
      [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-
+	mainAudio.stop();
+	mainAudio.unloadSound();
 }
 
 //--------------------------------------------------------------
@@ -213,7 +193,8 @@ void testApp::touchDoubleTap(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 void testApp::lostFocus(){
-
+	mainAudio.stop();
+	mainAudio.unloadSound();
 }
 
 //--------------------------------------------------------------

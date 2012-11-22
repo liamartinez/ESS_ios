@@ -85,7 +85,7 @@ void map1Scene::draw() {
             //the map
             ofSetColor(255, 255, 255); 
             map1Scene.draw(0,0, ofGetWidth(), ofGetHeight()); 
-			essAssets->arrowdown.draw(0,0, ofGetWidth(), ofGetHeight());
+			essAssets->arrowdown.draw(0,-20, ofGetWidth(), ofGetHeight());
             
             drawHomeButton();
             drawTitle();

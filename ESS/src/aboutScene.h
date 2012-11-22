@@ -44,7 +44,7 @@ public:
     ofRectangle rectHome; 
     ofRectangle TrectHome; 
 	
-	baseButton lEldridge, lAnna, lCarlin, lLia, lChien, lMerche, lRyan, lFiber; 
+	baseButton lEldridge, lAnna, lCarlin, lLia, lChien, lMerche, lRyan, lFiber, lJoey1, lJoey2; 
     
     ofxPanZoom	cam;
     int canvasW;
