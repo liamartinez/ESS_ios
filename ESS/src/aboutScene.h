@@ -1,10 +1,7 @@
 
 //  Created by Lia Martinez on 2/27/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
-
-#ifndef ESS_aboutScene_h
-#define ESS_aboutScene_h
 
 #pragma once
 
@@ -63,6 +60,7 @@ public:
 	float downY; 
 	float tweenie;
 	int offset; 
+	int dragTimer; 
 	
 	int liaTween(int start, int end);
 	bool tweenGo; 
@@ -78,4 +76,4 @@ private:
     
 };
 
-#endif
+

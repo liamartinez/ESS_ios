@@ -1,6 +1,6 @@
 
 //  Created by Lia Martinez on 2/26/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 
 #pragma once
 #include "essBaseScene.h"

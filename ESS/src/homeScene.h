@@ -1,6 +1,6 @@
 
 //  Created by Lia Martinez on 2/26/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
 
 #ifndef SingWhale01_homeScene_h
@@ -44,6 +44,11 @@ public:
 	int alpha, alphaInc; 
 	int revAlpha; 
     bool guideOn; 
+	
+	ofColor textWhite;
+	ofColor textGray; 
+	ofColor darkGray; 
+	int alphaWhite; 
 	
 private:
     

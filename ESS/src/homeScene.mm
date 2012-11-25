@@ -1,6 +1,6 @@
 
 //  Created by Lia Martinez on 2/26/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
 
 #include <iostream>
@@ -35,6 +35,13 @@ void homeScene::activate() {
 	//homeScreenVguide.loadImage("flattenFiles/HomeV-guide.png");
     
 	buttAbout.disableBG(); 
+	alphaWhite = 0; 
+	textWhite.set(255, 255, 255, alphaWhite);
+	buttAbout.setColor(textWhite, essAssets->ess_grey);
+	buttAbout.setLabel("ABOUT", &essAssets->ostrich24);
+	rectAbout.set(ofGetWidth()-70, ofGetHeight() -30, 70, 30);
+	buttAbout.setRect(rectAbout);
+	
 	buttMap1.disableBG();
 	buttMap2.disableBG();
 	buttMap3.disableBG();
@@ -42,9 +49,14 @@ void homeScene::activate() {
 	
 	//buttResetXML.setLabel("RESET", &essAssets->ostrich20);
     //buttResetXML.setColor(essAssets->ess_white, essAssets->ess_grey);
+	
+	textGray.set(230, 230, 230, alphaWhite); 
+	darkGray.set (210, 210, 210); 
     buttResetXML.disableBG();
 	buttResetXML.setPos(0, 0);
-	buttResetXML.setSize(50, 20);
+	buttResetXML.setColor(textWhite, darkGray);
+	buttResetXML.setLabel("RESET", &essAssets->ostrich20);
+	buttResetXML.setSize(50, 40);
 	
 	essAssets->soundtrack.setMultiPlay(true);
 	essAssets->soundtrack.setSpeed(1.0);
@@ -88,18 +100,21 @@ void homeScene::draw() {
 			
 			alphaInc = 5;
 			
-			if (alpha < 255) alpha +=alphaInc; 
+			if (alpha < 255) {
+				alpha +=alphaInc; 
+			}
 			
-			/*
-			 if (ofGetElapsedTimeMillis() < fadeTime) {
-			 alpha += alphaInc; 
-			 }
-			 */
+			if (alphaWhite < 255) alphaWhite += 3; 
+				
 			
-			
+			textWhite.set(255, 255, 255, alphaWhite);
+			textGray.set(230, 230, 230, alphaWhite);
+			buttAbout.setColor (textWhite, essAssets->ess_grey); 
+			buttResetXML.setColor(textGray, darkGray);
             ofSetColor(255, 255, 255, alpha); 
 			
-			rectAbout.set(410, 270, 65, 40);
+			
+			//rectAbout.set(410, 270, 65, 40);
 			rectMap1.set(150, 113, 200, 40);
 			rectMap2.set(150, 174, 200, 40);
 			rectMap3.set(150, 230, 200, 40);
@@ -107,8 +122,8 @@ void homeScene::draw() {
 			
 			homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
 			
-			ofSetColor(230, 230, 230, alpha);
-			essAssets->ostrich20.drawString("RESET", 7, 10);
+			//ofSetColor(230, 230, 230, alpha);
+			//essAssets->ostrich20.drawString("RESET", 7, 10);
 			/*
 			
 			if (shiftRotate2() == 0) {
@@ -148,6 +163,7 @@ void homeScene::draw() {
 			buttMap4.setRect(rectMap4);
 			
 			buttAbout.draw(); 
+			buttResetXML.draw(); 
 			buttMap1.draw();
 			buttMap2.draw();
 			buttMap3.draw();

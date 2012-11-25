@@ -941,7 +941,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 }
 
 void essBaseScene::baseTouchDoubleTap(ofTouchEventArgs &touch) {
-
+	cout << "double tap" << endl; 
 }
 
 //----------------------------  XML --------------------------------------

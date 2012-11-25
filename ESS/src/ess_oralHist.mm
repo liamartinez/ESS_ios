@@ -3,7 +3,7 @@
 //  ESS
 //
 //  Created by Lia Martinez on 8/15/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
 
 #include <iostream>

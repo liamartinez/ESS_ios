@@ -3,7 +3,7 @@
 //  ESS
 //
 //  Created by Lia Martinez on 8/13/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
 
 #ifndef ESS_ess_oralHist_h

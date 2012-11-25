@@ -48,8 +48,7 @@ void testApp::setup(){
     }
 
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-
-    
+	
     //Chien-Swipe Detect
     EAGLView *view = ofxiPhoneGetGLView();  
     swipeDetect = [[ofSwipeGestureRecognizer alloc] initWithView:view];

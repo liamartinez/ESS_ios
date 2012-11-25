@@ -1,6 +1,6 @@
 
 //  Created by Lia Martinez on 2/27/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
 
 #include <iostream>
@@ -29,6 +29,7 @@ void aboutScene::update() {
 //------------------------------------------------------------------
 void aboutScene::activate() {
     mgr.setCurScene(ABOUT_SCENE_APP);
+	essSM->setIsDragging(true); 
 	
 	aboutScreen.loadImage("flattenFiles/AboutHorizontal.png");
     
@@ -41,10 +42,13 @@ void aboutScene::activate() {
 	
     rectHome.set(ofGetWidth()-70, ofGetHeight() -30, 70, 30);
     
+	
     buttHome.setLabel("HOME", &essAssets->ostrich24);
     buttHome.setRect(rectHome); 
-    buttHome.setColor(essAssets->ess_white, essAssets->ess_white);
+	buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
     buttHome.disableBG();
+	
+	
     
     ofBackground(essAssets->ess_blue);
     
@@ -54,7 +58,7 @@ void aboutScene::activate() {
     
 	appL = essAssets->ostrich19.getStringWidth("APP"); 
     faqL = essAssets->ostrich19.getStringWidth("FAQ"); 
-    OHL = essAssets->ostrich19.getStringWidth("CONGGREGANTS");
+    OHL = essAssets->ostrich19.getStringWidth("CONGREGANTS");
     creatL = essAssets->ostrich19.getStringWidth("CREATORS");
     
     nApp.setLabel("APP", &essAssets->ostrich19); 
@@ -86,7 +90,7 @@ void aboutScene::activate() {
 	string tRyan = "WWW.RYANBILLIA.COM";
 	string tFiber = "FIBER INK STUDIO"; 
 	string tJoey1 = "JOEY"; 
-	string tJoey2 = "WIESENBERG"; 
+	string tJoey2 = "WEISENBERG"; 
     
 	//link buttons
 	lEldridge.setLabel(tEld, &essAssets->ostrich20);
@@ -98,16 +102,17 @@ void aboutScene::activate() {
 	int linkPosX = 14;
 	int linkPosY = 98; 
 	int linkOffY = 48; 
-	lAnna.setLabel(tAnna, &essAssets->ostrich20);
-	lAnna.setColor(essAssets->ess_white, essAssets->ess_grey);
-	lAnna.setPos(linkPosX, linkPosY);
-	lAnna.disableBG();
 	
 	lCarlin.setLabel(tCarlin, &essAssets->ostrich20);
 	lCarlin.setColor(essAssets->ess_white, essAssets->ess_grey);
-	lCarlin.setPos(linkPosX, linkPosY + linkOffY);
+	lCarlin.setPos(linkPosX, linkPosY);
 	lCarlin.disableBG();
 	
+	lAnna.setLabel(tAnna, &essAssets->ostrich20);
+	lAnna.setColor(essAssets->ess_white, essAssets->ess_grey);
+	lAnna.setPos(linkPosX, linkPosY + linkOffY);
+	lAnna.disableBG();
+		
 	lChien.setLabel(tChien, &essAssets->ostrich20);
 	lChien.setColor(essAssets->ess_white, essAssets->ess_grey);
 	lChien.setPos(linkPosX, linkPosY + linkOffY*2);
@@ -147,6 +152,7 @@ void aboutScene::activate() {
 	//tweening
 	Tweenzor::init();
 	tweenie = 0; 
+
 }
 
 //------------------------------------------------------------------
@@ -159,6 +165,7 @@ void aboutScene::deactivate() {
 void aboutScene::draw() {
 
 	//ofEnableAlphaBlending();
+
 	
 	ofPushMatrix();
 	ofTranslate(0, tweenie);
@@ -233,11 +240,10 @@ void aboutScene::draw() {
 
     ofPushMatrix();
     ofSetColor(essAssets->ess_blue);
-	ofRect(rectHome.x, rectHome.y,60, 27);
+	ofRect(rectHome.x, rectHome.y,80, 57);
     buttHome.draw(); 
     ofPopMatrix();
-	
-	//ofDisableAlphaBlending();
+
 }
 
 
@@ -276,6 +282,9 @@ void aboutScene::touchDown(ofTouchEventArgs &touch){
 	
 	downY = touch.y; 
 	offset = downY - tweenie;
+	dragTimer = ofGetElapsedTimeMillis(); 
+	cout << "downY: " << downY << endl; 
+
 	
 }
 
@@ -285,18 +294,31 @@ void aboutScene::touchMoved(ofTouchEventArgs &touch){
     button.touchMoved(touch);
 
 	tweenGo = true; 
+	
+	//if the finger hasn't moved 10 pixels AND over a second of time has ellapsed
+	if (abs(downY - touch.y) > 10 && ofGetElapsedTimeMillis() - dragTimer > 1000) {
+		cout << "RESET" << endl; 
+		downY = touch.y; 
+		cout << "downY: " << downY << endl; 
+		offset = downY - tweenie;
+		dragTimer = ofGetElapsedTimeMillis(); 
+	}
+
 	tweenie = touch.y - offset;
 	
 	ofTouchEventArgs tweenedTouch; 
 	tweenedTouch.x = touch.x; 
 	tweenedTouch.y = touch.y - tweenie; 
 	ofRect(tweenedTouch.x, tweenedTouch.y, 30, 30);
+	
+
 }
 
 
 //--------------------------------------------------------------
 void aboutScene::touchUp(ofTouchEventArgs &touch){
     //Switch Scenes
+	cout << "touch up" << endl; 
 	
     if (nApp.isPressed()) {
         canvasH = pApp.height;        
@@ -330,10 +352,12 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 	startY = touch.y;
 	if (tweenGo) {
 	if (startY > downY) {
-		endY = tweenie + (startY - downY)*2; 
+		cout << "startY: " << startY << " downY: " << downY << " GO DOWN" << endl; 
+		endY = tweenie + (startY - downY)*1.5; 
 		if (endY > 0) endY = 0; 
 	} else if(startY < downY) {
-		endY = tweenie - (downY - startY)*2; 
+		cout << "startY: " << startY << " downY: " << downY << " GO UP" << endl; 
+		endY = tweenie - (downY - startY)*1.5; 
 		if (endY < -maxBottom+ofGetHeight() - 100) endY = -maxBottom+ofGetHeight() - 100;  
 	}
 		Tweenzor::add(&tweenie, tweenie , endY, 0.f, 0.5f, EASE_OUT_SINE);
@@ -361,7 +385,7 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 	//link URLs
 	NSURL *uEldridge = [ [ NSURL alloc ] initWithString: @"http://www.eldridgestreet.org" ];
 	NSURL *uAnna = [ [ NSURL alloc ] initWithString: @"http://www.annapinkas.com" ];
-	NSURL *uCarlin = [ [ NSURL alloc ] initWithString: @"http://www.carlinwragg.net" ];
+	NSURL *uCarlin = [ [ NSURL alloc ] initWithString: @"http://www.carlinmwragg.net" ];
 	NSURL *uLia = [ [ NSURL alloc ] initWithString: @"http://www.liamartinez.com" ];
 	NSURL *uChien = [ [ NSURL alloc ] initWithString: @"http://www.chienyulin.com" ];
 	NSURL *uMerche = [ [ NSURL alloc ] initWithString: @"http://www.half-half.es" ];
@@ -396,17 +420,14 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
 	lRyan.touchUp(tweenedTouch); 
 	lFiber.touchUp(tweenedTouch); 
 	lJoey1.touchUp(tweenedTouch); 
-	lJoey2.touchUp(tweenedTouch); 
-	
-	cout << touch.x << " " << touch.y << endl; 
-	
+	lJoey2.touchUp(tweenedTouch); 	
 }
 
 //--------------------------------------------------------------
 
 
 void aboutScene::touchDoubleTap(ofTouchEventArgs &touch){
-
+	baseTouchDoubleTap(touch);
     
 }
 

@@ -1,7 +1,7 @@
 
 //
 //  Created by Lia Martinez on 2/26/12.
-//  Copyright (c) 2012 liamartinez.com. All rights reserved.
+//  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
 
 #include <iostream>
@@ -189,6 +189,7 @@ void map1Scene::touchUp(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 void map1Scene::touchDoubleTap(ofTouchEventArgs &touch){
+	cout << "double tap" << endl; 
     ofVec3f panTouch =  cam.screenToWorld( ofVec3f( touch.x, touch.y) );	//convert touch (in screen units) to world units
     
     ofTouchEventArgs touchTemp;
