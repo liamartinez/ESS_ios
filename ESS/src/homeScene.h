@@ -3,9 +3,6 @@
 //  Copyright (c) 2012 Storywalks at Eldridge St.. All rights reserved.
 //
 
-#ifndef SingWhale01_homeScene_h
-#define SingWhale01_homeScene_h
-
 #pragma once
 #include "essBaseScene.h"
 #include "baseButton.h"
@@ -57,5 +54,3 @@ private:
 	ofImage homeScreenVguide; 
 	
 };
-
-#endif

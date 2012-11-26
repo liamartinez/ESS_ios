@@ -53,10 +53,10 @@ void homeScene::activate() {
 	textGray.set(230, 230, 230, alphaWhite); 
 	darkGray.set (210, 210, 210); 
     buttResetXML.disableBG();
-	buttResetXML.setPos(0, 0);
+	buttResetXML.setPos(-10, -15);
 	buttResetXML.setColor(textWhite, darkGray);
 	buttResetXML.setLabel("RESET", &essAssets->ostrich20);
-	buttResetXML.setSize(50, 40);
+	buttResetXML.setSize(70, 60);
 	
 	essAssets->soundtrack.setMultiPlay(true);
 	essAssets->soundtrack.setSpeed(1.0);

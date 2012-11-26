@@ -48,8 +48,6 @@ void aboutScene::activate() {
 	buttHome.setColor(essAssets->ess_white, essAssets->ess_grey);
     buttHome.disableBG();
 	
-	
-    
     ofBackground(essAssets->ess_blue);
     
 	leftMargin = 5; 
@@ -69,7 +67,7 @@ void aboutScene::activate() {
     nFAQ.setPos (appL + leftMargin + dotMargin, navY); 
     nFAQ.disableBG();
     
-    nOralHistories.setLabel("CONGGREGANTS", &essAssets->ostrich19); 
+    nOralHistories.setLabel("CONGREGANTS", &essAssets->ostrich19); 
     nOralHistories.setPos (appL + faqL + leftMargin + dotMargin*2, navY ); 
     nOralHistories.disableBG();
 	

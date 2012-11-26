@@ -3,9 +3,6 @@
 //  Modified by Lia Martinez on 2/25/12.
 //
 
-#ifndef SingWhale01_swMenu_h
-#define SingWhale01_swMenu_h
-
 #pragma once
 #include "ofMain.h"
 #include "baseButton.h"
@@ -55,4 +52,4 @@ private:
     ofImage bgImage;
 };
 
-#endif
+
