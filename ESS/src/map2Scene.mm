@@ -94,7 +94,7 @@ void map2Scene::draw() {
             if (spotTouch == true) {
                 cam.setZoom(1.0f);
 				cam.lookAt( ofVec2f(canvasW/2, canvasH/2) );
-                tweenEntryExit(1);
+                //tweenEntryExit(1);
                 //                cout<<"someone touch the spot"<<endl;
             }
             spotTouch = false;

@@ -101,7 +101,7 @@ void map1Scene::draw() {
             if (spotTouch == true) {
                 cam.setZoom(1.0f);
 				cam.lookAt( ofVec2f(canvasW/2, canvasH/2) );
-                tweenEntryExit(1);
+                //tweenEntryExit(1);
 //                cout<<"someone touch the spot"<<endl;
             }
             spotTouch = false;
@@ -199,4 +199,6 @@ void map1Scene::touchDoubleTap(ofTouchEventArgs &touch){
 	cam.touchDoubleTap(touch); //fw event to cam
 	cam.setZoom(1.0f);	//reset zoom
 	cam.lookAt( ofVec2f(canvasW/2, canvasH/2) ); //reset position
+	
+	
 }

@@ -9,7 +9,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>103</LENGTH>
-        <DESCRIPTION>Gilbert Lazarus - Bar Mitzvah: The ceremony that initiates and recognizes a 13-year-old boy as an adult responsible for his moral and religious duties. - Edward Smith sings “Siman Tov u&apos;Mazel Tov” (“Good Signs and Good Luck”) a celebration song often performed at weddings and Bar Mitzvahs</DESCRIPTION>
+        <DESCRIPTION>Voice of Gilbert Lazarus &#10;- Bar Mitzvah: The ceremony that initiates and recognizes a 13-year-old boy as an adult responsible for his moral and religious duties. &#10;- Edward Smith sings &quot;Siman Tov u&apos;Mazel Tov&quot; (&quot;Good Signs and Good Luck&quot;) a celebration song often performed at weddings and Bar Mitzvahs.</DESCRIPTION>
     </OH>
     <OH>
         <NAME>ALIYAH</NAME>
@@ -21,7 +21,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>73</LENGTH>
-        <DESCRIPTION>Gussie Dubrin - Aliyah: The honor of being called up to the Bimah (reading desk) in the synagogue to read from the Torah (Scroll containing the first five books of the Jewish Bible.) - Edward Smith sings an Aliyah Blessing.</DESCRIPTION>
+        <DESCRIPTION>Voice of Gussie Dubrin &#10;- Aliyah: The honor of being called up to the Bimah (reading desk) in the synagogue to read from the Torah (Scroll containing the first five books of the Jewish Bible.) &#10;- Edward Smith sings &quot;V'ahavta&quot; (&quot;And you shall love &quot;), the second verse of the Shema containing the commands to love God with all one's heart, soul, and might.</DESCRIPTION>
     </OH>
     <OH>
         <NAME>HIGHLY-LEARNED RABBIS</NAME>
@@ -33,7 +33,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>171</LENGTH>
-        <DESCRIPTION>Edwin Margoius, Paul Bookson - Yom Kippur: Day of Atonement. The holiest day of the year. - Rabbi: A man educated in halakhah (Jewish law) and tradition who is responsible for instructing the community. - Edward Smith sings “Adon Olam” (&quot;Lord of the World&quot;), the final prayer of the Musaf service on Shabbat morning and festivals. It can also be found in the composition of bedtime prayers.</DESCRIPTION>
+        <DESCRIPTION>Voices of Edwin Margolius, Paul Bookson &#10;- Yom Kippur: Day of Atonement. The holiest day of the year. &#10;- Rabbi: A man educated in halakhah (Jewish law) and tradition who is responsible for instructing the community. &#10;- Edward Smith sings &quot;Adon Olam&quot; (&quot;Lord of the World&quot;), the final prayer of the Musaf service on Shabbat morning and festivals. It can also be found in the composition of bedtime prayers.</DESCRIPTION>
     </OH>
     <OH>
         <NAME>PROMINENT CANTORS</NAME>
@@ -44,8 +44,8 @@
         <ISPLAYED>1</ISPLAYED>
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
-        <LENGTH>2</LENGTH>
-        <DESCRIPTION>Paul Bookson, Max Smith, Mr. Hershkovitz - Cantor: A person who leads the congregation in prayer. The cantor be a professional or a member of the congregation. - Edward Smith sings “XXXXX”</DESCRIPTION>
+        <LENGTH>283</LENGTH>
+        <DESCRIPTION>Voices of Paul Bookson, Max Smith, Mr. Hershkovitz &#10;- Cantor: A person who leads the congregation in prayer. The cantor be a professional or a member of the congregation. &#10;- Edward Smith sings &quot;V'al Y'dei&quot;, a blessing sung on Rosh Hashanah (New Year).</DESCRIPTION>
     </OH>
     <OH>
         <NAME>LAZERUS BROTHERS</NAME>
@@ -57,7 +57,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0.0383042</TIME>
         <LENGTH>74</LENGTH>
-        <DESCRIPTION>Gilbert Lazerus - Balaboosta: A Yiddish term meaning the perfect housewife, homemaker, wonderful mother, cook, and gracious hostess. - Gilbert Lazerus’ grandfathers alternated as presidents of the Eldridge Street Synagogue. Their names are engraved on these marble plaques - a record of synagogue members.</DESCRIPTION>
+        <DESCRIPTION>Voice of Gilbert Lazerus &#10;- Gilbert Lazerus’ grandfathers alternated as presidents of the Eldridge Street Synagogue. Their names are engraved on these marble plaques - a record of synagogue members.</DESCRIPTION>
     </OH>
     <OH>
         <NAME>A BEAUTIFUL SANCTUARY</NAME>
@@ -69,6 +69,6 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>118</LENGTH>
-        <DESCRIPTION>Mrs. Brenner, Gilbert Lazarus, Paul Bookson, Max Smith</DESCRIPTION>
+        <DESCRIPTION>Voices of Mrs. Brenner, Gilbert Lazarus, Paul Bookson, Max Smith &#10;- Dozens of Stars of David decorate the Eldridge Street Synagogue façade. The synagogue’s architecture was a proud declaration of newly-found religious freedom. With its soaring 50-foot ceiling and exuberant Moorish-style interior, Eldridge Street provided an inspiring contrast to the crowded tenements, factories and shops of the Lower East Side.</DESCRIPTION>
     </OH>
 </ESS>

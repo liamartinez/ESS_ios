@@ -124,7 +124,7 @@ void testApp::update(){
     //-----Main Audio Fade In & Out----------------------------
     volumeInc = 0.01;
     if (essSM->getIsDragging()){//If someone start to listen to a track, the sound fade out
-        if(volume > 0.3f) volume = volume-volumeInc;
+        if(volume > 0.1f) volume = volume-volumeInc;
         
     }else{//If someone end a track, the sound fade in
 

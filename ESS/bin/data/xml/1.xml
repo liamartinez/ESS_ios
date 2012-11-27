@@ -9,7 +9,8 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>97</LENGTH>
-        <DESCRIPTION>Gussie Dubrin, Mrs. Freid</DESCRIPTION>
+        <DESCRIPTION>Voices of Gussie Dubrin, Mrs. Freid &#10;- During much of the synagogue’s early history, women were not recognized members of the congregation. Their status gradually became formalized through membership opportunities and, in 1919, the formation of a Ladies’ Auxiliary.
+</DESCRIPTION>
     </OH>
     <OH>
         <NAME>THE CHOLENT</NAME>
@@ -21,7 +22,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>1</LENGTH>
-        <DESCRIPTION>Gussie Dubrin - Cholent: A traditional Jewish stew, developed over the centuries to conform with Jewish laws that prohibit cooking on the Sabbath.</DESCRIPTION>
+        <DESCRIPTION>Voice of Gussie Dubrin &#10;- Cholent: A traditional Jewish stew, developed over the centuries to conform with Jewish laws that prohibit cooking on the Sabbath.</DESCRIPTION>
     </OH>
     <OH>
         <NAME>A POCKETFUL OF GRAPES</NAME>
@@ -33,7 +34,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0.345601</TIME>
         <LENGTH>55</LENGTH>
-        <DESCRIPTION>Max Smith - Yom Kippur: Day of Atonement. The holiest day of the year. Yom Kippur is traditionally observed with a 25-hour period of fasting and intensive prayer, with most of the day spent in synagogue services.</DESCRIPTION>
+        <DESCRIPTION>Voice of Max Smith &#10;- Yom Kippur: Day of Atonement. The holiest day of the year. Yom Kippur is traditionally observed with a 25-hour period of fasting and intensive prayer, with most of the day spent in synagogue services.</DESCRIPTION>
     </OH>
     <OH>
         <NAME>HIGH HOLIDAYS</NAME>
@@ -45,7 +46,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>159</LENGTH>
-        <DESCRIPTION>Miriam Aaron - Miriam Aaron reads from a letter she wrote to the Eldridge Street Project. - Edward Smith sings “Avinu Malkeinu” (“Our Father, Our King”) prayer recited during services on Rosh Hashanah (Jewish New Year) and Yom Kippur (Day of Atonement).</DESCRIPTION>
+        <DESCRIPTION>Voice of Miriam Aaron &#10;- Miriam Aaron reads from a letter she wrote to the Eldridge Street Project. &#10;- Edward Smith sings &quot;Avinu Malkeinu&quot; (&quot;Our Father, Our King&quot;) prayer recited during services on Rosh Hashanah (Jewish New Year) and Yom Kippur (Day of Atonement).</DESCRIPTION>
     </OH>
     <OH>
         <NAME>A FLIGHT OF STAIRS</NAME>
@@ -57,6 +58,6 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>36</LENGTH>
-        <DESCRIPTION>Mrs. Freid - According to Jewish Law, men and women must be separated during prayer, usually by a wall or curtain called a mechitzah, or by placing women in a second floor balcony.</DESCRIPTION>
+        <DESCRIPTION>Voice of Mrs. Freid &#10;- According to Jewish Law, men and women must be separated during prayer, usually by a wall or curtain called a mechitzah, or by placing women in a second floor balcony.</DESCRIPTION>
     </OH>
 </ESS>
