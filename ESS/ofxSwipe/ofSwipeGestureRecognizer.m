@@ -30,27 +30,9 @@
 	  return self;  
 }  
 
-/*
--(void) setEnabled: (bool) on {
-	swipeDown.enabled = on; 
-	swipeUp.enabled = on; 
-}
- */
-
 
 -(void)a:(UISwipeGestureRecognizer *) gr{ 
 	
-	/*
-	if (swipeOn) {
-		swipeDown.enabled = YES; 
-		swipeUp.enabled = YES; 
-		NSLog(@"SWIPE ON");
-	} else {
-		swipeDown.enabled = NO; 
-		swipeUp.enabled = NO; 
-		NSLog(@"SWIPE OFF");
-	}
-	 */
 	
     direction = gr.direction;
     swipe = 1;

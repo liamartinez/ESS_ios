@@ -31,7 +31,7 @@
 -(id)initWithView:(UIView*)view;  
 //a:method ,gr:parameter with type:UISwipeGestureRecognizer, pplSwipe: parameter with type bool
 -(void)a:(UISwipeGestureRecognizer *) gr;
-//-(void) setEnabled: (bool) on;
+
 
 
 @end
