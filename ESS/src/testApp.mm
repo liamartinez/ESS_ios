@@ -80,6 +80,8 @@ void testApp::update(){
 
 
 	if (!essSM->getIsDragging()) { //only work when overlay didn't show up
+		swipeDetect->swipeDown.enabled = YES;
+		swipeDetect->swipeUp.enabled = YES;
 		if (swipeDetect->swipe == 1) {
 			cout<<"HE DID SWIPE"<<endl;
 			if (essSM->getCurScene()==1 ) {
@@ -110,6 +112,8 @@ void testApp::update(){
         
         
 	  }else {
+		  swipeDetect->swipeDown.enabled = NO;
+		  swipeDetect->swipeUp.enabled = NO;
   	  swipeDetect->swipe = 0;
           
       }
@@ -192,8 +196,7 @@ void testApp::touchDoubleTap(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 void testApp::lostFocus(){
-	mainAudio.stop();
-	mainAudio.unloadSound();
+
 }
 
 //--------------------------------------------------------------

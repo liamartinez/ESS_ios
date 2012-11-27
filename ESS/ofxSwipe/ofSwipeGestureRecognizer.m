@@ -24,12 +24,34 @@
         //Set the swipe direction as LEFT (Because we place the phone horizontally, the RIGHT is the up in our directions)
         [swipeDown setDirection:(UISwipeGestureRecognizerDirectionRight) ];
         [view addGestureRecognizer:swipeDown];
+		
  
     }  
 	  return self;  
 }  
 
+/*
+-(void) setEnabled: (bool) on {
+	swipeDown.enabled = on; 
+	swipeUp.enabled = on; 
+}
+ */
+
+
 -(void)a:(UISwipeGestureRecognizer *) gr{ 
+	
+	/*
+	if (swipeOn) {
+		swipeDown.enabled = YES; 
+		swipeUp.enabled = YES; 
+		NSLog(@"SWIPE ON");
+	} else {
+		swipeDown.enabled = NO; 
+		swipeUp.enabled = NO; 
+		NSLog(@"SWIPE OFF");
+	}
+	 */
+	
     direction = gr.direction;
     swipe = 1;
 	p = [gr locationInView: mView];

@@ -106,7 +106,7 @@ void essBaseScene::setupMap(string floor_){
     audioDrag = 0;
     audioBarSize = 30;
     barPos = 0;
-	audioBar.setSize(30, 30);
+	audioBar.setSize(30, 60);
     audioBar.setColor(255,100);
 	setupAudio(); 
     
@@ -153,8 +153,6 @@ void essBaseScene::drawTitle(){
 
 
 void essBaseScene::drawMapPoints() {
-	
-	cout << " tween at update: " << tweenNum << " rotated? " << floorMap[currentOH].getDrawRotated() << endl; 
 
     for (int i = 0; i < floorMap.size(); i++) {            
         floorMap[i].drawDot(); 
@@ -404,23 +402,7 @@ void essBaseScene::setupTweens() {
     
     //initialize Tweenzor the first time you use it
     Tweenzor::init();
-    
-	/*
-	if (shiftRotate() == 90) {
-		//for (int i = 0; i < floorMap.size(); i++) {
-		//floorMap[currentOH].setDrawRotated(true); 
-		//}
-		startTween = 0;
-		endTween =  floorMap[currentOH].overlayRect.height;
-	} else {
-		//for (int i = 0; i < floorMap.size(); i++) {
-		//floorMap[currentOH].setDrawRotated(false); 
-		//}
-		startTween = ofGetHeight();
-		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
-	}
-	 */
-    
+
     tweenNum = startTween;
 	goingUp = true; 
 }
@@ -707,11 +689,11 @@ void essBaseScene::audioDisplay(){
 			//Dragable rect
 			if(!audioDrag){
 				ofRect(lineY-5, beginLineX+barPos, 10, 2);
-				audioBar.setPos(lineY-audioBarSize/2, beginLineX+barPos);
+				audioBar.setPos(lineY-audioBarSize/2, beginLineX+barPos-30);
 //				audioBar.draw();
 			}else{
 				ofRect(lineY-5, barY, 10,2);
-				audioBar.setPos(lineY-audioBarSize/2,barY);
+				audioBar.setPos(lineY-audioBarSize/2,barY-30);
 			}    
 		}
 	}

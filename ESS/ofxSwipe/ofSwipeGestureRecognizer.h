@@ -11,20 +11,27 @@
 
 
 @interface ofSwipeGestureRecognizer : NSObject {
-    UISwipeGestureRecognizer *swipeUp;
-    UISwipeGestureRecognizer *swipeDown;
+
    
 @public
+	
+	UISwipeGestureRecognizer *swipeUp;
+    UISwipeGestureRecognizer *swipeDown;
+	
     bool swipe;
     int direction;
 	CGPoint p;
 	UIView *mView;
     bool inThresh; 
+	bool swipeOn; 
+	
+	
 }
 
 -(id)initWithView:(UIView*)view;  
 //a:method ,gr:parameter with type:UISwipeGestureRecognizer, pplSwipe: parameter with type bool
 -(void)a:(UISwipeGestureRecognizer *) gr;
+//-(void) setEnabled: (bool) on;
 
 
 @end
