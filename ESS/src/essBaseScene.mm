@@ -476,7 +476,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 				tweenEntryExit(0); //send the tween to exit and then come back here
 			}
             
-			else if(lastState ==0)  {
+			else  {
 				cout << "just tween" << endl; 
 				textTempOH = currentOH; //if not just go up
 				Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
@@ -726,7 +726,6 @@ void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
 			dragNum = touch.x; 
 		}
 		dragOff = tweenNum - dragNum;  //offset for difference between dragnum and tweennum
-		cout << "from case 3" << endl; 
 		tweenEntryExit(3);
 		goSnap = true; 
 	}
