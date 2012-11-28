@@ -167,7 +167,7 @@ void oralHist::setupOverlay() {
     overlayY = 0;
     
     descriptionHeight = essAssets->ostrich19.getStringHeight(description, ofGetWidth()) + marginHeight; 
-
+	
     overlayRect.set(overlayX, overlayY , overlayWidth, overlayHeight);
     //rotated values (can't translate otherwise we will lose the button functionality).
 }
@@ -181,6 +181,7 @@ void oralHist::drawOverlay(int tweenedLoc) {
 		overlayWidth = ofGetWidth();
 		overlayRect.set(overlayX, tweenedLoc , overlayWidth, overlayHeight); //assign tweenedLoc to Y value
 		overlayHeight = essAssets->ostrich19.getStringHeight(name, overlayWidth) + marginHeight + playbarHeight;	
+		descriptionHeight = essAssets->ostrich19.getStringHeight(description, overlayWidth - marginWidth - marginButton) + marginHeight; 
 		rotVal = 0; 	
 		
 		//setup for horizontal drawing	
@@ -188,6 +189,7 @@ void oralHist::drawOverlay(int tweenedLoc) {
 		overlayWidth = ofGetHeight(); //reversed width for height	 
 		overlayRect.set(tweenedLoc, overlayY, overlayWidth, overlayHeight); //assign tweenedLoc to X value		
 		overlayHeight = essAssets->ostrich19.getStringHeight(name, overlayWidth) + marginHeight + playbarHeight;	
+		descriptionHeight = essAssets->ostrich19.getStringHeight(description, overlayWidth - marginWidth - marginButton) + marginHeight; 
 		rotVal = 90; 
 	}
 

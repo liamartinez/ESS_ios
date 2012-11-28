@@ -150,7 +150,6 @@ void aboutScene::activate() {
 	//tweening
 	Tweenzor::init();
 	tweenie = 0; 
-
 }
 
 //------------------------------------------------------------------
@@ -161,9 +160,6 @@ void aboutScene::deactivate() {
 
 //------------------------------------------------------------------
 void aboutScene::draw() {
-
-	//ofEnableAlphaBlending();
-
 	
 	ofPushMatrix();
 	ofTranslate(0, tweenie);
@@ -232,6 +228,9 @@ void aboutScene::draw() {
     }
 
 	essAssets->ostrich24.drawString("ABOUT", 15, 15);
+	ofSetColor(essAssets->ess_blue);
+	ofFill();
+	ofRect(0, maxBottom+50, ofGetWidth(), 60);
 	ofPopMatrix();
 	
 
@@ -336,12 +335,12 @@ void aboutScene::touchUp(ofTouchEventArgs &touch){
     }
 	
 	if (nApp.isPressed() || nOralHistories.isPressed() || nCreators.isPressed() || nThanks.isPressed() || nFAQ.isPressed()) {
-		cam.lookAt( ofVec2f(canvasW/2, ofGetHeight()/2) );
-		cam.setViewportConstrain( ofVec3f(0,0), ofVec3f(canvasW, canvasH));
+		//tweenie = 0; 
 	}
 	
     if (buttHome.isPressed()) {
         essSM->setCurScene(SCENE_HOME);
+		tweenie = 0; 
     }
 	
     buttHome.touchUp(touch);

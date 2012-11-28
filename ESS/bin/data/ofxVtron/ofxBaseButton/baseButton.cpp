@@ -188,7 +188,6 @@ void baseButton::setSize(int w, int h) {
 //------------------------------------------------------------------
 void baseButton::setRect(ofRectangle rect) {
     this->rect = rect;
-    cout << this->rect.x << endl;
 }
 
 //------------------------------------------------------------------

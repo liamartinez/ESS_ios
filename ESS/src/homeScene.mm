@@ -31,7 +31,6 @@ void homeScene::activate() {
     mgr.setCurScene(HOME_SCENE_FIRST);
 	
     homeScreen.loadImage("flattenFiles/Home.png");
-	homeScreenV.loadImage("flattenFiles/HomeV-guide.png");
 	//homeScreenVguide.loadImage("flattenFiles/HomeV-guide.png");
     
 	buttAbout.disableBG(); 
@@ -58,9 +57,16 @@ void homeScene::activate() {
 	buttResetXML.setLabel("RESET", &essAssets->ostrich20);
 	buttResetXML.setSize(70, 60);
 	
-	essAssets->soundtrack.setMultiPlay(true);
-	essAssets->soundtrack.setSpeed(1.0);
-	essAssets->soundtrack.play();
+	rectMap1.set(150, 113, 200, 40);
+	rectMap2.set(150, 174, 200, 40);
+	rectMap3.set(150, 230, 200, 40);
+	rectMap4.set(15, 255, 150, 40);
+	
+	buttAbout.setRect(rectAbout);
+	buttMap1.setRect(rectMap1);
+	buttMap2.setRect(rectMap2);
+	buttMap3.setRect(rectMap3);
+	buttMap4.setRect(rectMap4);
 	
 	fadeTime = 2000; 
 	startTime = ofGetElapsedTimeMillis(); 
@@ -83,21 +89,10 @@ void homeScene::draw() {
 	
 	ofSetColor(0);
     ofRect(0, 0, 0, ofGetWidth(), ofGetHeight());
-	
-	cout << "shift " << shiftRotate() << endl; 
-	
-    string sceneName = "";
-    switch(mgr.getCurScene()) {
-        case HOME_SCENE_FIRST:
+
             
             ofEnableAlphaBlending();
-			
 
-			
-			
-			
-			//alphaInc = (fadeTime - startTime)/ 255;
-			
 			alphaInc = 5;
 			
 			if (alpha < 255) {
@@ -112,56 +107,9 @@ void homeScene::draw() {
 			buttAbout.setColor (textWhite, essAssets->ess_grey); 
 			buttResetXML.setColor(textGray, darkGray);
             ofSetColor(255, 255, 255, alpha); 
-			
-			
-			//rectAbout.set(410, 270, 65, 40);
-			rectMap1.set(150, 113, 200, 40);
-			rectMap2.set(150, 174, 200, 40);
-			rectMap3.set(150, 230, 200, 40);
-			rectMap4.set(15, 255, 150, 40);
-			
+
 			homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
-			
-			//ofSetColor(230, 230, 230, alpha);
-			//essAssets->ostrich20.drawString("RESET", 7, 10);
-			/*
-			
-			if (shiftRotate2() == 0) {
-				
-				rectAbout.set(410, 270, 65, 40);
-				rectMap1.set(150, 113, 200, 40);
-				rectMap2.set(150, 174, 200, 40);
-				rectMap3.set(150, 230, 200, 40);
-				rectMap4.set(15, 255, 150, 40);
-				
-				homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
-				
-			} else if (shiftRotate2() == 90) {
-				
-				rectMap1.set(250, 60, 40, 200);
-				rectMap2.set(200, 60, 40, 200);
-				rectMap3.set(140, 60, 40, 200);
-				rectMap4.set(95, 6, 50, 100);
-				rectAbout.set(10, 220, 40, 150);
-				
-				homeScreenV.draw(0,0, ofGetWidth(), ofGetHeight()); 
-			} else {
-				rectAbout.set(410, 270, 65, 40);
-				rectMap1.set(150, 113, 200, 40);
-				rectMap2.set(150, 174, 200, 40);
-				rectMap3.set(150, 230, 200, 40);
-				rectMap4.set(15, 255, 150, 40);
-				
-				homeScreen.draw (0,0, ofGetWidth(), ofGetHeight()); 
-			}
-			
-			*/
-			buttAbout.setRect(rectAbout);
-			buttMap1.setRect(rectMap1);
-			buttMap2.setRect(rectMap2);
-			buttMap3.setRect(rectMap3);
-			buttMap4.setRect(rectMap4);
-			
+
 			buttAbout.draw(); 
 			buttResetXML.draw(); 
 			buttMap1.draw();
@@ -173,10 +121,7 @@ void homeScene::draw() {
 			
             ofDisableAlphaBlending();
 			
-            break;
-			
-    }
-	
+
     
     
 }
@@ -212,18 +157,7 @@ void homeScene::touchMoved(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 void homeScene::touchUp(ofTouchEventArgs &touch){
-    //Switch Scenes
-    /*
-	 if(button.isPressed()) {
-	 if(mgr.getCurScene() == HOME_SCENE_TOTAL-1) {
-	 essSM->setCurScene(SCENE_MAP1);
-	 } else  {
-	 mgr.setCurScene(mgr.getCurScene() + 1);      
-	 }
-	 }
-	 */
-	
-    
+
     if (buttAbout.isPressed()) essSM->setCurScene(SCENE_ABOUT);
     
     if (buttMap1.isPressed()) essSM->setCurScene(SCENE_MAP1);
@@ -245,12 +179,10 @@ void homeScene::touchUp(ofTouchEventArgs &touch){
 	if (buttResetXML.isPressed()) resetPlayed();
     
     buttResetXML.touchUp(touch);
-	
-	cout << "                TOUCHED!! " << touch.x << " " << touch.y << endl; 
+
     
 }
 //--------------------------------------------------------------
 
 void homeScene::touchDoubleTap(ofTouchEventArgs &touch) {
-	guideOn = !guideOn; 
 }

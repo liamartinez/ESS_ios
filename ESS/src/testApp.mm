@@ -19,6 +19,7 @@ void testApp::setup(){
 //    iPhoneSetOrientation(OFXIPHONE_ORIENTATION_PORTRAIT);
 	
 	ofBackground(0,0,0);
+	ofSetFrameRate(60);
     
     //Load Assets
     essAssets = essAssetManager::getInstance();
@@ -206,7 +207,7 @@ void testApp::gotFocus(){
 
 //--------------------------------------------------------------
 void testApp::gotMemoryWarning(){
-
+	cout << "memory warning!" << endl;
 }
 
 //--------------------------------------------------------------

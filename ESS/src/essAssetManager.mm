@@ -54,8 +54,7 @@ bool essAssetManager::loadData() {
 	arrows.loadImage("flattenFiles/arrows.png");
 	arrowup.loadImage("flattenFiles/arrowup.png");
 	arrowdown.loadImage("flattenFiles/arrowdown.png");
-	
-	soundtrack.loadSound("audio/soundtrack.caf");
+
 	
     return true;
 }
