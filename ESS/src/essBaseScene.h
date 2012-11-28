@@ -134,7 +134,8 @@ public:
 	int oldRot; 
 	bool doneTweening; 
     void setRotation();
-    
+	void setRotationWithoutButtScreen(); 
+    void setButtScreen(); 
     
     //audio
     void audioPlay(int currentTrack);

@@ -27,8 +27,8 @@ void oralHist::setup() {
     textWidth = essAssets->ostrich23.getStringWidth(name);
     textHeight = essAssets->ostrich23.getStringHeight(name);
     
-    boxWidth = textWidth + 50; 
-    boxHeight = textHeight + 20; 
+    boxWidth = 40;
+    boxHeight = 40; 
     
     offset.x = - (textWidth/3);  
     
@@ -228,6 +228,7 @@ void oralHist::drawOverlay(int tweenedLoc) {
     
 	ofPopMatrix();	
 	ofDisableAlphaBlending();
+
     
 }
 
@@ -299,8 +300,8 @@ ofRectangle oralHist::getTouchBox(int shiftRotate_) {
     // a bigger box so its easier to press a small button
     
     int rotateVal = shiftRotate_;
-    int widthAdd = 30; 
-    int heightAdd = 30; 
+    int widthAdd = 0; 
+    int heightAdd = 0; 
     
     ofRectangle tempBox; 
 	

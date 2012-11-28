@@ -151,6 +151,7 @@ void essBaseScene::drawMapPoints() {
 
     for (int i = 0; i < floorMap.size(); i++) {            
         floorMap[i].drawDot(); 
+		//floorMap[i].drawTouchBoxSize(shiftRotate()); //debug
     }
     
 	//this is required by Tweenzor
@@ -162,7 +163,7 @@ void essBaseScene::drawMapPoints() {
     //this is always being drawn, but only if its not the first time
     if (!firstEntry && drawIt) drawLowerBar();
 	
-	ofColor c (100, 100, 100, 100); 
+	ofColor c (200, 100, 100, 100); 
 	buttScreen.setColor(c,c);
 	ofEnableAlphaBlending(); 
 	//debug
@@ -192,8 +193,33 @@ void essBaseScene::setRotation() {
 		buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
 		essSM->setIsRot(false, tweenNum);
 	}
+
+	if (shiftRotate() != oldRot) {
+		tweenNum = startTween;
+		setupAudio();
+		oldRot = shiftRotate(); 
+	}
     
-	cout << "shiftrotate: " << shiftRotate() << " old rot: " << oldRot << endl; 
+}
+
+void essBaseScene::setRotationWithoutButtScreen() {
+	//set the start/ end tweens and heightMax of rotated and not rotated version
+	if (shiftRotate() == 90) {
+		for (int i = 0; i < floorMap.size(); i++) {
+			floorMap[currentOH].setDrawRotated(true); 
+		}
+		startTween = 0;
+		endTween =  floorMap[currentOH].overlayRect.height;
+		essSM->setIsRot(true, tweenNum);
+	} else {
+		for (int i = 0; i < floorMap.size(); i++) {
+			floorMap[currentOH].setDrawRotated(false); 
+		}
+		startTween = ofGetHeight();
+		endTween = ofGetHeight() - floorMap[currentOH].overlayRect.height;
+		essSM->setIsRot(false, tweenNum);
+	}
+	
 	if (shiftRotate() != oldRot) {
 		tweenNum = startTween;
 		setupAudio();
@@ -215,7 +241,7 @@ void essBaseScene::drawLowerBar() {
             
 		case 1:
 			essSM->setIsDragging(true);
-
+			/*
 			if (!floorMap[currentOH].getDrawRotated()) { 
 				buttScreen.setPos(0, 0);
 				buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
@@ -223,6 +249,7 @@ void essBaseScene::drawLowerBar() {
 				buttScreen.setPos(tweenNum, 0);
 				buttScreen.setSize(ofGetWidth(), ofGetHeight());
 			}
+			 */
 
 			doneTweening = false;
 
@@ -329,7 +356,6 @@ void essBaseScene::drawLowerBar() {
             //set the size of the buttonScreen to tweenNum, so that when you touch buttonScreen (outside the overlay) the overlay will exit. 
             tempOverlayRectHeight = tweenNum;
             
-            
             if ((shiftRotate() == 0)) { 
                 buttScreen.setPos(0, 0);
                 buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
@@ -353,7 +379,7 @@ void essBaseScene::drawLowerBar() {
     
 	//draw the button to drag out the description
 	descriptionButn.enableBG(); //enabling this will draw the button box area 
-	//descriptionButn.draw(); 
+								//descriptionButn.draw(); 
 	if ((shiftRotate() == 0)) {
 		descriptionButn.setSize(300, 50);
 		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 30); 
@@ -403,7 +429,17 @@ void essBaseScene::setupTweens() {
 	goingUp = true; 
 }
 
-
+void essBaseScene::setButtScreen() {
+	tempOverlayRectHeight = tweenNum;
+	
+	if (!floorMap[currentOH].getDrawRotated()) { 
+		buttScreen.setPos(0, 0);
+		buttScreen.setSize(ofGetWidth(), tempOverlayRectHeight);
+	} else {
+		buttScreen.setPos(tweenNum, 0);
+		buttScreen.setSize(ofGetWidth(),ofGetHeight());
+	}
+}
 
 void essBaseScene::onExitComplete(float* arg) {
 
@@ -423,11 +459,14 @@ void essBaseScene::onExitComplete(float* arg) {
 		reEnter = false; 
 		tweenEntryExit(1);
 	}
+	
+	buttScreen.setPos(0, 0);
+	buttScreen.setSize(ofGetWidth(),ofGetHeight());
+
 }
 
 void essBaseScene::onEnterComplete(float* arg) {
-	//nothing
-	//audioPlay(currentOH);
+	setButtScreen();
 }
 
 void essBaseScene::tweenEntryExit(int stateNum_) {
@@ -470,7 +509,7 @@ void essBaseScene::tweenEntryExit(int stateNum_) {
 			else  {
 				textTempOH = currentOH; //if not just go up
 				Tweenzor::add(&tweenNum, tweenNum, endTween, 0.f, 1.f, EASE_IN_OUT_SINE);
-				//Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
+				Tweenzor::addCompleteListener( Tweenzor::getTween(&tweenNum), this, &essBaseScene::onEnterComplete);
 			}
             
 			for (int i = 0; i < floorMap.size(); i++) {
@@ -684,7 +723,7 @@ void essBaseScene::audioDisplay(){
 //------------------------------------------------------------------//
 
 void essBaseScene::baseTouchDown(ofTouchEventArgs &touch) {
-   setRotation(); 
+	setRotationWithoutButtScreen(); 
    
     //home
     if((shiftRotate() != 90 && touch.y < tweenNum) || (shiftRotate() == 90 && touch.x > tweenNum)){
@@ -814,6 +853,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         
         int count = 0; 
         for (int i = 0; i < floorMap.size(); i++) {
+			cout << "                  count: " << count << endl; 
             if (floorMap[i].touchBox.inside(touch.x, touch.y)) {
                 count ++; 
             }
@@ -825,6 +865,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
         }
         
         if (touchedOutside) {
+			cout << "                      touch outside" << endl; 
 			tweenEntryExit(0); 
             //if touch outside the overlay, audio stop
 			

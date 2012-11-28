@@ -35,7 +35,6 @@ void map4Scene::activate() {
     setupTitle("ELDRIDGE ST.");
     
     map4Scene.loadImage("flattenFiles/Map4.png");
-    map4Guide.loadImage("flattenFiles/Map4-guide.png");
 	
     
     setupHomeButton();
