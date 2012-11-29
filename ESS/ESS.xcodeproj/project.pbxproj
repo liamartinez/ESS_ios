@@ -40,6 +40,10 @@
 		0AB27C5915DBF5A400C3D016 /* essBaseScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0AB27C5815DBF5A400C3D016 /* essBaseScene.mm */; };
 		0AE14BB3165DF7670020EC8C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE14BB2165DF7670020EC8C /* Default.png */; };
 		0AE14BB5165DF7710020EC8C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE14BB4165DF7710020EC8C /* Default@2x.png */; };
+		0AE5B0F11667E27C00ABDBCA /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE5B0ED1667E27C00ABDBCA /* Icon-72.png */; };
+		0AE5B0F21667E27C00ABDBCA /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE5B0EE1667E27C00ABDBCA /* Icon-72@2x.png */; };
+		0AE5B0F31667E27C00ABDBCA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE5B0EF1667E27C00ABDBCA /* Icon.png */; };
+		0AE5B0F41667E27C00ABDBCA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE5B0F01667E27C00ABDBCA /* Icon@2x.png */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -181,6 +185,10 @@
 		0AB27C5815DBF5A400C3D016 /* essBaseScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = essBaseScene.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		0AE14BB2165DF7670020EC8C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0AE14BB4165DF7710020EC8C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0AE5B0ED1667E27C00ABDBCA /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "bin/data/Icon-72.png"; sourceTree = "<group>"; };
+		0AE5B0EE1667E27C00ABDBCA /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "bin/data/Icon-72@2x.png"; sourceTree = "<group>"; };
+		0AE5B0EF1667E27C00ABDBCA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = bin/data/Icon.png; sourceTree = "<group>"; };
+		0AE5B0F01667E27C00ABDBCA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "bin/data/Icon@2x.png"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* ESS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -507,6 +515,10 @@
 				0A530F971641CAB500EA64C4 /* ESSicon2.png */,
 				0A530F951641CA5A00EA64C4 /* ESSicon.png */,
 				0A95024E1657EA48006E7F9A /* iTunesArtwork */,
+				0AE5B0ED1667E27C00ABDBCA /* Icon-72.png */,
+				0AE5B0EE1667E27C00ABDBCA /* Icon-72@2x.png */,
+				0AE5B0EF1667E27C00ABDBCA /* Icon.png */,
+				0AE5B0F01667E27C00ABDBCA /* Icon@2x.png */,
 				E4D8936A11527B74007E1F53 /* src */,
 				BB24DD8B10DA77E000E9C588 /* data */,
 				BB24E1F710DAA51900E9C588 /* openFrameworks */,
@@ -694,6 +706,10 @@
 				0A950314165895A7006E7F9A /* README in Resources */,
 				0AE14BB3165DF7670020EC8C /* Default.png in Resources */,
 				0AE14BB5165DF7710020EC8C /* Default@2x.png in Resources */,
+				0AE5B0F11667E27C00ABDBCA /* Icon-72.png in Resources */,
+				0AE5B0F21667E27C00ABDBCA /* Icon-72@2x.png in Resources */,
+				0AE5B0F31667E27C00ABDBCA /* Icon.png in Resources */,
+				0AE5B0F41667E27C00ABDBCA /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

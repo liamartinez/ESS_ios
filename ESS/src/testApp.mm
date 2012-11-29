@@ -40,6 +40,8 @@ void testApp::setup(){
         try {
             for(int i=0; i<SW_TOTAL_SCENES; i++) {
                 scenes[i]->setup();
+				scenes[i]->activate();
+				scenes[i]->deactivate();
             }
         } catch(string error) {
             cout << "View not intitialized! Please make sure every scene is created above!" << endl;
@@ -64,6 +66,7 @@ void testApp::setup(){
     */
     //MainAudio Track
     volume = 1.0f;
+	
 	
     mainAudio.setMultiPlay(true); 
     mainAudio.setVolume(volume);

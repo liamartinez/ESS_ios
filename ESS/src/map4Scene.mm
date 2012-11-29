@@ -64,6 +64,7 @@ void map4Scene::activate() {
 void map4Scene::deactivate() {
     
     map4Scene.clear();
+	audioTest.unloadSound();
     
 }
 
