@@ -216,11 +216,11 @@ void oralHist::drawOverlay(int tweenedLoc) {
     }
     ofRotateZ(rotVal);
     //draw pause/ play button
-    drawPlay(0 + marginWidth/2, 0 + marginHeight/2);
+    drawPlay(0 + marginWidth/2, 0 + 16);
     
     //draw title
     ofSetColor(essAssets->ess_yellow);
-    essAssets->ostrich19.drawTextArea(name, 0 + marginWidth/2 + marginButton, 0 + marginHeight/2, overlayWidth, overlayHeight);
+    essAssets->ostrich19.drawTextArea(name, 0 + marginWidth/2 + marginButton, 0 + 18, overlayWidth, overlayHeight);
     
     //draw description
     ofSetColor(essAssets->ess_white);

@@ -42,6 +42,7 @@ void essBaseScene::draw() {
 //------------------------------------------------------------------
 
 void essBaseScene::setupMap(string floor_){
+	
 	//Check if the overlay is show
     overlayShow = false;
     
@@ -62,6 +63,9 @@ void essBaseScene::setupMap(string floor_){
         floorMap[i].setupOverlay();
     }    
 
+	//for audio display
+    audioTest.loadSound(floorMap[0].path);
+	
     buttonState = 0; 
     lastButton = -1;
     currentButton = 0; 
@@ -546,7 +550,7 @@ void essBaseScene::audioPlay(int currentTrack){
     double tempTime = 0;
 	
     //Stop all the audios
-       if (audioTest.isLoaded()) audioTest.stop();
+       audioTest.stop();
     //Check who is playing first. Save the time
     for (int i = 0; i< floorMap.size(); i++) {
         if (floorMap[i].playing) {
