@@ -815,7 +815,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
             currentOH = i;
 			
             //Stop the origin audio. Play the new one
-            //audioPlay(i); 
+            audioPlay(i); 
 			setRotation();
 			tweenEntryExit(1);
 			
