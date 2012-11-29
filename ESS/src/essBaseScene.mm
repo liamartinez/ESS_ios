@@ -81,13 +81,12 @@ void essBaseScene::setupMap(string floor_){
   
 	delay = 500; 
 	lastState = 0; 
-	
-	
 	reEnter = false; 
 
 	setRotation();
 	setupTweens();	
-
+	setButtScreen(); 
+	
     //for audio display
     audioTest.setMultiPlay(true); 
     audioTest.setSpeed(1.0f);
@@ -807,13 +806,16 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     
     //Audio Spot Buttons
     for (int i = 0; i < floorMap.size(); i++) {
+		/*
         if((shiftRotate() == 0 && floorMap[i].spotButn.isPressed() && touch.y < tweenNum) || (shiftRotate() == 90 && floorMap[i].spotButn.isPressed()&& touch.x > tweenNum)){
+		 */
+		if(floorMap[i].spotButn.isPressed() && buttScreen.isPressed()) {
             
 			cout << "pressed a button" << endl; 
             currentOH = i;
 			
             //Stop the origin audio. Play the new one
-            audioPlay(i); 
+            //audioPlay(i); 
 			setRotation();
 			tweenEntryExit(1);
 			
@@ -829,7 +831,7 @@ void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
     }
     
 	//textBoxHelper //use this for touching outside the overlay.
-    if (buttScreen.isPressed() &&!firstEntry) {
+    if (buttScreen.isPressed() &&!firstEntry && !descriptionButn.isPressed()) {
         
         int count = 0; 
         for (int i = 0; i < floorMap.size(); i++) {

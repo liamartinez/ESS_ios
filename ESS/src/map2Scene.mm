@@ -35,7 +35,6 @@ void map2Scene::activate() {
     setupTitle("MAIN SANCTUARY");
     
     map2Scene.loadImage("flattenFiles/Map2.png");
-    guide2.loadImage("flattenFiles/Map2-guide.png");
     
     setupHomeButton();
     

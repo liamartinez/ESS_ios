@@ -35,7 +35,6 @@ void map3Scene::activate() {
     setupTitle("LOWER SANCTUARY");
     
     map3Scene.loadImage("flattenFiles/Map3.png");
-    map3Guide.loadImage("flattenFiles/Map3-guide.png");
 	
     
     setupHomeButton();

@@ -37,7 +37,6 @@ void map1Scene::activate() {
     setupTitle("BALCONY");
     
     map1Scene.loadImage("flattenFiles/Map1.png");
-    guide1.loadImage("flattenFiles/Map1-guide.png");
     
     setupHomeButton();
  
