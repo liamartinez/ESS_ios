@@ -227,6 +227,7 @@ void aboutScene::draw() {
             break;
     }
 
+	ofSetColor(essAssets->ess_white);
 	essAssets->ostrich24.drawString("ABOUT", 15, 15);
 	ofSetColor(essAssets->ess_blue);
 	ofFill();
@@ -237,7 +238,7 @@ void aboutScene::draw() {
 
     ofPushMatrix();
     ofSetColor(essAssets->ess_blue);
-	ofRect(rectHome.x, rectHome.y,80, 57);
+	ofRect(0, rectHome.y,ofGetWidth(), 57);
     buttHome.draw(); 
     ofPopMatrix();
 

@@ -241,15 +241,6 @@ void essBaseScene::drawLowerBar() {
             
 		case 1:
 			essSM->setIsDragging(true);
-			/*
-			if (!floorMap[currentOH].getDrawRotated()) { 
-				buttScreen.setPos(0, 0);
-				buttScreen.setSize(ofGetWidth(), ofGetHeight() - (floorMap[currentOH].overlayHeight + floorMap[currentOH].marginHeight));
-			} else {
-				buttScreen.setPos(tweenNum, 0);
-				buttScreen.setSize(ofGetWidth(), ofGetHeight());
-			}
-			 */
 
 			doneTweening = false;
 
@@ -379,7 +370,7 @@ void essBaseScene::drawLowerBar() {
     
 	//draw the button to drag out the description
 	descriptionButn.enableBG(); //enabling this will draw the button box area 
-								//descriptionButn.draw(); 
+								//descriptionButn.draw(); //debug
 	if ((shiftRotate() == 0)) {
 		descriptionButn.setSize(300, 50);
 		descriptionButn.setPos((floorMap[currentOH].overlayRect.x + floorMap[currentOH].overlayRect.width)/2 - 150, tweenNum - 30); 
@@ -402,21 +393,6 @@ void essBaseScene::drawLowerBar() {
 	}
 	ofDisableAlphaBlending();
 
-	/*
-	if (shiftRotate() == 90) {
-		//debugging: draw the tween!
-		ofSetColor(255, 0, 0);
-		ofSetLineWidth(50);
-		ofLine (tweenNum, 0, tweenNum, ofGetHeight()); 
-	} else {
-		//debugging: draw the tween!
-		ofSetColor(255, 0, 0);
-		ofSetLineWidth(50);
-		ofLine (0, tweenNum, ofGetWidth(), tweenNum); 
-	}
-	 */
-    
-    
 }
 //------------------------OVERLAY & TWEENING------------------------------------------
 
@@ -590,7 +566,7 @@ void essBaseScene::audioPlay(int currentTrack){
             cout<<" "<<i<< "  Spot Button be pressed"<<endl;//":"<<floorMap[i].path<<"tempTime"<<tempTime<<endl;
             floorMap[i].playing = true;
             floorMap[i].isPlayed = true;
-            audioTest.loadSound(floorMap[i].path);
+            audioTest.loadSound(floorMap[i].path, 1);
             updateXML(i);
             tempTime = loadXMLTime(i);     
         }else{
@@ -1052,10 +1028,10 @@ void essBaseScene::resetPlayed() {
         //load the XMLs
         if( XMLTemp.loadFile(ofxiPhoneGetDocumentsDirectory() + ofToString(floorNum) + ".xml") ){
             message = ofToString(floorNum) + ".xml loaded from documents folder!";
-			//}else if( XMLTemp.loadFile("xml/" + ofToString(floorNum) + ".xml") ){
-			//    message = ofToString(floorNum) + ".xml loaded from data folder!";
+			}else if( XMLTemp.loadFile("xml/" + ofToString(floorNum) + ".xml") ){
+			    message = ofToString(floorNum) + ".xml loaded from data folder!";
         }else{
-            message = "unable to load" + ofToString(floorNum) + ".xml check data/ folder";
+            message = "unable to load" + ofToString(floorNum) + ".xml check data folder";
         }
         
         cout << message << endl; 

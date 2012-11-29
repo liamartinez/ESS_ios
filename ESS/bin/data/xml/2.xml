@@ -1,6 +1,6 @@
 <ESS>
     <OH>
-        <NAME>MY BROTHER&apos;S BAR MITZVAH</NAME>
+        <NAME>MY BROTHER’S BAR MITZVAH</NAME>
         <PATH>sounds/caf/03A.caf</PATH>
         <KEYWORD>story</KEYWORD>
         <XPOS>247</XPOS>
@@ -33,7 +33,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>171</LENGTH>
-        <DESCRIPTION>Voices of Edwin Margolius, Paul Bookson &#10;- Yom Kippur: Day of Atonement. The holiest day of the year. &#10;- Rabbi: A man educated in halakhah (Jewish law) and tradition who is responsible for instructing the community. &#10;- Edward Smith sings &quot;Adon Olam&quot; (&quot;Lord of the World&quot;), the final prayer of the Musaf service on Shabbat morning and festivals. It can also be found in the composition of bedtime prayers.</DESCRIPTION>
+        <DESCRIPTION>Voices of Edwin Margolius, Paul Bookson &#10;- Yom Kippur: Day of Atonement. The holiest day of the year. &#10;- Rabbi: A man educated in halakhah (Jewish law) and tradition responsible for instructing the community. &#10;- Edward Smith sings &quot;Adon Olam&quot; (&quot;Lord of the World&quot;).</DESCRIPTION>
     </OH>
     <OH>
         <NAME>PROMINENT CANTORS</NAME>
@@ -45,7 +45,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>283</LENGTH>
-        <DESCRIPTION>Voices of Paul Bookson, Max Smith, Mr. Hershkovitz &#10;- Cantor: A person who leads the congregation in prayer. The cantor be a professional or a member of the congregation. &#10;- Edward Smith sings &quot;V'al Y'dei&quot;, a blessing sung on Rosh Hashanah (New Year).</DESCRIPTION>
+        <DESCRIPTION>Voices of Paul Bookson, Max Smith, Mr. Hershkovitz &#10;- Cantor: A person who leads the congregation in prayer. The cantor can be a professional or a member of the congregation. &#10;- Edward Smith sings &quot;V'al Y'dei&quot;, a blessing sung on Rosh Hashanah (New Year).</DESCRIPTION>
     </OH>
     <OH>
         <NAME>LAZERUS BROTHERS</NAME>
@@ -57,7 +57,7 @@
         <PLAYING>0</PLAYING>
         <TIME>0.0383042</TIME>
         <LENGTH>74</LENGTH>
-        <DESCRIPTION>Voice of Gilbert Lazerus &#10;- Gilbert Lazerus’ grandfathers alternated as presidents of the Eldridge Street Synagogue. Their names are engraved on these marble plaques - a record of synagogue members.</DESCRIPTION>
+        <DESCRIPTION>Voice of Gilbert Lazerus &#10;- Gilbert Lazerus&apos; grandfathers alternated as presidents of the Eldridge Street Synagogue. Their names are engraved on these marble plaques - a record of synagogue members.</DESCRIPTION>
     </OH>
     <OH>
         <NAME>A BEAUTIFUL SANCTUARY</NAME>
@@ -69,6 +69,6 @@
         <PLAYING>0</PLAYING>
         <TIME>0</TIME>
         <LENGTH>118</LENGTH>
-        <DESCRIPTION>Voices of Mrs. Brenner, Gilbert Lazarus, Paul Bookson, Max Smith &#10;- Dozens of Stars of David decorate the Eldridge Street Synagogue façade. The synagogue’s architecture was a proud declaration of newly-found religious freedom. With its soaring 50-foot ceiling and exuberant Moorish-style interior, Eldridge Street provided an inspiring contrast to the crowded tenements, factories and shops of the Lower East Side.</DESCRIPTION>
+        <DESCRIPTION>Voices of Mrs. Brenner, Gilbert Lazarus, Paul Bookson, Max Smith &#10;- Dozens of Stars of David decorate the Eldridge Street Synagogue facade. The synagogue’s architecture was a proud declaration of newly-found religious freedom. With its soaring 50-foot ceiling and exuberant Moorish-style interior, Eldridge Street provided an inspiring contrast to the crowded tenements, factories and shops of the Lower East Side.</DESCRIPTION>
     </OH>
 </ESS>

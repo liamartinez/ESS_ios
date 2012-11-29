@@ -50,7 +50,7 @@ void homeScene::activate() {
     //buttResetXML.setColor(essAssets->ess_white, essAssets->ess_grey);
 	
 	textGray.set(230, 230, 230, alphaWhite); 
-	darkGray.set (210, 210, 210); 
+	darkGray.set (120, 120, 120); 
     buttResetXML.disableBG();
 	buttResetXML.setPos(-10, -15);
 	buttResetXML.setColor(textWhite, darkGray);
