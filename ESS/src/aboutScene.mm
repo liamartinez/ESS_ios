@@ -31,7 +31,7 @@ void aboutScene::activate() {
     mgr.setCurScene(ABOUT_SCENE_APP);
 	essSM->setIsDragging(true); 
 	
-	aboutScreen.loadImage("flattenFiles/AboutHorizontal.png");
+	//aboutScreen.loadImage("flattenFiles/AboutHorizontal.png");
     
     pApp.loadImage ("flattenFiles/about/AboutTextAPP.png"); 
     pOralHistories.loadImage ("flattenFiles/about/AboutTextORALHISTORIES.png"); 

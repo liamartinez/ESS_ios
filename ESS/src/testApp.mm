@@ -70,7 +70,7 @@ void testApp::setup(){
 	
     mainAudio.setMultiPlay(true); 
     mainAudio.setVolume(volume);
-    mainAudio.loadSound("sounds/Master_fCaf.caf");
+    mainAudio.loadSound("sounds/Master.caf");
     mainAudio.setLoop(true);
     mainAudio.play();
 
