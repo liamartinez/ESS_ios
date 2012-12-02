@@ -794,125 +794,249 @@ void essBaseScene::baseTouchMoved(ofTouchEventArgs &touch) {
 
 void essBaseScene::baseTouchUp(ofTouchEventArgs &touch) {
 	
+	
+	
+	
 	descDown = false; //this is for case 2, which is not used anymore.
-	dragging = false; //this is for case 3, so that it snaps only when you're not dragging. 
+	
+	dragging = false; //this is for case 3, so that it snaps only when you're not dragging.
+	
 	
     
+	
     //Home Button
-    if((shiftRotate() != 90 && touch.y < tweenNum) || (shiftRotate() == 90 && touch.x > tweenNum)){
-		if (buttHome.isPressed()) essSM->setCurScene(SCENE_HOME);
-        buttHome.touchUp(touch);
+	
+	if (buttHome.isPressed()) {
+		
+		essSM->setCurScene(SCENE_HOME);
+		
+		cout << "touch home" << endl;
+		
 	}
-    
-    //Audio Spot Buttons
-    for (int i = 0; i < floorMap.size(); i++) {
-		/*
-        if((shiftRotate() == 0 && floorMap[i].spotButn.isPressed() && touch.y < tweenNum) || (shiftRotate() == 90 && floorMap[i].spotButn.isPressed()&& touch.x > tweenNum)){
-		 */
-		if(floorMap[i].spotButn.isPressed() && buttScreen.isPressed()) {
-            
-			cout << "pressed a button" << endl; 
-            currentOH = i;
-			
-            //Stop the origin audio. Play the new one
-            audioPlay(i); 
-			setRotation();
-			tweenEntryExit(1);
-			
-
-            //For Pan
-            spotTouch = true;
-			firstEntry = false;     //functions that rely on currentOH not being empty can work now.       
-        }        
-    }
-    
-    for (int i = 0; i < floorMap.size(); i++) {
-        floorMap[i].spotButn.touchUp(touch);
-    }
-    
+	
+	//}
+	
+	
+    buttHome.touchUp(touch);
+	
+	
 	//textBoxHelper //use this for touching outside the overlay.
+	
     if (buttScreen.isPressed() &&!firstEntry && !descriptionButn.isPressed()) {
+		
         
-        int count = 0; 
+		
+        int count = 0;
+		
         for (int i = 0; i < floorMap.size(); i++) {
-			cout << "                  count: " << count << endl; 
-            if (floorMap[i].touchBox.inside(touch.x, touch.y)) {
-                count ++; 
+			
+			if (floorMap[i].spotButn.isPressed()){
+				
+                count ++;
+				
             }
+			
             if (count > 0) {
+				
                 touchedOutside = false;
+				
             } else {
-                touchedOutside = true; 
+				
+				touchedOutside = true;
+				
             }
+			
         }
+		
         
+		
+		cout << "count: " << count << endl;
+		
         if (touchedOutside) {
-			cout << "                      touch outside" << endl; 
-			tweenEntryExit(0); 
+			
+			cout << "                      touch outside" << endl;
+			
+			tweenEntryExit(0);
+			
             //if touch outside the overlay, audio stop
 			
+			
             if (audioTest.getIsPlaying()) {
+				
                 audioTest.stop();
+				
                 floorMap[currentOH].playing= 0;
+				
                 floorMap[currentOH].time = audioTest.getPosition();
+				
                 updateXML(currentOH);
+				
             }
-			 
-        }		
-    }
-    buttScreen.touchUp(touch);
-    
-    //Play and Pause Button
-    if (playPauseButn.isPressed()) {
-        if(floorMap[currentOH].playing){
-            audioTest.stop();
-            floorMap[currentOH].playing= 0;
-            floorMap[currentOH].time = audioTest.getPosition();
-            updateXML(currentOH);
-        }else{
-            audioTest.loadSound(floorMap[currentOH].path);
-            audioTest.play();
-            audioTest.setPosition(loadXMLTime(currentOH));
-            floorMap[currentOH].playing= 1;
-            updateXML(currentOH);
+			
+			
         }
+		
+    }
+	
+	
+    //Audio Spot Buttons
+	
+    for (int i = 0; i < floorMap.size(); i++) {
+		
+		
+		
+		if(floorMap[i].spotButn.isPressed() && buttScreen.isPressed()) {
+			
+            
+			
+			cout << "pressed a button" << endl;
+			
+            currentOH = i;
+			
+			
+            //Stop the origin audio. Play the new one
+			
+            audioPlay(i);
+			
+			setRotation();
+			
+			tweenEntryExit(1);
+			
+			
+			
+			
+            //For Pan
+			
+            spotTouch = true;
+			
+			firstEntry = false;     //functions that rely on currentOH not being empty can work now.
+			
+        }
+		
+    }
+	
+    
+	
+    for (int i = 0; i < floorMap.size(); i++) {
+		
+        floorMap[i].spotButn.touchUp(touch);
+		
+    }
+	
+	
+	
+	if (buttScreen.isPressed()) cout << "screen is pressed" << endl;
+	
+	if (descriptionButn.isPressed()) cout << "description is pressed" << endl;
+	
+    
+	
+	
+	
+    buttScreen.touchUp(touch);
+	
+    
+	
+    //Play and Pause Button
+	
+    if (playPauseButn.isPressed()) {
+		
+        if(floorMap[currentOH].playing){
+			
+            audioTest.stop();
+			
+            floorMap[currentOH].playing= 0;
+			
+            floorMap[currentOH].time = audioTest.getPosition();
+			
+            updateXML(currentOH);
+			
+        }else{
+			
+            audioTest.loadSound(floorMap[currentOH].path);
+			
+            audioTest.play();
+			
+            audioTest.setPosition(loadXMLTime(currentOH));
+			
+            floorMap[currentOH].playing= 1;
+			
+            updateXML(currentOH);
+			
+        }
+		
         
+		
     }
+	
     playPauseButn.touchUp(touch);
+	
     
+	
 	/* //for case 2
+	 
      if (overlayState != 3) {
+	 
      if (descriptionButn.isPressed()) {
+	 
      //tweenEntryExit(2);
+	 
      }
+	 
      } else {
+	 
      if (descriptionButn.isPressed()) {
+	 
      //tweenEntryExit(2);
-     goingUp = true; 
+	 
+     goingUp = true;
+	 
      }
+	 
      }
+	 
 	 */
+	
     
-	if (descriptionButn.isPressed()) tweenEntryExit(3); 
+	
+	if (descriptionButn.isPressed()) tweenEntryExit(3);
+	
     
+	
 	descriptionButn.touchUp(touch);
+	
     
+	
     //Audio Bar
-
+	
+	
+	
     if(audioDrag){
+		
         audioTest.loadSound(floorMap[currentOH].path);
+		
         audioTest.play();
+		
         audioTest.setPosition(loadXMLTime(currentOH));
+		
         floorMap[currentOH].playing= 1;
+		
         updateXML(currentOH);
+		
         audioDrag = false;
+		
     }
+	
     audioBar.touchUp(touch);
+	
     if (audioBar.isPressed()) {
+		
 		lastTweenNum = tweenNum; 
+		
 	}
 	
-    touched = false; 
+	
+    touched = false;
     
 
 }

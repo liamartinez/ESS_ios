@@ -781,30 +781,36 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
 				INFOPLIST_FILE = "ofxiphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = ESS;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos6.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Anna  Martinez";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Anna  Martinez";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iPhone_Prefix.pch;
 				INFOPLIST_FILE = "ofxiphone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = ESS;
-				PROVISIONING_PROFILE = "B342F1EB-68A4-4960-B77C-DF495A28D8EF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B342F1EB-68A4-4960-B77C-DF495A28D8EF";
+				PROVISIONING_PROFILE = "5035EAC3-FFA9-4CA1-A7ED-5A467E3D5AE8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5035EAC3-FFA9-4CA1-A7ED-5A467E3D5AE8";
+				SDKROOT = iphoneos6.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -836,7 +842,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_LDFLAGS = "-no_arch_warnings";
 			};
@@ -866,9 +872,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "B342F1EB-68A4-4960-B77C-DF495A28D8EF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B342F1EB-68A4-4960-B77C-DF495A28D8EF";
-				SDKROOT = iphoneos;
+				PROVISIONING_PROFILE = "2763A208-E85A-4E81-AF30-3687AB55BF6F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2763A208-E85A-4E81-AF30-3687AB55BF6F";
+				SDKROOT = iphoneos6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WARNING_LDFLAGS = "-no_arch_warnings";
 			};
